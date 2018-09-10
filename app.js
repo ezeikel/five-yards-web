@@ -1,11 +1,20 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const { ApolloServer } = require('apollo-server-express');
+const { typeDefs, resolvers } = require('./schema');
 
 // create our Express app
 const app = express();
 
 app.use(morgan('dev'));
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
+
+server.applyMiddleware({ app, path: '/graphql' });
 
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
