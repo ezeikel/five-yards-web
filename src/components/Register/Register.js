@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-const ExchangeRates = () => (
+const Books = () => (
   <Query
     query={gql`
       {
-        rates(currency: "USD") {
-          currency
-          rate
+        books {
+          title,
+          author
         }
       }
     `}
@@ -17,9 +17,9 @@ const ExchangeRates = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      return data.rates.map(({ currency, rate }) => (
-        <div key={currency}>
-          <p>{`${currency}: ${rate}`}</p>
+      return data.books.map(({ title, author }) => (
+        <div key={title}>
+          <p>{`${title}: ${author}`}</p>
         </div>
       ));
     }}
@@ -28,14 +28,14 @@ const ExchangeRates = () => (
 
 class Register extends Component {
   state = {  }
-  render() { 
+  render() {
     return (
       <div>
         <div>Register!</div>
-        <ExchangeRates />
+        <Books />
       </div>
     );
   }
 }
- 
+
 export default Register;

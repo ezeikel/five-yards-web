@@ -1,29 +1,25 @@
 {
   "name": "five-yards-web",
-  "description": "",
-  "version": "0.0.0",
-  "scripts": {
-    "start": "node ./start.js",
-    "watch": "nodemon ./start.js --ignore public/",
-    "dev": "npm run watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ezeikel/five-yards-web.git"
-  },
-  "author": "Ezeikel Pemberton",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ezeikel/five-yards-web/issues"
-  },
-  "homepage": "https://github.com/ezeikel/five-yards-web#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "apollo-server-express": "^2.0.6",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
+    "apollo-boost": "^0.1.15",
     "graphql": "^14.0.2",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.18.4"
+    "react": "^16.5.0",
+    "react-apollo": "^2.1.11",
+    "react-dom": "^16.5.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "styled-components": "^3.4.5"
   },
-  "devDependencies": {}
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn build"
+  },
+  "devDependencies": {
+    "react-testing-library": "^5.0.1"
+  }
 }

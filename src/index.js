@@ -8,16 +8,18 @@ import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
-  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql'
+  uri: 'https://five-yards-api.herokuapp.com/graphql',
+  onError: (e) => { console.log(e.graphQLErrors) }
 });
 
 client.query({
   query: gql`
-    {
-      rates(currency: "USD") {
-        currency
-      }
+  {
+    books {
+      title,
+      author
     }
+  }
   `
 })
 .then(result => console.log(result));
