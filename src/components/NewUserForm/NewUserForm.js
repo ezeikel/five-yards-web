@@ -30,7 +30,7 @@ const NewUserForm = () => {
         <section>
           <form onSubmit={e => {
             e.preventDefault();
-  
+
             newUser({ variables: { fullName: fullName.value, username: username.value, email: email.value, password: password.value, passwordConfirm: passwordConfirm.value, } });
             fullName.value = "";
             username.value = "";
@@ -65,5 +65,5 @@ const NewUserForm = () => {
     </Mutation>
   );
 }
- 
+
 export default NewUserForm;

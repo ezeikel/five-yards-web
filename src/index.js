@@ -7,8 +7,7 @@ import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
-  //uri: 'https://five-yards-api.herokuapp.com/graphql',
-  uri: 'http://localhost:7777/graphql',
+  uri: process.env.NODE_ENV === 'production' ? 'https://five-yards-api.herokuapp.com/graphql' : 'http://localhost:7777/graphql',
   onError: (e) => { console.log(e.graphQLErrors) }
 });
 

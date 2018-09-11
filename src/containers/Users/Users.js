@@ -39,5 +39,5 @@ const Users = () => (
     }}
   </Query>
 );
- 
+
 export default Users;
