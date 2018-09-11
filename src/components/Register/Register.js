@@ -3,26 +3,26 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 // query
-const BOOKS_QUERY = gql`
+const USERS_QUERY = gql`
   {
-    books {
-      title,
-      author
+    users {
+      fullName,
+      username
     }
   }
 `;
 
-const Books = () => (
-  <Query query={BOOKS_QUERY}>
+const Users = () => (
+  <Query query={USERS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      const { books } = data;
+      const { users } = data;
 
-      return books.map(({ title, author }) => (
-        <div key={title}>
-          <p>{`${title}: ${author}`}</p>
+      return users.map(({ fullName, username }) => (
+        <div key={username}>
+          <p>{`${fullName}: ${username}`}</p>
         </div>
       ));
     }}
@@ -35,7 +35,8 @@ class Register extends Component {
     return (
       <div>
         <div>Register!</div>
-        <Books />
+        <h1>Users</h1>
+        <Users />
       </div>
     );
   }
