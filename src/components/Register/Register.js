@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
+// query
+const BOOKS_QUERY = gql`
+  {
+    books {
+      title,
+      author
+    }
+  }
+`;
+
 const Books = () => (
-  <Query
-    query={gql`
-      {
-        books {
-          title,
-          author
-        }
-      }
-    `}
-  >
+  <Query query={BOOKS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      return data.books.map(({ title, author }) => (
+      const { books } = data;
+
+      return books.map(({ title, author }) => (
         <div key={title}>
           <p>{`${title}: ${author}`}</p>
         </div>

@@ -12,6 +12,7 @@ const client = new ApolloClient({
   onError: (e) => { console.log(e.graphQLErrors) }
 });
 
+// Running our query outisde of React
 client.query({
   query: gql`
   {
