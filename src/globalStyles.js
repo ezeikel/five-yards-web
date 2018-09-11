@@ -49,6 +49,7 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"],
+input[type="password"],
 input[type="submit"],
 textarea,
 select {

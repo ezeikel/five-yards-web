@@ -1,43 +1,29 @@
 import React, { Component } from 'react';
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import styled from 'styled-components';
+import NewUserForm from '../NewUserForm/NewUserForm';
+import Users from '../../containers/Users/Users';
 
-// query
-const USERS_QUERY = gql`
-  {
-    users {
-      fullName,
-      username
-    }
+const Wrapper = styled.div `
+  display: grid;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
   }
 `;
 
-const Users = () => (
-  <Query query={USERS_QUERY}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-
-      const { users } = data;
-
-      return users.map(({ fullName, username }) => (
-        <div key={username}>
-          <p>{`${fullName}: ${username}`}</p>
-        </div>
-      ));
-    }}
-  </Query>
-);
+const Heading = styled.h1 `
+  grid-row: 1 / 1;
+  grid-column: 1 / -1;
+`;
 
 class Register extends Component {
-  state = {  }
   render() {
     return (
-      <div>
-        <div>Register!</div>
-        <h1>Users</h1>
+      <Wrapper>
+        <Heading>Register</Heading>
+        <NewUserForm />
         <Users />
-      </div>
+      </Wrapper>
     );
   }
 }

@@ -8,7 +8,7 @@ import Main from '../Main/Main';
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: auto 1fr;
   padding: var(--spacing-large);
 `;
 
