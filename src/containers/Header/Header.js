@@ -13,10 +13,10 @@ const Header = () => {
       <h1>Five Yards.</h1>
       <ul>
         <Link to="/">Home</Link>
-        <Link to="/register">Register</Link>
+        <Link to="/signup">Sign Up</Link>
       </ul>
     </Wrapper>
   );
 }
- 
+
 export default Header;
