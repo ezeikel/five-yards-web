@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloClient, InMemoryCache } from 'apollo-boost';
+import { ApolloClient } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from 'react-apollo';
 import App from './containers/App/App';
@@ -14,8 +15,7 @@ const link = createHttpLink({
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link,
-  onError: (e) => { console.log(e.graphQLErrors) }
+  link
 });
 
 const app = (
