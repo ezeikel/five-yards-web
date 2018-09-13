@@ -48,6 +48,12 @@ class SignupForm extends Component {
             <form onSubmit={async e => {
               e.preventDefault();
               const res = await signup();
+              this.setState({
+                email: '',
+                fullName: '',
+                username: '',
+                password: ''
+              });
               console.log({ res });
 
             }}>
