@@ -1,31 +1,87 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import SignUpForm from '../SignupForm/SignupForm';
-import Users from '../../containers/Users/Users';
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+import { CURRENT_USER_QUERY } from '../User/User';
 
-const Wrapper = styled.div `
-  display: grid;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr;
+const SIGNUP_MUTATION = gql`
+  mutation Signup(
+    $email: String!,
+    $fullName: String!,
+    $username: String!,
+    $password: String!,
+    ) {
+    signup(
+      email: $email
+      fullName: $fullName
+      username: $username
+      password: $password
+    ) {
+      id
+      email
+      fullName
+    }
   }
 `;
 
-const Heading = styled.h1 `
-  grid-row: 1 / 1;
-  grid-column: 1 / -1;
-`;
+class Signup extends Component {
+  state = {
+    email: '',
+    fullName: '',
+    username: '',
+    password: ''
+  }
 
-class SignUp extends Component {
+  saveToState = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     return (
-      <Wrapper>
-        <Heading>Sign Up</Heading>
-        <SignUpForm />
-        <Users />
-      </Wrapper>
+      <Mutation
+        mutation={SIGNUP_MUTATION}
+        variables={this.state}
+        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+      >
+        {(signup, { loading, error }) => (
+          <section>
+            <form onSubmit={async e => {
+              e.preventDefault();
+              const res = await signup();
+              this.setState({
+                email: '',
+                fullName: '',
+                username: '',
+                password: ''
+              });
+              console.log({ res });
+
+            }}>
+              <label htmlFor="fullName">
+                Full name
+                <input type="text" name="fullName" value={this.state.fullName} onChange={this.saveToState} />
+              </label>
+              <label htmlFor="username">
+                Username
+                <input type="text" name="username" value={this.state.username} onChange={this.saveToState} />
+              </label>
+              <label htmlFor="email">
+                Email
+                <input type="email" name="email" value={this.state.email} onChange={this.saveToState} />
+              </label>
+              <label htmlFor="password">
+                Password
+                <input type="password" name="password" value={this.state.password} onChange={this.saveToState} />
+              </label>
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+        )}
+      </Mutation>
     );
   }
 }
 
-export default SignUp;
+export default Signup;
