@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { CURRENT_USER_QUERY } from '../User/User';
@@ -32,6 +33,7 @@ class Signin extends Component {
         mutation={SIGNIN_MUTATION}
         variables={state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        onCompleted={() => this.props.history.push('/')}
       >
         {(signin, { error, loading }) => (
           <form
@@ -42,7 +44,7 @@ class Signin extends Component {
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Sign into your account</h2>
+              <h2>Welcome back</h2>
               <label htmlFor="email">
                 Email
                 <input
@@ -63,7 +65,13 @@ class Signin extends Component {
                   onChange={this.saveToState}
                 />
               </label>
-              <button type="submit">Sign In!</button>
+              <Link to="/request-reset">Forgot password?</Link>
+              <button type="submit">Sign In</button>
+              <span>
+                Don't have an account yet?
+                <br />
+                Just click <Link to="/signup">here</Link> to create one.
+              </span>
             </fieldset>
           </form>
 
