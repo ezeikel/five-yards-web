@@ -5,6 +5,8 @@ import Signup from '../../components/Signup/Signup';
 import Landing from '../../components/Landing/Landing';
 import Signin from '../../components/Signin/Signin';
 import RequestReset from '../../components/RequestReset/RequestReset';
+import Users from '../Users/Users';
+import User from '../../components/User/User';
 
 const Main = () => {
   return (
@@ -13,6 +15,8 @@ const Main = () => {
         <Route exact path="/" component={Home} />
         <Route path="/signin" component={Signin} />
         <Route path="/request-reset" component={RequestReset} />
+        <Route path="/registered-users" component={Users} />
+        <Route path="/user" component={User} />
       </Switch>
     </main>
   );

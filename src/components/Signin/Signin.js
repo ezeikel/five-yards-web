@@ -35,11 +35,12 @@ class Signin extends Component {
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         onCompleted={() => this.props.history.push('/')}
       >
-        {(signin, { error, loading }) => (
+        {(signin, { error, loading, client }) => (
           <form
             onSubmit={ async e => {
               e.preventDefault();
               await signin();
+              //client.writeData({ data: { user: }})
               this.setState({ fullName: '', email: '', password: '' });
             }}
           >
