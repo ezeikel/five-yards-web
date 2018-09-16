@@ -33,50 +33,53 @@ class Signin extends Component {
         mutation={SIGNIN_MUTATION}
         variables={state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        awaitRefetchQueries={true}
         onCompleted={() => this.props.history.push('/')}
       >
-        {(signin, { error, loading, client }) => (
-          <form
-            onSubmit={ async e => {
-              e.preventDefault();
-              await signin();
-              //client.writeData({ data: { user: }})
-              this.setState({ fullName: '', email: '', password: '' });
-            }}
-          >
-            <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Welcome back</h2>
-              <label htmlFor="email">
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <label htmlFor="password">
-                Password
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <Link to="/request-reset">Forgot password?</Link>
-              <button type="submit">Sign In</button>
-              <span>
-                Don't have an account yet?
-                <br />
-                Just click <Link to="/signup">here</Link> to create one.
-              </span>
-            </fieldset>
-          </form>
-
-        )}
+        {(signin, { data, error, loading, client }) => {
+          const onSuccess = () => client.writeData({ data: { editMode: true }})
+          return (
+            <form
+              onSubmit={async e => {
+                e.preventDefault();
+                await signin();
+                debugger;
+                onSuccess();
+              }}
+            >
+              <fieldset disabled={loading} aria-busy={loading}>
+                <h2>Welcome back</h2>
+                <label htmlFor="email">
+                  Email
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    value={this.state.email}
+                    onChange={this.saveToState}
+                  />
+                </label>
+                <label htmlFor="password">
+                  Password
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    value={this.state.password}
+                    onChange={this.saveToState}
+                  />
+                </label>
+                <Link to="/request-reset">Forgot password?</Link>
+                <button type="submit">Sign In</button>
+                <span>
+                  Don't have an account yet?
+                  <br />
+                  Just click <Link to="/signup">here</Link> to create one.
+                </span>
+              </fieldset>
+            </form>
+          )
+        }}
       </Mutation>
     );
   }

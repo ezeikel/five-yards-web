@@ -1,9 +1,9 @@
-import React from 'react';
-import { Mutation } from 'react-apollo';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { SIGN_OUT_MUTATION } from '../../components/Signout/Signout';
-import User, { CURRENT_USER_QUERY } from '../../components/User/User';
+import React from "react";
+import { Mutation } from "react-apollo";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { SIGN_OUT_MUTATION } from "../../components/Signout/Signout";
+import User, { CURRENT_USER_QUERY } from "../../components/User/User";
 
 const Wrapper = styled.nav`
   display: none;
@@ -18,7 +18,8 @@ const Wrapper = styled.nav`
 const NavLinks = styled.ul`
   display: flex;
   flex-direction: row;
-  > a, > button {
+  > a,
+  > button {
     margin-left: var(--spacing-medium);
   }
 `;
@@ -32,28 +33,31 @@ const Nav = () => {
     <User>
       {({ data: { me } }) => (
         <Wrapper>
-          <Title><Link to="/">Five Yards</Link></Title>
+          <Title>
+            <Link to="/">Five Yards</Link>
+          </Title>
           <NavLinks>
             {me && (
               <React.Fragment>
                 <Link to="/">Orders</Link>
                 <Link to="/">Account</Link>
               </React.Fragment>
-            )
-            }
-            {!me
-              ?
+            )}
+            {!me ? (
               <Link to="/signin">Sign in</Link>
-              :
-              <Mutation mutation={SIGN_OUT_MUTATION} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
+            ) : (
+              <Mutation
+                mutation={SIGN_OUT_MUTATION}
+                refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+              >
                 {signout => <button onClick={signout}>Sign Out</button>}
               </Mutation>
-            }
+            )}
           </NavLinks>
         </Wrapper>
       )}
     </User>
   );
-}
+};
 
 export default Nav;

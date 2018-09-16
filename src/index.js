@@ -7,7 +7,8 @@ import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const defaultState = {
-  isEditMode: false
+  isEditMode: false,
+  user: null
 };
 
 const client = new ApolloClient({
