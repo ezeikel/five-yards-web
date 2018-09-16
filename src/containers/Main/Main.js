@@ -1,8 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
-import Signup from '../../components/Signup/Signup';
-import Landing from '../../components/Landing/Landing';
 import Signin from '../../components/Signin/Signin';
 import RequestReset from '../../components/RequestReset/RequestReset';
 import Users from '../Users/Users';
