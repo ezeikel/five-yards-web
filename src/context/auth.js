@@ -1,7 +1,7 @@
 import React, { createContext, Component } from 'react';
 import { withApollo, Query } from 'react-apollo';
 
-import { GET_CURRENT_USER, UPDATE_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION } from '../apollo/queries';
+import { GET_CURRENT_USER, UPDATE_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION, CURRENT_USER_QUERY } from '../apollo/queries';
 
 // create React context
 export const AuthContext = createContext();
@@ -10,31 +10,29 @@ class Provider extends Component {
   state = {
     signin: async (email, password) => {
       const { client } = this.props;
-      /**
-       * Login logic here
-       */
 
-       // manually firing off mutation
-       // https://www.apollographql.com/docs/react/essentials/queries.html#manual-query
-      const response = await client.mutate({
+      // manually firing off mutation
+      // https://www.apollographql.com/docs/react/essentials/queries.html#manual-query
+      // pull id from response
+      const { data: { signin: id } } = await client.mutate({
         mutation: SIGNIN_MUTATION,
         variables: { email, password }
       });
 
-      console.log({ response });
-
-      // TODO: Some logic to determine if we had errors or not and if to update local state
-
-      client.mutate({
-        mutation: UPDATE_CURRENT_USER,
-        variables: { email, isAuthenticated: true }
+      // get full user details
+      const { data: { me: { fullName, permissions } } } = await client.query({
+        query: CURRENT_USER_QUERY
       });
+
+      // TODO: handle errors for query/mutate calls
+      await client.mutate({
+        mutation: UPDATE_CURRENT_USER,
+        variables: { id, email, fullName, permissions, isAuthenticated: true }
+      });
+
     },
     signout: async () => {
       const { client } = this.props;
-      /**
-       * logout logic here
-       */
 
        await client.mutate({
         mutation: SIGNOUT_MUTATION
@@ -44,7 +42,7 @@ class Provider extends Component {
        // client.resetStore() was causing errors
       client.mutate({
         mutation: UPDATE_CURRENT_USER,
-        variables: { email: '', isAuthenticated: false }
+        variables: { id: '', email: '', fullName: '', permissions: [], isAuthenticated: false }
       });
     }
   };

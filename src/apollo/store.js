@@ -4,26 +4,29 @@ export const defaults = {
   isEditMode: false,
   currentUser: {
     __typename: "CurrentUser",
+    id: "",
     email: "",
+    fullName: "",
+    permissions: [],
     isAuthenticated: false
   }
 };
 
 export const resolvers = {
   Query: {
-    currentUser: (parent, args, { cache }) => {
+    currentUser: (_, args, { cache }) => {
       const { currentUser } = cache.readQuery({ query: GET_CURRENT_USER });
       return currentUser;
     }
   },
   Mutation: {
-    updateCurrentUser: (parent, { email, isAuthenticated }, { cache }) => {
+    updateCurrentUser: (_, { id, email, fullName, permissions, isAuthenticated }, { cache }) => {
       cache.writeData({
         data: {
-          currentUser: { email, isAuthenticated, __typename: "CurrentUser" }
+          currentUser: { id, email, fullName, permissions, isAuthenticated, __typename: "CurrentUser" }
         }
       });
-      return { email, isAuthenticated, __typename: "CurrentUser" };
+      return { id, email, fullName, permissions, isAuthenticated, __typename: "CurrentUser" };
     }
   }
 };
