@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import { withAuth, withCurrentUser } from '../../context/auth';
 
 class Nav extends Component {
   render() {
-    const { currentUser: { isAuthenticated }, signout } = this.props;
+    const { currentUser, currentUser: { isAuthenticated }, signout } = this.props;
 
     return isAuthenticated ? (
-      <a onClick={signout}>signout</a>
+      <React.Fragment>
+        <span>Welcome {currentUser.email}</span>
+        <a onClick={signout}>signout</a>
+      </React.Fragment>
     ) : (
       <div>
-        <a href="#">register</a>
+        <Link to="signup">signup</Link>
         /
-        <a href="#">signin</a>
+        <Link to="signin">signin</Link>
       </div>
     )
   }
