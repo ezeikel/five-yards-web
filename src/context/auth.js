@@ -3,6 +3,7 @@ import { withApollo, Query } from 'react-apollo';
 
 import { GET_CURRENT_USER, UPDATE_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION } from '../apollo/queries';
 
+// create React context
 export const AuthContext = createContext();
 
 class Provider extends Component {
@@ -12,6 +13,9 @@ class Provider extends Component {
       /**
        * Login logic here
        */
+
+       // manually firing off mutation
+       // https://www.apollographql.com/docs/react/essentials/queries.html#manual-query
       const response = await client.mutate({
         mutation: SIGNIN_MUTATION,
         variables: { email, password }
@@ -63,14 +67,18 @@ class Provider extends Component {
   }
 }
 
+// withApollo() will create a new component which passes in an instance of ApolloClient as a client prop
 export const AuthProvider = withApollo(Provider);
 
+// consumer for AuthContext
 export const AuthConsumer = props => <AuthContext.Consumer {...props} />;
 
+// withAuth hoc passes down context and propes to wrapped component
 export const withAuth = WrappedComponent => props => (
   <AuthConsumer>{ctx => <WrappedComponent {...ctx} {...props} />}</AuthConsumer>
 );
 
+// withCurrentUser hoc passed currentUser as a prop to wrapped component
 export const withCurrentUser = WrappedComponent => props => (
   <Query query={GET_CURRENT_USER}>
     {({ data: { currentUser } }) => (
