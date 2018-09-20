@@ -38,12 +38,7 @@ class Provider extends Component {
         mutation: SIGNOUT_MUTATION
        });
 
-       // manually setting the store back to defaults for now
-      await client.resetStore();
-      // client.mutate({
-      //   mutation: UPDATE_CURRENT_USER,
-      //   variables: { id: '', email: '', fullName: '', permissions: [], isAuthenticated: false }
-      // });
+      client.resetStore();
     }
   };
 
@@ -80,8 +75,7 @@ export const withAuth = WrappedComponent => props => (
 export const withCurrentUser = WrappedComponent => props => (
   <Query
     query={GET_CURRENT_USER}
-    pollInterval={500}
-    onCompleted={() => console.log('Query completed.')}
+    fetchPolicy="cache-only"
   >
     {({ data: { currentUser } }) => (
       <WrappedComponent currentUser={currentUser} {...props} />

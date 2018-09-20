@@ -46,7 +46,6 @@ class Signin extends Component {
             onChange={this.handleChange}
             placeholder="password"
           />
-          <button>submit</button>
           <Link to="/request-reset">Forgot password?</Link>
           <button type="submit">Sign In</button>
           <span>

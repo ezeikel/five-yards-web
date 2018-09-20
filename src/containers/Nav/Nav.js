@@ -1,25 +1,27 @@
-import React, { Component } from "react";
+import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withAuth, withCurrentUser } from '../../context/auth';
 
-class Nav extends Component {
-  render() {
-    console.log('render()');
-    const { currentUser, currentUser: { isAuthenticated }, signout } = this.props;
+const Nav = props => {
+  return (
+    <ul>
+      <li><Link to='/'>Home</Link></li>
+      {props.currentUser.isAuthenticated
+      ? <li><Link to='#' onClick={props.signout}>Signout</Link></li>
+      : (
+        <Fragment>
+          <li><Link to='/signin'>Signin</Link></li>
+          <li><Link to='/signup'>Signup</Link></li>
+        </Fragment>
+      )}
+    </ul>
+  );
+};
 
-    return isAuthenticated ? (
-      <React.Fragment>
-        <span>Welcome {currentUser.email}</span>
-        <a onClick={signout}>signout</a>
-      </React.Fragment>
-    ) : (
-      <div>
-        <Link to="signup">signup</Link>
-        /
-        <Link to="signin">signin</Link>
-      </div>
-    )
-  }
-}
+Nav.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  signout: PropTypes.func.isRequired
+};
 
 export default withAuth(withCurrentUser(Nav));
