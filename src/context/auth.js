@@ -38,7 +38,8 @@ class Provider extends Component {
         mutation: SIGNOUT_MUTATION
        });
 
-      client.resetStore();
+      // TODO: Does this even return a Promise?
+      await client.resetStore();
     }
   };
 

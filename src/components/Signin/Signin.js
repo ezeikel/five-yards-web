@@ -12,17 +12,20 @@ class Signin extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
     const { signin } = this.props;
-    signin(email, password);
+    await signin(email, password);
 
     // reset form
     this.setState({
       email: '',
       password: ''
     });
+
+    // redirect to homepage
+    this.props.history.push('/')
   };
 
   render() {
