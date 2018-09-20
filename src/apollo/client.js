@@ -21,6 +21,7 @@ const client = new ApolloClient({
   cache
 });
 
+// TODO: Doesn't work as expected
 client.onResetStore(client.writeDefaults);
 
 export default client;

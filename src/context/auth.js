@@ -39,11 +39,11 @@ class Provider extends Component {
        });
 
        // manually setting the store back to defaults for now
-       // client.resetStore() was causing errors
-      client.mutate({
-        mutation: UPDATE_CURRENT_USER,
-        variables: { id: '', email: '', fullName: '', permissions: [], isAuthenticated: false }
-      });
+      await client.resetStore();
+      // client.mutate({
+      //   mutation: UPDATE_CURRENT_USER,
+      //   variables: { id: '', email: '', fullName: '', permissions: [], isAuthenticated: false }
+      // });
     }
   };
 
@@ -78,7 +78,11 @@ export const withAuth = WrappedComponent => props => (
 
 // withCurrentUser hoc passed currentUser as a prop to wrapped component
 export const withCurrentUser = WrappedComponent => props => (
-  <Query query={GET_CURRENT_USER}>
+  <Query
+    query={GET_CURRENT_USER}
+    pollInterval={500}
+    onCompleted={() => console.log('Query completed.')}
+  >
     {({ data: { currentUser } }) => (
       <WrappedComponent currentUser={currentUser} {...props} />
     )}

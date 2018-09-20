@@ -4,6 +4,7 @@ import { withAuth, withCurrentUser } from '../../context/auth';
 
 class Nav extends Component {
   render() {
+    console.log('render()');
     const { currentUser, currentUser: { isAuthenticated }, signout } = this.props;
 
     return isAuthenticated ? (

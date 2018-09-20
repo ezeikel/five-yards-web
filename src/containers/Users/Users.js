@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from 'styled-components';
-import EditMode from '../../components/EditMode/EditMode';
 
 const Wrapper = styled.div `
   display: grid;
@@ -32,7 +31,6 @@ const Users = () => (
         <Wrapper>
           <h3>Registered Users</h3>
           {isEditMode ? <span>Edit mode</span> : <span>Non edit mode</span>}
-          <EditMode isEditMode={isEditMode}/>
           <p>{`${isEditMode}`}</p>
           {users.map(({ fullName, username }) => (
             <div key={username}>
