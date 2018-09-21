@@ -8,7 +8,7 @@ const Nav = props => {
   return (
     <ul>
       <li><Link to='/'>Home</Link></li>
-      {props.currentUser && props.currentUser.isAuthenticated
+      {props.currentUser.isAuthenticated
       ? <li><Link to='#' onClick={props.signout}>Signout</Link></li>
       : (
         <Fragment>
