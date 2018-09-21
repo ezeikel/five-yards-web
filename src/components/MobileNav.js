@@ -14,14 +14,9 @@ const NavLinks = styled.ul`
   display: grid;
 `;
 
-const Title = styled.h1`
-  display: grid;
-`;
-
-const MobileNav = () => {
+const MobileNav = ({ className }) => {
   return (
-    <Wrapper>
-      <Title><Link to="/">Five Yards</Link></Title>
+    <Wrapper className={className}>
       <NavLinks>
         <Link to="/">Home</Link>
         <Link to="/signup">Login</Link>

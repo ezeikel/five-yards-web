@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../context/auth';
 
-const Nav = props => {
-  console.log({ props });
+const Nav = ({ currentUser, signout, className}) => {
   return (
-    <ul>
+    <ul className={className}>
       <li><Link to='/'>Home</Link></li>
-      {props.currentUser.isAuthenticated
-      ? <li><Link to='#' onClick={props.signout}>Signout</Link></li>
+      {currentUser.isAuthenticated
+      ? <li><Link to='#' onClick={signout}>Signout</Link></li>
       : (
         <Fragment>
           <li><Link to='/signin'>Signin</Link></li>
