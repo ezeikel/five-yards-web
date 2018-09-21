@@ -5,17 +5,19 @@ import { withAuth } from '../context/auth';
 
 const Nav = ({ currentUser, signout, className}) => {
   return (
-    <ul className={className}>
-      <li><Link to='/'>Home</Link></li>
-      {currentUser.isAuthenticated
-      ? <li><Link to='#' onClick={signout}>Signout</Link></li>
-      : (
-        <Fragment>
-          <li><Link to='/signin'>Signin</Link></li>
-          <li><Link to='/signup'>Signup</Link></li>
-        </Fragment>
-      )}
-    </ul>
+    <nav className={className}>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        {currentUser.isAuthenticated
+        ? <li><Link to='#' onClick={signout}>Signout</Link></li>
+        : (
+          <Fragment>
+            <li><Link to='/signin'>Signin</Link></li>
+            <li><Link to='/signup'>Signup</Link></li>
+          </Fragment>
+        )}
+      </ul>
+    </nav>
   );
 };
 
