@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import { CURRENT_USER_QUERY } from '../User/User';
+import { CURRENT_USER_QUERY } from '../User';
 
 const SIGNUP_MUTATION = gql`
   mutation Signup(

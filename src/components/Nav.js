@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withAuth, withCurrentUser } from '../../context/auth';
+import { withAuth } from '../context/auth';
 
 const Nav = props => {
+  console.log({ props });
   return (
     <ul>
       <li><Link to='/'>Home</Link></li>
-      {props.currentUser.isAuthenticated
+      {props.currentUser && props.currentUser.isAuthenticated
       ? <li><Link to='#' onClick={props.signout}>Signout</Link></li>
       : (
         <Fragment>
@@ -24,4 +25,4 @@ Nav.propTypes = {
   signout: PropTypes.func.isRequired
 };
 
-export default withAuth(withCurrentUser(Nav));
+export default withAuth(Nav);

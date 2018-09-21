@@ -15,7 +15,6 @@ const USERS_QUERY = gql `
       fullName,
       username
     }
-    isEditMode @client
   }
 `;
 
@@ -25,13 +24,11 @@ const Users = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      const { users, isEditMode } = data;
+      const { users } = data;
 
       return (
         <Wrapper>
           <h3>Registered Users</h3>
-          {isEditMode ? <span>Edit mode</span> : <span>Non edit mode</span>}
-          <p>{`${isEditMode}`}</p>
           {users.map(({ fullName, username }) => (
             <div key={username}>
               <p>{`${fullName} ==> ${username}`}</p>

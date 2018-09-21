@@ -3,8 +3,8 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 
 import { AuthProvider } from './context/auth';
-import Header from './containers/Header/Header';
-import Main from './containers/Main/Main';
+import Header from './components/Header';
+import Main from './components/Main';
 
 import setupClient from './apollo/client';
 

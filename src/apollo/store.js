@@ -1,7 +1,6 @@
 import { GET_CURRENT_USER } from "./queries";
 
 export const defaults = {
-  isEditMode: false,
   currentUser: {
     __typename: "CurrentUser",
     id: "",
