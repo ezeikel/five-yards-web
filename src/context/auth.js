@@ -11,15 +11,13 @@ class Provider extends Component {
     signin: async (email, password) => {
       const { client } = this.props;
 
-      // manually firing off mutation
-      // https://www.apollographql.com/docs/react/essentials/queries.html#manual-query
-      // pull id from response
+      // manually firing off mutation and pull id from response
       const { data: { signin: id } } = await client.mutate({
         mutation: SIGNIN_MUTATION,
         variables: { email, password }
       });
 
-      // get full user details
+      // get full user details using cookie set in browser after SIGNIN_MUTATION
       const { data: { me: { fullName, permissions } } } = await client.query({
         query: CURRENT_USER_QUERY
       });
@@ -34,12 +32,13 @@ class Provider extends Component {
     signout: async () => {
       const { client } = this.props;
 
+      // trigger res.clearCookie() on the server
        await client.mutate({
         mutation: SIGNOUT_MUTATION
        });
 
-      // TODO: Does this even return a Promise?
-      await client.resetStore();
+      // reset cache to its defaults
+      client.resetStore();
     }
   };
 
@@ -67,19 +66,13 @@ export const AuthProvider = withApollo(Provider);
 // consumer for AuthContext
 export const AuthConsumer = props => <AuthContext.Consumer {...props} />;
 
-// withAuth hoc passes down context and propes to wrapped component
+// withAuth hoc passes down original props and currentUser and context as props to new wrapped component
 export const withAuth = WrappedComponent => props => (
-  <AuthConsumer>{ctx => <WrappedComponent {...ctx} {...props} />}</AuthConsumer>
-);
-
-// withCurrentUser hoc passed currentUser as a prop to wrapped component
-export const withCurrentUser = WrappedComponent => props => (
-  <Query
-    query={GET_CURRENT_USER}
-    fetchPolicy="cache-only"
-  >
+  <Query query={GET_CURRENT_USER} fetchPolicy='cache-only' onCompleted={() => {debugger;}}>
     {({ data: { currentUser } }) => (
-      <WrappedComponent currentUser={currentUser} {...props} />
+      <AuthConsumer>
+        {ctx => <WrappedComponent {...props} currentUser={currentUser} {...ctx} />}
+      </AuthConsumer>
     )}
   </Query>
 );
