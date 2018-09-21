@@ -14,14 +14,12 @@ const Title = styled.h1`
 `;
 
 const StyledMobileNav = styled(MobileNav)`
-  background-color: tomato;
   @media (min-width: 768px) {
     display: none;
   }
 `;
 
 const StyledNav = styled(Nav)`
-  background-color: blue;
   display: none;
   @media (min-width: 768px) {
     display: block;
