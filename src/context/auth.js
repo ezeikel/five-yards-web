@@ -1,7 +1,7 @@
 import React, { createContext, Component } from 'react';
 import { withApollo, Query } from 'react-apollo';
 
-import { GET_CURRENT_USER, UPDATE_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION, CURRENT_USER_QUERY } from '../apollo/queries';
+import { GET_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION } from '../apollo/queries';
 
 // create React context
 export const AuthContext = createContext();
@@ -11,24 +11,15 @@ class Provider extends Component {
     signin: async (email, password) => {
       const { client } = this.props;
 
-      // manually firing off mutation and pull id from response
-      const { data: { signin: id } } = await client.mutate({
-        mutation: SIGNIN_MUTATION,
-        variables: { email, password }
-      });
-
       // get full user details using cookie set in browser after SIGNIN_MUTATION
       try {
-        const { data: { me: { fullName, permissions } } } = await client.query({
-          query: CURRENT_USER_QUERY
-        });
-        //TODO: remove this
-        console.log({ fullName, permissions});
-
-        // TODO: handle errors for query/mutate calls
+        // manually firing off mutation and pull id from response
         await client.mutate({
-          mutation: UPDATE_CURRENT_USER,
-          variables: { id, email, fullName, permissions, isAuthenticated: true }
+          mutation: SIGNIN_MUTATION,
+          variables: { email, password },
+          update: (cache, { data: { signin:user } }) => {
+            this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+          }
         });
       } catch (e) {
         console.log(`Promise rejected. Error: ${e}`);
@@ -63,6 +54,16 @@ class Provider extends Component {
 
   render() {
     return <AuthContext.Provider value={{ ...this.state }} {...this.props} />;
+  }
+
+  _updateCurrentUser(cache, user) {
+    const data = {
+      currentUser: {
+        ...user,
+        __typename: 'CurrentUser'
+      }
+    };
+    cache.writeData({ data });
   }
 }
 

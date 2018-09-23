@@ -5,6 +5,7 @@ export const defaults = {
     __typename: "CurrentUser",
     id: "",
     email: "",
+    username: "",
     fullName: "",
     permissions: [],
     isAuthenticated: false
