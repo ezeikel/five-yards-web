@@ -15,7 +15,7 @@ const Main = () => {
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/request-reset" component={RequestReset} />
-        <Route path="/registered-users" component={Users} />
+        <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
       </Switch>
     </main>
