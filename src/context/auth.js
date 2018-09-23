@@ -18,15 +18,21 @@ class Provider extends Component {
       });
 
       // get full user details using cookie set in browser after SIGNIN_MUTATION
-      const { data: { me: { fullName, permissions } } } = await client.query({
-        query: CURRENT_USER_QUERY
-      });
+      try {
+        const { data: { me: { fullName, permissions } } } = await client.query({
+          query: CURRENT_USER_QUERY
+        });
+        //TODO: remove this
+        console.log({ fullName, permissions});
 
-      // TODO: handle errors for query/mutate calls
-      await client.mutate({
-        mutation: UPDATE_CURRENT_USER,
-        variables: { id, email, fullName, permissions, isAuthenticated: true }
-      });
+        // TODO: handle errors for query/mutate calls
+        await client.mutate({
+          mutation: UPDATE_CURRENT_USER,
+          variables: { id, email, fullName, permissions, isAuthenticated: true }
+        });
+      } catch (e) {
+        console.log(`Promise rejected. Error: ${e}`);
+      }
 
     },
     signout: async () => {

@@ -17,7 +17,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
       ),
     );
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError) {
+    console.log(`[Network error]: ${networkError}`);
+  }
 })
 
 const stateLink = withClientState({
@@ -32,11 +34,15 @@ const httpLink = new HttpLink({
 });
 
 export default async () => {
-  await persistCache({
-    storage: window.localStorage,
-    debug: process.env.NODE_ENV !== 'production',
-    cache
-  });
+  try {
+    await persistCache({
+      storage: window.localStorage,
+      debug: process.env.NODE_ENV !== 'production',
+      cache
+    });
+  } catch(e) {
+    console.log(`Promise rejected: Error: ${e}`);
+  }
 
   const client = new ApolloClient({
     link: ApolloLink.from([
