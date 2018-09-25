@@ -1,7 +1,7 @@
 import React, { createContext, Component } from 'react';
 import { withApollo, Query } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
-
+import swal from 'sweetalert2';
 import {
   GET_CURRENT_USER,
   SIGNIN_MUTATION,
@@ -14,25 +14,35 @@ export const AuthContext = createContext();
 
 class Provider extends Component {
   state = {
-    signup: async (email, fullName, username, password) => {
+    signup: async ({ email, fullName, username, password }, { setSubmitting }) => {
       try {
         const { client, history } = this.props;
 
         await client.mutate({
           mutation: SIGNUP_MUTATION,
           variables: { email, fullName, username, password },
-          update: (cache, { data: { signup:user } }) => {
+          update: async (cache, { data: { signup:user } }) => {
             this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+
+            await swal({
+              type: 'success',
+              title: `Hello ${user.fullName.split('.')[0]}. Welcome to Five Yards Gang ✌🏿`
+            });
 
             // redirect to homepage
             history.push('/');
           }
         });
       } catch (e) {
-        console.log(`Signup failed. ${e}`);
+        await swal({
+          type: 'warning',
+          title: 'Signup error',
+          text: e.message
+        });
       }
+      setSubmitting(false);
     },
-    signin: async (email, password) => {
+    signin: async ({ email, password }, { setSubmitting }) => {
       // get full user details using cookie set in browser after SIGNIN_MUTATION
       try {
         const { client, history } = this.props;
@@ -41,36 +51,71 @@ class Provider extends Component {
         await client.mutate({
           mutation: SIGNIN_MUTATION,
           variables: { email, password },
-          update: (cache, { data: { signin:user } }) => {
+          update: async (cache, { data: { signin:user } }) => {
             this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+
+            await swal({
+              type: 'success',
+              title: `Hello ${user.fullName.split(' ')[0]}`,
+              text: 'Welcome back 👊🏿'
+            });
 
             // redirect to homepage
             history.push('/');
           }
         });
       } catch (e) {
-        console.log(`Promise rejected. ${e}`);
+        await swal({
+          type: 'warning',
+          title: 'Sigin error',
+          text: e.message
+        });
       }
-
+      setSubmitting(false);
     },
     signout: async () => {
+      const result  = await swal({
+        title: 'You sure?',
+        text: '',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#D32E5E',
+        cancelButtonColor: '#0078A7',
+        confirmButtonText: 'Yeah',
+        cancelButtonText: 'Nah'
+    });
+
+    if (result.value) {
       try {
         const { client, history } = this.props;
 
         // trigger res.clearCookie() on the server
-         await client.mutate({
-          mutation: SIGNOUT_MUTATION
-         });
+        await client.mutate({
+          mutation: SIGNOUT_MUTATION,
+          update: async(cache, { data: { signout: { message } }}) => {
+            await swal(
+              `${message}`,
+              'Sad to see you go 😥',
+              'success'
+            );
 
-         // TODO: Wrap this is an update function
-        // redirect to homepage
-        history.push('/');
+            // redirect to homepage
+            history.push('/');
 
-        // reset cache to its defaults
-        await client.resetStore();
+            // reset cache to its defaults
+            await client.resetStore();
+          }
+        });
+
       } catch (e) {
-        console.log(`Promise rejected. ${e}`);
+        await swal({
+          type: 'warning',
+          title: 'Signout error',
+          text: e.message
+        });
       }
+    }
+
     }
   };
 

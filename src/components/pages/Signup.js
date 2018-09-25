@@ -1,49 +1,92 @@
 import React, { Component } from 'react';
+import { Formik } from 'formik';
 import { withAuth } from '../../context/auth';
 
 class Signup extends Component {
-  state = {
-    email: '',
-    fullName: '',
-    username: '',
-    password: ''
-  };
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-    const { email, fullName, username, password } = this.state;
+  render() {
     const { signup } = this.props;
 
-    await signup(email, fullName, username, password);
-  }
-
-  render() {
     return (
-      <section>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="fullName">
-            Full name
-            <input type="text" name="fullName" value={this.state.fullName} onChange={this.handleChange} />
-          </label>
-          <label htmlFor="username">
-            Username
-            <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-          </label>
-          <label htmlFor="email">
-            Email
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-          </label>
-          <label htmlFor="password">
-            Password
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </section>
+      <div>
+        <h1>Signin</h1>
+        <Formik
+          initialValues={{ email: '', fullName: '', username: '', password: '' }}
+          validate={values => {
+            let errors = {}
+            if (!values.email) {
+              errors.email = 'Email required';
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = 'Invalid email address';
+            }
+            if (!values.fullName) {
+              errors.fullName = 'Full name required';
+            }
+            if (!values.username) {
+              errors.username = 'Username required';
+            }
+            if (!values.password) {
+              errors.password = 'Password required';
+            }
+            return errors;
+          }}
+          onSubmit={signup}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            /* and other goodies */
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <label>Full name</label>
+              <input
+                type="fullName"
+                name="fullName"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.fullName}
+              />
+              {errors.fullName && touched.fullName && errors.fullName}
+              <label>Username</label>
+              <input
+                type="username"
+                name="username"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+              />
+              {errors.username && touched.username && errors.username}
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {errors.email && touched.email && errors.email}
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+              {errors.password && touched.password && errors.password}
+              <button type="submit" disabled={isSubmitting}>
+                Signup
+              </button>
+            </form>
+          )}
+        </Formik>
+      </div>
     );
   }
 }
