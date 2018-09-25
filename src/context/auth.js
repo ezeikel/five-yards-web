@@ -1,13 +1,28 @@
 import React, { createContext, Component } from 'react';
 import { withApollo, Query } from 'react-apollo';
 
-import { GET_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION } from '../apollo/queries';
+import { GET_CURRENT_USER, SIGNIN_MUTATION, SIGNOUT_MUTATION, SIGNUP_MUTATION } from '../apollo/queries';
 
 // create React context
 export const AuthContext = createContext();
 
 class Provider extends Component {
   state = {
+    signup: async (email, fullName, username, password) => {
+      try {
+        const { client } = this.props;
+
+        await client.mutate({
+          mutation: SIGNUP_MUTATION,
+          variables: { email, fullName, username, password },
+          update: (cache, { data: { signup:user } }) => {
+            this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+          }
+        });
+      } catch (e) {
+        console.log(`Signup failed. ${e}`);
+      }
+    },
     signin: async (email, password) => {
       const { client } = this.props;
 
@@ -22,7 +37,7 @@ class Provider extends Component {
           }
         });
       } catch (e) {
-        console.log(`Promise rejected. Error: ${e}`);
+        console.log(`Promise rejected. ${e}`);
       }
 
     },

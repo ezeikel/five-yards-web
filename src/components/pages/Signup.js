@@ -1,27 +1,5 @@
 import React, { Component } from 'react';
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
-import { CURRENT_USER_QUERY } from '../User';
-
-const SIGNUP_MUTATION = gql`
-  mutation Signup(
-    $email: String!,
-    $fullName: String!,
-    $username: String!,
-    $password: String!,
-    ) {
-    signup(
-      email: $email
-      fullName: $fullName
-      username: $username
-      password: $password
-    ) {
-      id
-      email
-      fullName
-    }
-  }
-`;
+import { withAuth } from '../../context/auth';
 
 class Signup extends Component {
   state = {
@@ -29,59 +7,56 @@ class Signup extends Component {
     fullName: '',
     username: '',
     password: ''
-  }
+  };
 
-  saveToState = e => {
-    const { name, value } = e.target;
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { email, fullName, username, password } = this.state;
+    const { signup } = this.props;
+
+    await signup(email, fullName, username, password);
+
+    // reset form
     this.setState({
-      [name]: value
+      email: '',
+      fullName: '',
+      username: '',
+      password: ''
     });
+
+    // redirect to homepage
+    this.props.history.push('/')
   }
 
   render() {
     return (
-      <Mutation
-        mutation={SIGNUP_MUTATION}
-        variables={this.state}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-      >
-        {(signup, { loading, error }) => (
-          <section>
-            <form onSubmit={async e => {
-              e.preventDefault();
-              const res = await signup();
-              this.setState({
-                email: '',
-                fullName: '',
-                username: '',
-                password: ''
-              });
-              console.log({ res });
-
-            }}>
-              <label htmlFor="fullName">
-                Full name
-                <input type="text" name="fullName" value={this.state.fullName} onChange={this.saveToState} />
-              </label>
-              <label htmlFor="username">
-                Username
-                <input type="text" name="username" value={this.state.username} onChange={this.saveToState} />
-              </label>
-              <label htmlFor="email">
-                Email
-                <input type="email" name="email" value={this.state.email} onChange={this.saveToState} />
-              </label>
-              <label htmlFor="password">
-                Password
-                <input type="password" name="password" value={this.state.password} onChange={this.saveToState} />
-              </label>
-              <button type="submit">Submit</button>
-            </form>
-          </section>
-        )}
-      </Mutation>
+      <section>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="fullName">
+            Full name
+            <input type="text" name="fullName" value={this.state.fullName} onChange={this.handleChange} />
+          </label>
+          <label htmlFor="username">
+            Username
+            <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+          </label>
+          <label htmlFor="password">
+            Password
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
     );
   }
 }
 
-export default Signup;
+export default withAuth(Signup);

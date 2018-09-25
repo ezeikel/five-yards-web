@@ -26,6 +26,28 @@ export const UPDATE_CURRENT_USER = gql`
   }
 `;
 
+export const SIGNUP_MUTATION = gql`
+  mutation signup(
+    $email: String!,
+    $fullName: String!,
+    $username: String!,
+    $password: String!,
+    ) {
+    signup(
+      email: $email
+      fullName: $fullName
+      username: $username
+      password: $password
+    ) {
+      id
+      email
+      fullName
+      username
+      permissions
+    }
+  }
+`;
+
 export const SIGNIN_MUTATION = gql`
   mutation signin($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
