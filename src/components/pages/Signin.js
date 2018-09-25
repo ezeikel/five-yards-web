@@ -16,16 +16,8 @@ class Signin extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     const { signin } = this.props;
+
     await signin(email, password);
-
-    // reset form
-    this.setState({
-      email: '',
-      password: ''
-    });
-
-    // redirect to homepage
-    this.props.history.push('/')
   };
 
   render() {

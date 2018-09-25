@@ -19,17 +19,6 @@ class Signup extends Component {
     const { signup } = this.props;
 
     await signup(email, fullName, username, password);
-
-    // reset form
-    this.setState({
-      email: '',
-      fullName: '',
-      username: '',
-      password: ''
-    });
-
-    // redirect to homepage
-    this.props.history.push('/')
   }
 
   render() {
