@@ -37,13 +37,13 @@ class Signup extends Component {
           }) => (
             <Form>
               <label>Full name</label>
-              <Field type="fullName" name="fullName" />
+              <Field type="fullName" name="fullName" placeholder="Kanye West" />
               <ErrorMessage name="fullName" />
               <label>Username</label>
-              <Field type="username" name="username" />
+              <Field type="username" name="username" placeholder="yeezy" />
               <ErrorMessage name="username" />
               <label>Email</label>
-              <Field type="email" name="email" />
+              <Field type="email" name="email" placeholder="kanye@yeezy.com" />
               <ErrorMessage name="email" />
               <label>Password</label>
               <Field type="password" name="password" />

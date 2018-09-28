@@ -14,7 +14,7 @@ export const AuthContext = createContext();
 
 class Provider extends Component {
   state = {
-    signup: async ({ email, fullName, username, password }, { setSubmitting }) => {
+    signup: async ({ email, fullName, username, password }, { setSubmitting, setErrors, resetForm }) => {
       try {
         const { client, history } = this.props;
 
@@ -29,20 +29,22 @@ class Provider extends Component {
               title: `Hello ${user.fullName.split('.')[0]}. Welcome to Five Yards Gang ✌🏿`
             });
 
+            resetForm();
+
             // redirect to homepage
             history.push('/');
           }
         });
       } catch (e) {
-        await swal({
-          type: 'warning',
-          title: 'Signup error',
-          text: e.message
+        setErrors({
+          email: e.message,
+          username: e.message,
+          password: e.message
         });
       }
       setSubmitting(false);
     },
-    signin: async ({ email, password }, { setSubmitting }) => {
+    signin: async ({ email, password }, { setSubmitting, setErrors, resetForm }) => {
       // get full user details using cookie set in browser after SIGNIN_MUTATION
       try {
         const { client, history } = this.props;
@@ -60,15 +62,18 @@ class Provider extends Component {
               text: 'Welcome back 👊🏿'
             });
 
+            // exposed by Formik
+            resetForm();
+
             // redirect to homepage
             history.push('/');
           }
         });
       } catch (e) {
-        await swal({
-          type: 'warning',
-          title: 'Sigin error',
-          text: e.message
+        // send erros back to Formik form
+        setErrors({
+          email: e.message,
+          password: e.message
         });
       }
       setSubmitting(false);

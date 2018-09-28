@@ -22,14 +22,16 @@ class Signin extends Component {
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={SigninSchema}
-          onSubmit={signin}
+          onSubmit={async (values, actions) => {
+            await signin(values, actions);
+          }}
         >
           {({
             isSubmitting
           }) => (
             <Form>
               <label>Email</label>
-              <Field type="email" name="email" placeholder="kayne@yeezus.com" />
+              <Field type="email" name="email" placeholder="kayne@yeezy.com" />
               <ErrorMessage name="email" />
               <label>Password</label>
               <Field type="password" name="password" />
