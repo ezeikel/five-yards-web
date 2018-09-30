@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import { withAuth } from '../../context/auth';
+import Spinner from '../Spinner';
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
@@ -38,7 +39,7 @@ class Signin extends Component {
               <ErrorMessage name="password" />
               <Link to="/request-reset">Forgot password?</Link>
               <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Signing in...' : 'Signin'}
+                {isSubmitting ? <Spinner /> : 'Signin'}
               </button>
               <span>
                 Don't have an account yet?
