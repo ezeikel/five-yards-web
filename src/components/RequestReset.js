@@ -54,9 +54,11 @@ class RequestReset extends Component {
                       <FormInput type="email" name="email" placeholder="kanye@yeezy.com" />
                     </FieldSet>
                   </FormFields>
-                  <Button type="submit" disabled={true}>
-                    <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
-                  </Button>
+                  <FormActions>
+                    <Button type="submit" disabled={true}>
+                      <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
+                    </Button>
+                  </FormActions>
                 </Form>
               )}
             </Formik>

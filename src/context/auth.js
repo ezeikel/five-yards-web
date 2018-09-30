@@ -53,12 +53,6 @@ class Provider extends Component {
           update: async (cache, { data: { signin:user } }) => {
             this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
 
-            await swal({
-              type: 'success',
-              title: `Hello ${user.fullName.split(' ')[0]}`,
-              text: 'Welcome back 👊🏿'
-            });
-
             // exposed by Formik
             resetForm();
 

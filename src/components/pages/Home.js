@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 
 const Home = props => (
   <div>
-    <h1>Home</h1>
-    {props.currentUser.email}
+    {
+      props.currentUser.fullName ?
+        <h1>Welcome {props.currentUser.fullName.split(' ')[0]} 👊🏿</h1> :
+        <h1>You should try signing in 🤷🏿‍♂️</h1>
+    }
   </div>
 );
 

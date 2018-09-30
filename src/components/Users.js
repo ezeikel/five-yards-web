@@ -12,6 +12,7 @@ const Wrapper = styled.div `
 const USERS_QUERY = gql `
   {
     users {
+      id
       fullName
       username
     }
@@ -29,8 +30,8 @@ const Users = () => (
       return (
         <Wrapper>
           <h3>Registered Users</h3>
-          {users.map(({ fullName, username }) => (
-            <div key={username}>
+          {users.map(({ id, fullName, username }) => (
+            <div key={id}>
               <p>{`${fullName} ==> ${username}`}</p>
             </div>
           ))}
