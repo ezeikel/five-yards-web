@@ -6,10 +6,15 @@ import RequestReset from './RequestReset';
 import Users from './Users';
 import User from './User';
 import Signup from './pages/Signup';
+import styled from 'styled-components';
+
+const Wrapper = styled.main`
+  padding: var(--spacing-medium);
+`;
 
 const Main = () => {
   return (
-    <main>
+    <Wrapper>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/signin" component={Signin} />
@@ -18,7 +23,7 @@ const Main = () => {
         <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
       </Switch>
-    </main>
+    </Wrapper>
   );
 }
 

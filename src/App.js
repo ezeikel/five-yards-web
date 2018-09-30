@@ -8,6 +8,8 @@ import Main from './components/Main';
 
 import setupClient from './apollo/client';
 
+import './globalStyles';
+
 class App extends Component {
   state = {
     client: null
