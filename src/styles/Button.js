@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  padding: var(--spacing-small) var(--spacing-medium);
+  padding: var(--spacing-medium);
   font-family: var(--default-font-family);
   font-size: var(--default-font-size);
   border: 1px solid #E0E0E0;

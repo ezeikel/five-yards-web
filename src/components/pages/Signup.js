@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
 import * as Yup from 'yup'
 import { withAuth } from '../../context/auth';
+import Spinner from '../Spinner';
+import Button from '../../styles/Button';
+import Form from '../../styles/Form';
+import FormFields from '../../styles/FormFields';
+import FormActions from '../../styles/FormActions';
+import FieldSet from '../../styles/FieldSet';
+import FormInput from '../../styles/FormInput';
+import FormInputError from '../../styles/FormInputError';
+import styled from 'styled-components';
 
 const SignupSchema = Yup.object().shape({
   fullName: Yup.string()
-    .min(2, 'Too short!')
+    .min(2, 'Too short')
     .max(50, 'Too long')
     .required('Required'),
   username: Yup.string()
-    .min(2, 'Too short!')
+    .min(2, 'Too short')
     .max(50, 'Too long')
-    .required(),
+    .required('Required'),
   email: Yup.string()
     .email('Invalid email')
     .required('Required'),
@@ -20,39 +30,67 @@ const SignupSchema = Yup.object().shape({
     .required('Required')
 });
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-row-gap: var(--spacing-medium);
+  h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+`;
+
 class Signup extends Component {
   render() {
     const { signup } = this.props;
 
     return (
-      <div>
-        <h1>Signin</h1>
+      <Wrapper>
+        <h1>Sign up</h1>
         <Formik
           initialValues={{ email: '', fullName: '', username: '', password: '' }}
           validationSchema={SignupSchema}
-          onSubmit={signup}
+          onSubmit={async (values, actions) => {
+            await signup(values, actions);
+          }}
         >
           {({
-            isSubmitting
+            isSubmitting,
+            errors,
+            touched
           }) => (
             <Form>
-              <label>Full name</label>
-              <Field type="fullName" name="fullName" placeholder="Kanye West" />
-              <ErrorMessage name="fullName" />
-              <label>Username</label>
-              <Field type="username" name="username" placeholder="yeezy" />
-              <ErrorMessage name="username" />
-              <label>Email</label>
-              <Field type="email" name="email" placeholder="kanye@yeezy.com" />
-              <ErrorMessage name="email" />
-              <label>Password</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" />
-              <button type="submit" disabled={isSubmitting}>Signup</button>
+              <FormFields>
+                <FieldSet>
+                  <label>Full name</label>
+                  {errors.fullName && touched.fullName && <FormInputError>{errors.fullName}</FormInputError>}
+                  <FormInput type="fullName" name="fullName" placeholder="Kanye West" />
+                </FieldSet>
+                <FieldSet>
+                  <label>Username</label>
+                  {errors.username && touched.username && <FormInputError>{errors.username}</FormInputError>}
+                  <FormInput type="username" name="username" placeholder="yeezy" />
+                </FieldSet>
+                <FieldSet>
+                  <label>Email</label>
+                  {errors.email && touched.email && <FormInputError>{errors.email}</FormInputError>}
+                  <FormInput type="email" name="email" placeholder="kanye@yeezy.com" />
+                </FieldSet>
+                <FieldSet>
+                  <label>Password</label>
+                  {errors.password && touched.password && <FormInputError>{errors.password}</FormInputError>}
+                  <FormInput type="password" name="password" />
+                </FieldSet>
+              </FormFields>
+              <FormActions>
+                <Button type="submit" disabled={isSubmitting}>
+                  <span>Sign up</span> {isSubmitting ? <Spinner /> : null}
+                </Button>
+                <span>Already have an account? <Link to="/signin">Sign in</Link></span>
+              </FormActions>
             </Form>
           )}
         </Formik>
-      </div>
+      </Wrapper>
     );
   }
 }

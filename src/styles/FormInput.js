@@ -6,7 +6,6 @@ const FormInput = styled(Field)`
   outline: 0;
   font-size: var(--default-font-size);
   color: var(--color-black);
-
   padding: var(--spacing-medium);
   border: 1px solid #ecf0f1;
   transition: all 0.3s ease-in-out;

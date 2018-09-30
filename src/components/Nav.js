@@ -34,7 +34,7 @@ const Nav = ({ currentUser, signout, className}) => {
         ? <li><Link to='#' onClick={signout}><Button>Sign out</Button></Link></li>
         : (
           <Fragment>
-            {window.location.href.includes('signin') ? null : <li><Link to='/signin'><Button>Sign in</Button></Link></li>}
+            {window.location.href.includes('signin') || window.location.href.includes('signup') ? null : <li><Link to='/signin'><Button>Sign in</Button></Link></li>}
           </Fragment>
         )}
       </NavLinks>

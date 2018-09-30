@@ -37,11 +37,7 @@ class Provider extends Component {
           }
         });
       } catch (e) {
-        setErrors({
-          email: e.message,
-          username: e.message,
-          password: e.message
-        });
+        setErrors(formatFormErrors(e));
       }
       setSubmitting(false);
     },
