@@ -54,7 +54,7 @@ class Signin extends Component {
                 <FieldSet>
                   <label>Email address</label>
                   {errors.email && touched.email && <FormInputError>{errors.email}</FormInputError>}
-                  <FormInput type="email" name="email" placeholder="kayne@yeezy.com" />
+                  <FormInput type="email" name="email" placeholder="kanye@yeezy.com" />
                 </FieldSet>
                 <FieldSet>
                   <label>Password</label>
