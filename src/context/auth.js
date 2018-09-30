@@ -8,6 +8,7 @@ import {
   SIGNOUT_MUTATION,
   SIGNUP_MUTATION
 } from '../apollo/queries';
+import { formatFormErrors } from '../utils/formatFormErrors';
 
 // create React context
 export const AuthContext = createContext();
@@ -71,10 +72,7 @@ class Provider extends Component {
         });
       } catch (e) {
         // send erros back to Formik form
-        setErrors({
-          email: e.message,
-          password: e.message
-        });
+        setErrors(formatFormErrors(e));
       }
       setSubmitting(false);
     },

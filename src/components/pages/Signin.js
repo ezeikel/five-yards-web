@@ -38,7 +38,7 @@ class Signin extends Component {
               <ErrorMessage name="password" />
               <Link to="/request-reset">Forgot password?</Link>
               <button type="submit" disabled={isSubmitting}>
-                Signin
+                {isSubmitting ? 'Signing in...' : 'Signin'}
               </button>
               <span>
                 Don't have an account yet?
