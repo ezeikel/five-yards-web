@@ -76,6 +76,16 @@ export const REQUEST_RESET_MUTATION = gql`
   }
 `;
 
+export const RESET_MUTATION = gql`
+   mutation RESET_MUTATION($resetToken: String!, $password: String!, $confirmPassword: String!) {
+     resetPassword(resetToken: $resetToken, password: $password, confirmPassword: $confirmPassword) {
+       id
+       email
+       fullName
+     }
+   }
+`;
+
 export const CURRENT_USER_QUERY = gql`
   query {
     me {

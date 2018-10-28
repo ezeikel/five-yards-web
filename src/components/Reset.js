@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
-import { REQUEST_RESET_MUTATION } from '../apollo/queries'
+import { RESET_MUTATION, CURRENT_USER_QUERY } from '../apollo/queries'
 import Spinner from './Spinner';
 import Button from '../styles/Button';
 import Form from '../styles/Form';
@@ -13,9 +13,10 @@ import FormInput from '../styles/FormInput';
 import FormInputError from '../styles/FormInputError';
 import styled from 'styled-components';
 
-const ReqeuestResetSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
+const ResetSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('Required'),
+  confirmPassword: Yup.string()
     .required('Required')
 });
 
@@ -33,14 +34,20 @@ class RequestReset extends Component {
     return (
       <Wrapper>
         <h1>Forgot your password?</h1>
-        <Mutation mutation={REQUEST_RESET_MUTATION}>
+        <Mutation
+          mutation={RESET_MUTATION}
+          refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        >
           {(reset, { error, loading, called }) => (
             <Formik
-              initialValues={{ email: '' }}
-              validationSchema={ReqeuestResetSchema}
+              initialValues={{ password: '', confirmPassword: '' }}
+              validationSchema={ResetSchema}
               onSubmit={async (values, actions) => {
                 const res = await reset({
-                  variables: values
+                  variables: {
+                    ...values,
+                    resetToken: this.props.resetToken
+                  }
                 });
                 return res;
               }}
@@ -54,9 +61,14 @@ class RequestReset extends Component {
                   <FormFields>
                     {/* {!error && !loading && called && <p>Success! Check your email for a reset link!</p>} */}
                     <FieldSet>
-                      <label htmlFor="email">Email</label>
-                      {errors.email && touched.email && <FormInputError>{errors.email}</FormInputError>}
-                      <FormInput type="email" name="email" placeholder="kanye@yeezy.com" />
+                      <label htmlFor="password">Password</label>
+                      {errors.password && touched.password && <FormInputError>{errors.password}</FormInputError>}
+                      <FormInput type="password" name="password" />
+                    </FieldSet>
+                    <FieldSet>
+                      <label htmlFor="confirmPassword">Confirm Password</label>
+                      {errors.confirmPassword && touched.confirmPassword && <FormInputError>{errors.confirmPassword}</FormInputError>}
+                      <FormInput type="password" name="confirmPassword" />
                     </FieldSet>
                   </FormFields>
                   <FormActions>

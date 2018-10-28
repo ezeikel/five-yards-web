@@ -7,6 +7,7 @@ import Users from './Users';
 import User from './User';
 import Signup from './pages/Signup';
 import styled from 'styled-components';
+import Reset from './pages/reset';
 
 const Wrapper = styled.main`
   padding: var(--spacing-medium);
@@ -20,6 +21,7 @@ const Main = () => {
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/request-reset" component={RequestReset} />
+        <Route path="/reset" component={Reset} />
         <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
       </Switch>
