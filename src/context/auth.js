@@ -148,7 +148,10 @@ export const AuthConsumer = props => <AuthContext.Consumer {...props} />;
 
 // withAuth hoc passes down original props and currentUser and context as props to new wrapped component
 export const withAuth = WrappedComponent => props => (
-  <Query query={GET_CURRENT_USER} fetchPolicy='cache-only'>
+  <Query
+    query={GET_CURRENT_USER}
+    fetchPolicy='cache-only'
+  >
     {({ data: { currentUser } }) => (
       <AuthConsumer>
         {ctx => <WrappedComponent {...props} currentUser={currentUser} {...ctx} />}

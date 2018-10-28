@@ -33,12 +33,20 @@ class RequestReset extends Component {
     return (
       <Wrapper>
         <h1>Forgot your password?</h1>
-        <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
+        <Mutation
+          mutation={REQUEST_RESET_MUTATION}
+        >
           {(reset, { error, loading, called }) => (
             <Formik
               initialValues={{ email: '' }}
               validationSchema={ReqeuestResetSchema}
-              onSubmit={reset}
+              onSubmit={async (values, actions) => {
+                const res = await reset({
+                  variables: values
+                });
+                console.log(res);
+                return res;
+              }}
             >
               {({
                 isSubmitting,
@@ -55,7 +63,7 @@ class RequestReset extends Component {
                     </FieldSet>
                   </FormFields>
                   <FormActions>
-                    <Button type="submit" disabled={true}>
+                    <Button type="submit" disabled={loading}>
                       <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
                     </Button>
                   </FormActions>
