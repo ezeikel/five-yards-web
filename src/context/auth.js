@@ -6,7 +6,8 @@ import {
   GET_CURRENT_USER,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
-  SIGNUP_MUTATION
+  SIGNUP_MUTATION,
+  RESET_MUTATION
 } from '../apollo/queries';
 import { formatFormErrors } from '../utils/formatFormErrors';
 
@@ -38,6 +39,28 @@ class Provider extends Component {
         });
       } catch (e) {
         setErrors(formatFormErrors(e));
+      }
+      setSubmitting(false);
+    },
+    resetPassword: async({ password, confirmPassword, resetToken }, { setSubmitting, setErrors, resetForm }) => {
+      try {
+        const { client, history } = this.props;
+
+        await client.mutate({
+          mutation: RESET_MUTATION,
+          variables: { password, confirmPassword, resetToken },
+          update: async( cache, { data: { resetPassword:user } }) => {
+            this._updateCurrentUser(cache, {...user, isAuthenticated: true });
+
+            resetForm();
+
+            // redirect to homepage
+            history.push('/');
+          }
+        });
+      } catch (e) {
+        console.log(e);
+        //setErrors(formatFormErrors(e));
       }
       setSubmitting(false);
     },

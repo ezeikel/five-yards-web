@@ -31,7 +31,13 @@ const Nav = ({ currentUser, signout, className}) => {
       <Logo><Link to="/"><span>Five</span><span>Yards</span></Link></Logo>
       <NavLinks>
         {currentUser.isAuthenticated
-        ? <li><Link to='#' onClick={signout}><Button>Sign out</Button></Link></li>
+        ?
+        <Fragment>
+          <li><Link to='/events'><Button>Events</Button></Link></li>
+          <li><Link to='/orders'><Button>Orders</Button></Link></li>
+          <li><Link to='/account'><Button>Account</Button></Link></li>
+          <li><Link to='#' onClick={signout}><Button>Sign out</Button></Link></li>
+        </Fragment>
         : (
           <Fragment>
             {window.location.href.includes('signin') || window.location.href.includes('signup') ? null : <li><Link to='/signin'><Button>Sign in</Button></Link></li>}

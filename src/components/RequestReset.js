@@ -39,10 +39,10 @@ class RequestReset extends Component {
               initialValues={{ email: '' }}
               validationSchema={ReqeuestResetSchema}
               onSubmit={async (values, actions) => {
-                const res = await reset({
+                await reset({
                   variables: values
                 });
-                return res;
+                actions.resetForm();
               }}
             >
               {({
@@ -52,7 +52,7 @@ class RequestReset extends Component {
               }) => (
                 <Form>
                   <FormFields>
-                    {/* {!error && !loading && called && <p>Success! Check your email for a reset link!</p>} */}
+                    {!error && !loading && called && <p>Success! Check your email for a reset link!</p>}
                     <FieldSet>
                       <label htmlFor="email">Email</label>
                       {errors.email && touched.email && <FormInputError>{errors.email}</FormInputError>}
@@ -61,7 +61,7 @@ class RequestReset extends Component {
                   </FormFields>
                   <FormActions>
                     <Button type="submit" disabled={loading}>
-                      <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
+                      <span>Reset password</span> {isSubmitting && loading ? <Spinner /> : null}
                     </Button>
                   </FormActions>
                 </Form>

@@ -81,7 +81,9 @@ export const RESET_MUTATION = gql`
      resetPassword(resetToken: $resetToken, password: $password, confirmPassword: $confirmPassword) {
        id
        email
+       username
        fullName
+       permissions
      }
    }
 `;
