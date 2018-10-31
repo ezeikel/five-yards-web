@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
-import { withAuth } from '../../context/auth';
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup'
+import { withAuth } from '../context/auth';
+import Spinner from './Spinner';
+import Button from './styles/Button';
+import Form from './styles/Form';
+import FormFields from './styles/FormFields';
+import FormActions from './styles/FormActions';
+import FieldSet from './styles/FieldSet';
+import FormInput from './styles/FormInput';
+import FormInputError from './styles/FormInputError';
+
+const SignupSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .min(2, 'Too short')
+    .max(50, 'Too long')
+    .required('Required'),
+  username: Yup.string()
+    .min(2, 'Too short')
+    .max(50, 'Too long')
+    .required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  password: Yup.string()
+    .min(9, 'Too short')
+    .required('Required')
+});
 
 class Signup extends Component {
   render() {
+    const { signup } = this.props;
+
     return (
       <Formik
         initialValues={{ email: '', fullName: '', username: '', password: '' }}

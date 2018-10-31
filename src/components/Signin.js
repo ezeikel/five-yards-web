@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
-import { withAuth } from '../../context/auth';
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup'
+import { withAuth } from '../context/auth';
+import Spinner from './Spinner';
+import Button from './styles/Button';
+import Form from './styles/Form';
+import FormFields from './styles/FormFields';
+import FormActions from './styles/FormActions';
+import FieldSet from './styles/FieldSet';
+import FormInput from './styles/FormInput';
+import FormInputError from './styles/FormInputError';
+
+const SigninSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  password: Yup.string()
+    .required('Required')
+});
 
 class Signin extends Component {
   render() {

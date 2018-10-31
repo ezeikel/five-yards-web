@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup'
 import Spinner from './Spinner';
-import Button from '../styles/Button';
-import Form from '../styles/Form';
-import FormFields from '../styles/FormFields';
-import FormActions from '../styles/FormActions';
-import FieldSet from '../styles/FieldSet';
-import FormInput from '../styles/FormInput';
-import FormInputError from '../styles/FormInputError';
+import Button from './styles/Button';
+import Form from './styles/Form';
+import FormFields from './styles/FormFields';
+import FormActions from './styles/FormActions';
+import FieldSet from './styles/FieldSet';
+import FormInput from './styles/FormInput';
+import FormInputError from './styles/FormInputError';
 import { withAuth } from '../context/auth';
 
 const ResetSchema = Yup.object().shape({

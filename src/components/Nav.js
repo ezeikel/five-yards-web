@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withAuth } from '../context/auth';
-import Button from '../styles/Button';
-import Logo from '../styles/Logo';
+import Button from './styles/Button';
+import Logo from './styles/Logo';
 
 const Navigation = styled.nav`
   display: grid;

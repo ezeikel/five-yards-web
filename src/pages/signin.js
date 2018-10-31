@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withAuth } from '../context/auth';
+import Signin from '../components/Signin';
 
 const Wrapper = styled.div`
   display: grid;
@@ -11,11 +11,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const Signin = ({ signin }) => (
+const SigninPage = () => (
   <Wrapper>
     <h1>Welcome back</h1>
-    <Signin signin={signin} />
+    <Signin />
   </Wrapper>
 );
 
-export default withAuth(Signin);
+export default SigninPage;

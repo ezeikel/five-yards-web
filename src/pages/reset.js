@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const ResetPage = props => (
   <Wrapper>
     <p>Reset Your Password {queryString.parse(props.location.search).resetToken}</p>
-    <Reset resetPassword={props.resetPassword} resetToken={queryString.parse(props.location.search).resetToken}/>
+    <Reset resetToken={queryString.parse(props.location.search).resetToken}/>
   </Wrapper>
 );
 
