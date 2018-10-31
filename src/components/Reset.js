@@ -9,7 +9,6 @@ import FormActions from '../styles/FormActions';
 import FieldSet from '../styles/FieldSet';
 import FormInput from '../styles/FormInput';
 import FormInputError from '../styles/FormInputError';
-import styled from 'styled-components';
 import { withAuth } from '../context/auth';
 
 const ResetSchema = Yup.object().shape({
@@ -19,59 +18,47 @@ const ResetSchema = Yup.object().shape({
     .required('Required')
 });
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-row-gap: var(--spacing-medium);
-  h1 {
-    margin: 0;
-    font-size: 22px;
-  }
-`;
-
 class Reset extends Component {
   render() {
     const { resetPassword } = this.props;
 
     return (
-      <Wrapper>
-        <h1>Forgot your password?</h1>
-        <Formik
-          initialValues={{ password: '', confirmPassword: '' }}
-          validationSchema={ResetSchema}
-          onSubmit={async (values, actions) => {
-            values.resetToken = this.props.resetToken;
-            await resetPassword(values, actions);
-            //TODO: Redirect to homepage if successful
-          }}
-        >
-          {({
-            isSubmitting,
-            errors,
-            touched
-          }) => (
-            <Form>
-              <FormFields>
-                {/* {!error && !loading && called && <p>Success! Check your email for a reset link!</p>} */}
-                <FieldSet>
-                  <label htmlFor="password">Password</label>
-                  {errors.password && touched.password && <FormInputError>{errors.password}</FormInputError>}
-                  <FormInput type="password" name="password" />
-                </FieldSet>
-                <FieldSet>
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  {errors.confirmPassword && touched.confirmPassword && <FormInputError>{errors.confirmPassword}</FormInputError>}
-                  <FormInput type="password" name="confirmPassword" />
-                </FieldSet>
-              </FormFields>
-              <FormActions>
-                <Button type="submit" disabled={isSubmitting}>
-                  <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
-                </Button>
-              </FormActions>
-            </Form>
-          )}
-        </Formik>
-      </Wrapper>
+      <Formik
+        initialValues={{ password: '', confirmPassword: '' }}
+        validationSchema={ResetSchema}
+        onSubmit={async (values, actions) => {
+          values.resetToken = this.props.resetToken;
+          await resetPassword(values, actions);
+          //TODO: Redirect to homepage if successful
+        }}
+      >
+        {({
+          isSubmitting,
+          errors,
+          touched
+        }) => (
+          <Form>
+            <FormFields>
+              {/* {!error && !loading && called && <p>Success! Check your email for a reset link!</p>} */}
+              <FieldSet>
+                <label htmlFor="password">Password</label>
+                {errors.password && touched.password && <FormInputError>{errors.password}</FormInputError>}
+                <FormInput type="password" name="password" />
+              </FieldSet>
+              <FieldSet>
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                {errors.confirmPassword && touched.confirmPassword && <FormInputError>{errors.confirmPassword}</FormInputError>}
+                <FormInput type="password" name="confirmPassword" />
+              </FieldSet>
+            </FormFields>
+            <FormActions>
+              <Button type="submit" disabled={isSubmitting}>
+                <span>Reset password</span> {isSubmitting ? <Spinner /> : null}
+              </Button>
+            </FormActions>
+          </Form>
+        )}
+      </Formik>
     )
 }}
 

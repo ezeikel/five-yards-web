@@ -7,7 +7,7 @@ afterEach(cleanup);
 test('<Counter />', () => {
   // renders component
   const { debug, getByTestId } = render(<Counter />);
-  
+
   debug(); // outputs DOM as a string
   const counterButton = getByTestId('counter-button');
 

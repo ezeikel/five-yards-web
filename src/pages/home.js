@@ -1,8 +1,8 @@
 import React from 'react';
-import { withAuth } from '../../context/auth';
 import PropTypes from 'prop-types';
+import { withAuth } from '../context/auth';
 
-const Home = props => (
+const HomePage = props => (
   <div>
     {
       props.currentUser.fullName ?
@@ -12,8 +12,8 @@ const Home = props => (
   </div>
 );
 
-Home.propTypes = {
+HomePage.propTypes = {
   currentUser: PropTypes.object
 };
 
-export default withAuth(Home);
+export default withAuth(HomePage);
