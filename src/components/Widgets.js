@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Wrapper = styled.ul`
     display: grid;
@@ -17,9 +18,9 @@ class Widgets extends Component {
   render() {
     return (
       <Wrapper>
-        <li><Link to="/account">Account</Link></li>
-        <li><Link to="/saved">Saved</Link></li>
-        <li><Link to="/bag">Bag</Link></li>
+        <li><Link to="/account"><FontAwesomeIcon icon="user" color="#000" size="md" /></Link></li>
+        <li><Link to="/saved"><FontAwesomeIcon icon="heart" color="#000" size="md" /></Link></li>
+        <li><Link to="/bag"><FontAwesomeIcon icon="shopping-bag" color="#000" size="md" /></Link></li>
       </Wrapper>
     )
   }
