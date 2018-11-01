@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withAuth } from '../context/auth';
 import Button from './styles/Button';
-import Logo from './styles/Logo';
+
 
 const Navigation = styled.nav`
   display: grid;
@@ -28,7 +28,6 @@ const NavLinks = styled.ul`
 const Nav = ({ currentUser, signout, className}) => {
   return (
     <Navigation className={className}>
-      <Logo><Link to="/"><span>Five</span><span>Yards</span></Link></Logo>
       <NavLinks>
         {currentUser.isAuthenticated
         ?

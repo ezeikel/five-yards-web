@@ -25,11 +25,16 @@ export default injectGlobal`
   --spacing-huge: 64px;
   /* Font */
   --default-font-family: 'proxima-nova', sans-serif;
-  --default-font-size: 16px;
+  --default-font-size: 10px;
 }
 * {
   box-sizing: border-box;
 }
+
+html {
+  font-size: var(--default-font-size);
+}
+
 body {
   margin: 0;
   padding: 0;
