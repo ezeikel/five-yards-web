@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withAuth } from '../context/auth';
-import Button from './styles/Button';
-
 
 const Navigation = styled.nav`
+  grid-row: 2 / -1;
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: auto 1fr;
   justify-content: space-between;
@@ -15,13 +15,12 @@ const Navigation = styled.nav`
 `;
 
 const NavLinks = styled.ul`
-  justify-self: end;
-  li {
-    height: 100%;
-  }
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-column-gap: var(--spacing-large);
+  font-size: 1.6rem;
   a {
-    height: 100%;
-    display: flex;
+    color: var(--color-black);
   }
 `;
 
@@ -29,19 +28,12 @@ const Nav = ({ currentUser, signout, className}) => {
   return (
     <Navigation className={className}>
       <NavLinks>
-        {currentUser.isAuthenticated
-        ?
-        <Fragment>
-          <li><Link to='/events'><Button>Events</Button></Link></li>
-          <li><Link to='/orders'><Button>Orders</Button></Link></li>
-          <li><Link to='/account'><Button>Account</Button></Link></li>
-          <li><Link to='#' onClick={signout}><Button>Sign out</Button></Link></li>
-        </Fragment>
-        : (
-          <Fragment>
-            {window.location.href.includes('signin') || window.location.href.includes('signup') ? null : <li><Link to='/signin'><Button>Sign in</Button></Link></li>}
-          </Fragment>
-        )}
+        <li><Link to='/new-in'>New in</Link></li>
+        <li><Link to='/fabrics'>Fabrics</Link></li>
+        <li><Link to='/tailors'>Tailors</Link></li>
+        <li><Link to='/accessories'>Accessories</Link></li>
+        <li><Link to='/inspiration'>Inspiration</Link></li>
+        {/* <li><Link to='#' onClick={signout}>Sign out</Link></li> */}
       </NavLinks>
     </Navigation>
   );

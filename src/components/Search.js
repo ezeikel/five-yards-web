@@ -14,7 +14,7 @@ class Search extends Component {
   render() {
     return (
       <Wrapper>
-        <Input type="search" />
+        <Input type="search" placeholder="Search for fabrics, tailors and inspiration" />
       </Wrapper>
     )
   }

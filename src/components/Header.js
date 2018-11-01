@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-//import Nav from './Nav';
 import GenderSelector from './GenderSelector';
 import Search from './Search';
 import Widgets from './Widgets';
+import Nav from './Nav';
 
 const Wrapper = styled.header`
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
-  grid-column-gap: var(--spacing-medium);
+  grid-template-rows: 1fr 1fr;
   align-items: center;
   padding: var(--spacing-medium);
 `;
@@ -33,13 +32,25 @@ const Logo = styled.h1`
   }
 `;
 
+const TopNav = styled.div`
+  grid-row: 1 / span 1;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-column-gap: var(--spacing-medium);
+  align-items: center;
+`;
+
 const Header = () => {
   return (
     <Wrapper>
-      <Logo><Link to="/">Five Yards</Link></Logo>
-      <GenderSelector />
-      <Search />
-      <Widgets />
+      <TopNav>
+        <Logo><Link to="/">Five Yards</Link></Logo>
+        <GenderSelector />
+        <Search />
+        <Widgets />
+      </TopNav>
+      <Nav />
     </Wrapper>
   );
 }
