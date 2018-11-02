@@ -18,9 +18,9 @@ class Widgets extends Component {
   render() {
     return (
       <Wrapper>
-        <li><Link to="/account"><FontAwesomeIcon icon="user" color="#000" size="md" /></Link></li>
-        <li><Link to="/saved"><FontAwesomeIcon icon="heart" color="#000" size="md" /></Link></li>
-        <li><Link to="/bag"><FontAwesomeIcon icon="shopping-bag" color="#000" size="md" /></Link></li>
+        <li><Link to="/account"><FontAwesomeIcon icon="user" color="#000" size="1x" /></Link></li>
+        <li><Link to="/saved"><FontAwesomeIcon icon="heart" color="#000" size="1x" /></Link></li>
+        <li><Link to="/bag"><FontAwesomeIcon icon="shopping-bag" color="#000" size="1x" /></Link></li>
       </Wrapper>
     )
   }

@@ -50,6 +50,7 @@ const TopNav = styled.div`
 
 const Hamburger = styled(FontAwesomeIcon)`
   cursor: pointer;
+  justify-self: center;
   @media (min-width: 1024px) {
     display: none;
   }

@@ -32,10 +32,15 @@ const NavLinks = styled.ul`
   }
 `;
 
-const Close = styled(FontAwesomeIcon)`
+const Close = styled.span`
   position: absolute;
   top: 0;
   left: 320px;
+  display: grid;
+  place-items: center;
+  height: 3rem;
+  width: 3rem;
+  background: var(--color-white);
   cursor: pointer;
 `;
 
@@ -50,8 +55,9 @@ const MobileNav = ({ currentUser, signout, className, active, toggleActive}) => 
         <li><Link to='/inspiration'>Inspiration</Link></li>
         {/* <li><Link to='#' onClick={signout}>Sign out</Link></li> */}
       </NavLinks>
-      {/* <Close onClick={toggleActive}>X</Close> */}
-      <Close icon="times" color="#000" size="3x" onClick={toggleActive} />
+      <Close>
+        <FontAwesomeIcon icon="times" color="#000" size="3x" onClick={toggleActive} />
+      </Close>
     </Navigation>
   );
 };
