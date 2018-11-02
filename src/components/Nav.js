@@ -5,13 +5,17 @@ import styled from 'styled-components';
 import { withAuth } from '../context/auth';
 
 const Navigation = styled.nav`
-  grid-row: 2 / -1;
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: space-between;
-  width: 100%;
-  padding: var(--spacing-medium);
+  display: none;
+  @media(min-width: 1024px) {
+    display: grid;
+    grid-row: 2 / -1;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--spacing-medium);
+  }
 `;
 
 const NavLinks = styled.ul`

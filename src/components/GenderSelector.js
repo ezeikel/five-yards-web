@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: var(--spacing-small);
-    justify-items: center;
-    font-size: 1.8rem;
-    a {
-      color: var(--color-black);
+    display: none;
+    @media(min-width: 1024px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: var(--spacing-small);
+      justify-items: center;
+      font-size: 1.8rem;
+      a {
+        color: var(--color-black);
+      }
     }
 `;
 

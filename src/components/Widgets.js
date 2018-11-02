@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Wrapper = styled.ul`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: var(--spacing-small);
     justify-items: center;
     font-size: 1.8rem;
+    grid-column-gap: var(--spacing-medium);
     a {
       color: var(--color-black);
     }
