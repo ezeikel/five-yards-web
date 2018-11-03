@@ -1,20 +1,85 @@
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faShoppingBag, faHeart, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AuthProvider } from './context/auth';
 import Header from './components/Header';
+import Nav from './components/Nav';
 import Main from './components/Main';
 import setupClient from './apollo/client';
 import './globalStyles';
 
 library.add(faUser, faShoppingBag, faHeart, faBars, faTimes);
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 265px 1fr;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  @media(min-width: 1024px) {
+    grid-template-rows: 80px 60px 1fr;
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StyledHeader = styled(Header)`
+  grid-row: 1 / span 1;
+  grid-column: 2 / -1;
+  min-width: 100vw;
+  transform: translate3d(${({ active }) => active ?  '0' : '-265px'},0,0);
+  transition: transform 0.3s ease-in-out, background-color 0.2s ease;
+  @media(min-width: 1024px) {
+    grid-row: 1 / span 1;
+    grid-column: 1 / -1;
+    transform: translate3d(0,0,0);
+    transition: none;
+  }
+`;
+
+const StyledNav = styled(Nav)`
+  grid-row: 1 / -1;
+  grid-column: 1 / span 1;
+  width: 100%;
+  transform: translate3d(${({ active }) => active ?  '0' : '-265px'},0,0);
+  transition: transform 0.3s ease-in-out;
+  @media(min-width: 1024px) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / -1;
+    transform: translate3d(0,0,0);
+    transition: none;
+  }
+`;
+
+const StyledMain = styled(Main)`
+  grid-row: 2 / -1;
+  grid-column: 2 / -1;
+  width: 100%;
+  transform: translate3d(${({ active }) => active ?  '0' : '-265px'},0,0);
+  transition: transform 0.3s ease-in-out, background-color 0.2s ease;
+  @media(min-width: 1024px) {
+    grid-row: 3 / -1;
+    grid-column: 1 / -1;
+    transform: translate3d(0,0,0);
+    transition: none;
+  }
+`;
+
 class App extends Component {
   state = {
-    client: null
+    client: null,
+    active: false
   }
+
+  toggleActive = () => {
+    console.log('toggleActive()');
+    this.setState({
+      active: !this.state.active
+    });
+  };
 
   async componentDidMount() {
     const client = await setupClient();
@@ -28,8 +93,11 @@ class App extends Component {
       <BrowserRouter>
         <ApolloProvider client={client}>
           <AuthProvider>
-              <Header />
-              <Main />
+            <Wrapper>
+              <StyledHeader active={this.state.active} toggleActive={this.toggleActive} />
+              <StyledNav active={this.state.active} />
+              <StyledMain active={this.state.active} />
+            </Wrapper>
           </AuthProvider>
         </ApolloProvider>
       </BrowserRouter>

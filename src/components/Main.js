@@ -11,11 +11,15 @@ import resetPage from '../pages/reset';
 
 const Wrapper = styled.main`
   padding: var(--spacing-medium);
+  background-color: ${({active}) => active ? 'rgba(45,45,45,.65)' : 'transparent'};
+  @media(min-width: 1024px) {
+    background-color: transparent;
+  }
 `;
 
-const Main = () => {
+const Main = ({ className, active }) => {
   return (
-    <Wrapper>
+    <Wrapper className={className} active={active}>
       <Switch>
         <Route exact path="/" component={home} />
         <Route path="/signin" component={signin} />

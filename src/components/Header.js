@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GenderSelector from './GenderSelector';
 import Search from './Search';
 import Widgets from './Widgets';
-import Nav from './Nav';
-import MobileNav from './MobileNav';
+import Hamburger from './Hamburger';
 
 const Wrapper = styled.header`
   display: grid;
+  transition: background-color 0.3s ease-in-out;
   padding: var(--spacing-medium);
+  box-shadow: 0px 4px 1.5rem 0px rgba(0, 0, 0, 0.1);
   @media(min-width: 1024px) {
-    grid-template-rows: 1fr 1fr;
+    box-shadow: none;
   }
 `;
 
@@ -48,38 +48,18 @@ const TopNav = styled.div`
   }
 `;
 
-const Hamburger = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  justify-self: center;
-  @media (min-width: 1024px) {
-    display: none;
-  }
-`;
-
 class Header extends Component {
-  state = {
-    acitve: false
-  }
-
-  toggleActive = () => {
-    this.setState({
-      active: !this.state.active
-    });
-  };
-
-
   render() {
+    const { toggleActive, className, active } = this.props;
     return (
-      <Wrapper>
+      <Wrapper className={className} active={active}>
         <TopNav>
-          <Hamburger icon="bars" color="#000" size="2x" onClick={this.toggleActive} />
+          <Hamburger active={active} toggleActive={toggleActive} />
           <Logo><Link to="/">Five Yards</Link></Logo>
           <GenderSelector />
           <Search />
           <Widgets />
         </TopNav>
-        <Nav />
-        <MobileNav active={this.state.active} toggleActive={this.toggleActive} />
       </Wrapper>
     );
   }
