@@ -3,7 +3,8 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faShoppingBag, faHeart, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faUser, faShoppingBag, faHeart, faBars, faTimes} from '@fortawesome/free-solid-svg-icons';
 import { AuthProvider } from './context/auth';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -11,7 +12,7 @@ import Main from './components/Main';
 import setupClient from './apollo/client';
 import './globalStyles';
 
-library.add(faUser, faShoppingBag, faHeart, faBars, faTimes);
+library.add(fab, faUser, faShoppingBag, faHeart, faBars, faTimes);
 
 const Wrapper = styled.div`
   display: grid;
