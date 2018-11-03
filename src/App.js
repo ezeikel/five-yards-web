@@ -46,7 +46,7 @@ const StyledNav = styled(Nav)`
   grid-column: 1 / span 1;
   width: 100%;
   transform: translate3d(${({ active }) => active ?  '0' : '-265px'},0,0);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   @media(min-width: 1024px) {
     grid-row: 2 / span 1;
     grid-column: 1 / -1;
