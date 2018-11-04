@@ -11,10 +11,6 @@ import resetPage from '../pages/reset';
 
 const Wrapper = styled.main`
   padding: var(--spacing-medium);
-  background-color: ${({active}) => active ? 'rgba(45,45,45,.65)' : 'transparent'};
-  @media(min-width: 1024px) {
-    background-color: transparent;
-  }
 `;
 
 const Main = ({ className, active }) => {

@@ -69,6 +69,24 @@ const StyledMain = styled(Main)`
   }
 `;
 
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate3d(${({ active }) => active ?  '265px' : '0'},0,0);
+  transition: transform 0.3s ease-in-out, background-color 0.2s ease;
+  background-color: ${({active}) => active ? 'rgba(45,45,45,.65)' : 'transparent'};
+  pointer-events: none;
+  margin-top: 80px;
+
+  @media(min-width: 1024px) {
+    display: none;
+  }
+`;
+
 class App extends Component {
   state = {
     client: null,
@@ -76,7 +94,6 @@ class App extends Component {
   }
 
   toggleActive = () => {
-    console.log('toggleActive()');
     this.setState({
       active: !this.state.active
     });
@@ -98,6 +115,7 @@ class App extends Component {
               <StyledHeader active={this.state.active} toggleActive={this.toggleActive} />
               <StyledNav active={this.state.active} />
               <StyledMain active={this.state.active} />
+              <Overlay active={this.state.active} />
             </Wrapper>
           </AuthProvider>
         </ApolloProvider>

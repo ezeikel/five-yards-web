@@ -16,6 +16,7 @@ const Navigation = styled.nav`
   opacity: ${({active}) => active ? '1' : '0'};
   @media (min-width: 1024px) {
     display: grid;
+    grid-template-rows: 1fr;
     align-items: center;
     opacity: 1;
     box-shadow: 0px 4px 1.5rem -4px rgba(0, 0, 0, 0.1);
@@ -81,6 +82,12 @@ const UserActions = styled.ul`
     & + li {
       border-top: 1px solid #ddd;
     }
+    &.signin {
+      grid-template-columns: 1fr;
+    }
+    a {
+      color: var(--color-black);
+    }
   }
   @media(min-width: 1024px) {
     display: none;
@@ -101,6 +108,11 @@ const Bold = styled.span`
   font-weight: bold;
 `;
 
+const formatName = name => {
+  const firstName = name.split(' ')[0];
+  return firstName.charAt(0).toUpperCase() + firstName.slice(1);
+}
+
 const Nav = ({ currentUser, signout, className, active}) => {
   return (
     <Navigation className={className} active={active}>
@@ -110,19 +122,22 @@ const Nav = ({ currentUser, signout, className, active}) => {
         <li><Link to='/tailors'>Tailors</Link></li>
         <li><Link to='/accessories'>Accessories</Link></li>
         <li><Link to='/inspiration'>Inspiration</Link></li>
-        {/* <li><Link to='#' onClick={signout}>Sign out</Link></li> */}
       </NavLinks>
       <UserActions>
-        <User><Bold>Hi Ezeikel</Bold> <Underline>Sign Out</Underline></User>
-        <li>My Account</li>
-        <li>My Orders</li>
-        <li>Returns Information</li>
-        <li>Contact Preferences</li>
+        {
+          currentUser && currentUser.fullName
+            ? <User><Bold>Hi {formatName(currentUser.fullName)}</Bold> <Underline  onClick={signout}>Sign Out</Underline></User>
+            : <User className='signin'><Underline><Link to='/signin'>Sign In</Link></Underline></User>
+        }
+        <li><Link to='my-account'>My Account</Link></li>
+        <li><Link to='my-account'>My Orders</Link></li>
+        <li><Link to='my-account'>Returns Information</Link></li>
+        <li><Link to='my-account'>Contact Preferences</Link></li>
       </UserActions>
       <SocialLinks>
-        <li><a href="www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} color="#000" size="3x" /></a></li>
-        <li><a href="www.instagram.com"><FontAwesomeIcon icon={['fab', 'twitter']} color="#000" size="3x" /></a></li>
-        <li><a href="www.instagram.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'twitter']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} color="#000" size="3x" /></a></li>
       </SocialLinks>
       <Legal>&copy; {new Date().getFullYear()} Five Yards</Legal>
     </Navigation>
