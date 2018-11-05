@@ -13,6 +13,8 @@ const Wrapper = styled.header`
   box-shadow: 0px 4px 1.5rem 0px rgba(0, 0, 0, 0.1);
   @media(min-width: 1024px) {
     box-shadow: none;
+    position: relative;
+    z-index: 2;
   }
 `;
 
