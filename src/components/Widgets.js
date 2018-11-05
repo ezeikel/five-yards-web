@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withAuth } from '../context/auth';
 
 const Wrapper = styled.ul`
     position: relative;
@@ -22,7 +23,7 @@ const UserActions = styled.ul`
   display: none;
   @media(min-width: 1024px) {
     background: #fff;
-    border: ${({active}) => active ? '1px solid #ccc;' : 'none'};
+    border: ${({active}) => active ? '1px solid #ddd;' : 'none'};
     display: block;
     position: absolute;
     top: 30px;
@@ -30,60 +31,42 @@ const UserActions = styled.ul`
     /* left: -175px; */
     width: 325px;
     transition: max-height .6s;
-    transition-delay: .25s;
+    /* transition-delay: .25s; */
     max-height: ${({active}) => active ? '100vh' : '0'};
     font-size: 1.6rem;
 
     overflow: hidden;
 
     max-height: ${({active}) => active ? '100vh' : '0'};
-  }
-`;
 
-const UserListItem = styled.li`
-  @media(min-width: 1024px) {
-    position: relative;
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      height: 10px;
-      width: 10px;
-    }
-    &:before {
-      // left: -50%;
-      // width: 0;
-      // height: 0;
-      // border-left: 1rem solid transparent;
-      // border-right: 1rem solid transparent;
-      // border-bottom: 1rem solid var(--color-black);
-
-      //left: 185px;
-
+    /* &:before {
       content: "";
       width: 0;
       border-right: 15px solid transparent;
       border-left: 15px solid transparent;
-      border-bottom: 11px solid #eee;
+      border-bottom: 11px solid red;
       position: absolute;
-      //top: 0;
       right: 0;
       opacity: ${({active}) => active ? '1' : '0'};
       transition: opacity .6s;
       transition-delay: .25s;
       z-index: 1;
 
-      bottom: -10px;
-    }
+      left: 185px;
+    } */
+  }
+`;
+
+const UserListItem = styled.li`
+  @media(min-width: 1024px) {
+    position: relative;
+    cursor: pointer;
   }
 `;
 
 const Signin = styled.li`
   padding: var(--spacing-medium);
   background-color: #EEEEEE;
-  span {
-    text-decoration: underline;
-  }
 `;
 
 const UserActionItem = styled.li`
@@ -94,6 +77,26 @@ const UserActionItem = styled.li`
   & + li {
     border-top: 1px solid #ddd;
   }
+  &:hover {
+    a, path {
+    color: #0770cf;
+    }
+  }
+`;
+
+const User = styled.li`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: var(--spacing-medium);
+  justify-content: start;
+`;
+
+const Underline = styled.span`
+  text-decoration: underline;
+`;
+
+const Bold = styled.span`
+  font-weight: bold;
 `;
 
 class Widgets extends Component {
@@ -108,13 +111,25 @@ class Widgets extends Component {
     });
   };
 
+  formatName = name => {
+    const firstName = name.split(' ')[0];
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1);
+  };
+
   render() {
+    const { currentUser, signout } = this.props;
     return (
       <Wrapper>
-        <UserListItem active={this.state.active}>
-          <FontAwesomeIcon icon="user" color="#000" size="1x" onClick={this.toggleActive} />
+        <UserListItem active={this.state.active} onClick={this.toggleActive}>
+          <FontAwesomeIcon icon="user" color="#000" size="1x" />
           <UserActions active={this.state.active}>
-            <Signin><span>Signin</span> / <span>Join</span></Signin>
+            <Signin>
+              {
+              currentUser && currentUser.fullName
+                ? <User><Bold>Hi {this.formatName(currentUser.fullName)}</Bold> <Underline  onClick={signout}>Sign Out</Underline></User>
+                : <User className='signin'><Underline><Link to='/signin'>Sign In</Link></Underline></User>
+              }
+            </Signin>
             <UserActionItem>
               <FontAwesomeIcon icon="user" color="#000" size="1x" onClick={this.toggleActive} />
               <Link to='my-account'>My Account</Link>
@@ -140,4 +155,4 @@ class Widgets extends Component {
   }
 }
 
-export default Widgets;
+export default withAuth(Widgets);

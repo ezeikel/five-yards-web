@@ -76,7 +76,7 @@ const UserActions = styled.ul`
   font-size: 1.4rem;
   li {
     display: grid;
-    place-items: center;
+    align-items: center;
     padding: var(--spacing-medium);
     width: 100%;
     & + li {
@@ -97,7 +97,8 @@ const UserActions = styled.ul`
 const User = styled.li`
   display: grid;
   grid-template-columns: auto auto;
-  justify-content: space-evenly;
+  grid-column-gap: var(--spacing-medium);
+  justify-content: start;
 `;
 
 const Underline = styled.span`
