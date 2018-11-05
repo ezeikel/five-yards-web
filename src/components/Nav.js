@@ -108,6 +108,12 @@ const Bold = styled.span`
   font-weight: bold;
 `;
 
+const StyledLink = styled(Link)`
+display: grid;
+grid-template-columns: auto 1fr;
+grid-column-gap: var(--spacing-medium);
+`
+
 const formatName = name => {
   const firstName = name.split(' ')[0];
   return firstName.charAt(0).toUpperCase() + firstName.slice(1);
@@ -129,15 +135,15 @@ const Nav = ({ currentUser, signout, className, active}) => {
             ? <User><Bold>Hi {formatName(currentUser.fullName)}</Bold> <Underline  onClick={signout}>Sign Out</Underline></User>
             : <User className='signin'><Underline><Link to='/signin'>Sign In</Link></Underline></User>
         }
-        <li><Link to='my-account'>My Account</Link></li>
-        <li><Link to='my-account'>My Orders</Link></li>
-        <li><Link to='my-account'>Returns Information</Link></li>
-        <li><Link to='my-account'>Contact Preferences</Link></li>
+        <li><StyledLink to='my-account'><FontAwesomeIcon icon="user" color="#000" size="1x" /> My Account</StyledLink></li>
+        <li><StyledLink to='my-orders'><FontAwesomeIcon icon="box" color="#000" size="1x" /> My Orders</StyledLink></li>
+        <li><StyledLink to='returns'><FontAwesomeIcon icon="exchange-alt" color="#000" size="1x" /> Returns Information</StyledLink></li>
+        <li><StyledLink to='contact-preferences'><FontAwesomeIcon icon="comment-alt" color="#000" size="1x" /> Contact Preferences</StyledLink></li>
       </UserActions>
       <SocialLinks>
-        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} color="#000" size="3x" /></a></li>
-        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'twitter']} color="#000" size="3x" /></a></li>
-        <li><a href="https://www.instagram.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.instagram.com/fiveyardsapp"><FontAwesomeIcon icon={['fab', 'instagram']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.twitter.com/fiveyardsapp"><FontAwesomeIcon icon={['fab', 'twitter']} color="#000" size="3x" /></a></li>
+        <li><a href="https://www.facebook.com/fiveyardsapp"><FontAwesomeIcon icon={['fab', 'facebook-f']} color="#000" size="3x" /></a></li>
       </SocialLinks>
       <Legal>&copy; {new Date().getFullYear()} Five Yards</Legal>
     </Navigation>
