@@ -105,7 +105,6 @@ class Widgets extends Component {
   }
 
   toggleActive = () => {
-    console.log('toggleActive()');
     this.setState({
       active: !this.state.active
     });
