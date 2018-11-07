@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Input from './styles/Input';
+import { Formik } from 'formik';
+import * as Yup from 'yup'
+import Form from './styles/Form';
+import FormInput from './styles/FormInput';
+
+const ReqeuestResetSchema = Yup.object().shape({
+  search: Yup.string()
+    .required('Required')
+});
 
 const Wrapper = styled.ul`
     display: none;
@@ -17,7 +25,23 @@ class Search extends Component {
   render() {
     return (
       <Wrapper>
-        <Input type="search" placeholder="Search for fabrics, tailors and inspiration" />
+        <Formik
+          initialValues={{ email: '' }}
+          validationSchema={ReqeuestResetSchema}
+          onSubmit={async (values, actions) => {
+            console.log('Searching...');
+          }}
+        >
+          {({
+            isSubmitting,
+            errors,
+            touched
+          }) => (
+            <Form>
+              <FormInput type="search" name="search" placeholder="Search for fabrics, tailors and inspiration" />
+            </Form>
+          )}
+        </Formik>
       </Wrapper>
     )
   }
