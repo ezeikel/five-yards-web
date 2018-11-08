@@ -14,11 +14,15 @@ const Navigation = styled.nav`
   background-color: var(--color-white);
   box-shadow: ${({active}) => active ? '4px 0px 1.5rem 0px rgba(0, 0, 0, 0.1)' : 'none'};
   opacity: ${({active}) => active ? '1' : '0'};
+  height: 100vh;
+  overflow-y: scroll;
   @media (min-width: 1024px) {
     display: grid;
     grid-template-rows: 1fr;
     align-items: center;
     opacity: 1;
+    height: auto;
+    overflow-y: auto;
     box-shadow: 0px 4px 1.5rem -4px rgba(0, 0, 0, 0.1);
   }
 `;
