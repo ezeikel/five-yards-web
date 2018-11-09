@@ -4,7 +4,7 @@ import { Field } from 'formik';
 const FormInput = styled(Field)`
   appearance: none;
   outline: 0;
-  font-size: var(--default-font-size);
+  font-size: var(--font-size-small);
   color: var(--color-black);
   padding: var(--spacing-medium);
   border: 1px solid #ecf0f1;

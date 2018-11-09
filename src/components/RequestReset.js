@@ -11,6 +11,7 @@ import FormActions from './styles/FormActions';
 import FieldSet from './styles/FieldSet';
 import FormInput from './styles/FormInput';
 import FormInputError from './styles/FormInputError';
+import { formatFormErrors } from '../utils/formatFormErrors';
 
 const ReqeuestResetSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,11 +27,16 @@ class RequestReset extends Component {
           <Formik
             initialValues={{ email: '' }}
             validationSchema={ReqeuestResetSchema}
-            onSubmit={async (values, actions) => {
-              await reset({
-                variables: values
-              });
-              actions.resetForm();
+            onSubmit={async (values, { resetForm, setErrors }) => {
+              try {
+                await reset({
+                  variables: values
+                });
+
+                resetForm();
+              } catch(e) {
+                setErrors(formatFormErrors(e));
+              }
             }}
           >
             {({

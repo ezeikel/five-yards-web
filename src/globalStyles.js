@@ -26,6 +26,11 @@ export default injectGlobal`
   /* Font */
   --default-font-family: 'proxima-nova', sans-serif;
   --default-font-size: 10px;
+  --font-size-tiny: 1rem;
+  --font-size-small: 1.6rem;
+  --font-size-medium: 1.8rem;
+  --font-size-large: 2rem;
+  --font-size-huge: 2.2rem;
 }
 * {
   box-sizing: border-box;
