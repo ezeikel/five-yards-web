@@ -12,12 +12,20 @@ import FieldSet from './styles/FieldSet';
 import FormInput from './styles/FormInput';
 import FormInputError from './styles/FormInputError';
 import { formatFormErrors } from '../utils/formatFormErrors';
+import styled from 'styled-components';
 
 const ReqeuestResetSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required')
 });
+
+const SuccessMessage = styled.p`
+  font-size: var(--font-size-tiny);
+  background-color: var(--color-green);
+  color: var(--color-white);
+  padding: var(--spacing-small);
+`;
 
 class RequestReset extends Component {
   render() {
@@ -46,7 +54,7 @@ class RequestReset extends Component {
             }) => (
               <Form>
                 <FormFields>
-                  {!error && !loading && called && <p>Success! Check your email for a reset link!</p>}
+                  {!error && !loading && called && <SuccessMessage>Success! Check your email for a reset link!</SuccessMessage>}
                   <FieldSet>
                     <label htmlFor="email">Email</label>
                     {errors.email && touched.email && <FormInputError>{errors.email}</FormInputError>}
