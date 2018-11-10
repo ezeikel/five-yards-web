@@ -10,14 +10,10 @@ const ReqeuestResetSchema = Yup.object().shape({
     .required('Required')
 });
 
-const Wrapper = styled.ul`
+const Wrapper = styled.div`
     display: none;
     @media(min-width: 768px) {
       display: grid;
-      input {
-        font-family: var(--default-font-family);
-        font-size: 1.8rem;
-      }
     }
 `;
 

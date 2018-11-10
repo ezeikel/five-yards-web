@@ -84,7 +84,7 @@ const UserActionItem = styled.li`
   }
 `;
 
-const User = styled.li`
+const User = styled.span`
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: var(--spacing-medium);
