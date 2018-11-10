@@ -1,14 +1,14 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { CURRENT_USER_QUERY } from './User';
+import { CURRENT_CACHED_USER_QUERY } from '../apollo/queries';
 import Signin from './Signin';
 
 const PleaseSignIn = props => (
-  <Query query={CURRENT_USER_QUERY}>
+  <Query query={CURRENT_CACHED_USER_QUERY}>
     {({ data, loading }) => {
-      debugger;
+      const { currentUser: { isAuthenticated } } = data;
       if (loading) return <p>Loading...</p>;
-      if (!data.me) {
+      if (!isAuthenticated) {
         return (
           <div>
             <p>Please Sign In before continuing</p>

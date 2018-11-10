@@ -3,7 +3,7 @@ import { withApollo, Query } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert2';
 import {
-  GET_CURRENT_USER,
+  CURRENT_CACHED_USER_QUERY,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
   SIGNUP_MUTATION,
@@ -144,7 +144,7 @@ class Provider extends Component {
      */
     const {
       data: { currentUser }
-    } = await client.query({ query: GET_CURRENT_USER });
+    } = await client.query({ query: CURRENT_CACHED_USER_QUERY });
     console.log({ currentUser });
   }
 
@@ -172,7 +172,7 @@ export const AuthConsumer = props => <AuthContext.Consumer {...props} />;
 // withAuth hoc passes down original props and currentUser and context as props to new wrapped component
 export const withAuth = WrappedComponent => props => (
   <Query
-    query={GET_CURRENT_USER}
+    query={CURRENT_CACHED_USER_QUERY}
     fetchPolicy='cache-only'
   >
     {({ data: { currentUser } }) => (

@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER } from "./queries";
+import { CURRENT_CACHED_USER_QUERY } from "./queries";
 
 export const defaults = {
   currentUser: {
@@ -8,14 +8,16 @@ export const defaults = {
     username: "",
     fullName: "",
     permissions: [],
+    cart: [],
     isAuthenticated: false
-  }
+  },
+  cartOpen: false
 };
 
 export const resolvers = {
   Query: {
     currentUser: (_, args, { cache }) => {
-      const { currentUser } = cache.readQuery({ query: GET_CURRENT_USER });
+      const { currentUser } = cache.readQuery({ query: CURRENT_CACHED_USER_QUERY });
       return currentUser;
     }
   },

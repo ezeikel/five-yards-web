@@ -125,6 +125,7 @@ const formatName = name => {
 }
 
 const Nav = ({ currentUser, signout, className, active}) => {
+  const { isAuthenticated, fullName } = currentUser;
   return (
     <Navigation className={className} active={active}>
       <NavLinks>
@@ -136,13 +137,13 @@ const Nav = ({ currentUser, signout, className, active}) => {
       </NavLinks>
       <UserActions>
         {
-          currentUser && currentUser.fullName
-            ? <User><Bold>Hi {formatName(currentUser.fullName)}</Bold> <Underline  onClick={signout}>Sign Out</Underline></User>
+          isAuthenticated
+            ? <User><Bold>Hi {formatName(fullName)}</Bold> <Underline  onClick={signout}>Sign Out</Underline></User>
             : <User className='signin'><Underline><Link to='/signin'>Sign In</Link></Underline></User>
         }
         {/* Replace below with Widgets.js */}
         {
-          currentUser && currentUser.fullName
+          isAuthenticated
             ?
             <Fragment>
               <li><StyledLink to='my-account'><FontAwesomeIcon icon="user" color="#000" size="1x" /> My Account</StyledLink></li>

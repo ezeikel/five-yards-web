@@ -1,12 +1,47 @@
 import gql from "graphql-tag";
 
-export const GET_CURRENT_USER = gql`
+//TODO: Not currently being used anywhere
+export const CURRENT_USER_QUERY = gql`
+  query {
+    me {
+      id
+      email
+      fullName
+      permissions
+      cart {
+        id
+        quantity
+        item {
+          id
+          price
+          image
+          title
+          description
+        }
+      }
+    }
+  }
+`;
+
+export const CURRENT_CACHED_USER_QUERY = gql`
 {
   currentUser @client {
     id
     email
+    username
     fullName
     permissions
+    cart {
+      id
+      quantity
+      item {
+        id
+        price
+        image
+        title
+        description
+      }
+    }
     isAuthenticated
     __typename
   }
@@ -14,7 +49,7 @@ export const GET_CURRENT_USER = gql`
 `;
 
 export const UPDATE_CURRENT_USER = gql`
-  mutation UpdateCurrentUser($id: String!, $email: String!, $fullName: String!, $permissions: [String!]!, $isAuthenticated: Boolean!) {
+  mutation updateCurrentUser($id: String!, $email: String!, $fullName: String!, $permissions: [String!]!, $isAuthenticated: Boolean!) {
     updateCurrentUser(id: $id, email: $email, fullName: $fullName, permissions: $permissions, isAuthenticated: $isAuthenticated) @client {
       id
       email
@@ -56,6 +91,17 @@ export const SIGNIN_MUTATION = gql`
       fullName
       username
       permissions
+      cart {
+      id
+      quantity
+      item {
+        id
+        price
+        image
+        title
+        description
+      }
+    }
     }
   }
 `;
@@ -86,15 +132,4 @@ export const RESET_MUTATION = gql`
        permissions
      }
    }
-`;
-
-export const CURRENT_USER_QUERY = gql`
-  query {
-    me {
-      id
-      email
-      fullName
-      permissions
-    }
-  }
 `;
