@@ -134,8 +134,16 @@ class Widgets extends Component {
               <Link to='my-account'>My Account</Link>
             </UserActionItem>
             <UserActionItem>
+              <FontAwesomeIcon icon="money-bill" color="#000" size="1x" onClick={this.toggleActive} />
+              <Link to='sell'>Sell</Link>
+            </UserActionItem>
+            <UserActionItem>
               <FontAwesomeIcon icon="box" color="#000" size="1x" onClick={this.toggleActive} />
               <Link to='my-account'>My Orders</Link>
+            </UserActionItem>
+            <UserActionItem>
+              <FontAwesomeIcon icon="calendar-alt" color="#000" size="1x" onClick={this.toggleActive} />
+              <Link to='my-events'>My Events</Link>
             </UserActionItem>
             <UserActionItem>
               <FontAwesomeIcon icon="exchange-alt" color="#000" size="1x" onClick={this.toggleActive} />
