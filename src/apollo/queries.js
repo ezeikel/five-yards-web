@@ -153,3 +153,14 @@ export const CREATE_ITEM_MUTATION = gql`
      }
    }
 `;
+
+export const SINGLE_ITEM_QUERY = gql`
+  query SINGLE_ITEM_QUERY($id: ID!) {
+    item(id: $id) {
+      id
+      title
+      description
+      largeImage
+    }
+  }
+`;
