@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import home from '../pages/home';
+import home from '../pages/index';
 import signin from '../pages/signin';
 import requestResetPage from '../pages/requestReset';
 import Users from './Users';

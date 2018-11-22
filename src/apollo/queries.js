@@ -164,3 +164,30 @@ export const SINGLE_ITEM_QUERY = gql`
     }
   }
 `;
+
+// export const ALL_ITEMS_QUERY = gql`
+//   query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
+//     items (first: $first, skip: $skip, orderBy: createdAt_DESC) {
+//       id
+//       title
+//       price
+//       description
+//       image
+//       largeImage
+//     }
+//   }
+// `;
+
+// TODO: Add pagination like above
+export const ALL_ITEMS_QUERY = gql`
+  query ALL_ITEMS_QUERY {
+    items {
+      id
+      title
+      price
+      description
+      image
+      largeImage
+    }
+  }
+`;
