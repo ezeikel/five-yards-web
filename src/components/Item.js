@@ -5,7 +5,7 @@ import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
-// import DeleteItem from './DeleteItem';
+import DeleteItem from './DeleteItem';
 // import AddToCart from './AddToCart';
 
 class Item extends Component {
@@ -35,8 +35,8 @@ class Item extends Component {
           }}>
             Edit <span role="img" aria-label="pencil">✏️</span>
           </Link>
-          {/* <AddToCart id={item.id}/>
-          <DeleteItem id={item.id}>Delete This Item</DeleteItem> */}
+          {/* <AddToCart id={item.id}/> */}
+          <DeleteItem id={item.id}>Delete This Item</DeleteItem>
         </div>
       </ItemStyles>
     );

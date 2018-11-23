@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { Formik } from 'formik';
-import { CREATE_ITEM_MUTATION } from '../apollo/queries'
+import { CREATE_ITEM_MUTATION, ALL_ITEMS_QUERY } from '../apollo/queries'
 import Spinner from './Spinner';
 import Button from './styles/Button';
 import Form from './styles/Form';
@@ -48,10 +48,11 @@ class CreateItem extends Component {
     return (
       <Mutation
         mutation={CREATE_ITEM_MUTATION}
+        refetchQueries={[{ query: ALL_ITEMS_QUERY }]}
       >
         {(createItem, { error, loading, called }) => (
           <Formik
-            initialValues={{ title: 'Yeezy Boost', description: 'The coolest pair of Yeezys EVER!', image: '', largeImage: '', price: 0 }}
+            initialValues={{ title: 'African Print', description: 'Ankara', image: '', largeImage: '', price: 1500 }}
             // validationSchema={}
             onSubmit={async (values, { resetForm, setErrors }) => {
               try {
