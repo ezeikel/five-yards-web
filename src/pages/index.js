@@ -1,11 +1,12 @@
 import React from 'react';
 import Items from '../components/Items';
+import PageWrap from "../components/styles/PageWrap";
 
 const Home = props => (
-  <div>
+  <PageWrap>
     {/* <Items  page={parseFloat(props.query.page) || 1}/> */}
     <Items />
-  </div>
+  </PageWrap>
 );
 
 export default Home;

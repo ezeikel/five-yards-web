@@ -1,3 +1,10 @@
-import Items from './index';
+import Items from '../components/Items';
+import PageWrap from '../components/styles/PageWrap';
 
-export default Items;
+const itemsPage = props => (
+  <PageWrap>
+    <Items />
+  </PageWrap>
+);
+
+export default itemsPage;

@@ -15,10 +15,10 @@ const Item = styled.div`
   p {
     font-size: 12px;
     line-height: 2;
-    font-weight: 300;
+    font-weight: bold;
     flex-grow: 1;
     padding: 0 3rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .buttonList {
     display: grid;

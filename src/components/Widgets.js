@@ -16,7 +16,6 @@ const Wrapper = styled.ul`
     }
     a {
       display: grid;
-      place-items: center;
       color: var(--color-black);
     }
 `;
