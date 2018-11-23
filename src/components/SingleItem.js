@@ -8,7 +8,7 @@ import { SINGLE_ITEM_QUERY } from '../apollo/queries';
 const SingleItemStyles = styled.div`
   max-width: 1200px;
   margin: 2rem auto;
-  box-shadow: ${props => props.theme.bs};
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.09);
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;

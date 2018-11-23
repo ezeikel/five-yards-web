@@ -151,7 +151,7 @@ const Nav = ({ currentUser, signout, className, active}) => {
               <li><StyledLink to='my-orders'><FontAwesomeIcon icon="box" color="#000" size="1x" /> My Orders</StyledLink></li>
               <li><StyledLink to='my-events'><FontAwesomeIcon icon="calendar-alt" color="#000" size="1x" /> My Events</StyledLink></li>
               <li><StyledLink to='returns'><FontAwesomeIcon icon="exchange-alt" color="#000" size="1x" /> Returns Information</StyledLink></li>
-              <li><StyledLink to='contact-preferences'><FontAwesomeIcon icon="comment-alt" color="#000" size="1x" /> Contact Preferences</StyledLink></li>
+              <li><StyledLink to='contact-preferences'><FontAwesomeIcon icon="headset" color="#000" size="1x" /> Contact Preferences</StyledLink></li>
             </Fragment>
             : null
         }

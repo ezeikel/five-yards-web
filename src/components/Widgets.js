@@ -7,7 +7,7 @@ import { withAuth } from '../context/auth';
 const Wrapper = styled.ul`
     position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     font-size: 1.8rem;
     grid-column-gap: var(--spacing-medium);
@@ -15,6 +15,8 @@ const Wrapper = styled.ul`
       position: relative;
     }
     a {
+      display: grid;
+      place-items: center;
       color: var(--color-black);
     }
 `;
@@ -154,7 +156,7 @@ class Widgets extends Component {
                       <Link to='my-account'>Returns Information</Link>
                     </UserActionItem>
                     <UserActionItem>
-                      <FontAwesomeIcon icon="comment-alt" color="#000" size="1x" onClick={this.toggleActive} />
+                      <FontAwesomeIcon icon="headset" color="#000" size="1x" onClick={this.toggleActive} />
                       <Link to='my-account'>Contact Preferences</Link>
                     </UserActionItem>
                   </Fragment>
@@ -164,6 +166,7 @@ class Widgets extends Component {
           </UserActions>
         </UserListItem>
         <li><Link to="/saved"><FontAwesomeIcon icon="heart" color="#000" size="1x" /></Link></li>
+        <li><Link to="/messages"><FontAwesomeIcon icon="comment-alt" color="#000" size="1x" /></Link></li>
         <li><Link to="/bag"><FontAwesomeIcon icon="shopping-bag" color="#000" size="1x" /></Link></li>
       </Wrapper>
     )
