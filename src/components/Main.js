@@ -10,6 +10,7 @@ import signup from '../pages/signup';
 import resetPage from '../pages/reset';
 import sellPage from '../pages/sell';
 import itemPage from '../pages/item';
+import updatePage from '../pages/update';
 
 const Wrapper = styled.main`
   padding: var(--spacing-medium);
@@ -28,6 +29,7 @@ const Main = ({ className, active }) => {
         <Route path="/item" component={itemPage} />
         <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
+        <Route path="/update" component={updatePage} />
       </Switch>
     </Wrapper>
   );

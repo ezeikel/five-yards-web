@@ -2,9 +2,9 @@ import React from 'react';
 import queryString from 'query-string';
 import SingleItem from '../components/SingleItem';
 
-const itemPage = props => (
+const itemPage = ({ location }) => (
   <div>
-    <SingleItem  id={queryString.parse(props.location.search).id} />
+    <SingleItem  id={queryString.parse(location.search).id} />
   </div>
 );
 

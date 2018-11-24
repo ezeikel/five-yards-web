@@ -12,20 +12,13 @@ import FieldSet from './styles/FieldSet';
 import FormInput from './styles/FormInput';
 import FormInputError from './styles/FormInputError';
 import { formatFormErrors } from '../utils/formatFormErrors';
-import styled from 'styled-components';
+import SuccessMessage from './styles/SuccessMessage';
 
 const ReqeuestResetSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Required')
 });
-
-const SuccessMessage = styled.p`
-  font-size: var(--font-size-tiny);
-  background-color: var(--color-green);
-  color: var(--color-white);
-  padding: var(--spacing-small);
-`;
 
 class RequestReset extends Component {
   render() {

@@ -67,7 +67,6 @@ class CreateItem extends Component {
 
                 resetForm();
 
-                // TODO: Create item page and component to redirect to from here
                 history.push({
                   pathname: '/item',
                   search: `?id=${res.data.createItem.id}`
