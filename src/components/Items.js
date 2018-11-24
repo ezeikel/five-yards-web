@@ -13,9 +13,8 @@ const Center = styled.div`
 
 const ItemsList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 60px;
-  max-wdith: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `;
 
@@ -27,6 +26,7 @@ class Items extends Component {
         {/* <Pagination page={this.props.page} /> */}
         <Query
           query={ALL_ITEMS_QUERY}
+          pollInterval={10000}
           // variables={{
           //   skip: this.props.page * perPage - perPage
           // }}
