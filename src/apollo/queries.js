@@ -222,3 +222,36 @@ export const UPDATE_ITEM_MUTATION = gql`
   }
 `;
 
+export const CART_OPEN_QUERY = gql`
+  query {
+    cartOpen @client
+  }
+`;
+
+export const TOGGLE_CART_MUTATION = gql`
+  mutation {
+    toggleCart @client
+  }
+`;
+
+export const REMOVE_FROM_CART_MUTATION = gql`
+  mutation removeFromCart($id: ID!) {
+    removeFromCart(id: $id) {
+      id
+    }
+  }
+`;
+
+export const CREATE_ORDER_MUTATION = gql`
+  mutation createOrder($token: String!) {
+    createOrder(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        title
+      }
+    }
+  }
+`;

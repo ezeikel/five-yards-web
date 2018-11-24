@@ -1,4 +1,4 @@
-import { CURRENT_CACHED_USER_QUERY } from "./queries";
+import { CURRENT_CACHED_USER_QUERY, CART_OPEN_QUERY } from "./queries";
 
 export const defaults = {
   currentUser: {
@@ -29,6 +29,21 @@ export const resolvers = {
         }
       });
       return { id, email, fullName, permissions, isAuthenticated, __typename: "CurrentUser" };
+    },
+    toggleCart(_, args, { cache }) {
+      // read the cartOpen value frome the cache
+      const { cartOpen } = cache.readQuery({
+        query: CART_OPEN_QUERY
+      });
+      // toggle the cart state
+      const data = {
+        data: {
+          cartOpen: !cartOpen
+        }
+      };
+
+      cache.writeData(data);
+      return data;
     }
   }
 };

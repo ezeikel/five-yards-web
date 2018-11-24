@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Mutation } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withAuth } from '../context/auth';
+import { TOGGLE_CART_MUTATION } from '../apollo/queries'
+import CartCount from './CartCount';
 
 const Wrapper = styled.ul`
     position: relative;
@@ -111,6 +114,7 @@ class Widgets extends Component {
     });
   };
 
+  // TODO: Put function in utils folder
   formatName = name => {
     const firstName = name.split(' ')[0];
     return firstName.charAt(0).toUpperCase() + firstName.slice(1);
@@ -166,7 +170,14 @@ class Widgets extends Component {
         </UserListItem>
         <li><Link to="/saved"><FontAwesomeIcon icon="heart" color="#000" size="1x" /></Link></li>
         <li><Link to="/messages"><FontAwesomeIcon icon="comment-alt" color="#000" size="1x" /></Link></li>
-        <li><Link to="/bag"><FontAwesomeIcon icon="shopping-bag" color="#000" size="1x" /></Link></li>
+        <Mutation mutation={TOGGLE_CART_MUTATION}>
+          {toggleCart => (
+            <button onClick={toggleCart}>
+              <FontAwesomeIcon icon="shopping-bag" color="#000" size="1x" />
+              <CartCount count={currentUser.cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0)}></CartCount>
+            </button>
+          )}
+        </Mutation>
       </Wrapper>
     )
   }

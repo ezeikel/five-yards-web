@@ -5,6 +5,7 @@ import GenderSelector from './GenderSelector';
 import Search from './Search';
 import Widgets from './Widgets';
 import Hamburger from './Hamburger';
+import Cart from './Cart';
 
 const Wrapper = styled.header`
   display: grid;
@@ -35,6 +36,7 @@ const Logo = styled.h1`
 `;
 
 const TopNav = styled.div`
+  position: relative;
   grid-row: 1 / span 1;
   grid-column: 1 / -1;
   display: grid;
@@ -61,6 +63,7 @@ class Header extends Component {
           <GenderSelector />
           <Search />
           <Widgets />
+          <Cart />
         </TopNav>
       </Wrapper>
     );
