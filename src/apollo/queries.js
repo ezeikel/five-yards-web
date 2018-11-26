@@ -23,6 +23,31 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
+// export const CURRENT_CACHED_USER_QUERY = gql`
+// {
+//   currentUser @client {
+//     id
+//     email
+//     username
+//     fullName
+//     permissions
+//     cart {
+//       id
+//       quantity
+//       item {
+//         id
+//         price
+//         image
+//         title
+//         description
+//       }
+//     }
+//     isAuthenticated
+//     __typename
+//   }
+// }
+// `;
+
 export const CURRENT_CACHED_USER_QUERY = gql`
 {
   currentUser @client {
@@ -33,14 +58,6 @@ export const CURRENT_CACHED_USER_QUERY = gql`
     permissions
     cart {
       id
-      quantity
-      item {
-        id
-        price
-        image
-        title
-        description
-      }
     }
     isAuthenticated
     __typename
@@ -83,6 +100,29 @@ export const SIGNUP_MUTATION = gql`
   }
 `;
 
+// export const SIGNIN_MUTATION = gql`
+//   mutation signin($email: String!, $password: String!) {
+//     signin(email: $email, password: $password) {
+//       id
+//       email
+//       fullName
+//       username
+//       permissions
+//       cart {
+//       id
+//       quantity
+//       item {
+//         id
+//         price
+//         image
+//         title
+//         description
+//       }
+//     }
+//     }
+//   }
+// `;
+
 export const SIGNIN_MUTATION = gql`
   mutation signin($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
@@ -92,16 +132,8 @@ export const SIGNIN_MUTATION = gql`
       username
       permissions
       cart {
-      id
-      quantity
-      item {
         id
-        price
-        image
-        title
-        description
       }
-    }
     }
   }
 `;

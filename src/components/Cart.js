@@ -29,7 +29,7 @@ const Cart = () => (
       // TODO: Maybe should use currentUser.isAuthenticated here
       const { currentUser } = user.data;
 
-      if (!currentUser) return null;
+      if (!currentUser.isAuthenticated) return null;
       return (
         <CartStyles open={localState.data.cartOpen}>
           <header>
