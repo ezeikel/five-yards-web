@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 
 // TODO: Being used in Refetch on addToCart
+// TODO: me and currentUser do very similar things. Merge?
 export const CURRENT_USER_QUERY = gql`
   query {
     me {
@@ -59,7 +60,13 @@ export const CURRENT_CACHED_USER_QUERY = gql`
     cart {
       id
       quantity
-      item
+      item {
+        id
+        price
+        image
+        title
+        description
+      }
     }
     isAuthenticated
     __typename
@@ -294,7 +301,21 @@ export const ADD_TO_CART_MUTATION = gql`
   mutation addToCart($id: ID!) {
     addToCart(id: $id) {
       id
-      quantity
+      fullName
+      username
+      email
+      permissions
+      cart {
+        id
+        quantity
+        item {
+          id
+          title
+          description
+          image
+          price
+        }
+      }
     }
   }
 `;

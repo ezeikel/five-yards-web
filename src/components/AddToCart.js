@@ -12,8 +12,13 @@ class AddToCart extends Component {
           id
         }}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-        update={(cache, { data: { addToCart } }) => {
+        update={(cache, { data: { addToCart: { id, email, username, fullName, cart, permissions } } }) => {
           debugger;
+          cache.writeData({
+            data: {
+              currentUser: { id, email, username, fullName, cart, permissions, isAuthenticated: true, __typename: "CurrentUser" }
+            }
+          });
         }}
         >
           {(addToCart,  { loading }) => (

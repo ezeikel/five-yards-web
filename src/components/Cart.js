@@ -29,6 +29,8 @@ const Cart = () => (
       // TODO: Maybe should use currentUser.isAuthenticated here
       const { currentUser } = user.data;
 
+      console.log({ currentUser });
+
       if (!currentUser.isAuthenticated) return null;
       return (
         <CartStyles open={localState.data.cartOpen}>
@@ -42,11 +44,11 @@ const Cart = () => (
           </ul>
           <footer>
             <p>{formatMoney(calcTotalPrice(currentUser.cart))}</p>
-            {currentUser.cart.length && (
+            {/* {currentUser.cart.length && (
               <TakeMyMoney>
                 <SickButton>Checkout</SickButton>
               </TakeMyMoney>
-            )}
+            )} */}
           </footer>
         </CartStyles>
       )
