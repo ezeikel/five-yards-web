@@ -12,6 +12,9 @@ class AddToCart extends Component {
           id
         }}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        update={(cache, { data: { addToCart } }) => {
+          debugger;
+        }}
         >
           {(addToCart,  { loading }) => (
             <button onClick={addToCart} disabled={loading}>Add{loading && 'ing'} To Cart 🛒</button>

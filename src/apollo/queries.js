@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-//TODO: Not currently being used anywhere
+// TODO: Being used in Refetch on addToCart
 export const CURRENT_USER_QUERY = gql`
   query {
     me {
@@ -58,6 +58,8 @@ export const CURRENT_CACHED_USER_QUERY = gql`
     permissions
     cart {
       id
+      quantity
+      item
     }
     isAuthenticated
     __typename

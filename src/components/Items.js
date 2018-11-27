@@ -26,7 +26,7 @@ class Items extends Component {
         {/* <Pagination page={this.props.page} /> */}
         <Query
           query={ALL_ITEMS_QUERY}
-          pollInterval={10000}
+          // pollInterval={10000}
           // variables={{
           //   skip: this.props.page * perPage - perPage
           // }}
