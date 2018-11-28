@@ -142,6 +142,14 @@ export const SIGNIN_MUTATION = gql`
       permissions
       cart {
         id
+        quantity
+        item {
+          id
+          price
+          image
+          title
+          description
+        }
       }
     }
   }

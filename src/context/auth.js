@@ -74,10 +74,6 @@ class Provider extends Component {
           mutation: SIGNIN_MUTATION,
           variables: { email, password },
           update: async (cache, { data: { signin:user } }) => {
-            // TODO: deleting cart for now as causing errors when writing to cache
-            console.log({ user });
-            console.log(user.cart);
-            user.cart = [];
             this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
 
             // exposed by Formik
@@ -163,9 +159,6 @@ class Provider extends Component {
         __typename: 'CurrentUser'
       }
     };
-    // TODO: Error occuring after writing to cache after signin with cart in data
-    // Maybe needs __typename CartItem and Item for nested objects?
-    // Look into writing to cache
     cache.writeData({ data });
   }
 }
