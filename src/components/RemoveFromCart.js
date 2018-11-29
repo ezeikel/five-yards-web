@@ -21,6 +21,7 @@ class RemoveFromCart extends Component {
 
   // this gets called as soon as we get a response back from the server after a mutation has been performed
   update = (cache, payload) => {
+    //debugger;
     console.log('Running remove from cart update fn');
     // 1. first read the cache
     const data = cache.readQuery({
@@ -31,7 +32,12 @@ class RemoveFromCart extends Component {
     const cartItemId = payload.data.removeFromCart.id;
     data.currentUser.cart = data.currentUser.cart.filter(cartItem => cartItem.id !== cartItemId);
     // 3. write it back to the cache
-    cache.writeQuery({ query: CURRENT_CACHED_USER_QUERY, data })
+    cache.writeQuery({ query: CURRENT_CACHED_USER_QUERY, data });
+    // cache.writeData({
+    //   data: {
+    //     currentUser: { id, email, username, fullName, cart, permissions, isAuthenticated: true, __typename: "CurrentUser" }
+    //   }
+    // });
   };
 
   render() {
@@ -39,7 +45,7 @@ class RemoveFromCart extends Component {
       <Mutation
         mutation={REMOVE_FROM_CART_MUTATION}
         variables={{ id: this.props.id }}
-        // update={this.update}
+        update={this.update}
         optimisticResponse={{
           __typename: 'Mutation',
           removeFromCart: {

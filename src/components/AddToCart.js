@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import { CURRENT_USER_QUERY, ADD_TO_CART_MUTATION } from '../apollo/queries';
+import { CURRENT_CACHED_USER_QUERY, ADD_TO_CART_MUTATION } from '../apollo/queries';
 
 class AddToCart extends Component {
   render() {
@@ -11,9 +11,8 @@ class AddToCart extends Component {
         variables={{
           id
         }}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        refetchQueries={[{ query: CURRENT_CACHED_USER_QUERY }]}
         update={(cache, { data: { addToCart: { id, email, username, fullName, cart, permissions } } }) => {
-          debugger;
           cache.writeData({
             data: {
               currentUser: { id, email, username, fullName, cart, permissions, isAuthenticated: true, __typename: "CurrentUser" }

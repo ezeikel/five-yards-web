@@ -287,6 +287,21 @@ export const REMOVE_FROM_CART_MUTATION = gql`
   mutation removeFromCart($id: ID!) {
     removeFromCart(id: $id) {
       id
+      fullName
+      username
+      email
+      permissions
+      cart {
+        id
+        quantity
+        item {
+          id
+          title
+          description
+          image
+          price
+        }
+      }
     }
   }
 `;

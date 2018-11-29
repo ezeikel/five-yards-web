@@ -159,6 +159,8 @@ class Provider extends Component {
         __typename: 'CurrentUser'
       }
     };
+
+    console.log({ data });
     cache.writeData({ data });
   }
 }
