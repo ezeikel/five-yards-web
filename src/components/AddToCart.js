@@ -11,8 +11,9 @@ class AddToCart extends Component {
         variables={{
           id
         }}
-        refetchQueries={[{ query: CURRENT_CACHED_USER_QUERY }]}
+        // refetchQueries={[{ query: CURRENT_CACHED_USER_QUERY }]}
         update={(cache, { data: { addToCart: { id, email, username, fullName, cart, permissions } } }) => {
+          console.log('update()');
           cache.writeData({
             data: {
               currentUser: { id, email, username, fullName, cart, permissions, isAuthenticated: true, __typename: "CurrentUser" }
