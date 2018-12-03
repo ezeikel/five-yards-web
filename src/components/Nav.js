@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NavStyles from './styles/NavStyles';
 import { withAuth } from '../context/auth';
 
 const Navigation = styled.nav`

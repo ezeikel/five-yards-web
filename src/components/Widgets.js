@@ -103,6 +103,13 @@ const Bold = styled.span`
   font-weight: bold;
 `;
 
+const StyledButton = styled.button`
+  display: flex;
+  font-size: 1em;
+  background: none;
+  border: 0;
+`;
+
 class Widgets extends Component {
   state = {
     active: false
@@ -172,10 +179,10 @@ class Widgets extends Component {
         <li><Link to="/messages"><FontAwesomeIcon icon="comment-alt" color="#000" size="1x" /></Link></li>
         <Mutation mutation={TOGGLE_CART_MUTATION}>
           {toggleCart => (
-            <button onClick={toggleCart}>
+            <StyledButton onClick={toggleCart}>
               <FontAwesomeIcon icon="shopping-bag" color="#000" size="1x" />
               <CartCount count={currentUser.cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0)}></CartCount>
-            </button>
+            </StyledButton>
           )}
         </Mutation>
       </Wrapper>
