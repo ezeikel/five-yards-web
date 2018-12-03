@@ -16,6 +16,8 @@ const Wrapper = styled.ul`
     grid-column-gap: var(--spacing-medium);
     li {
       position: relative;
+      display: flex;
+      align-items: center;
     }
     a {
       display: grid;
@@ -105,6 +107,7 @@ const Bold = styled.span`
 
 const StyledButton = styled.button`
   display: flex;
+  align-items: center;
   font-size: 1em;
   background: none;
   border: 0;
