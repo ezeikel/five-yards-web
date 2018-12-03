@@ -14,7 +14,7 @@ const Wrapper = styled.ul`
     justify-items: center;
     font-size: 1.8rem;
     grid-column-gap: var(--spacing-medium);
-    li {
+    > li {
       position: relative;
       display: flex;
       align-items: center;
