@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import StripeCheckout from 'react-stripe-checkout';
 import { Mutation } from 'react-apollo';
 import NProgress from 'nprogress';
@@ -11,7 +12,7 @@ function totalItems(cart) {
 }
 
 class TakeMyMoney extends Component {
-  onToken = async (res, createOrder) => {
+  onToken = async (res, createOrder, history) => {
     NProgress.start();
     console.log('onToken()');
     console.log(res.id);
@@ -23,30 +24,35 @@ class TakeMyMoney extends Component {
     }).catch(err => {
       alert(err.message);
     });
-    // Router.push({
-    //   pathname: '/order',
-    //   query: { id: order.data.createOrder.id }
-    // });
+
+    debugger;
+
+    history.push({
+      pathname: '/order',
+      search: `?id=${order.data.createOrder.id}`
+    });
   };
 
   render() {
+    const { history } = this.props;
+
     return (
       <User>
-        {({ data: { me }}) => (
+        {({ data: { currentUser }}) => (
           <Mutation
             mutation={CREATE_ORDER_MUTATION}
             refetchQueries={[{ query: CURRENT_USER_QUERY }]}
           >
             {createOrder => (
               <StripeCheckout
-                amount={calcTotalPrice(me.cart)}
+                amount={calcTotalPrice(currentUser.cart)}
                 name="Catch the Drop"
-                description={`Order of ${totalItems(me.cart)} items`}
-                image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
+                description={`Order of ${totalItems(currentUser.cart)} items`}
+                image={currentUser.cart.length && currentUser.cart[0].item && currentUser.cart[0].item.image}
                 stripeKey="pk_test_n51YxU9flEb8OuWR5RiGqDvi"
                 currency="USD"
-                email={me.email}
-                token={res => this.onToken(res, createOrder)}
+                email={currentUser.email}
+                token={res => this.onToken(res, createOrder, history)}
               >
                 {this.props.children}
               </StripeCheckout>
@@ -58,4 +64,4 @@ class TakeMyMoney extends Component {
   }
 }
 
-export default TakeMyMoney;
+export default withRouter(TakeMyMoney);
