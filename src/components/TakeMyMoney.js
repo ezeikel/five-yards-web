@@ -14,8 +14,6 @@ function totalItems(cart) {
 class TakeMyMoney extends Component {
   onToken = async (res, createOrder, history) => {
     NProgress.start();
-    console.log('onToken()');
-    console.log(res.id);
     // manually call the mutation once we have the stripe token
     const order = await createOrder({
       variables: {
@@ -25,7 +23,8 @@ class TakeMyMoney extends Component {
       alert(err.message);
     });
 
-    debugger;
+    // TODO: Write to cache to clear cart in the same was as delete cart item
+    // TODO: Create order page/component
 
     history.push({
       pathname: '/order',
