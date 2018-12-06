@@ -150,27 +150,27 @@ class Widgets extends Component {
                   <Fragment>
                     <UserActionItem>
                       <FontAwesomeIcon icon="user" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='my-account'>My Account</Link>
+                      <Link to='/my-account'>My Account</Link>
                     </UserActionItem>
                     <UserActionItem>
                       <FontAwesomeIcon icon="money-bill" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='sell'>Sell</Link>
+                      <Link to='/sell'>Sell</Link>
                     </UserActionItem>
                     <UserActionItem>
                       <FontAwesomeIcon icon="box" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='my-account'>My Orders</Link>
+                      <Link to='/orders'>My Orders</Link>
                     </UserActionItem>
                     <UserActionItem>
                       <FontAwesomeIcon icon="calendar-alt" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='my-events'>My Events</Link>
+                      <Link to='/my-events'>My Events</Link>
                     </UserActionItem>
                     <UserActionItem>
                       <FontAwesomeIcon icon="exchange-alt" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='my-account'>Returns Information</Link>
+                      <Link to='/my-account'>Returns Information</Link>
                     </UserActionItem>
                     <UserActionItem>
                       <FontAwesomeIcon icon="headset" color="#000" size="1x" onClick={this.toggleActive} />
-                      <Link to='my-account'>Contact Preferences</Link>
+                      <Link to='/my-account'>Contact Preferences</Link>
                     </UserActionItem>
                   </Fragment>
                 :

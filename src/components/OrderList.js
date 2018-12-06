@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import { formatDistance } from 'date-fns';
-import Link from 'next/link';
+import { distanceInWordsToNow } from 'date-fns';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import formatMoney from '../lib/formatMoney';
 import OrderItemStyles from './styles/OrderItemStyles';
@@ -23,30 +23,28 @@ class OrderList extends Component {
         {({ data: { orders }, loading, error }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <Error error={error} />;
-          console.log(orders);
+
           return (
             <div>
               <h2>You have {orders.length} orders</h2>
               <OrderUl>
                 {orders.map(order => (
                   <OrderItemStyles key={order.id}>
-                    <Link href={{
+                    <Link to={{
                       pathname: '/order',
-                      query: { id: order.id }
+                      search: `?id=${order.id}`
                     }}>
-                      <a>
-                        <div className="order-meta">
-                          <p>{order.items.reduce((a, b) => a + b.quantity, 0)} Items</p>
-                          <p>{order.items.length} Products</p>
-                          <p>{formatDistance(order.createdAt, new Date())}</p>
-                          <p>{formatMoney(order.total)}</p>
-                        </div>
-                        <div className="images">
-                          {order.items.map(item => (
-                            <img key={item.id} src={item.image} alt={item.title} />
-                          ))}
-                        </div>
-                      </a>
+                      <div className="order-meta">
+                        <p>{order.items.reduce((a, b) => a + b.quantity, 0)} Items</p>
+                        <p>{order.items.length} Products</p>
+                        <p>{distanceInWordsToNow(order.createdAt)}</p>
+                        <p>{formatMoney(order.total)}</p>
+                      </div>
+                      <div className="images">
+                        {order.items.map(item => (
+                          <img key={item.id} src={item.image} alt={item.title} />
+                        ))}
+                      </div>
                     </Link>
                   </OrderItemStyles>
                 ))}

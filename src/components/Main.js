@@ -12,6 +12,7 @@ import sellPage from '../pages/sell';
 import itemPage from '../pages/item';
 import updatePage from '../pages/update';
 import orderPage from '../pages/order';
+import ordersPage from '../pages/orders';
 
 const Wrapper = styled.main`
   padding: var(--spacing-medium);
@@ -31,6 +32,7 @@ const Main = ({ className, active }) => {
         <Route path="/users" component={Users} />
         <Route path="/user" component={User} />
         <Route path="/update" component={updatePage} />
+        <Route path="/orders" component={ordersPage} />
         <Route path="/order" component={orderPage} />
       </Switch>
     </Wrapper>

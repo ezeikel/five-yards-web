@@ -19,7 +19,6 @@ const ItemsList = styled.div`
 `;
 
 class Items extends Component {
-  state = {  }
   render() {
     return (
       <Center>
