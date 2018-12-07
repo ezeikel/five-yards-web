@@ -45,7 +45,7 @@ class TakeMyMoney extends Component {
             {createOrder => (
               <StripeCheckout
                 amount={calcTotalPrice(currentUser.cart)}
-                name="Catch the Drop"
+                name="Five Yards"
                 description={`Order of ${totalItems(currentUser.cart)} items`}
                 image={currentUser.cart.length && currentUser.cart[0].item && currentUser.cart[0].item.image}
                 stripeKey="pk_test_n51YxU9flEb8OuWR5RiGqDvi"
