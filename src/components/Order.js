@@ -19,7 +19,7 @@ class Order extends Component {
         {({ data, error, loading }) => {
           if (error) return <Error error={error} />;
           if (loading) return <p>Loading...</p>;
-          console.log(data);
+
           const { order } = data;
           return <OrderStyles>
               <Helmet>

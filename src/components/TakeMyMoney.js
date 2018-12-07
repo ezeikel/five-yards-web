@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 import NProgress from 'nprogress';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import User from './User';
-import { CURRENT_USER_QUERY, CREATE_ORDER_MUTATION } from '../apollo/queries';
+import { CURRENT_CACHED_USER_QUERY, CREATE_ORDER_MUTATION } from '../apollo/queries';
 
 function totalItems(cart) {
   return cart.reduce((tally, cartItem) => tally + cartItem.quantity, 0);
@@ -13,6 +13,7 @@ function totalItems(cart) {
 
 class TakeMyMoney extends Component {
   onToken = async (res, createOrder, history) => {
+    // TODO: get NProgress working
     NProgress.start();
     // manually call the mutation once we have the stripe token
     const order = await createOrder({
@@ -22,9 +23,6 @@ class TakeMyMoney extends Component {
     }).catch(err => {
       alert(err.message);
     });
-
-    // TODO: Write to cache to clear cart in the same was as delete cart item
-    // TODO: Create order page/component
 
     history.push({
       pathname: '/order',
@@ -40,7 +38,18 @@ class TakeMyMoney extends Component {
         {({ data: { currentUser }}) => (
           <Mutation
             mutation={CREATE_ORDER_MUTATION}
-            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+            refetchQueries={[{ query: CURRENT_CACHED_USER_QUERY }]}
+            update={( cache, ) => {
+
+              const data = cache.readQuery({
+                query: CURRENT_CACHED_USER_QUERY
+              });
+
+              // setting cart to empty array after an order has been made
+              data.currentUser.cart = [];
+
+              cache.writeQuery({ query: CURRENT_CACHED_USER_QUERY, data });
+            }}
           >
             {createOrder => (
               <StripeCheckout
