@@ -39,7 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn build",
+    "now-build": "react-scripts build"
   },
   "devDependencies": {
     "react-testing-library": "^5.0.1"
