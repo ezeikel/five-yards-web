@@ -1,11 +1,16 @@
-import Items from '../components/Items';
-import PageWrap from "../components/styles/PageWrap";
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  grid-row-gap: var(--spacing-medium);
+  padding: var(--padding-page-wrap);
+`;
 
 const Home = props => (
-  <PageWrap>
-    {/* <Items  page={parseFloat(props.query.page) || 1}/> */}
-    <Items />
-  </PageWrap>
+  <Wrapper>
+    <p>Hello World</p>
+  </Wrapper>
 );
 
 export default Home;
