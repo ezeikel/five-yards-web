@@ -28,7 +28,7 @@ const stateLink = withClientState({
 });
 
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === 'production' ? 'https://five-yards-api.herokuapp.com/graphql' : 'http://localhost:7777/graphql',
+  uri: process.env.NODE_ENV === 'production' ? 'https://api.fiveyards.app/graphql' : 'http://localhost:7777/graphql',
   credentials: 'include'
 });
 
