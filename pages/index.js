@@ -1,16 +1,7 @@
-import styled from 'styled-components';
+import PreLaunchLanding from '../components/PreLaunchLanding';
 
-const Wrapper = styled.div`
-  display: grid;
-  justify-items: center;
-  grid-row-gap: var(--spacing-medium);
-  padding: var(--padding-page-wrap);
-`;
-
-const Home = props => (
-  <Wrapper>
-    <p>Hello World</p>
-  </Wrapper>
+const Home = () => (
+  <PreLaunchLanding />
 );
 
 export default Home;

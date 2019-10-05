@@ -27,7 +27,6 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.main`
-  max-width: ${({ theme }) => theme.default.maxWidth};
   margin: 0 auto;
   width: 100%;
 `;
