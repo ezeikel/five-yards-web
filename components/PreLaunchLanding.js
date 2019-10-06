@@ -58,6 +58,7 @@ const Button = styled.button`
   background-color: #F47793;
   border: 1px solid #F47793;
   border-radius: 4px;
+  font-family: 'Source Sans Pro';
   font-size: 16px;
   font-weight:bold;
   color: #fff;
@@ -95,6 +96,9 @@ const HeaderCopy = styled.div`
 
 const StyledForm = styled(Form)`
   font-family: 'Source Sans Pro';
+  input {
+    font-family: 'Source Sans Pro';
+  }
   input + input, button {
     margin-left: 8px;
   }
