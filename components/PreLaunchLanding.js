@@ -3,14 +3,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const Wrapper = styled.div`
   background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
-  min-height: 73vh;
+  /* min-height: 73vh; */
   min-width: 100vw;
   padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: 30vh;
+  /* margin-bottom: 30vh; */
 `;
 
 const FormWrapper = styled.section`
