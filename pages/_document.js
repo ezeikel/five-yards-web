@@ -15,7 +15,8 @@ export default class MyDocument extends Document {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'UA-139930047-1');
+
+        gtag('config', 'G-PKC9SQ34MW');
       `
     };
   }
@@ -26,7 +27,7 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           {/* Global site tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139930047-1" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKC9SQ34MW"></script>
           <script dangerouslySetInnerHTML={this.setGoogleAnalyticsTags()} />
         </Head>
         <body>
