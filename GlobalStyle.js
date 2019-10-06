@@ -1,6 +1,14 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
 
 export default createGlobalStyle`
+  @font-face {
+     font-family: 'Canted FX Regular';
+     src: url('/static/fonts/CantedFX-Regular.woff2') format('woff2');
+  }
+  @font-face {
+     font-family: 'Canted FX Bold';
+     src: url('/static/fonts/CantedFX-Bold.woff2') format('woff2');
+  }
 /* CSS Variables */
 :root {
   /* Colors */
