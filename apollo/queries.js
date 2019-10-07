@@ -375,3 +375,11 @@ export const USER_ORDERS_QUERY = gql`
     }
   }
 `;
+
+export const REQUEST_LAUNCH_NOTIFICATION_MUTATION = gql`
+  mutation requestLaunchNotification($firstName: String!, $email: String!) {
+    requestLaunchNotification(firstName: $firstName, email: $email) {
+      message
+    }
+  }
+`;

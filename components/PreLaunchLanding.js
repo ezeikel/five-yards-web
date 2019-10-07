@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Mutation } from 'react-apollo';
+import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
 
 const Wrapper = styled.div`
   background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
@@ -120,54 +122,65 @@ const AppStoreBadges = styled.div`
 `;
 
 const PreLaunchLanding = () => (
-  <Wrapper>
-    <Logo src="/static/images/logo-1-white.svg" />
-    <HeaderCopy>
-      <h4><span>Find</span> Fabrics</h4>
-      <h4><span>Find</span> Tailors</h4>
-    </HeaderCopy>
-    <AppStoreBadges>
-      <img src="/static/images/app-store-badge.svg" />
-      <img src="/static/images/google-play-badge.svg" />
-    </AppStoreBadges>
-    <FormWrapper>
-      <LogoText src="/static/images/logo-5-black.svg" />
-      <Copy>
-        <p>Transforming the way you do traditional.</p>
-        <p>Sign up to be the first to know when we launch</p>
-      </Copy>
-      <Formik
-        initialValues={{ firstName: '', email: '' }}
-        validate={values => {
-          let erros = {};
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({ isSubmitting }) => (
-          <StyledForm>
-            <StyledField type="text" name="firstName" placeholder="First name" />
-            <StyledField type="email" name="email" placeholder="Email address" />
-            <ErrorMessage name="email" component="div" />
-            <Button type="submit" disabled={isSubmitting}>
-              Notify me
-            </Button>
-          </StyledForm>
-        )}
-      </Formik>
+  <Mutation
+    mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}
+  >
+    {( requestLaunchNotification, { loading }) => (
+      <Wrapper>
+        <Logo src="/static/images/logo-1-white.svg" />
+        <HeaderCopy>
+          <h4><span>Find</span> Fabrics</h4>
+          <h4><span>Find</span> Tailors</h4>
+        </HeaderCopy>
+        <AppStoreBadges>
+          <img src="/static/images/app-store-badge.svg" />
+          <img src="/static/images/google-play-badge.svg" />
+        </AppStoreBadges>
+        <FormWrapper>
+          <LogoText src="/static/images/logo-5-black.svg" />
+          <Copy>
+            <p>Transforming the way you do traditional.</p>
+            <p>Sign up to be the first to know when we launch</p>
+          </Copy>
+          <Formik
+            initialValues={{ firstName: '', email: '' }}
+            validate={values => {
+              let errors = {};
+              if (!values.email) {
+                errors.email = 'Required';
+              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                errors.email = 'Invalid email address';
+              }
+              return errors;
+            }}
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                await requestLaunchNotification({
+                  variables: {
+                    ...values
+                  }
+                });
+              } catch(e) {
+                console.error(e);
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              <StyledForm>
+                <StyledField type="text" name="firstName" placeholder="First name" />
+                <StyledField type="email" name="email" placeholder="Email address" />
+                <ErrorMessage name="email" component="div" />
+                <Button type="submit" disabled={isSubmitting}>
+                  Notify me
+                </Button>
+              </StyledForm>
+            )}
+          </Formik>
 
-    </FormWrapper>
-  </Wrapper>
+        </FormWrapper>
+      </Wrapper>
+    )}
+  </Mutation>
 );
 
 export default PreLaunchLanding;
