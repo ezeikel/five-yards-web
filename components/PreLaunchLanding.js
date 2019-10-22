@@ -1,18 +1,26 @@
 import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Mutation } from 'react-apollo';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
+
+const PreLaunchLandingSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required('Something is wrong here.'),
+  email: Yup.string()
+    .email()
+    .required('Something is wrong here.')
+});
 
 const Wrapper = styled.div`
   background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
-  /* min-height: 73vh; */
   min-width: 100vw;
   padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  /* margin-bottom: 30vh; */
+  margin-bottom: 50vh;
 `;
 
 const FormWrapper = styled.section`
@@ -22,7 +30,7 @@ const FormWrapper = styled.section`
   align-items: center;
   padding: 32px;
   width: 600px;
-  height: 300px;
+  /* height: 300px; */
   border-radius: 4px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
   background-color: #fff;
@@ -56,7 +64,7 @@ const Copy = styled.div`
   }
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   background-color: #F47793;
   border: 1px solid #F47793;
   border-radius: 4px;
@@ -66,13 +74,16 @@ const Button = styled.button`
   color: #fff;
   padding: 13px 25px 12px 25px;
   cursor: pointer;
+  align-self: flex-start;
+  margin-left: 8px;
+  text-decoration: ${props => props.disabled ? 'line-through' : 'none'};
 `;
 
 const StyledField = styled(Field)`
   border-radius: 4px;
-  border: 1px solid #EBEBEB;
+  border: 1px solid ${props => props.error ? '#E74C3C' : '#EBEBEB'};
   font-size: 16px;
-  padding: 13px 0 12px 11px;
+  padding: 12px 11px 12px 11px;
   &::placeholder {
     color: #484848;
   }
@@ -97,13 +108,29 @@ const HeaderCopy = styled.div`
 `;
 
 const StyledForm = styled(Form)`
+  display: flex;
   font-family: 'Source Sans Pro';
   input {
     font-family: 'Source Sans Pro';
   }
-  input + input, button {
+  div + div {
     margin-left: 8px;
   }
+`;
+
+const FieldWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledErrorMessage = styled(ErrorMessage)`
+  border-radius: 4px;
+  border: 1px solid #EBEBEB;
+  font-size: 16px;
+  padding: 12px 11px 12px 11px;
+  background-color: #E74C3C;
+  color: white;
+  margin-top: 8px;
 `;
 
 const AppStoreBadges = styled.div`
@@ -144,15 +171,7 @@ const PreLaunchLanding = () => (
           </Copy>
           <Formik
             initialValues={{ firstName: '', email: '' }}
-            validate={values => {
-              let errors = {};
-              if (!values.email) {
-                errors.email = 'Required';
-              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                errors.email = 'Invalid email address';
-              }
-              return errors;
-            }}
+            validationSchema={PreLaunchLandingSchema}
             onSubmit={async (values, { setSubmitting }) => {
               try {
                 await requestLaunchNotification({
@@ -165,14 +184,19 @@ const PreLaunchLanding = () => (
               }
             }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, errors, touched }) => (
               <StyledForm>
-                <StyledField type="text" name="firstName" placeholder="First name" />
-                <StyledField type="email" name="email" placeholder="Email address" />
-                <ErrorMessage name="email" component="div" />
-                <Button type="submit" disabled={isSubmitting}>
+                <FieldWrapper>
+                  <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
+                  <StyledErrorMessage name="firstName" component="span" />
+                </FieldWrapper>
+                <FieldWrapper>
+                  <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
+                  <StyledErrorMessage name="email" component="span" />
+                </FieldWrapper>
+                <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
                   Notify me
-                </Button>
+                </StyledButton>
               </StyledForm>
             )}
           </Formik>
