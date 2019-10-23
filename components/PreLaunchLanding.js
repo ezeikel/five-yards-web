@@ -6,21 +6,21 @@ import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
 
 const PreLaunchLandingSchema = Yup.object().shape({
   firstName: Yup.string()
-    .required('Something is wrong here.'),
+    .required('Please enter a firstname.'),
   email: Yup.string()
-    .email()
-    .required('Something is wrong here.')
+    .email('Please enter a correct email address.')
+    .required('Please enter an email.')
 });
 
 const Wrapper = styled.div`
   background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
   min-width: 100vw;
-  padding: 50px;
+  padding: 50px 50px 0 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: 50vh;
+  margin-bottom: 50vh; /* TODO: remove this */
 `;
 
 const FormWrapper = styled.section`
@@ -30,11 +30,10 @@ const FormWrapper = styled.section`
   align-items: center;
   padding: 32px;
   width: 600px;
-  /* height: 300px; */
   border-radius: 4px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
-  background-color: #fff;
-  transform: translateY(200px);
+  background-color: var(--color-white);
+  transform: translateY(50%);
 `;
 
 const Logo = styled.img`
@@ -71,7 +70,7 @@ const StyledButton = styled.button`
   font-family: 'Source Sans Pro';
   font-size: 16px;
   font-weight:bold;
-  color: #fff;
+  color: var(--color-white);
   padding: 13px 25px 12px 25px;
   cursor: pointer;
   align-self: flex-start;
@@ -98,7 +97,7 @@ const HeaderCopy = styled.div`
   height: 160px;
   font-family: 'Canted FX Bold';
   font-size: 48px;
-  color: #fff;
+  color: var(--color-white);
   h4 {
     margin: 0;
     span {
@@ -179,6 +178,8 @@ const PreLaunchLanding = () => (
                     ...values
                   }
                 });
+
+                setSubmitting(false);
               } catch(e) {
                 console.error(e);
               }
@@ -195,7 +196,7 @@ const PreLaunchLanding = () => (
                   <StyledErrorMessage name="email" component="span" />
                 </FieldWrapper>
                 <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
-                  Notify me
+                  Notify me {isSubmitting || loading ? <span>...</span> : null}
                 </StyledButton>
               </StyledForm>
             )}

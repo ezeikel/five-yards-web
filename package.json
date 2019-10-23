@@ -2,6 +2,12 @@
   "name": "five-yards-web",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "react-scripts test --env=jsdom"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.7",
     "@fortawesome/free-brands-svg-icons": "^5.5.0",
@@ -45,12 +51,6 @@
     "styled-components": "^4.4.0",
     "sweetalert2": "^7.28.2",
     "yup": "^0.26.6"
-  },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
