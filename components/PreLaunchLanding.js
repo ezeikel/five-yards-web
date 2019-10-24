@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
+import { rotateKeyFrame } from "../GlobalStyle";
 
 const PreLaunchLandingSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -27,9 +29,10 @@ const Hero = styled.section`
   justify-content: center;
   position: relative;
   height: 100vh;
-  margin-bottom: 214px;
-  @media(min-height: 768px) {
+  margin-bottom: 350px;
+  @media(min-width: 768px) {
     height: 75vh;
+    margin-bottom: 200px;
   }
 `;
 
@@ -86,8 +89,12 @@ const StyledButton = styled.button`
   padding: 13px 25px 12px 25px;
   cursor: pointer;
   align-self: flex-start;
-  margin-left: 8px;
   text-decoration: ${props => props.disabled ? 'line-through' : 'none'};
+  width: 100%;
+  @media (min-width: 768px) {
+    margin-left: 8px;
+    width: auto;
+  }
 `;
 
 const StyledField = styled(Field)`
@@ -103,7 +110,9 @@ const StyledField = styled(Field)`
 const HeaderCopy = styled.div`
   top: 50%;
   position: absolute;
-  left: 50px;
+  right: 50%;
+  margin-right: -160px;
+
   margin-top: -80px;
   width: 320px;
   height: 160px;
@@ -116,18 +125,31 @@ const HeaderCopy = styled.div`
       font-family: 'Canted FX Regular';
     }
   }
+  @media (min-width: 768px) {
+    left: 50px;
+  }
 `;
 
 const StyledForm = styled(Form)`
   display: flex;
-  div + div {
-    margin-left: 8px;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    div + div {
+      margin-left: 8px;
+    }
   }
 `;
 
 const FieldWrapper = styled.div`
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 16px;
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 const StyledErrorMessage = styled(ErrorMessage)`
@@ -144,7 +166,7 @@ const AppStoreBadges = styled.div`
   position: absolute;
   top: 50%;
   right: 50px;
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 200px;
   height: 160px;
@@ -153,18 +175,33 @@ const AppStoreBadges = styled.div`
     width: 100%;
     height: 80px;
   }
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
-const IphoneMockup = styled.img`
+const IphoneMockup = styled.div`
   display: flex;
+  height: 600px;
   margin-bottom: 64px;
+  background-image: url('/static/images/iphone-mockup-single.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media (min-width: 768px) {
+    background-image: url('/static/images/iphone-mockup-double.png');
+  }
 `;
 
-const Footer = styled.footer`
-  min-height: 400px;
-  background-color: #000;
-  padding: 64px;
+const ButtonText = styled.span`
+  flex: 1 0 auto;
 `;
+
+const Spinner = styled(FontAwesomeIcon)`
+    animation: ${rotateKeyFrame} ease-in-out 1.2s infinite;
+    flex: 0 1 auto;
+`;
+
 
 const PreLaunchLanding = () => (
   <Mutation
@@ -216,14 +253,14 @@ const PreLaunchLanding = () => (
                     <StyledErrorMessage name="email" component="span" />
                   </FieldWrapper>
                   <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
-                    Notify me {isSubmitting || loading ? <span>...</span> : null}
+                     {isSubmitting || loading ? <Spinner icon={["fad", "spinner-third"]} size="lg" /> : 'Notify Me'}
                   </StyledButton>
                 </StyledForm>
               )}
             </Formik>
           </FormWrapper>
         </Hero>
-        <IphoneMockup src="/static/images/iphone-mockup-double.png" />
+        <IphoneMockup />
       </Wrapper>
     )}
   </Mutation>

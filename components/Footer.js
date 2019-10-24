@@ -77,7 +77,10 @@ const Logo = styled.div`
   place-items: center;
   z-index: 1;
   margin: 0;
-  width: 100px;
+  width: 100%;
+  img {
+    max-width: 200px;
+  }
   @media (min-width: 768px) {
     grid-row: 1 / -1;
     grid-column: 1 / span 1;
@@ -115,8 +118,10 @@ const Visit = styled.section`
     font-style: normal;
   }
   @media (min-width: 768px) {
-    grid-row: 1 / span 1;
-    grid-column: 3 / span 2;
+    grid-row: 2 / span 1;
+    grid-column: 4 / span 2;
+    justify-self: end;
+    align-self: end;
     display: grid;
     grid-template-rows: repeat(2, auto);
     grid-row-gap: var(--spacing-medium);
@@ -131,8 +136,8 @@ const Slogan = styled.section`
   place-items: center;
   color: var(--color-dark-grey);
   font-size: 1.4rem;
-  span {
-    color: var(--color-white);
+  p {
+    margin: 0;
   }
   @media (min-width: 768px) {
     grid-row: 1 / span 1;
@@ -159,8 +164,9 @@ const NewBusiness = styled.section`
   display: grid;
   grid-template-rows: repeat(2, auto);
   @media (min-width: 768px) {
-    grid-row: 1 / span 1;
-    grid-column: 5 / span 2;
+    grid-column: 6 / span 1;
+    grid-row: 2 / span 1;
+    justify-self: end;
     display: grid;
     justify-items: start;
     grid-template-rows: repeat(2, auto);

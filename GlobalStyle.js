@@ -142,3 +142,12 @@ export const spinKeyframe = keyframes`
     transform: rotate(0);
   }
 `;
+
+export const rotateKeyFrame = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
