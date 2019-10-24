@@ -16,8 +16,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 100vh;
-  min-width: 100vw;
 `;
 
 const Hero = styled.section`
@@ -64,7 +62,6 @@ const LogoText = styled.img`
 
 const Copy = styled.div`
   margin-bottom: 28px;
-  font-family: 'Source Sans Pro';
   p {
     text-align: center;
     margin: 0;
@@ -83,7 +80,6 @@ const StyledButton = styled.button`
   background-color: #F47793;
   border: 1px solid #F47793;
   border-radius: 4px;
-  font-family: 'Source Sans Pro';
   font-size: 16px;
   font-weight:bold;
   color: var(--color-white);
@@ -124,10 +120,6 @@ const HeaderCopy = styled.div`
 
 const StyledForm = styled(Form)`
   display: flex;
-  font-family: 'Source Sans Pro';
-  input {
-    font-family: 'Source Sans Pro';
-  }
   div + div {
     margin-left: 8px;
   }
@@ -171,6 +163,7 @@ const IphoneMockup = styled.img`
 const Footer = styled.footer`
   min-height: 400px;
   background-color: #000;
+  padding: 64px;
 `;
 
 const PreLaunchLanding = () => (
@@ -231,7 +224,6 @@ const PreLaunchLanding = () => (
           </FormWrapper>
         </Hero>
         <IphoneMockup src="/static/images/iphone-mockup-double.png" />
-        <Footer />
       </Wrapper>
     )}
   </Mutation>

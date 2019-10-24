@@ -1,6 +1,11 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
+import { config, dom } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 export default createGlobalStyle`
+  /* fix fontawesome icon sizes */
+  ${dom.css()}
+  /* Font faces */
   @font-face {
      font-family: 'Canted FX Regular';
      src: url('/static/fonts/CantedFX-Regular.woff2') format('woff2');
@@ -15,16 +20,21 @@ export default createGlobalStyle`
   --color-primary: #1abc9c;
   /* --color-primary: #F7E7CE; */
   --color-secondary: #F1D3D1;
+  --color-tertiary: #4629D3;
+  --color-radical-red: #FF3D63;
+  --color-aquamarine: #62FFD3;
+  --color-bittersweet: #FF7264;
   --color-black: #2E3333;
-  --color-white: #fff;
+  --color-white: #FFFFFF;
   --color-gold: #CDA349;
-  --color-gold-lighter: #d4af61;
-  --color-light-grey: #ecf0f1;
-  --color-red: #e74c3c;
-  --color-dark-red: #c0392b;
-  --color-green: #2ecc71;
-  --color-grey: #bdc3c7;
-  --color-gold-star: #f1c40f;
+  --color-gold-lighter: #D4AF61;
+  --color-light-grey: #ECF0F1;
+  --color-red: #E74C3C;
+  --color-green: #2ECC71;
+  --color-grey: #BDC3C7;
+  --color-dark-grey: #9B9B9B;
+  --color-black: #3B3B3B;
+  --color-gold: #CDA349;
   /* Spacing */
   --spacing-tiny: 4px;
   --spacing-small: 8px;
@@ -32,7 +42,7 @@ export default createGlobalStyle`
   --spacing-large: 32px;
   --spacing-huge: 64px;
   /* Font */
-  --default-font-family: 'proxima-nova', sans-serif;
+  --default-font-family: 'Source Sans Pro', sans-serif;
   --default-font-size: 10px;
   --font-size-tiny: 1.4rem;
   --font-size-small: 1.6rem;
@@ -88,6 +98,37 @@ ul {
   width: 100%;
   height: 300px;
 }
+input, textarea {
+  font-family: var(--font-family-default);
+  font-size: var(--default)
+}
+/* input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 1em;
+  border: 1px solid #ecf0f1;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  font-weight: 300;
+}
+button[type="submit"] {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 15px 90px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: background-color 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+button[type="submit"][disabled] {
+  opacity: 0.7;
+  text-decoration: line-through;
+} */
 `;
 
 export const spinKeyframe = keyframes`

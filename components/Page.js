@@ -1,6 +1,51 @@
+import { Fragment } from "react";
 import { withRouter } from 'next/router';
 import styled, { ThemeProvider } from 'styled-components';
 import Meta from './Meta';
+import Footer from './Footer';
+import GlobalStyle from '../GlobalStyle';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/pro-solid-svg-icons";
+import { far } from "@fortawesome/pro-regular-svg-icons";
+import { fal } from "@fortawesome/pro-light-svg-icons";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+library.add(fab, fas, far, fal);
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: 'toast-container',
+  toastClassName: 'toast',
+  bodyClassName: 'body',
+  progressClassName: 'progress',
+})`
+  /* .toast-container */
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  .toast {
+    background-color: var(--color-black);
+    margin: 0;
+    cursor: auto;
+  }
+  button[aria-label="close"] {
+    display: none;
+  }
+  .toast {
+    background-color: var(--color-black);
+  }
+  .body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--default-font-family);
+    margin: 0;
+    display: grid;
+    align-items: center;
+  }
+`;
 
 const theme = {
   red: '#FF0000',
@@ -18,43 +63,40 @@ const theme = {
   }
 };
 
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-rows: ${({ pathname }) => pathname === '/' || pathname === '/signin' ? `1fr` : `80px 1fr`};
-  min-height: 100vh;
-  background-color: ${({ theme }) => theme.default.white};
-  color: ${({ theme }) => theme.default.textColor};
-`;
-
-const Inner = styled.main`
-  margin: 0 auto;
-  width: 100%;
-`;
+// const StyledPage = styled.div`
+//   display: grid;
+//   grid-template-rows: ${({ pathname }) => pathname === '/' || pathname === '/signin' ? `1fr` : `80px 1fr`};
+//   min-height: 100vh;
+//   background-color: ${({ theme }) => theme.default.white};
+//   color: ${({ theme }) => theme.default.textColor};
+// `;
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-rows: 80px 1fr;
-  grid-template-columns: 265px 1fr;
   min-height: 100vh;
   min-width: 100vw;
-  overflow-x: hidden;
-  @media(min-width: 1024px) {
-    grid-template-rows: 80px 60px 1fr;
-    grid-template-columns: 1fr;
-  }
 `;
 
-const Page = ({ children, router: { pathname } }) => (
-  <ThemeProvider theme={theme}>
-    <StyledPage pathname={pathname}>
-      <Meta />
+const Page = ({ children }) => (
+  <Fragment>
+    <Meta />
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
       <Wrapper>
-        <Inner>
-          {children}
-        </Inner>
+        {/* <Header /> TODO: */}
+        {children}
+        <Footer />
       </Wrapper>
-    </StyledPage>
-  </ThemeProvider>
+      <StyledToastContainer
+        position="bottom-center"
+        draggable
+        hideProgressBar
+        pauseOnHover
+        autoClose={3000}
+        draggable={false}
+        closeOnClick={false}
+      />
+    </ThemeProvider>
+  </Fragment>
 );
 
 
