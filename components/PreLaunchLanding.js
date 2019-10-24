@@ -27,8 +27,11 @@ const Hero = styled.section`
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  height: 70vh;
+  height: 100vh;
   margin-bottom: 214px;
+  @media(min-height: 768px) {
+    height: 75vh;
+  }
 `;
 
 const FormWrapper = styled.section`
