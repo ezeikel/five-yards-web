@@ -6,21 +6,29 @@ import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
 
 const PreLaunchLandingSchema = Yup.object().shape({
   firstName: Yup.string()
-    .required('Please enter a firstname.'),
+    .required('We need this.'),
   email: Yup.string()
-    .email('Please enter a correct email address.')
-    .required('Please enter an email.')
+    .email('Doesn\'t look quite right.')
+    .required('We need this.')
 });
 
 const Wrapper = styled.div`
-  background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
-  min-width: 100vw;
-  padding: 50px 50px 0 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
-  margin-bottom: 50vh; /* TODO: remove this */
+  min-height: 100vh;
+`;
+
+const Hero = styled.section`
+  padding: 50px 50px 0 50px;
+  background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
+  min-width: 100vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  height: 70vh;
+  margin-bottom: 214px;
 `;
 
 const FormWrapper = styled.section`
@@ -39,6 +47,10 @@ const FormWrapper = styled.section`
 const Logo = styled.img`
   width: 250px;
   flex: 0 0 auto;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -125px;
 `;
 
 const LogoText = styled.img`
@@ -147,62 +159,75 @@ const AppStoreBadges = styled.div`
   }
 `;
 
+const IphoneMockup = styled.img`
+  display: flex;
+  margin-bottom: 64px;
+`;
+
+const Footer = styled.footer`
+  min-height: 400px;
+  background-color: #000;
+`;
+
 const PreLaunchLanding = () => (
   <Mutation
     mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}
   >
     {( requestLaunchNotification, { loading }) => (
       <Wrapper>
-        <Logo src="/static/images/logo-1-white.svg" />
-        <HeaderCopy>
-          <h4><span>Find</span> Fabrics</h4>
-          <h4><span>Find</span> Tailors</h4>
-        </HeaderCopy>
-        <AppStoreBadges>
-          <img src="/static/images/app-store-badge.svg" />
-          <img src="/static/images/google-play-badge.svg" />
-        </AppStoreBadges>
-        <FormWrapper>
-          <LogoText src="/static/images/logo-5-black.svg" />
-          <Copy>
-            <p>Transforming the way you do traditional.</p>
-            <p>Sign up to be the first to know when we launch</p>
-          </Copy>
-          <Formik
-            initialValues={{ firstName: '', email: '' }}
-            validationSchema={PreLaunchLandingSchema}
-            onSubmit={async (values, { setSubmitting }) => {
-              try {
-                await requestLaunchNotification({
-                  variables: {
-                    ...values
-                  }
-                });
+        <Hero>
+          <Logo src="/static/images/logo-1-white.svg" />
+          <HeaderCopy>
+            <h4><span>Find</span> Fabrics</h4>
+            <h4><span>Find</span> Tailors</h4>
+          </HeaderCopy>
+          <AppStoreBadges>
+            <img src="/static/images/app-store-badge.svg" />
+            <img src="/static/images/google-play-badge.svg" />
+          </AppStoreBadges>
+          <FormWrapper>
+            <LogoText src="/static/images/logo-5-black.svg" />
+            <Copy>
+              <p>Transforming the way you do traditional.</p>
+              <p>Sign up to be the first to know when we launch</p>
+            </Copy>
+            <Formik
+              initialValues={{ firstName: '', email: '' }}
+              validationSchema={PreLaunchLandingSchema}
+              onSubmit={async (values, { setSubmitting }) => {
+                try {
+                  await requestLaunchNotification({
+                    variables: {
+                      ...values
+                    }
+                  });
 
-                setSubmitting(false);
-              } catch(e) {
-                console.error(e);
-              }
-            }}
-          >
-            {({ isSubmitting, errors, touched }) => (
-              <StyledForm>
-                <FieldWrapper>
-                  <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
-                  <StyledErrorMessage name="firstName" component="span" />
-                </FieldWrapper>
-                <FieldWrapper>
-                  <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
-                  <StyledErrorMessage name="email" component="span" />
-                </FieldWrapper>
-                <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
-                  Notify me {isSubmitting || loading ? <span>...</span> : null}
-                </StyledButton>
-              </StyledForm>
-            )}
-          </Formik>
-
-        </FormWrapper>
+                  setSubmitting(false);
+                } catch(e) {
+                  console.error(e);
+                }
+              }}
+            >
+              {({ isSubmitting, errors, touched }) => (
+                <StyledForm>
+                  <FieldWrapper>
+                    <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
+                    <StyledErrorMessage name="firstName" component="span" />
+                  </FieldWrapper>
+                  <FieldWrapper>
+                    <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
+                    <StyledErrorMessage name="email" component="span" />
+                  </FieldWrapper>
+                  <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
+                    Notify me {isSubmitting || loading ? <span>...</span> : null}
+                  </StyledButton>
+                </StyledForm>
+              )}
+            </Formik>
+          </FormWrapper>
+        </Hero>
+        <IphoneMockup src="/static/images/iphone-mockup-double.png" />
+        <Footer />
       </Wrapper>
     )}
   </Mutation>
