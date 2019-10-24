@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
   min-height: 100vh;
+  min-width: 100vw;
 `;
 
 const Hero = styled.section`
