@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Mutation } from 'react-apollo';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -112,21 +113,29 @@ const HeaderCopy = styled.div`
   position: absolute;
   right: 50%;
   margin-right: -160px;
-
   margin-top: -80px;
   width: 320px;
   height: 160px;
   font-family: 'Canted FX Bold';
   font-size: 48px;
   color: var(--color-white);
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   h4 {
     margin: 0;
+    font-size: 32px;
     span {
       font-family: 'Canted FX Regular';
     }
   }
   @media (min-width: 768px) {
     left: 50px;
+    h4 {
+      font-size: 48px;
+    }
   }
 `;
 
@@ -193,77 +202,102 @@ const IphoneMockup = styled.div`
   }
 `;
 
-const ButtonText = styled.span`
-  flex: 1 0 auto;
-`;
-
 const Spinner = styled(FontAwesomeIcon)`
     animation: ${rotateKeyFrame} ease-in-out 1.2s infinite;
     flex: 0 1 auto;
 `;
 
+const SuccessMessageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  svg {
+    margin-bottom: 32px;
+  }
+`;
 
-const PreLaunchLanding = () => (
-  <Mutation
-    mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}
-  >
-    {( requestLaunchNotification, { loading }) => (
-      <Wrapper>
-        <Hero>
-          <Logo src="/static/images/logo-1-white.svg" />
-          <HeaderCopy>
-            <h4><span>Find</span> Fabrics</h4>
-            <h4><span>Find</span> Tailors</h4>
-          </HeaderCopy>
-          <AppStoreBadges>
-            <img src="/static/images/app-store-badge.svg" />
-            <img src="/static/images/google-play-badge.svg" />
-          </AppStoreBadges>
-          <FormWrapper>
-            <LogoText src="/static/images/logo-5-black.svg" />
-            <Copy>
-              <p>Transforming the way you do traditional.</p>
-              <p>Sign up to be the first to know when we launch</p>
-            </Copy>
-            <Formik
-              initialValues={{ firstName: '', email: '' }}
-              validationSchema={PreLaunchLandingSchema}
-              onSubmit={async (values, { setSubmitting }) => {
-                try {
-                  await requestLaunchNotification({
-                    variables: {
-                      ...values
-                    }
-                  });
+const SuccessMessage = styled.span`
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 37px;
+`;
 
-                  setSubmitting(false);
-                } catch(e) {
-                  console.error(e);
-                }
-              }}
-            >
-              {({ isSubmitting, errors, touched }) => (
-                <StyledForm>
-                  <FieldWrapper>
-                    <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
-                    <StyledErrorMessage name="firstName" component="span" />
-                  </FieldWrapper>
-                  <FieldWrapper>
-                    <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
-                    <StyledErrorMessage name="email" component="span" />
-                  </FieldWrapper>
-                  <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
-                     {isSubmitting || loading ? <Spinner icon={["fad", "spinner-third"]} size="lg" /> : 'Notify Me'}
-                  </StyledButton>
-                </StyledForm>
+const PreLaunchLanding = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  return (
+    <Mutation
+      mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}
+    >
+      {( requestLaunchNotification, { loading }) => (
+        <Wrapper>
+          <Hero>
+            <Logo src="/static/images/logo-1-white.svg" />
+            <HeaderCopy>
+              <h4><span>Find</span> Fabrics</h4>
+              <h4><span>Find</span> Tailors</h4>
+            </HeaderCopy>
+            <AppStoreBadges>
+              <img src="/static/images/app-store-badge.svg" />
+              <img src="/static/images/google-play-badge.svg" />
+            </AppStoreBadges>
+            <FormWrapper>
+              <LogoText src="/static/images/logo-5-black.svg" />
+              {!formSubmitted ? (
+                <React.Fragment>
+                  <Copy>
+                    <p>Transforming the way you do traditional.</p>
+                    <p>Sign up to be the first to know when we launch</p>
+                  </Copy>
+                  <Formik
+                    initialValues={{ firstName: '', email: '' }}
+                    validationSchema={PreLaunchLandingSchema}
+                    onSubmit={async (values, { setSubmitting }) => {
+                      try {
+                        await requestLaunchNotification({
+                          variables: {
+                            ...values
+                          }
+                        });
+
+                        setSubmitting(false);
+                        setFormSubmitted(true);
+                      } catch(e) {
+                        console.error(e);
+                      }
+                    }}
+                  >
+                    {({ isSubmitting, errors, touched }) => (
+                      <StyledForm>
+                        <React.Fragment>
+                          <FieldWrapper>
+                            <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
+                            <StyledErrorMessage name="firstName" component="span" />
+                          </FieldWrapper>
+                          <FieldWrapper>
+                            <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
+                            <StyledErrorMessage name="email" component="span" />
+                          </FieldWrapper>
+                          <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
+                            {isSubmitting || loading ? <Spinner icon={["fad", "spinner-third"]} size="lg" /> : 'Notify Me'}
+                          </StyledButton>
+                        </React.Fragment>
+                      </StyledForm>
+                    )}
+                  </Formik>
+                </React.Fragment>
+              ) : (
+                <SuccessMessageWrapper>
+                  <FontAwesomeIcon icon={["fas", "check-circle"]} color="#27AE60" size="10x" />
+                  <SuccessMessage>Got it. You're all set &nbsp; 🎉</SuccessMessage>
+                </SuccessMessageWrapper>
               )}
-            </Formik>
-          </FormWrapper>
-        </Hero>
-        <IphoneMockup />
-      </Wrapper>
-    )}
-  </Mutation>
-);
+            </FormWrapper>
+          </Hero>
+          <IphoneMockup />
+        </Wrapper>
+      )}
+    </Mutation>
+  );
+};
 
 export default PreLaunchLanding;

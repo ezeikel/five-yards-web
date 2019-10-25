@@ -33,7 +33,7 @@ export default createGlobalStyle`
   --color-green: #2ECC71;
   --color-grey: #BDC3C7;
   --color-dark-grey: #9B9B9B;
-  --color-black: #3B3B3B;
+  --color-black: #484848;
   --color-gold: #CDA349;
   /* Spacing */
   --spacing-tiny: 4px;
@@ -62,6 +62,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--default-font-family);
+  color: var(--color-black);
 }
 img {
   max-width: 100%;
@@ -100,22 +101,23 @@ ul {
 }
 input, textarea {
   font-family: var(--font-family-default);
-  font-size: var(--default)
+  font-size: var(--default);
+  color: var(--color-black);
 }
-/* input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: 0;
-  border: 0;
+  /* border: 0;
   border-radius: 0;
   padding: 1em;
   border: 1px solid #ecf0f1;
   transition: all 0.3s ease-in-out;
   width: 100%;
-  font-weight: 300;
+  font-weight: 300; */
 }
-button[type="submit"] {
+/* button[type="submit"] {
   display: block;
   height: 100%;
   width: 100%;
@@ -124,8 +126,8 @@ button[type="submit"] {
   color: var(--color-white);
   transition: background-color 0.3s ease-in-out;
   text-transform: uppercase;
-}
-button[type="submit"][disabled] {
+} */
+/* button[type="submit"][disabled] {
   opacity: 0.7;
   text-decoration: line-through;
 } */
