@@ -42,7 +42,9 @@ export default createGlobalStyle`
   --spacing-large: 32px;
   --spacing-huge: 64px;
   /* Font */
-  --default-font-family: 'Source Sans Pro', sans-serif;
+  --primary-font-family: 'Canted FX Bold', sans-serif;
+  --secondary-font-family: 'Canted FX Regular', sans-serif;
+  --tertiary-font-family: 'Source Sans Pro', sans-serif;
   --default-font-size: 10px;
   --font-size-tiny: 1.4rem;
   --font-size-small: 1.6rem;
@@ -61,7 +63,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--default-font-family);
+  font-family: var(--tertiary-font-family);
   color: var(--color-black);
 }
 img {
@@ -100,7 +102,6 @@ ul {
   height: 300px;
 }
 input, textarea {
-  font-family: var(--font-family-default);
   font-size: var(--default);
   color: var(--color-black);
 }

@@ -42,7 +42,7 @@ const FormWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px;
+  padding: var(--spacing-large);
   width: 600px;
   border-radius: 4px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
@@ -73,7 +73,7 @@ const Copy = styled.div`
   p:first-of-type {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottot: var(--spacing-small);
   }
   p:nth-of-type(2) {
     font-size: 18px;
@@ -93,18 +93,18 @@ const StyledButton = styled.button`
   text-decoration: ${props => props.disabled ? 'line-through' : 'none'};
   width: 100%;
   @media (min-width: 768px) {
-    margin-left: 8px;
+    margin-left: var(--spacing-small);
     width: auto;
   }
 `;
 
 const StyledField = styled(Field)`
   border-radius: 4px;
-  border: 1px solid ${props => props.error ? '#E74C3C' : '#EBEBEB'};
+  border: 1px solid ${props => props.error ? 'var(--color-red)' : '#EBEBEB'};
   font-size: 16px;
   padding: 12px 11px 12px 11px;
   &::placeholder {
-    color: #484848;
+    color: var(--color-black);
   }
 `;
 
@@ -116,7 +116,7 @@ const HeaderCopy = styled.div`
   margin-top: -80px;
   width: 320px;
   height: 160px;
-  font-family: 'Canted FX Bold';
+  font-family: var(--primary-font-family);
   font-size: 48px;
   color: var(--color-white);
 
@@ -128,7 +128,7 @@ const HeaderCopy = styled.div`
     margin: 0;
     font-size: 32px;
     span {
-      font-family: 'Canted FX Regular';
+      font-family: var(--secondary-font-family);
     }
   }
   @media (min-width: 768px) {
@@ -146,7 +146,7 @@ const StyledForm = styled(Form)`
   @media (min-width: 768px) {
     flex-direction: row;
     div + div {
-      margin-left: 8px;
+      margin-left: var(--spacing-small);
     }
   }
 `;
@@ -155,7 +155,7 @@ const FieldWrapper = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-medium);
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
@@ -166,9 +166,9 @@ const StyledErrorMessage = styled(ErrorMessage)`
   border: 1px solid #EBEBEB;
   font-size: 16px;
   padding: 12px 11px 12px 11px;
-  background-color: #E74C3C;
-  color: white;
-  margin-top: 8px;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  margin-top: var(--spacing-small);
 `;
 
 const AppStoreBadges = styled.div`
@@ -192,7 +192,7 @@ const AppStoreBadges = styled.div`
 const IphoneMockup = styled.div`
   display: flex;
   height: 600px;
-  margin-bottom: 64px;
+  margin-bottom: var(--spacing-huge);
   background-image: url('/static/images/iphone-mockup-single.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -212,7 +212,7 @@ const SuccessMessageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   svg {
-    margin-bottom: 32px;
+    margin-bottom: var(--spacing-large);
   }
 `;
 
