@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.footer`
   display: grid;
@@ -189,15 +189,15 @@ const Social = styled.section`
       color: var(--color-dark-grey);
     }
     &:hover {
-        svg {
-          @media (min-width: 768px) {
-            transition: color 0.3s ease-in-out;
-            &:hover {
-              color: var(--color-white);
-            }
+      svg {
+        @media (min-width: 768px) {
+          transition: color 0.3s ease-in-out;
+          &:hover {
+            color: var(--color-white);
           }
         }
       }
+    }
   }
   color: var(--color-dark-grey);
   @media (min-width: 768px) {
@@ -266,7 +266,9 @@ const Footer = () => (
       </SocialLinks>
     </Social>
     <Copyright>
-      <RightsReservered>&copy; {new Date().getFullYear()} Five Yards. All rights reserved.</RightsReservered>
+      <RightsReservered>
+        &copy; {new Date().getFullYear()} Five Yards. All rights reserved.
+      </RightsReservered>
       <MadeWith>
         Made with <span>♡</span> in <span>South London</span>.
       </MadeWith>

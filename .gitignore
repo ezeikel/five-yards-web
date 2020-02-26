@@ -107,3 +107,16 @@ typings/
 
 # misc
 variables.env
+
+  
+node_modules/
+.DS_Store
+*.log
+haters/
+.next/
+.build/
+layout.md
+variables.env
+coverage
+cypress/videos
+cypress/screenshots

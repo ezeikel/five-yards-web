@@ -2,6 +2,9 @@
   "name": "five-yards-web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -20,7 +23,25 @@
     "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
-    "validate": "yarn test:coverage && yarn test:e2e:run"
+    "validate": "yarn test:coverage && yarn test:e2e:run",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "ignorePath": "./.gitignore"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn test:e2e:run"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(js|jsx|json|ts|tsx|css|html|md)": [
+      "prettier --write",
+      "jest --findRelatedTests",
+      "git add"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.7",
@@ -62,7 +83,7 @@
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^5.4.0",
     "react-transition-group": "^2.5.0",
-    "styled-components": "^4.4.0",
+    "styled-components": "^5.0.1",
     "sweetalert2": "^7.28.2",
     "yup": "^0.26.6"
   },
@@ -82,8 +103,10 @@
     "eslint-plugin-jest": "^23.8.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
+    "faker": "^4.1.0",
     "graphql-tools": "^4.0.5",
     "husky": "^4.2.3",
+    "is-ci-cli": "^2.0.0",
     "jest": "^25.1.0",
     "jest-runner-eslint": "^0.7.6",
     "jest-styled-components": "^7.0.0",
@@ -101,71 +124,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/jest.setup.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/.next/",
-      "<rootDir>/node_modules/"
-    ],
-    "transform": {
-      "\\.(gql|graphql)$": "jest-transform-graphql",
-      ".*": "babel-jest",
-      "^.+\\.js?$": "babel-jest"
-    }
-  },
-  "//": "This is our babel config, I prefer this over a .babelrc file",
-  "babel": {
-    "env": {
-      "development": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "production": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "test": {
-        "presets": [
-          [
-            "next/babel",
-            {
-              "preset-env": {
-                "modules": "commonjs"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      }
-    }
-  }
+  ]
 }

@@ -1,25 +1,26 @@
 import { Fragment } from "react";
-import { withRouter } from 'next/router';
-import styled, { ThemeProvider } from 'styled-components';
-import Meta from './Meta';
-import Footer from './Footer';
-import GlobalStyle from '../GlobalStyle';
+import { withRouter } from "next/router";
+import styled, { ThemeProvider } from "styled-components";
+import PropTypes from "prop-types";
+import GlobalStyle from "../GlobalStyle";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import { far } from "@fortawesome/pro-regular-svg-icons";
 import { fal } from "@fortawesome/pro-light-svg-icons";
 import { fad } from "@fortawesome/pro-duotone-svg-icons";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import Meta from "./Meta";
+import Footer from "./Footer";
 
 library.add(fab, fas, far, fal, fad);
 
 const StyledToastContainer = styled(ToastContainer).attrs({
-  className: 'toast-container',
-  toastClassName: 'toast',
-  bodyClassName: 'body',
-  progressClassName: 'progress',
+  className: "toast-container",
+  toastClassName: "toast",
+  bodyClassName: "body",
+  progressClassName: "progress",
 })`
   /* .toast-container */
   bottom: 0;
@@ -49,19 +50,19 @@ const StyledToastContainer = styled(ToastContainer).attrs({
 `;
 
 const theme = {
-  red: '#FF0000',
-  black: '#393939',
-  grey: '#3A3A3A',
-  lightgrey: '#E1E1E1',
-  offWhite: '#EDEDED',
-  maxWidth: '1000px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+  red: "#FF0000",
+  black: "#393939",
+  grey: "#3A3A3A",
+  lightgrey: "#E1E1E1",
+  offWhite: "#EDEDED",
+  maxWidth: "1000px",
+  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
   default: {
-    textColor: 'var(--color-black)',
-    white: 'var(--color-white)',
-    maxWidth: '1000px',
-    bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)'
-  }
+    textColor: "var(--color-black)",
+    white: "var(--color-white)",
+    maxWidth: "1000px",
+    bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
+  },
 };
 
 // const StyledPage = styled.div`
@@ -89,7 +90,6 @@ const Page = ({ children }) => (
       </Wrapper>
       <StyledToastContainer
         position="bottom-center"
-        draggable
         hideProgressBar
         pauseOnHover
         autoClose={3000}
@@ -100,5 +100,8 @@ const Page = ({ children }) => (
   </Fragment>
 );
 
+Page.propTypes = {
+  children: PropTypes.func.isRequired,
+};
 
 export default withRouter(Page);
