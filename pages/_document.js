@@ -23,6 +23,16 @@ export default class MyDocument extends Document {
     };
   }
 
+  setCypressReactDevTools() {
+    return {
+      __html: `
+      if (window && window.Cypress) {
+        window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__
+      }
+      `,
+    };
+  }
+
   render() {
     return (
       <html>
@@ -34,6 +44,7 @@ export default class MyDocument extends Document {
             src="https://www.googletagmanager.com/gtag/js?id=G-PKC9SQ34MW"
           ></script>
           <script dangerouslySetInnerHTML={this.setGoogleAnalyticsTags()} />
+          <script dangerouslySetInnerHTML={this.setCypressReactDevTools()} />
         </Head>
         <body>
           <Main />
