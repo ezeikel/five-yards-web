@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const SuccessMessage = styled.p`
   font-size: var(--font-size-tiny);

@@ -101,7 +101,7 @@ const Page = ({ children }) => (
 );
 
 Page.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
 };
 
 export default withRouter(Page);

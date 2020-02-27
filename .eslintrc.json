@@ -1,5 +1,6 @@
   
 {
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2019,
     "sourceType": "module",
@@ -19,7 +20,8 @@
   },
   "rules": {
     "valid-typeof": "error",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/state-in-constructor": "off"
   },
   "settings": {
     "react": {

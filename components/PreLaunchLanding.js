@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { Mutation } from 'react-apollo';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from '../apollo/queries';
+import { useState } from "react";
+import styled from "styled-components";
+import { Mutation } from "react-apollo";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from "../apollo/queries";
 import { rotateKeyFrame } from "../GlobalStyle";
 
 const PreLaunchLandingSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .required('We need this.'),
+  firstName: Yup.string().required("We need this."),
   email: Yup.string()
-    .email('Doesn\'t look quite right.')
-    .required('We need this.')
+    .email("Doesn't look quite right.")
+    .required("We need this."),
 });
 
 const Wrapper = styled.div`
@@ -31,7 +30,7 @@ const Hero = styled.section`
   position: relative;
   height: 100vh;
   margin-bottom: 350px;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     height: 75vh;
     margin-bottom: 200px;
   }
@@ -45,7 +44,7 @@ const FormWrapper = styled.section`
   padding: var(--spacing-large);
   width: 600px;
   border-radius: 4px;
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   background-color: var(--color-white);
   transform: translateY(50%);
 `;
@@ -73,7 +72,7 @@ const Copy = styled.div`
   p:first-of-type {
     font-size: 24px;
     font-weight: bold;
-    margin-bottot: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
   }
   p:nth-of-type(2) {
     font-size: 18px;
@@ -81,16 +80,16 @@ const Copy = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: #F47793;
-  border: 1px solid #F47793;
+  background-color: #f47793;
+  border: 1px solid #f47793;
   border-radius: 4px;
   font-size: 16px;
-  font-weight:bold;
+  font-weight: bold;
   color: var(--color-white);
   padding: 13px 25px 12px 25px;
   cursor: pointer;
   align-self: flex-start;
-  text-decoration: ${props => props.disabled ? 'line-through' : 'none'};
+  text-decoration: ${props => (props.disabled ? "line-through" : "none")};
   width: 100%;
   @media (min-width: 768px) {
     margin-left: var(--spacing-small);
@@ -100,7 +99,7 @@ const StyledButton = styled.button`
 
 const StyledField = styled(Field)`
   border-radius: 4px;
-  border: 1px solid ${props => props.error ? 'var(--color-red)' : '#EBEBEB'};
+  border: 1px solid ${props => (props.error ? "var(--color-red)" : "#EBEBEB")};
   font-size: 16px;
   padding: 12px 11px 12px 11px;
   &::placeholder {
@@ -163,7 +162,7 @@ const FieldWrapper = styled.div`
 
 const StyledErrorMessage = styled(ErrorMessage)`
   border-radius: 4px;
-  border: 1px solid #EBEBEB;
+  border: 1px solid #ebebeb;
   font-size: 16px;
   padding: 12px 11px 12px 11px;
   background-color: var(--color-red);
@@ -193,18 +192,18 @@ const IphoneMockup = styled.div`
   display: flex;
   height: 600px;
   margin-bottom: var(--spacing-huge);
-  background-image: url('/static/images/iphone-mockup-single.png');
+  background-image: url("/static/images/iphone-mockup-single.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   @media (min-width: 768px) {
-    background-image: url('/static/images/iphone-mockup-double.png');
+    background-image: url("/static/images/iphone-mockup-double.png");
   }
 `;
 
 const Spinner = styled(FontAwesomeIcon)`
-    animation: ${rotateKeyFrame} ease-in-out 1.2s infinite;
-    flex: 0 1 auto;
+  animation: ${rotateKeyFrame} ease-in-out 1.2s infinite;
+  flex: 0 1 auto;
 `;
 
 const SuccessMessageWrapper = styled.div`
@@ -225,16 +224,18 @@ const SuccessMessage = styled.span`
 const PreLaunchLanding = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   return (
-    <Mutation
-      mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}
-    >
-      {( requestLaunchNotification, { loading }) => (
+    <Mutation mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}>
+      {(requestLaunchNotification, { loading }) => (
         <Wrapper>
           <Hero>
             <Logo src="/static/images/logo-1-white.svg" />
             <HeaderCopy>
-              <h4><span>Find</span> Fabrics</h4>
-              <h4><span>Find</span> Tailors</h4>
+              <h4>
+                <span>Find</span> Fabrics
+              </h4>
+              <h4>
+                <span>Find</span> Tailors
+              </h4>
             </HeaderCopy>
             <AppStoreBadges>
               <img src="/static/images/app-store-badge.svg" />
@@ -243,52 +244,86 @@ const PreLaunchLanding = () => {
             <FormWrapper>
               <LogoText src="/static/images/logo-5-black.svg" />
               {!formSubmitted ? (
-                <React.Fragment>
+                <>
                   <Copy>
                     <p>Transforming the way you do traditional.</p>
                     <p>Sign up to be the first to know when we launch</p>
                   </Copy>
                   <Formik
-                    initialValues={{ firstName: '', email: '' }}
+                    initialValues={{ firstName: "", email: "" }}
                     validationSchema={PreLaunchLandingSchema}
                     onSubmit={async (values, { setSubmitting }) => {
                       try {
                         await requestLaunchNotification({
                           variables: {
-                            ...values
-                          }
+                            ...values,
+                          },
                         });
 
                         setSubmitting(false);
                         setFormSubmitted(true);
-                      } catch(e) {
+                      } catch (e) {
                         console.error(e);
                       }
                     }}
                   >
                     {({ isSubmitting, errors, touched }) => (
                       <StyledForm>
-                        <React.Fragment>
+                        <>
                           <FieldWrapper>
-                            <StyledField error={touched.firstName && errors.firstName} type="text" name="firstName" placeholder="First name" />
-                            <StyledErrorMessage name="firstName" component="span" />
+                            <StyledField
+                              error={touched.firstName && errors.firstName}
+                              type="text"
+                              name="firstName"
+                              placeholder="First name"
+                            />
+                            <StyledErrorMessage
+                              name="firstName"
+                              component="span"
+                            />
                           </FieldWrapper>
                           <FieldWrapper>
-                            <StyledField error={touched.email && errors.email} type="email" name="email" placeholder="Email address" />
+                            <StyledField
+                              error={touched.email && errors.email}
+                              type="email"
+                              name="email"
+                              placeholder="Email address"
+                            />
                             <StyledErrorMessage name="email" component="span" />
                           </FieldWrapper>
-                          <StyledButton type="submit" disabled={!touched.firstName || !touched.email || errors.firstName || errors.email}>
-                            {isSubmitting || loading ? <Spinner icon={["fad", "spinner-third"]} size="lg" /> : 'Notify Me'}
+                          <StyledButton
+                            type="submit"
+                            disabled={
+                              !touched.firstName ||
+                              !touched.email ||
+                              errors.firstName ||
+                              errors.email
+                            }
+                          >
+                            {isSubmitting || loading ? (
+                              <Spinner
+                                icon={["fad", "spinner-third"]}
+                                size="lg"
+                              />
+                            ) : (
+                              "Notify Me"
+                            )}
                           </StyledButton>
-                        </React.Fragment>
+                        </>
                       </StyledForm>
                     )}
                   </Formik>
-                </React.Fragment>
+                </>
               ) : (
                 <SuccessMessageWrapper>
-                  <FontAwesomeIcon icon={["fas", "check-circle"]} color="#27AE60" size="10x" />
-                  <SuccessMessage>Got it. You're all set &nbsp; 🎉</SuccessMessage>
+                  <FontAwesomeIcon
+                    icon={["fas", "check-circle"]}
+                    color="#27AE60"
+                    size="10x"
+                  />
+                  <SuccessMessage>
+                    Got it. You&apos;re all set &nbsp; 🎉
+                  </SuccessMessage>
                 </SuccessMessageWrapper>
               )}
             </FormWrapper>

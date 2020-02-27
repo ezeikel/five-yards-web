@@ -1,13 +1,13 @@
-import ApolloClient from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createUploadLink } from 'apollo-upload-client';
-import { withClientState } from 'apollo-link-state';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import ApolloClient from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { createUploadLink } from "apollo-upload-client";
+import { withClientState } from "apollo-link-state";
+import { onError } from "apollo-link-error";
+import { ApolloLink } from "apollo-link";
 import { defaults, resolvers } from "./store";
-import { endpoint, prodEndpoint } from '../config';
+import { endpoint, prodEndpoint } from "../config";
 
-import withApollo from 'next-with-apollo';
+import withApollo from "next-with-apollo";
 
 const cache = new InMemoryCache();
 
@@ -21,17 +21,17 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) {
     console.log(`[Network error]: ${networkError}`);
   }
-})
+});
 
 const stateLink = withClientState({
   defaults,
   resolvers,
-  cache
+  cache,
 });
 
 const uploadLink = createUploadLink({
-  uri: process.env.NODE_ENV === 'production' ? prodEndpoint : endpoint,
-  credentials: 'include'
+  uri: process.env.NODE_ENV === "production" ? prodEndpoint : endpoint,
+  credentials: "include",
 });
 
 const createClient = ({ headers }) => {
@@ -39,22 +39,21 @@ const createClient = ({ headers }) => {
     link: ApolloLink.from([
       new ApolloLink((operation, forward) => {
         operation.setContext({
-          headers
+          headers,
         });
 
         return forward(operation);
       }),
       errorLink,
       stateLink,
-      uploadLink
+      uploadLink,
     ]),
-    cache
+    cache,
   });
 
   client.onResetStore(stateLink.writeDefaults);
 
   return client;
 };
-
 
 export default withApollo(createClient);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const FormInput = styled.input`
   appearance: none;
@@ -11,9 +11,6 @@ const FormInput = styled.input`
   color: var(--color-black);
   padding: var(--spacing-small);
   border: 1px solid #ecf0f1;
-
-
-
 `;
 
 export default FormInput;

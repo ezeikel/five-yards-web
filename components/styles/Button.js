@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   padding: var(--spacing-medium);
   font-family: var(--default-font-family);
   font-size: var(--font-size-small);
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 2px;
   cursor: pointer;
   transition: all 400ms ease;

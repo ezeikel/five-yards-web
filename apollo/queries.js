@@ -50,33 +50,45 @@ export const CURRENT_USER_QUERY = gql`
 // `;
 
 export const CURRENT_CACHED_USER_QUERY = gql`
-{
-  currentUser @client {
-    id
-    email
-    username
-    fullName
-    permissions
-    cart {
+  {
+    currentUser @client {
       id
-      quantity
-      item {
+      email
+      username
+      fullName
+      permissions
+      cart {
         id
-        price
-        image
-        title
-        description
+        quantity
+        item {
+          id
+          price
+          image
+          title
+          description
+        }
       }
+      isAuthenticated
+      __typename
     }
-    isAuthenticated
-    __typename
   }
-}
 `;
 
 export const UPDATE_CURRENT_USER = gql`
-  mutation updateCurrentUser($id: String!, $email: String!, $fullName: String!, $permissions: [String!]!, $isAuthenticated: Boolean!) {
-    updateCurrentUser(id: $id, email: $email, fullName: $fullName, permissions: $permissions, isAuthenticated: $isAuthenticated) @client {
+  mutation updateCurrentUser(
+    $id: String!
+    $email: String!
+    $fullName: String!
+    $permissions: [String!]!
+    $isAuthenticated: Boolean!
+  ) {
+    updateCurrentUser(
+      id: $id
+      email: $email
+      fullName: $fullName
+      permissions: $permissions
+      isAuthenticated: $isAuthenticated
+    ) @client {
       id
       email
       fullName
@@ -89,11 +101,11 @@ export const UPDATE_CURRENT_USER = gql`
 
 export const SIGNUP_MUTATION = gql`
   mutation signup(
-    $email: String!,
-    $fullName: String!,
-    $username: String!,
-    $password: String!,
-    ) {
+    $email: String!
+    $fullName: String!
+    $username: String!
+    $password: String!
+  ) {
     signup(
       email: $email
       fullName: $fullName
@@ -172,35 +184,43 @@ export const REQUEST_RESET_MUTATION = gql`
 `;
 
 export const RESET_MUTATION = gql`
-   mutation RESET_MUTATION($resetToken: String!, $password: String!, $confirmPassword: String!) {
-     resetPassword(resetToken: $resetToken, password: $password, confirmPassword: $confirmPassword) {
-       id
-       email
-       username
-       fullName
-       permissions
-     }
-   }
+  mutation RESET_MUTATION(
+    $resetToken: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    resetPassword(
+      resetToken: $resetToken
+      password: $password
+      confirmPassword: $confirmPassword
+    ) {
+      id
+      email
+      username
+      fullName
+      permissions
+    }
+  }
 `;
 
 export const CREATE_ITEM_MUTATION = gql`
-   mutation CREATE_ITEM_MUTATION (
-     $title: String!
-     $description: String!
-     $price: Int!
-     $image: String
-     $largeImage: String
-   ) {
-     createItem (
-       title: $title
-       description: $description
-       price: $price
-       image: $image
-       largeImage: $largeImage
-     ) {
-       id
-     }
-   }
+  mutation CREATE_ITEM_MUTATION(
+    $title: String!
+    $description: String!
+    $price: Int!
+    $image: String
+    $largeImage: String
+  ) {
+    createItem(
+      title: $title
+      description: $description
+      price: $price
+      image: $image
+      largeImage: $largeImage
+    ) {
+      id
+    }
+  }
 `;
 
 export const SINGLE_ITEM_QUERY = gql`
@@ -251,7 +271,7 @@ export const DELETE_ITEM_MUTATION = gql`
 `;
 
 export const UPDATE_ITEM_MUTATION = gql`
-  mutation UPDATE_ITEM_MUTATION (
+  mutation UPDATE_ITEM_MUTATION(
     $id: ID!
     $title: String
     $description: String
