@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Footer from "../Footer";
+import Footer from "../components/Footer";
 
 test("should render", () => {
   const { container } = render(<Footer />);
@@ -327,17 +327,32 @@ test("should render", () => {
             <li>
               <a
                 href="https://twitter.com/fiveyardsapp"
-              />
+              >
+                <svg
+                  class="svg-inline--fa fab-twitter fa-3x"
+                  color="var(--color-dark-grey)"
+                />
+              </a>
             </li>
             <li>
               <a
                 href="https://www.instagram.com/fiveyardsapp"
-              />
+              >
+                <svg
+                  class="svg-inline--fa fab-instagram fa-3x"
+                  color="var(--color-dark-grey)"
+                />
+              </a>
             </li>
             <li>
               <a
                 href="https://fb.me/fiveyardsapp"
-              />
+              >
+                <svg
+                  class="svg-inline--fa fab-facebook-f fa-3x"
+                  color="var(--color-dark-grey)"
+                />
+              </a>
             </li>
           </ul>
         </section>

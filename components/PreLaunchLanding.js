@@ -317,7 +317,7 @@ const PreLaunchLanding = () => {
               ) : (
                 <SuccessMessageWrapper>
                   <FontAwesomeIcon
-                    icon={["fas", "check-circle"]}
+                    icon={"check-circle"}
                     color="#27AE60"
                     size="10x"
                   />

@@ -1,10 +1,12 @@
-import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import Document, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />),
+    );
     const styleTags = sheet.getStyleElement();
     return { ...page, styleTags };
   }
@@ -17,7 +19,7 @@ export default class MyDocument extends Document {
         gtag('js', new Date());
 
         gtag('config', 'G-PKC9SQ34MW');
-      `
+      `,
     };
   }
 
@@ -27,7 +29,10 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           {/* Global site tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKC9SQ34MW"></script>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-PKC9SQ34MW"
+          ></script>
           <script dangerouslySetInnerHTML={this.setGoogleAnalyticsTags()} />
         </Head>
         <body>

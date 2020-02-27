@@ -5,16 +5,13 @@ import PropTypes from "prop-types";
 import GlobalStyle from "../GlobalStyle";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/pro-solid-svg-icons";
-import { far } from "@fortawesome/pro-regular-svg-icons";
-import { fal } from "@fortawesome/pro-light-svg-icons";
-import { fad } from "@fortawesome/pro-duotone-svg-icons";
+import { faCheckCircle } from "@fortawesome/pro-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Meta from "./Meta";
 import Footer from "./Footer";
 
-library.add(fab, fas, far, fal, fad);
+library.add(fab, faCheckCircle);
 
 const StyledToastContainer = styled(ToastContainer).attrs({
   className: "toast-container",

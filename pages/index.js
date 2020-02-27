@@ -1,7 +1,5 @@
-import PreLaunchLanding from '../components/PreLaunchLanding';
+import PreLaunchLanding from "../components/PreLaunchLanding";
 
-const Home = () => (
-  <PreLaunchLanding />
-);
+const Home = () => <PreLaunchLanding />;
 
 export default Home;
