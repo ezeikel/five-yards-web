@@ -24,7 +24,8 @@
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
     "validate": "yarn test:coverage && yarn test:e2e:run",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "now-build": "next build"
   },
   "jest-runner-eslint": {
     "cliOptions": {
@@ -62,8 +63,6 @@
     "apollo-link-http": "^1.5.5",
     "apollo-link-state": "^0.4.2",
     "apollo-upload-client": "^11.0.0",
-    "babel-core": "^6.26.3",
-    "babel-plugin-styled-components": "^1.10.6",
     "date-fns": "^1.29.0",
     "formik": "^2.0.3",
     "graphql": "^14.0.2",
@@ -88,13 +87,13 @@
     "yup": "^0.26.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.8.6",
     "@storybook/react": "^5.3.14",
     "@testing-library/cypress": "^5.3.0",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.1",
     "babel-eslint": "^10.1.0",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "casual": "^1.6.2",
     "cypress": "^4.0.2",
     "eslint": "^6.8.0",
