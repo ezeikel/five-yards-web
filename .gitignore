@@ -5,7 +5,7 @@ haters/
 .next/
 .build/
 layout.md
-variables.env
+*.env
 coverage
 cypress/videos
 cypress/screenshots

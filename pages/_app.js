@@ -5,7 +5,7 @@ import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
-  dsn: "https://e81718b0ada441fbb06f4120a70662bc@sentry.io/3075904",
+  dsn: process.env.SENTRY_DSN,
   enabled: process.env.NODE_ENV === "production",
 });
 
