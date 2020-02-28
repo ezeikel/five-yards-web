@@ -1,7 +1,17 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-export default class MyDocument extends Document {
+import * as Sentry from "@sentry/browser";
+
+process.on("unhandledRejection", err => {
+  Sentry.captureException(err);
+});
+
+process.on("uncaughtException", err => {
+  Sentry.captureException(err);
+});
+
+class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
     const page = renderPage(App => props =>
@@ -54,3 +64,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;
