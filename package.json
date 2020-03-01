@@ -23,7 +23,9 @@
     "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
-    "validate": "yarn test:coverage && yarn test:e2e:run"
+    "validate": "yarn test:coverage && yarn test:e2e:run",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "jest-runner-eslint": {
     "cliOptions": {
@@ -91,6 +93,10 @@
     "@babel/core": "^7.8.6",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/react": "^5.3.14",
     "@testing-library/cypress": "^5.3.0",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.1",
