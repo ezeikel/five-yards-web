@@ -1,5 +1,5 @@
 import React, { createContext, Component } from "react";
-import { withApollo, Query } from "react-apollo";
+import { withApollo, Query } from "react-apollo"; // TODO: Replaces react-apollo with @apollo/react-hooks everywhere else
 import { withRouter } from "next/router";
 import swal from "sweetalert2";
 import PropTypes from "prop-types";

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Mutation } from "react-apollo";
+import { useMutation } from "@apollo/react-hooks";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { string, object } from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from "../apollo/queries";
 import { rotateKeyFrame } from "../GlobalStyle";
 
-const PreLaunchLandingSchema = Yup.object().shape({
-  firstName: Yup.string().required("We need this."),
-  email: Yup.string()
+const PreLaunchLandingSchema = object().shape({
+  firstName: string().required("We need this."),
+  email: string()
     .email("Doesn't look quite right.")
     .required("We need this."),
 });
@@ -223,115 +223,109 @@ const SuccessMessage = styled.span`
 
 const PreLaunchLanding = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  return (
-    <Mutation mutation={REQUEST_LAUNCH_NOTIFICATION_MUTATION}>
-      {(requestLaunchNotification, { loading }) => (
-        <Wrapper>
-          <Hero>
-            <Logo src="/static/images/logo-1-white.svg" />
-            <HeaderCopy>
-              <h4>
-                <span>Find</span> Fabrics
-              </h4>
-              <h4>
-                <span>Find</span> Tailors
-              </h4>
-            </HeaderCopy>
-            <AppStoreBadges>
-              <img src="/static/images/app-store-badge.svg" />
-              <img src="/static/images/google-play-badge.svg" />
-            </AppStoreBadges>
-            <FormWrapper>
-              <LogoText src="/static/images/logo-5-black.svg" />
-              {!formSubmitted ? (
-                <>
-                  <Copy>
-                    <p>Transforming the way you do traditional.</p>
-                    <p>Sign up to be the first to know when we launch</p>
-                  </Copy>
-                  <Formik
-                    initialValues={{ firstName: "", email: "" }}
-                    validationSchema={PreLaunchLandingSchema}
-                    onSubmit={async (values, { setSubmitting }) => {
-                      try {
-                        await requestLaunchNotification({
-                          variables: {
-                            ...values,
-                          },
-                        });
+  const [requestLaunchNotification, { loading }] = useMutation(
+    REQUEST_LAUNCH_NOTIFICATION_MUTATION,
+  );
 
-                        setSubmitting(false);
-                        setFormSubmitted(true);
-                      } catch (e) {
-                        console.error(e);
-                      }
-                    }}
-                  >
-                    {({ isSubmitting, errors, touched }) => (
-                      <StyledForm>
-                        <>
-                          <FieldWrapper>
-                            <StyledField
-                              error={touched.firstName && errors.firstName}
-                              type="text"
-                              name="firstName"
-                              placeholder="First name"
-                            />
-                            <StyledErrorMessage
-                              name="firstName"
-                              component="span"
-                            />
-                          </FieldWrapper>
-                          <FieldWrapper>
-                            <StyledField
-                              error={touched.email && errors.email}
-                              type="email"
-                              name="email"
-                              placeholder="Email address"
-                            />
-                            <StyledErrorMessage name="email" component="span" />
-                          </FieldWrapper>
-                          <StyledButton
-                            type="submit"
-                            disabled={
-                              !touched.firstName ||
-                              !touched.email ||
-                              errors.firstName ||
-                              errors.email
-                            }
-                          >
-                            {isSubmitting || loading ? (
-                              <Spinner
-                                icon={["fad", "spinner-third"]}
-                                size="lg"
-                              />
-                            ) : (
-                              "Notify Me"
-                            )}
-                          </StyledButton>
-                        </>
-                      </StyledForm>
-                    )}
-                  </Formik>
-                </>
-              ) : (
-                <SuccessMessageWrapper>
-                  <FontAwesomeIcon
-                    icon={"check-circle"}
-                    color="#27AE60"
-                    size="10x"
-                  />
-                  <SuccessMessage>
-                    Got it. You&apos;re all set &nbsp; 🎉
-                  </SuccessMessage>
-                </SuccessMessageWrapper>
-              )}
-            </FormWrapper>
-          </Hero>
-          <IphoneMockup />
-        </Wrapper>
-      )}
-    </Mutation>
+  return (
+    <Wrapper>
+      <Hero>
+        <Logo src="/static/images/logo-1-white.svg" />
+        <HeaderCopy>
+          <h4>
+            <span>Find</span> Fabrics
+          </h4>
+          <h4>
+            <span>Find</span> Tailors
+          </h4>
+        </HeaderCopy>
+        <AppStoreBadges>
+          <img src="/static/images/app-store-badge.svg" />
+          <img src="/static/images/google-play-badge.svg" />
+        </AppStoreBadges>
+        <FormWrapper>
+          <LogoText src="/static/images/logo-5-black.svg" />
+          {!formSubmitted ? (
+            <>
+              <Copy>
+                <p>Transforming the way you do traditional.</p>
+                <p>Sign up to be the first to know when we launch</p>
+              </Copy>
+              <Formik
+                initialValues={{ firstName: "", email: "" }}
+                validationSchema={PreLaunchLandingSchema}
+                onSubmit={async (values, { setSubmitting }) => {
+                  try {
+                    await requestLaunchNotification({
+                      variables: {
+                        ...values,
+                      },
+                    });
+
+                    setSubmitting(false);
+                    setFormSubmitted(true);
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }}
+              >
+                {({ isSubmitting, errors, touched }) => (
+                  <StyledForm>
+                    <>
+                      <FieldWrapper>
+                        <StyledField
+                          error={touched.firstName && errors.firstName}
+                          type="text"
+                          name="firstName"
+                          placeholder="First name"
+                        />
+                        <StyledErrorMessage name="firstName" component="span" />
+                      </FieldWrapper>
+                      <FieldWrapper>
+                        <StyledField
+                          error={touched.email && errors.email}
+                          type="email"
+                          name="email"
+                          placeholder="Email address"
+                        />
+                        <StyledErrorMessage name="email" component="span" />
+                      </FieldWrapper>
+                      <StyledButton
+                        type="submit"
+                        disabled={
+                          !touched.firstName ||
+                          !touched.email ||
+                          errors.firstName ||
+                          errors.email
+                        }
+                      >
+                        {isSubmitting || loading ? (
+                          <Spinner icon={["fad", "spinner-third"]} size="lg" />
+                        ) : (
+                          "Notify Me"
+                        )}
+                      </StyledButton>
+                    </>
+                  </StyledForm>
+                )}
+              </Formik>
+            </>
+          ) : (
+            <SuccessMessageWrapper>
+              <FontAwesomeIcon
+                icon={"check-circle"}
+                color="#27AE60"
+                size="10x"
+              />
+              <SuccessMessage>
+                Got it. You&apos;re all set &nbsp; 🎉
+              </SuccessMessage>
+            </SuccessMessageWrapper>
+          )}
+        </FormWrapper>
+      </Hero>
+      <IphoneMockup />
+    </Wrapper>
   );
 };
 
