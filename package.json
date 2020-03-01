@@ -69,7 +69,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.3",
     "next": "^9.2.2",
-    "next-with-apollo": "^4.3.0",
+    "next-with-apollo": "^5.0.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.2.0",
