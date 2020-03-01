@@ -6,6 +6,9 @@ import { string, object } from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { REQUEST_LAUNCH_NOTIFICATION_MUTATION } from "../apollo/queries";
 import { rotateKeyFrame } from "../GlobalStyle";
+import Wrapper from "./styles/Wrapper";
+import Button from "./styles/Button";
+import SuccessMessage from "./styles/SuccessMessage";
 
 const PreLaunchLandingSchema = object().shape({
   firstName: string().required("We need this."),
@@ -13,12 +16,6 @@ const PreLaunchLandingSchema = object().shape({
     .email("Doesn't look quite right.")
     .required("We need this."),
 });
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
 
 const Hero = styled.section`
   padding: 50px 50px 0 50px;
@@ -76,24 +73,6 @@ const Copy = styled.div`
   }
   p:nth-of-type(2) {
     font-size: 18px;
-  }
-`;
-
-const StyledButton = styled.button`
-  background-color: #f47793;
-  border: 1px solid #f47793;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--color-white);
-  padding: 13px 25px 12px 25px;
-  cursor: pointer;
-  align-self: flex-start;
-  text-decoration: ${props => (props.disabled ? "line-through" : "none")};
-  width: 100%;
-  @media (min-width: 768px) {
-    margin-left: var(--spacing-small);
-    width: auto;
   }
 `;
 
@@ -206,21 +185,6 @@ const Spinner = styled(FontAwesomeIcon)`
   flex: 0 1 auto;
 `;
 
-const SuccessMessageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  svg {
-    margin-bottom: var(--spacing-large);
-  }
-`;
-
-const SuccessMessage = styled.span`
-  font-size: 26px;
-  font-weight: bold;
-  line-height: 37px;
-`;
-
 const PreLaunchLanding = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [requestLaunchNotification, { loading }] = useMutation(
@@ -290,7 +254,7 @@ const PreLaunchLanding = () => {
                         />
                         <StyledErrorMessage name="email" component="span" />
                       </FieldWrapper>
-                      <StyledButton
+                      <Button
                         type="submit"
                         disabled={
                           !touched.firstName ||
@@ -298,29 +262,23 @@ const PreLaunchLanding = () => {
                           errors.firstName ||
                           errors.email
                         }
+                        color="#f47793"
                       >
                         {isSubmitting || loading ? (
                           <Spinner icon={["fad", "spinner-third"]} size="lg" />
                         ) : (
                           "Notify Me"
                         )}
-                      </StyledButton>
+                      </Button>
                     </>
                   </StyledForm>
                 )}
               </Formik>
             </>
           ) : (
-            <SuccessMessageWrapper>
-              <FontAwesomeIcon
-                icon={"check-circle"}
-                color="#27AE60"
-                size="10x"
-              />
-              <SuccessMessage>
-                Got it. You&apos;re all set &nbsp; 🎉
-              </SuccessMessage>
-            </SuccessMessageWrapper>
+            <SuccessMessage>
+              Got it. You&apos;re all set &nbsp; 🎉
+            </SuccessMessage>
           )}
         </FormWrapper>
       </Hero>

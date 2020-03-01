@@ -1,24 +1,21 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  padding: var(--spacing-medium);
-  font-family: var(--default-font-family);
-  font-size: var(--font-size-small);
-  border: 1px solid #e0e0e0;
-  border-radius: 2px;
+  background-color: #f47793;
+  background-color: ${props => props.color};
+  border: 1px solid ${props => props.color};
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-white);
+  padding: 13px 25px 12px 25px;
   cursor: pointer;
-  transition: all 400ms ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    background: rgb(245, 245, 245);
-  }
-  span {
-    flex: 1 1 auto;
-  }
-  svg {
-    flex: 0 1 auto;
+  align-self: flex-start;
+  text-decoration: ${props => (props.disabled ? "line-through" : "none")};
+  width: 100%;
+  @media (min-width: 768px) {
+    margin-left: var(--spacing-small);
+    width: auto;
   }
 `;
 
