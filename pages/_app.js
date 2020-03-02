@@ -5,8 +5,8 @@ import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
+  environment: process.NODE_ENV,
   dsn: process.env.SENTRY_DSN,
-  enabled: process.env.NODE_ENV === "production",
 });
 
 class MyApp extends App {

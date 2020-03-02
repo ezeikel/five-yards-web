@@ -1,13 +1,10 @@
 {
-    "name": "five-yards-web",
-    "version": 2,
-    "builds": [
-        { "src": "package.json", "use": "@now/next" }
-    ],
-    "build": {
-        "env": {
-            "NODE_ENV": "production",
-            "SENTRY_DSN": "@five_yards_sentry_dsn"
-        }
+  "version": 2,
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "SENTRY_DSN": "@five_yards_sentry_dsn"
     }
+  }
 }
