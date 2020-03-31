@@ -70,7 +70,7 @@
     "formik": "^2.0.3",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.3",
-    "next": "^9.2.2",
+    "next": "^9.3.2",
     "next-with-apollo": "^5.0.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
