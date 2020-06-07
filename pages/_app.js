@@ -5,8 +5,10 @@ import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
+  enabled: process.env.NODE_ENV === "production",
   environment: process.NODE_ENV,
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  release: process.env.SENTRY_RELEASE,
 });
 
 class MyApp extends App {
@@ -21,12 +23,12 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, apollo, pageProps } = this.props;
+    const { Component, apollo, pageProps, err } = this.props;
 
     return (
       <ApolloProvider client={apollo}>
         <Page>
-          <Component {...pageProps} />
+          <Component {...pageProps} err={err} />
         </Page>
       </ApolloProvider>
     );

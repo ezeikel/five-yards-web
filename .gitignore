@@ -6,7 +6,9 @@ haters/
 .build/
 layout.md
 *.env
+.env*.local
 coverage
 cypress/videos
 cypress/screenshots
 .now
+.vercel
