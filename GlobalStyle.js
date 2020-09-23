@@ -10,7 +10,7 @@ export default createGlobalStyle`
   :root {
     /* Colors */
     --color-primary: #1abc9c;
-    --color-black: #2f2f1f;
+    --color-black: #2f2f2f;
     --color-white: #ffffff;
 
     /* Spacing */

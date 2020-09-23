@@ -1,15 +1,16 @@
-import { Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import GlobalStyle from "../GlobalStyle";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faCheckCircle } from "@fortawesome/pro-solid-svg-icons";
-import "react-toastify/dist/ReactToastify.min.css";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import Meta from "./Meta";
 import Footer from "./Footer";
 
-library.add(fab, faCheckCircle);
+library.add(faFacebookF, faTwitter, faInstagram);
 
 const Wrapper = styled.div`
   display: flex;
