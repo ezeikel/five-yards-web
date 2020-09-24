@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "./Logo";
@@ -10,6 +11,19 @@ const Wrapper = styled.footer`
   color: var(--color-white);
   padding: var(--spacing-large);
   font-size: 14px;
+  @media (min-width: 768px) {
+    padding: var(--spacing-huge);
+    > div {
+      &:first-of-type {
+        display: flex;
+      }
+      > div {
+        & + div {
+          margin-left: var(--spacing-huge);
+        }
+      }
+    }
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -19,6 +33,13 @@ const LogoWrapper = styled.div`
   svg {
     width: 86px;
     height: 73px;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    svg {
+      width: 199px;
+      height: 170px;
+    }
   }
 `;
 
@@ -40,6 +61,18 @@ const Links = styled.div`
       font-size: 20px;
       font-weight: 700;
       margin-bottom: var(--spacing-medium);
+    }
+    a {
+      color: var(--color-white);
+    }
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    > div {
+      flex: 0 1 auto;
+      + div {
+        margin-left: var(--spacing-huge);
+      }
     }
   }
 `;
@@ -67,6 +100,15 @@ const Social = styled.div`
       }
     }
   }
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    > div {
+      flex: 0 1 auto;
+      + div {
+        margin-left: var(--spacing-huge);
+      }
+    }
+  }
 `;
 
 const Copyright = styled.div`
@@ -76,58 +118,78 @@ const Copyright = styled.div`
 
 const Footer = () => (
   <Wrapper>
-    <LogoWrapper>
-      <Logo />
-    </LogoWrapper>
-    <Links>
-      <div>
-        <span>Lorem ipsum</span>
-        <ul>
-          <li>Tailor sign up</li>
-          <li>Fabric seller sign up</li>
-        </ul>
-      </div>
-      <div>
-        <span>Legal</span>
-        <ul>
-          <li>Terms and conditions</li>
-          <li>Privacy</li>
-          <li>Cookies</li>
-          <li>Site map</li>
-        </ul>
-      </div>
-    </Links>
-    <Social>
-      <div>
-        <span>Follow us</span>
-        <ul>
-          <li>
-            <FontAwesomeIcon
-              icon={["fab", "facebook-f"]}
-              color="var(--color-white)"
-              size="2x"
-            />
-          </li>
-          <li>
-            <FontAwesomeIcon
-              icon={["fab", "twitter"]}
-              color="var(--color-white)"
-              size="2x"
-            />
-          </li>
-          <li>
-            <FontAwesomeIcon
-              icon={["fab", "instagram"]}
-              color="var(--color-white)"
-              size="2x"
-            />
-          </li>
-        </ul>
-      </div>
-      <div>
-        <GDPRLogo />
-      </div>
-    </Social>
+    <div>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <Links>
+        <div>
+          <span>Join us</span>
+          <ul>
+            <li>
+              <Link href="/">Tailor sign up</Link>
+            </li>
+            <li>
+              <Link href="/">Fabric seller sign up</Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span>Legal</span>
+          <ul>
+            <li>
+              <Link href="/">Terms and conditions</Link>
+            </li>
+            <li>
+              <Link href="/">Privacy</Link>
+            </li>
+            <li>
+              <Link href="/">Cookies</Link>
+            </li>
+            <li>
+              <Link href="/">Site map</Link>
+            </li>
+          </ul>
+        </div>
+      </Links>
+      <Social>
+        <div>
+          <span>Follow us</span>
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/fiveyardsapp">
+                <FontAwesomeIcon
+                  icon={["fab", "facebook-f"]}
+                  color="var(--color-white)"
+                  size="2x"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fiveyardsapp">
+                <FontAwesomeIcon
+                  icon={["fab", "twitter"]}
+                  color="var(--color-white)"
+                  size="2x"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/fiveyardsapp">
+                <FontAwesomeIcon
+                  icon={["fab", "instagram"]}
+                  color="var(--color-white)"
+                  size="2x"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <GDPRLogo />
+        </div>
+      </Social>
+    </div>
     <Copyright>&copy; {new Date().getFullYear()} Five Yards</Copyright>
   </Wrapper>
 );
