@@ -37,6 +37,13 @@ const LogoWrapper = styled.div`
   @media (min-width: 768px) {
     margin-bottom: 0;
     svg {
+      width: 132px;
+      height: 113px;
+    }
+  }
+  @media (min-width: 1280px) {
+    margin-bottom: 0;
+    svg {
       width: 199px;
       height: 170px;
     }
@@ -73,6 +80,19 @@ const Links = styled.div`
       + div {
         margin-left: var(--spacing-huge);
       }
+      > span {
+        font-size: 23px;
+      }
+    }
+  }
+  @media (min-width: 1280px) {
+    > div {
+      > ul li {
+        font-size: 20px;
+      }
+      > span {
+        font-size: 35px;
+      }
     }
   }
 `;
@@ -99,6 +119,12 @@ const Social = styled.div`
         }
       }
     }
+    &:last-of-type {
+      svg {
+        width: 105px;
+        height: 39px;
+      }
+    }
   }
   @media (min-width: 768px) {
     margin-bottom: 0;
@@ -107,6 +133,32 @@ const Social = styled.div`
       + div {
         margin-left: var(--spacing-huge);
       }
+      &:first-of-type {
+        > span {
+          font-size: 23px;
+        }
+      }
+      &:last-of-type {
+        svg {
+          width: 142px;
+          height: 53px;
+        }
+      }
+    }
+  }
+  @media (min-width: 1280px) {
+    > div {
+      &:first-of-type {
+        > span {
+          font-size: 35px;
+        }
+      }
+      &:last-of-type {
+        svg {
+          width: 213px;
+          height: 80px;
+        }
+      }
     }
   }
 `;
@@ -114,6 +166,9 @@ const Social = styled.div`
 const Copyright = styled.div`
   color: #bebebe;
   align-self: flex-end;
+  @media (min-width: 1280px) {
+    font-size: 20px;
+  }
 `;
 
 const Footer = () => (

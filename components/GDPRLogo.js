@@ -1,5 +1,5 @@
 const GDPRLogo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="105" height="39">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 142 53">
     <defs>
       <clipPath>
         <path fill="none" d="M0 0h105v39H0z" />

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Logo = ({ fill }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.18 49.72">
     <g>
@@ -15,6 +17,10 @@ const Logo = ({ fill }) => (
 
 Logo.defaultProps = {
   fill: "#fff",
+};
+
+Logo.propTypes = {
+  fill: PropTypes.string,
 };
 
 export default Logo;
