@@ -7,10 +7,12 @@ import {
   faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { faShoppingCart } from "@fortawesome/pro-regular-svg-icons";
 import Meta from "./Meta";
+import Header from "./Header";
 import Footer from "./Footer";
 
-library.add(faFacebookF, faTwitter, faInstagram);
+library.add(faFacebookF, faTwitter, faInstagram, faShoppingCart);
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,6 +39,7 @@ const Page = ({ children }) => (
   <Wrapper>
     <Meta />
     <GlobalStyle />
+    <Header />
     <Inner>{children}</Inner>
     <Footer />
   </Wrapper>

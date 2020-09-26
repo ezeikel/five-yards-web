@@ -9,7 +9,7 @@ export default createGlobalStyle`
   /* CSS Variables */
   :root {
     /* Colors */
-    --color-primary: #1abc9c;
+    --color-primary: #04ACBA;
     --color-black: #2f2f2f;
     --color-white: #ffffff;
 

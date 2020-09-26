@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "./Logo";
 import GDPRLogo from "./GDPRLogo";
+const LogoFull = require("./LogoFull");
 
 const Wrapper = styled.footer`
   display: flex;
@@ -44,8 +45,8 @@ const LogoWrapper = styled.div`
   @media (min-width: 1280px) {
     margin-bottom: 0;
     svg {
-      width: 199px;
-      height: 170px;
+      width: 138px;
+      height: 118px;
     }
   }
 `;
@@ -81,17 +82,17 @@ const Links = styled.div`
         margin-left: var(--spacing-huge);
       }
       > span {
-        font-size: 23px;
+        font-size: 20px;
+      }
+      > ul li {
+        font-size: 14px;
       }
     }
   }
   @media (min-width: 1280px) {
     > div {
       > ul li {
-        font-size: 20px;
-      }
-      > span {
-        font-size: 35px;
+        font-size: 16px;
       }
     }
   }
@@ -135,7 +136,7 @@ const Social = styled.div`
       }
       &:first-of-type {
         > span {
-          font-size: 23px;
+          font-size: 20px;
         }
       }
       &:last-of-type {
@@ -148,11 +149,6 @@ const Social = styled.div`
   }
   @media (min-width: 1280px) {
     > div {
-      &:first-of-type {
-        > span {
-          font-size: 35px;
-        }
-      }
       &:last-of-type {
         svg {
           width: 213px;
@@ -166,9 +162,6 @@ const Social = styled.div`
 const Copyright = styled.div`
   color: #bebebe;
   align-self: flex-end;
-  @media (min-width: 1280px) {
-    font-size: 20px;
-  }
 `;
 
 const Footer = () => (
