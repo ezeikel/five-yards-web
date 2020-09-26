@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import SearchForm from "../components/SearchForm";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,12 +13,14 @@ const Hero = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 300px;
+  padding: var(--spacing-huge) var(--spacing-large);
 `;
 
 const Landing = () => (
   <Wrapper className="full">
-    <Hero />
+    <Hero>
+      <SearchForm />
+    </Hero>
   </Wrapper>
 );
 

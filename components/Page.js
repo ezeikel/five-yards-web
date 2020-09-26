@@ -8,11 +8,24 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { faShoppingCart } from "@fortawesome/pro-regular-svg-icons";
+import {
+  faCut,
+  faSearch,
+  faLayerGroup,
+} from "@fortawesome/pro-light-svg-icons";
 import Meta from "./Meta";
 import Header from "./Header";
 import Footer from "./Footer";
 
-library.add(faFacebookF, faTwitter, faInstagram, faShoppingCart);
+library.add(
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faShoppingCart,
+  faCut,
+  faSearch,
+  faLayerGroup,
+);
 
 const Wrapper = styled.div`
   display: flex;
