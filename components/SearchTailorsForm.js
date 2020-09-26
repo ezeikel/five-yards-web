@@ -57,7 +57,7 @@ const SearchTailorsForm = () => {
             <TextInput
               name="location"
               type="text"
-              placeholder="Enter location or postcode"
+              placeholder="Choose a location"
               isIOS={isIOSBrowser}
             />
             <TextInput
@@ -69,7 +69,7 @@ const SearchTailorsForm = () => {
             <TextInput
               name="collection-date"
               type="text"
-              placeholder="Preferred collection date"
+              placeholder="Choose a collection date"
               isIOS={isIOSBrowser}
             />
           </div>

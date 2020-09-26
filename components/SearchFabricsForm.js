@@ -48,7 +48,7 @@ const SearchFabricsForm = () => {
           <TextInput
             name="style"
             type="text"
-            placeholder="Select a fabric style..."
+            placeholder="Choose a type of fabric"
             isIOS={isIOSBrowser}
           />
           <button type="submit">{isSubmitting ? "Search" : "Search"}</button>

@@ -48,7 +48,7 @@ const SearchShopsForm = () => {
           <TextInput
             name="name"
             type="text"
-            placeholder="Shop name..."
+            placeholder="Choose a shop name"
             isIOS={isIOSBrowser}
           />
           <button type="submit">{isSubmitting ? "Search" : "Search"}</button>

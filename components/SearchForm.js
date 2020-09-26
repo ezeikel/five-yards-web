@@ -29,6 +29,10 @@ const Wrapper = styled.div`
       align-items: center;
       font-size: 16px;
       flex: 0 1 33.33%;
+      padding-bottom: var(--spacing-tiny);
+      + li {
+        margin-left: var(--spacing-large);
+      }
     }
   }
 
@@ -53,6 +57,13 @@ const Heading = styled.h3`
   margin: 0 0 var(--spacing-medium);
 `;
 
+const SearchType = styled.li`
+  color: ${({ active }) =>
+    active ? "var(--color-primary)" : "var(--color-black)"};
+  border-bottom: ${({ active }) =>
+    active ? "3px solid var(--color-primary)" : "3px solid transparent"};
+`;
+
 const SearchForm = () => {
   const [searchType, setSearchType] = useState("tailor");
   const [heading, setHeading] = useState("");
@@ -74,35 +85,58 @@ const SearchForm = () => {
     }
   }, [searchType]);
 
+  console.log({ searchType });
+
   return (
     <Wrapper>
       <Heading>{heading}</Heading>
       <hr />
       <ul>
-        <li onClick={() => setSearchType("tailor")}>
+        <SearchType
+          onClick={() => setSearchType("tailor")}
+          active={searchType === "tailor"}
+        >
           <FontAwesomeIcon
             icon={["fal", "cut"]}
-            color="var(--color-black)"
+            color={
+              searchType === "tailor"
+                ? "var(--color-primary)"
+                : "var(--color-black)"
+            }
             size="2x"
           />
           Tailor
-        </li>
-        <li onClick={() => setSearchType("fabric")}>
+        </SearchType>
+        <SearchType
+          onClick={() => setSearchType("fabric")}
+          active={searchType === "fabric"}
+        >
           <FontAwesomeIcon
             icon={["fal", "layer-group"]}
-            color="var(--color-black)"
+            color={
+              searchType === "fabric"
+                ? "var(--color-primary)"
+                : "var(--color-black)"
+            }
             size="2x"
           />
           Fabric
-        </li>
-        <li onClick={() => setSearchType("shop")}>
+        </SearchType>
+        <SearchType
+          onClick={() => setSearchType("shop")}
+          active={searchType === "shop"}
+        >
           <FontAwesomeIcon
             icon={["fal", "search"]}
-            color="var(--color-black)"
+            color={
+              searchType === "shop"
+                ? "var(--color-primary)"
+                : "var(--color-black)"
+            }
             size="2x"
           />
           Find
-        </li>
+        </SearchType>
       </ul>
       <div>
         {searchType === "tailor" && <SearchTailor />}
