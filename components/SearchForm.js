@@ -85,8 +85,6 @@ const SearchForm = () => {
     }
   }, [searchType]);
 
-  console.log({ searchType });
-
   return (
     <Wrapper>
       <Heading>{heading}</Heading>

@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 
 const Inner = styled.main`
   flex: 1 0 auto;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 36px 1fr 36px;
   justify-items: center;
 
@@ -51,7 +51,7 @@ const Inner = styled.main`
 
   > .full {
     grid-column: 1 / -1;
-  }
+  } */
 `;
 
 const Page = ({ children }) => (
