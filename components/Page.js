@@ -12,6 +12,9 @@ import {
   faCut,
   faSearch,
   faLayerGroup,
+  faTimesCircle,
+  faUser,
+  faBriefcase,
 } from "@fortawesome/pro-light-svg-icons";
 import Meta from "./Meta";
 import Header from "./Header";
@@ -25,6 +28,9 @@ library.add(
   faCut,
   faSearch,
   faLayerGroup,
+  faTimesCircle,
+  faUser,
+  faBriefcase,
 );
 
 const Wrapper = styled.div`
