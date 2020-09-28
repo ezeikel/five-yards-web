@@ -1,5 +1,28 @@
 import styled from "styled-components";
 
+const data = [
+  {
+    img: "/images/example-fabric-1.jpg",
+    name: "Fiddlehead",
+  },
+  {
+    img: "/images/example-fabric-2.jpg",
+    name: "Ultra Violet",
+  },
+  {
+    img: "/images/example-fabric-3.jpg",
+    name: "Blossoms",
+  },
+  {
+    img: "/images/example-fabric-4.jpg",
+    name: "Pyramid Purple",
+  },
+  {
+    img: "/images/example-fabric-5.jpg",
+    name: "Spyro Gyro",
+  },
+];
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,11 +41,31 @@ const Wrapper = styled.div`
     margin: 0 0 var(--spacing-large);
   }
 
-  img {
+  figure {
+    position: relative;
+    flex: 0 0 90%;
     border-radius: 13px;
-    width: 90%;
-    + img {
+    margin: 0;
+    + figure {
       margin-left: var(--spacing-medium);
+    }
+    figcaption {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: var(--spacing-large);
+      span {
+        color: var(--color-white);
+        &:first-of-type {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 11px;
+        }
+      }
     }
   }
 
@@ -38,12 +81,22 @@ const PopularPrints = () => {
       <h3>Popular prints</h3>
       <p>Purchase popular prints sold by retailers near and far.</p>
       <div>
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
+        {data.map((fabric, index) => (
+          <figure key={index}>
+            <img src={fabric.img} />
+            <figcaption>
+              <span>{fabric.name}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
+      {/* <div>
+        <img src="/images/example-fabric.jpg" />
+        <img src="/images/example-fabric.jpg" />
+        <img src="/images/example-fabric.jpg" />
+        <img src="/images/example-fabric.jpg" />
+        <img src="/images/example-fabric.jpg" />
+      </div> */}
     </Wrapper>
   );
 };
