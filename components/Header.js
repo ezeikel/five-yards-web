@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import {
@@ -78,16 +79,24 @@ const Header = () => {
     >
       <Wrapper ref={headerEl}>
         <LogoWrapper>
-          <LogoFull />
+          <Link href="/">
+            <a>
+              <LogoFull />
+            </a>
+          </Link>
         </LogoWrapper>
         <Navigation>
           <ul>
             <li>
-              <FontAwesomeIcon
-                icon={["far", "shopping-cart"]}
-                color="var(--color-black)"
-                size="2x"
-              />
+              <Link href="/shopping-bag">
+                <a>
+                  <FontAwesomeIcon
+                    icon={["far", "shopping-cart"]}
+                    color="var(--color-black)"
+                    size="2x"
+                  />
+                </a>
+              </Link>
             </li>
             <li onClick={toggleActive}>
               <MenuIcon />

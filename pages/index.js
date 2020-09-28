@@ -5,8 +5,6 @@ import PopularTailors from "../components/PopularTailors";
 import SearchForm from "../components/SearchForm";
 
 const Wrapper = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   display: grid;
   grid-template-columns: 36px 1fr 36px;
   justify-items: center;
@@ -32,7 +30,7 @@ const Hero = styled.div`
   margin-bottom: var(--spacing-large);
 `;
 
-const Landing = () => (
+const Index = () => (
   <Wrapper>
     <Hero className="full">
       <SearchForm />
@@ -43,4 +41,4 @@ const Landing = () => (
   </Wrapper>
 );
 
-export default Landing;
+export default Index;
