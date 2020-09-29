@@ -90,13 +90,6 @@ const PopularPrints = () => {
           </figure>
         ))}
       </div>
-      {/* <div>
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-        <img src="/images/example-fabric.jpg" />
-      </div> */}
     </Wrapper>
   );
 };
