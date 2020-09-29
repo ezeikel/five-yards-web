@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -37,6 +38,10 @@ const Wrapper = styled.div`
 const Empty = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  svg {
+    margin-bottom: var(--spacing-medium);
+  }
   span {
     display: flex;
     justify-content: center;
@@ -120,6 +125,11 @@ const ShoppingBag = () => {
       </div>
       <div>
         <Empty>
+          <FontAwesomeIcon
+            icon={["fal", "dizzy"]}
+            color="var(--color-black)"
+            size="10x"
+          />
           <span>It seems empty here</span>
           <span>Nothing to show right now</span>
         </Empty>

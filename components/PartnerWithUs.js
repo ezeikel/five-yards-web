@@ -27,16 +27,20 @@ const Wrapper = styled.div`
     }
     span {
       font-size: 30px;
+      font-weight: 700;
       margin-bottom: var(--spacing-large);
     }
 
     p {
       font-size: 20px;
       line-height: 25px;
+      font-weight: 600;
+      text-align: center;
       margin: 0 0 var(--spacing-large);
     }
 
     button {
+      font-family: var(--font-family-secondary);
       font-size: 20px;
       width: 100%;
       padding: var(--spacing-small);
@@ -44,6 +48,7 @@ const Wrapper = styled.div`
       border: 2px solid var(--color-white);
       border-radius: 4px;
       background-color: transparent;
+      font-weight: 600;
       &:first-of-type {
         background-color: var(--color-white);
         color: var(--color-black);

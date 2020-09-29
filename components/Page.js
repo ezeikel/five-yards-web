@@ -15,6 +15,8 @@ import {
   faTimesCircle,
   faUser,
   faBriefcase,
+  faAngleDown,
+  faDizzy,
 } from "@fortawesome/pro-light-svg-icons";
 import Meta from "./Meta";
 import Header from "./Header";
@@ -31,6 +33,8 @@ library.add(
   faTimesCircle,
   faUser,
   faBriefcase,
+  faAngleDown,
+  faDizzy,
 );
 
 const Wrapper = styled.div`
@@ -41,17 +45,6 @@ const Wrapper = styled.div`
 
 const Inner = styled.main`
   flex: 1 0 auto;
-  /* display: grid;
-  grid-template-columns: 36px 1fr 36px;
-  justify-items: center;
-
-  > * {
-    grid-column: 2 / -2;
-  }
-
-  > .full {
-    grid-column: 1 / -1;
-  } */
 `;
 
 const Page = ({ children }) => (
