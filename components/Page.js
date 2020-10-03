@@ -6,6 +6,8 @@ import {
   faFacebookF,
   faTwitter,
   faInstagram,
+  faGoogle,
+  faFacebookSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { faShoppingCart } from "@fortawesome/pro-regular-svg-icons";
 import {
@@ -35,6 +37,8 @@ library.add(
   faBriefcase,
   faAngleDown,
   faDizzy,
+  faGoogle,
+  faFacebookSquare,
 );
 
 const Wrapper = styled.div`

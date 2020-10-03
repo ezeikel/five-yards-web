@@ -6,10 +6,10 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Index = () => (
+const ShoppingBagPage = () => (
   <Wrapper>
     <ShoppingBag />
   </Wrapper>
 );
 
-export default Index;
+export default ShoppingBagPage;

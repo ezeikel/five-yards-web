@@ -73,7 +73,7 @@ const SearchTailorsForm = () => {
               isIOS={isIOSBrowser}
             />
           </div>
-          <button type="submit">{isSubmitting ? "Search" : "Search"}</button>
+          <button type="submit">{isSubmitting ? "Searching" : "Search"}</button>
         </StyledForm>
       )}
     </Formik>

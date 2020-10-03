@@ -31,7 +31,7 @@ const TextInput = ({ label, isIOS, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
-    <Wrapper>
+    <Wrapper className="text-input">
       <Input
         error={meta.touched && meta.error !== undefined}
         isIOS={isIOS}

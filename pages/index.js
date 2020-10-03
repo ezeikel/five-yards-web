@@ -6,7 +6,7 @@ import SearchForm from "../components/SearchForm";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 36px 1fr 36px;
+  grid-template-columns: var(--spacing-large) 1fr var(--spacing-large);
   justify-items: center;
 
   > * {

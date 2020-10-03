@@ -51,7 +51,7 @@ const SearchShopsForm = () => {
             placeholder="Choose a shop name"
             isIOS={isIOSBrowser}
           />
-          <button type="submit">{isSubmitting ? "Search" : "Search"}</button>
+          <button type="submit">{isSubmitting ? "Searching" : "Search"}</button>
         </StyledForm>
       )}
     </Formik>

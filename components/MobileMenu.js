@@ -49,10 +49,10 @@ const Body = styled.div`
         &:first-of-type {
           flex: 1 0 auto;
         }
-        &:last-of-type {
+        /* &:last-of-type {
           padding-top: var(--spacing-medium);
           border-top: 1px solid #585858;
-        }
+        } */
       }
     }
     + ul {
@@ -169,11 +169,11 @@ const MobileMenu = () => {
               color="var(--color-white)"
               size="lg"
             />
-            <Link href="/">
-              <a>Customer login</a>
+            <Link href="/sign-in">
+              <a>Sign in</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <FontAwesomeIcon
               icon={["fal", "briefcase"]}
               color="var(--color-white)"
@@ -182,7 +182,7 @@ const MobileMenu = () => {
             <Link href="/">
               <a>Vendor login</a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </Body>
     </Wrapper>
