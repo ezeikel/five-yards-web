@@ -88,7 +88,7 @@ export default createGlobalStyle`
     color: var(--color-black);
   }
 
-  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
+  input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"], input[type="submit"], textarea, select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
