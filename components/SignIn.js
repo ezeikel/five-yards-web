@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import SignInForm from "./SignInForm";
+import GoogleIcon from "./svgs/GoogleIcon";
 
 const Wrapper = styled.div`
   display: flex;
@@ -59,8 +60,13 @@ const Wrapper = styled.div`
     margin-bottom: var(--spacing-large);
   }
   .google {
-    background-color: var(--color-google);
-    border: 1px solid var(--color-google);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+    svg {
+      width: 28px;
+      height: 32px;
+    }
   }
 `;
 
@@ -80,11 +86,7 @@ const SignIn = () => {
         Facebook
       </button>
       <button className="google">
-        <FontAwesomeIcon
-          icon={["fab", "google"]}
-          color="var(--color-white)"
-          size="2x"
-        />
+        <GoogleIcon />
         Google
       </button>
     </Wrapper>
