@@ -37,7 +37,7 @@ const Navigation = styled.nav`
       justify-content: center;
       width: 48px;
       height: 48px;
-      border: 1px solid #cccccc;
+      border: 1px solid var(--color-grey);
       border-radius: 2px;
       + li {
         margin-left: var(--spacing-medium);

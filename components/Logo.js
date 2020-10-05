@@ -16,7 +16,7 @@ const Logo = ({ fill }) => (
 );
 
 Logo.defaultProps = {
-  fill: "#fff",
+  fill: "#ffffff",
 };
 
 Logo.propTypes = {

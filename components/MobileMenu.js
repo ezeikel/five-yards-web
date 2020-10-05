@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 const Header = styled.header`
   display: flex;
   justify-content: flex-end;
-  border-bottom: 1px solid #585858;
+  border-bottom: 1px solid var(--color-dark-grey);
   padding: var(--spacing-medium);
 `;
 
@@ -51,7 +51,7 @@ const Body = styled.div`
         }
         /* &:last-of-type {
           padding-top: var(--spacing-medium);
-          border-top: 1px solid #585858;
+          border-top: 1px solid var(--color-dark-grey);
         } */
       }
     }
@@ -73,7 +73,7 @@ const Body = styled.div`
       }
     }
     &:not(:last-of-type) {
-      border-bottom: 1px solid #585858;
+      border-bottom: 1px solid var(--color-dark-grey);
       padding-bottom: var(--spacing-medium);
     }
     ul {

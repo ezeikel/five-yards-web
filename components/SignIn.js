@@ -23,7 +23,7 @@ const Wrapper = styled.div`
         content: "";
         position: absolute;
         height: 1px;
-        background-color: #cccccc;
+        background-color: var(--color-grey);
         top: 50%;
         width: 100%;
       }
@@ -45,8 +45,8 @@ const Wrapper = styled.div`
     padding: var(--spacing-medium);
     border-radius: 6px;
     font-family: var(--primary-font-family);
-    font-weight: 600;
     font-size: 16px;
+    font-weight: var(--font-weight-primary-semi-bold);
     color: var(--color-white);
     svg {
       margin-right: var(--spacing-medium);
@@ -54,13 +54,13 @@ const Wrapper = styled.div`
   }
 
   .facebook {
-    background-color: #274e8c;
-    border: 1px solid #274e8c;
+    background-color: var(--color-facebook);
+    border: 1px solid var(--color-facebook);
     margin-bottom: var(--spacing-large);
   }
   .google {
-    background-color: #db4437;
-    border: 1px solid #db4437;
+    background-color: var(--color-google);
+    border: 1px solid var(--color-google);
   }
 `;
 

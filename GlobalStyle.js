@@ -9,9 +9,14 @@ export default createGlobalStyle`
   /* CSS Variables */
   :root {
     /* Colors */
-    --color-primary: #04ACBA;
+    --color-primary: #04acba;
     --color-black: #2f2f2f;
     --color-white: #ffffff;
+    --color-grey: #cccccc;
+    --color-dark-grey: #585858;
+
+    --color-facebook: #274e8c;
+    --color-google: #db4437;
 
     /* Spacing */
     --spacing-tiny: 4px;
@@ -22,6 +27,17 @@ export default createGlobalStyle`
     /* Font */
     --primary-font-family: ibm-plex-sans, sans-serif;
     --secondary-font-family: stratos, sans-serif;
+
+    --font-weight-primary-regular: 400;
+    --font-weight-primary-medium: 500;
+    --font-weight-primary-semi-bold: 600;
+    --font-weight-primary-bold: 700;
+
+    --font-weight-secondary-light: 300;
+    --font-weight-secondary-regular: 400;
+    --font-weight-secondary-medium: 600;
+    --font-weight-secondary-semi-bold: 700;
+
     --default-font-size: 10px;
     --font-size-tiny: 1.4rem;
     --font-size-small: 1.6rem;

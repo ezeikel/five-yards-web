@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   padding: var(--spacing-large);
 
   hr {
-    background-color: #cccccc;
+    background-color: var(--color-grey);
     height: 1px;
     width: 100%;
     border: 0;
