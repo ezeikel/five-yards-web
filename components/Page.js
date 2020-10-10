@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import GlobalStyle from "../GlobalStyle";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookF,
@@ -20,6 +19,7 @@ import {
   faAngleDown,
   faDizzy,
 } from "@fortawesome/pro-light-svg-icons";
+import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
 import Header from "./Header";
 import Footer from "./Footer";
