@@ -11,6 +11,8 @@ import LogoFull from "./LogoFull";
 import MenuIcon from "./MenuIcon";
 import MobileMenu from "./MobileMenu";
 import MenuContext from "../contexts/menu";
+import GenericModal from "./GenericModal";
+import SignIn from "./SignIn";
 
 const Wrapper = styled.header`
   display: flex;
@@ -50,6 +52,8 @@ const Header = () => {
   const headerEl = useRef(null);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     if (mobileMenuActive) {
       disableBodyScroll(headerEl.current);
@@ -71,6 +75,14 @@ const Header = () => {
     }
 
     setMobileMenuActive(!mobileMenuActive);
+  };
+
+  const openModal = async () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -104,7 +116,16 @@ const Header = () => {
           </ul>
         </Navigation>
       </Wrapper>
-      <MobileMenu />
+      <MobileMenu openModal={openModal} />
+      <GenericModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        heading="Sign in"
+        contentLabel=""
+        close={closeModal}
+      >
+        <SignIn />
+      </GenericModal>
     </MenuContext.Provider>
   );
 };

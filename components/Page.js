@@ -18,6 +18,7 @@ import {
   faBriefcase,
   faAngleDown,
   faDizzy,
+  faTimes,
 } from "@fortawesome/pro-light-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
@@ -39,6 +40,7 @@ library.add(
   faDizzy,
   faGoogle,
   faFacebookSquare,
+  faTimes,
 );
 
 const Wrapper = styled.div`

@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MenuContext from "../contexts/menu";
-import { useState } from "react";
+import CloseButton from "./CloseButton";
 
 const Wrapper = styled.div`
   display: ${({ active }) => (active ? "flex" : "none")};
@@ -48,6 +48,7 @@ const Body = styled.div`
       > li {
         &:first-of-type {
           flex: 1 0 auto;
+          display: flex;
         }
         /* &:last-of-type {
           padding-top: var(--spacing-medium);
@@ -91,23 +92,18 @@ const Body = styled.div`
   }
 `;
 
-const MobileMenu = () => {
+const MobileMenu = ({ openModal }) => {
   const { active, toggle } = useContext(MenuContext);
   const [childListIsOpen, setChildListIsOpen] = useState(false);
 
   return (
     <Wrapper active={active}>
       <Header>
-        <FontAwesomeIcon
-          icon={["fal", "times-circle"]}
-          color="var(--color-white)"
-          size="3x"
-          onClick={toggle}
-        />
+        <CloseButton color="var(--color-white)" circle handleClick={toggle} />
       </Header>
       <Body>
         <ul>
-          <li>
+          <li onClick={toggle}>
             <Link href="/">
               <a>Home</a>
             </Link>
@@ -126,12 +122,12 @@ const MobileMenu = () => {
             </span>
             {childListIsOpen && (
               <ul>
-                <li>
+                <li onClick={toggle}>
                   <Link href="/">
                     <a>Tailor</a>
                   </Link>
                 </li>
-                <li>
+                <li onClick={toggle}>
                   <Link href="/">
                     <a>Fabric seller</a>
                   </Link>
@@ -141,37 +137,40 @@ const MobileMenu = () => {
           </li>
         </ul>
         <ul>
-          <li>
+          <li onClick={toggle}>
             <Link href="/">
               <a>Terms and conditions</a>
             </Link>
           </li>
-          <li>
+          <li onClick={toggle}>
             <Link href="/">
               <a>Privacy</a>
             </Link>
           </li>
-          <li>
+          <li onClick={toggle}>
             <Link href="/">
               <a>Cookies</a>
             </Link>
           </li>
-          <li>
+          <li onClick={toggle}>
             <Link href="/">
               <a>Site map</a>
             </Link>
           </li>
         </ul>
         <ul>
-          <li>
+          <li
+            onClick={() => {
+              toggle();
+              openModal();
+            }}
+          >
             <FontAwesomeIcon
               icon={["fal", "user"]}
               color="var(--color-white)"
               size="lg"
             />
-            <Link href="/sign-in">
-              <a>Sign in</a>
-            </Link>
+            <span>Sign in</span>
           </li>
           {/* <li>
             <FontAwesomeIcon
