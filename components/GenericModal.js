@@ -12,8 +12,18 @@ import CloseButton from "./CloseButton";
 
 Modal.setAppElement("body");
 
-const ReactModalAdapter = ({ className, modalClassName, ...props }) => (
-  <Modal className={modalClassName} portalClassName={className} {...props} />
+const ReactModalAdapter = ({
+  className,
+  modalClassName,
+  someRef, // TODO: replace by using forwardRef
+  ...props
+}) => (
+  <Modal
+    className={modalClassName}
+    portalClassName={className}
+    ref={someRef}
+    {...props}
+  />
 );
 
 const StyledModal = styled(ReactModalAdapter).attrs({
@@ -48,12 +58,11 @@ const Header = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #d1cfcf;
+  padding: var(--spacing-medium);
   > svg {
     flex: 0 0 auto;
   }
-  border-bottom: 1px solid #d1cfcf;
-  padding: var(--spacing-medium);
-  margin: 0 0 var(--spacing-large);
 `;
 
 const Heading = styled.h1`
@@ -68,6 +77,7 @@ const Heading = styled.h1`
 
 const Body = styled.div`
   overflow-y: scroll;
+  padding-top: var(--spacing-large);
 `;
 
 const GenericModal = ({
@@ -116,13 +126,14 @@ const GenericModal = ({
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
       isIOS={isIOSBrowser}
+      someRef={modalEl}
     >
       <Header>
         <Heading>{heading}</Heading>
         <CloseButton circle handleClick={close} />
       </Header>
       {/** TODO: allow the id to be passed in prop */}
-      <Body ref={modalEl}>{children}</Body>
+      <Body>{children}</Body>
     </StyledModal>
   );
 };

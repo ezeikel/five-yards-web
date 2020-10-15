@@ -5,10 +5,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-top: 1px solid #d1cfcf;
   > div {
     &:first-of-type {
-      padding: var(--spacing-large);
+      padding: 0 var(--spacing-large) var(--spacing-large);
       h3 {
         font-size: 25px;
         margin: 0 0 var(--spacing-tiny);
@@ -119,10 +118,9 @@ const Total = styled.div`
 const ShoppingBag = () => {
   return (
     <Wrapper>
-      <div>
-        <h3>Shopping bag</h3>
+      {/* <div>
         <p>Items are reserved for 60 minutes</p>
-      </div>
+      </div> */}
       <div>
         <Empty>
           <FontAwesomeIcon

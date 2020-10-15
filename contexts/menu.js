@@ -1,8 +1,13 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-const MenuContext = createContext({
-  active: false,
-  toggle: () => {},
-});
+export const MenuContext = createContext();
 
-export default MenuContext;
+export const MenuContextProvider = ({ children }) => {
+  const [active, setActive] = useState();
+
+  return (
+    <MenuContext.Provider value={[active, setActive]}>
+      {children}
+    </MenuContext.Provider>
+  );
+};

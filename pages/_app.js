@@ -3,6 +3,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import withApolloClient from "../apollo/client";
 import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
+import { MenuContextProvider } from "../contexts/menu";
 
 Sentry.init({
   enabled: process.env.NODE_ENV === "production",
@@ -27,9 +28,11 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apollo}>
-        <Page>
-          <Component {...pageProps} err={err} />
-        </Page>
+        <MenuContextProvider>
+          <Page>
+            <Component {...pageProps} err={err} />
+          </Page>
+        </MenuContextProvider>
       </ApolloProvider>
     );
   }

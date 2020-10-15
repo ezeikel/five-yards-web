@@ -1,9 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MenuContext from "../contexts/menu";
+import { MenuContext } from "../contexts/menu";
 import CloseButton from "./CloseButton";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 
 const Wrapper = styled.div`
   display: ${({ active }) => (active ? "flex" : "none")};
@@ -93,17 +98,34 @@ const Body = styled.div`
 `;
 
 const MobileMenu = ({ openModal }) => {
-  const { active, toggle } = useContext(MenuContext);
+  const wrapperEl = useRef(null);
+  const [active, toggle] = useContext(MenuContext);
   const [childListIsOpen, setChildListIsOpen] = useState(false);
 
+  useEffect(() => {
+    if (active) {
+      disableBodyScroll(wrapperEl.current);
+    } else {
+      enableBodyScroll(wrapperEl.current);
+    }
+
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [active]);
+
   return (
-    <Wrapper active={active}>
+    <Wrapper active={active} ref={wrapperEl}>
       <Header>
-        <CloseButton color="var(--color-white)" circle handleClick={toggle} />
+        <CloseButton
+          color="var(--color-white)"
+          circle
+          handleClick={() => toggle(false)}
+        />
       </Header>
       <Body>
         <ul>
-          <li onClick={toggle}>
+          <li onClick={() => toggle(false)}>
             <Link href="/">
               <a>Home</a>
             </Link>
@@ -122,12 +144,12 @@ const MobileMenu = ({ openModal }) => {
             </span>
             {childListIsOpen && (
               <ul>
-                <li onClick={toggle}>
+                <li onClick={() => toggle(false)}>
                   <Link href="/">
                     <a>Tailor</a>
                   </Link>
                 </li>
-                <li onClick={toggle}>
+                <li onClick={() => toggle(false)}>
                   <Link href="/">
                     <a>Fabric seller</a>
                   </Link>
@@ -137,22 +159,22 @@ const MobileMenu = ({ openModal }) => {
           </li>
         </ul>
         <ul>
-          <li onClick={toggle}>
+          <li onClick={() => toggle(false)}>
             <Link href="/">
               <a>Terms and conditions</a>
             </Link>
           </li>
-          <li onClick={toggle}>
+          <li onClick={() => toggle(false)}>
             <Link href="/">
               <a>Privacy</a>
             </Link>
           </li>
-          <li onClick={toggle}>
+          <li onClick={() => toggle(false)}>
             <Link href="/">
               <a>Cookies</a>
             </Link>
           </li>
-          <li onClick={toggle}>
+          <li onClick={() => toggle(false)}>
             <Link href="/">
               <a>Site map</a>
             </Link>
