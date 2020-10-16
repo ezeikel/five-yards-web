@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, forwardRef } from "react";
 import Router from "next/router";
 import Modal from "react-modal";
 import styled from "styled-components";
@@ -12,18 +12,15 @@ import CloseButton from "./CloseButton";
 
 Modal.setAppElement("body");
 
-const ReactModalAdapter = ({
-  className,
-  modalClassName,
-  someRef, // TODO: replace by using forwardRef
-  ...props
-}) => (
-  <Modal
-    className={modalClassName}
-    portalClassName={className}
-    ref={someRef}
-    {...props}
-  />
+const ReactModalAdapter = forwardRef(
+  ({ className, modalClassName, ...props }, ref) => (
+    <Modal
+      className={modalClassName}
+      portalClassName={className}
+      ref={ref}
+      {...props}
+    />
+  ),
 );
 
 const StyledModal = styled(ReactModalAdapter).attrs({
@@ -126,7 +123,7 @@ const GenericModal = ({
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
       isIOS={isIOSBrowser}
-      someRef={modalEl}
+      ref={modalEl}
     >
       <Header>
         <Heading>{heading}</Heading>
