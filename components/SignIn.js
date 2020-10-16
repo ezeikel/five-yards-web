@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   .google {
     display: flex;
     align-items: center;
-    padding: var(--spacing-medium);
+    padding: var(--spacing-small) var(--spacing-medium);
     border-radius: 6px;
     font-family: var(--primary-font-family);
     font-size: 16px;
