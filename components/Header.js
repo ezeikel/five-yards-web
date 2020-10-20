@@ -9,6 +9,7 @@ import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";
 import SignIn from "./SignIn";
 import ShoppingBag from "./ShoppingBag";
+import { UserContextProvider } from "../contexts/user";
 
 const Wrapper = styled.header`
   display: flex;
@@ -69,7 +70,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <UserContextProvider>
       <Wrapper>
         <LogoWrapper>
           <Link href="/">
@@ -95,7 +96,7 @@ const Header = () => {
           </ul>
         </Navigation>
       </Wrapper>
-      <MobileMenu openModal={openSignInModal} />
+      <MobileMenu openSignInModal={openSignInModal} />
       <GenericModal
         isOpen={signInModalIsOpen}
         heading="Sign in"
@@ -112,7 +113,7 @@ const Header = () => {
       >
         <ShoppingBag />
       </GenericModal>
-    </>
+    </UserContextProvider>
   );
 };
 

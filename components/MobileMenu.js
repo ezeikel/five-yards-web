@@ -1,9 +1,8 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuContext } from "../contexts/menu";
 import CloseButton from "./CloseButton";
+import MenuItems from "./MenuItems";
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -43,64 +42,30 @@ const Body = styled.div`
   flex-direction: column;
   padding: var(--spacing-large);
 
-  > ul {
+  > ul,
+  > div > ul {
     font-size: 25px;
     text-align: left;
-    &:last-of-type {
-      flex: 1 0 auto;
-      display: flex;
-      flex-direction: column;
-      > li {
-        &:first-of-type {
-          flex: 1 0 auto;
-          display: flex;
-        }
-        /* &:last-of-type {
-          padding-top: var(--spacing-medium);
-          border-top: 1px solid var(--color-dark-grey);
-        } */
-      }
-    }
-    + ul {
-      padding-top: var(--spacing-medium);
-    }
     li {
-      > span {
-        display: flex;
-        justify-content: space-between;
-        &.active {
-          svg {
-            transform: rotate(180deg);
-          }
-        }
-      }
+      display: flex;
+      align-items: center;
       + li {
         margin-top: var(--spacing-large);
       }
-    }
-    &:not(:last-of-type) {
-      border-bottom: 1px solid var(--color-dark-grey);
-      padding-bottom: var(--spacing-medium);
-    }
-    ul {
-      margin-top: var(--spacing-medium);
-      li {
-        font-size: 16px;
-        + li {
-          margin-top: var(--spacing-medium);
-        }
+      > span {
+        display: flex;
+        justify-content: space-between;
       }
-    }
-    svg {
-      margin-right: var(--spacing-medium);
+      svg {
+        margin-right: var(--spacing-medium);
+      }
     }
   }
 `;
 
-const MobileMenu = ({ openModal }) => {
+const MobileMenu = ({ openSignInModal }) => {
   const wrapperEl = useRef(null);
   const [active, toggle] = useContext(MenuContext);
-  const [childListIsOpen, setChildListIsOpen] = useState(false);
 
   useEffect(() => {
     if (active) {
@@ -124,87 +89,7 @@ const MobileMenu = ({ openModal }) => {
         />
       </Header>
       <Body>
-        <ul>
-          <li onClick={() => toggle(false)}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <span
-              className={childListIsOpen ? "active" : null}
-              onClick={() => setChildListIsOpen(!childListIsOpen)}
-            >
-              Partner with us
-              <FontAwesomeIcon
-                icon={["fal", "angle-down"]}
-                color="var(--color-primary)"
-                size="lg"
-              />
-            </span>
-            {childListIsOpen && (
-              <ul>
-                <li onClick={() => toggle(false)}>
-                  <Link href="/">
-                    <a>Tailor</a>
-                  </Link>
-                </li>
-                <li onClick={() => toggle(false)}>
-                  <Link href="/">
-                    <a>Fabric seller</a>
-                  </Link>
-                </li>
-              </ul>
-            )}
-          </li>
-        </ul>
-        <ul>
-          <li onClick={() => toggle(false)}>
-            <Link href="/">
-              <a>Terms and conditions</a>
-            </Link>
-          </li>
-          <li onClick={() => toggle(false)}>
-            <Link href="/">
-              <a>Privacy</a>
-            </Link>
-          </li>
-          <li onClick={() => toggle(false)}>
-            <Link href="/">
-              <a>Cookies</a>
-            </Link>
-          </li>
-          <li onClick={() => toggle(false)}>
-            <Link href="/">
-              <a>Site map</a>
-            </Link>
-          </li>
-        </ul>
-        <ul>
-          <li
-            onClick={() => {
-              toggle();
-              openModal();
-            }}
-          >
-            <FontAwesomeIcon
-              icon={["fal", "user"]}
-              color="var(--color-white)"
-              size="lg"
-            />
-            <span>Sign in</span>
-          </li>
-          {/* <li>
-            <FontAwesomeIcon
-              icon={["fal", "briefcase"]}
-              color="var(--color-white)"
-              size="lg"
-            />
-            <Link href="/">
-              <a>Vendor login</a>
-            </Link>
-          </li> */}
-        </ul>
+        <MenuItems openSignInModal={openSignInModal} />
       </Body>
     </Wrapper>
   );
