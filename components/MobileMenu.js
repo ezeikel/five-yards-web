@@ -42,22 +42,29 @@ const Body = styled.div`
   flex-direction: column;
   padding: var(--spacing-large);
 
-  > ul,
-  > div > ul {
+  ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     font-size: 25px;
-    text-align: left;
     li {
       display: flex;
       align-items: center;
       + li {
         margin-top: var(--spacing-large);
       }
-      > span {
-        display: flex;
-        justify-content: space-between;
+      &:last-of-type {
+        flex: 1 0 auto;
+        border-top: 1px solid var(--color-dark-grey);
+        padding-top: var(--spacing-medium);
       }
       svg {
         margin-right: var(--spacing-medium);
+      }
+      /* fixes css for nested list */
+      ul li:last-of-type {
+        border-top: none;
+        padding-top: 0;
       }
     }
   }
