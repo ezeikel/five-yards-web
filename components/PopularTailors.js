@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const data = [
@@ -86,7 +87,7 @@ const PopularTailors = () => {
       <div>
         {data.map((tailor, index) => (
           <figure key={index}>
-            <img src={tailor.img} />
+            <Image src={tailor.img} unsized />
             <figcaption>
               <span>{tailor.name}</span>
               <span>£{tailor.averagePrice} garment average</span>

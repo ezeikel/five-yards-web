@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const data = [
@@ -83,7 +84,7 @@ const PopularPrints = () => {
       <div>
         {data.map((fabric, index) => (
           <figure key={index}>
-            <img src={fabric.img} />
+            <Image src={fabric.img} unsized />
             <figcaption>
               <span>{fabric.name}</span>
             </figcaption>
