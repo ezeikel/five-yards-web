@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import GlobalStyle from "../GlobalStyle";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookF,
@@ -19,7 +18,15 @@ import {
   faBriefcase,
   faAngleDown,
   faDizzy,
+  faTimes,
+  faReceipt,
+  faCalendarCheck,
+  faCommentAlt,
+  faAddressCard,
+  faKey,
+  faCreditCard,
 } from "@fortawesome/pro-light-svg-icons";
+import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -39,6 +46,13 @@ library.add(
   faDizzy,
   faGoogle,
   faFacebookSquare,
+  faTimes,
+  faReceipt,
+  faCalendarCheck,
+  faCommentAlt,
+  faAddressCard,
+  faKey,
+  faCreditCard,
 );
 
 const Wrapper = styled.div`

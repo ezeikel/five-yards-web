@@ -1,16 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
+import { MenuContext } from "../contexts/menu";
 import LogoFull from "./LogoFull";
 import MenuIcon from "./MenuIcon";
 import MobileMenu from "./MobileMenu";
-import MenuContext from "../contexts/menu";
+import GenericModal from "./GenericModal";
+import SignIn from "./SignIn";
+import ShoppingBag from "./ShoppingBag";
+import { UserContextProvider } from "../contexts/user";
 
 const Wrapper = styled.header`
   display: flex;
@@ -47,37 +46,32 @@ const Navigation = styled.nav`
 `;
 
 const Header = () => {
-  const headerEl = useRef(null);
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
+  const [active, setActive] = useContext(MenuContext);
 
-  useEffect(() => {
-    if (mobileMenuActive) {
-      disableBodyScroll(headerEl.current);
-    } else {
-      enableBodyScroll(headerEl.current);
-    }
+  // const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [mobileMenuActive]);
+  const [signInModalIsOpen, setSignInModalIsOpen] = useState(false);
+  const [shoppingBagModalIsOpen, setShoppingBagModalIsOpen] = useState(false);
 
-  const toggleActive = option => {
-    if (option === "close-nav") {
-      setMobileMenuActive(false);
-      enableBodyScroll(headerEl && headerEl.current);
+  const openSignInModal = async () => {
+    setSignInModalIsOpen(true);
+  };
 
-      return;
-    }
+  const closeSignInModal = () => {
+    setSignInModalIsOpen(false);
+  };
 
-    setMobileMenuActive(!mobileMenuActive);
+  const openShoppingBagModal = async () => {
+    setShoppingBagModalIsOpen(true);
+  };
+
+  const closeShoppingBagModal = () => {
+    setShoppingBagModalIsOpen(false);
   };
 
   return (
-    <MenuContext.Provider
-      value={{ active: mobileMenuActive, toggle: toggleActive }}
-    >
-      <Wrapper ref={headerEl}>
+    <UserContextProvider>
+      <Wrapper>
         <LogoWrapper>
           <Link href="/">
             <a>
@@ -88,24 +82,38 @@ const Header = () => {
         <Navigation>
           <ul>
             <li>
-              <Link href="/shopping-bag">
-                <a>
-                  <FontAwesomeIcon
-                    icon={["far", "shopping-cart"]}
-                    color="var(--color-black)"
-                    size="2x"
-                  />
-                </a>
-              </Link>
+              <span onClick={openShoppingBagModal}>
+                <FontAwesomeIcon
+                  icon={["far", "shopping-cart"]}
+                  color="var(--color-black)"
+                  size="2x"
+                />
+              </span>
             </li>
-            <li onClick={toggleActive}>
+            <li onClick={() => setActive(!active)}>
               <MenuIcon />
             </li>
           </ul>
         </Navigation>
       </Wrapper>
-      <MobileMenu />
-    </MenuContext.Provider>
+      <MobileMenu openSignInModal={openSignInModal} />
+      <GenericModal
+        isOpen={signInModalIsOpen}
+        heading="Sign in"
+        contentLabel=""
+        close={closeSignInModal}
+      >
+        <SignIn />
+      </GenericModal>
+      <GenericModal
+        isOpen={shoppingBagModalIsOpen}
+        heading="Shopping bag"
+        contentLabel=""
+        close={closeShoppingBagModal}
+      >
+        <ShoppingBag />
+      </GenericModal>
+    </UserContextProvider>
   );
 };
 

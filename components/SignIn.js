@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 100px;
+  padding: 0 var(--spacing-large);
   > div {
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   .google {
     display: flex;
     align-items: center;
-    padding: var(--spacing-medium);
+    padding: var(--spacing-small) var(--spacing-medium);
     border-radius: 6px;
     font-family: var(--primary-font-family);
     font-size: 16px;
