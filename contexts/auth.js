@@ -1,5 +1,5 @@
 import React, { createContext, Component } from "react";
-import { withApollo, Query } from "react-apollo"; // TODO: Replaces react-apollo with @apollo/react-hooks everywhere else
+import { withApollo, Query } from "@apollo/client";
 import { withRouter } from "next/router";
 import swal from "sweetalert2";
 import PropTypes from "prop-types";
@@ -22,7 +22,7 @@ class Provider extends Component {
       { setSubmitting, setErrors, resetForm },
     ) => {
       try {
-        const { client, history } = this.props;
+        const { client, router } = this.props;
 
         await client.mutate({
           mutation: SIGNUP_MUTATION,
@@ -30,17 +30,10 @@ class Provider extends Component {
           update: async (cache, { data: { signup: user } }) => {
             this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
 
-            await swal({
-              type: "success",
-              title: `Hello ${
-                user.fullName.split(".")[0]
-              }. Welcome to Five Yards Gang ✌🏿`,
-            });
-
             resetForm();
 
             // redirect to homepage
-            history.push("/");
+            router.push("/");
           },
         });
       } catch (e) {
@@ -53,7 +46,7 @@ class Provider extends Component {
       { setSubmitting, setErrors, resetForm },
     ) => {
       try {
-        const { client, history } = this.props;
+        const { client, router } = this.props;
 
         await client.mutate({
           mutation: RESET_MUTATION,
@@ -64,7 +57,7 @@ class Provider extends Component {
             resetForm();
 
             // redirect to homepage
-            history.push("/");
+            router.push("/");
           },
         });
       } catch (e) {
@@ -180,9 +173,10 @@ class Provider extends Component {
 
 Provider.propTypes = {
   client: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
+// TODO: replace withRouter with useRouter when converting to class component/hooks
 // withApollo() will create a new component which passes in an instance of ApolloClient as a client prop
 export const AuthProvider = withApollo(withRouter(Provider));
 
