@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
-import LogoFull from "./LogoFull";
+import LogoFull from "./svgs/LogoFull";
 import MenuIcon from "./MenuIcon";
 import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";

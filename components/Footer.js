@@ -1,9 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "./Logo";
+import Logo from "./svgs/Logo";
 import GDPRLogo from "./GDPRLogo";
-const LogoFull = require("./LogoFull");
 
 const Wrapper = styled.footer`
   display: flex;
