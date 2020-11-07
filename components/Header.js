@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
-import LogoFull from "./svgs/LogoFull";
+import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
 import MenuIcon from "./MenuIcon";
 import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";
@@ -75,7 +75,7 @@ const Header = () => {
         <LogoWrapper>
           <Link href="/">
             <a>
-              <LogoFull />
+              <LogoWithMainTextHorizontal fill="var(--color-black)" />
             </a>
           </Link>
         </LogoWrapper>
