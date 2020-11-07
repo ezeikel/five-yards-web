@@ -403,3 +403,19 @@ export const REQUEST_LAUNCH_NOTIFICATION_MUTATION = gql`
     }
   }
 `;
+
+export const ONBOARD_STRIPE_USER_MUTATION = gql`
+  mutation onboardStripeUser {
+    onboardStripeUser {
+      url
+    }
+  }
+`;
+
+export const ONBOARD_STRIPE_REFRESH_MUTATION = gql`
+  mutation onboardStripeRefresh {
+    onboardStripeRefresh {
+      url
+    }
+  }
+`;

@@ -1,5 +1,5 @@
 import App from "next/app";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "@apollo/client";
 import withApolloClient from "../apollo/client";
 import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
