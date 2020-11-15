@@ -26,6 +26,8 @@ class MyApp extends App {
   render() {
     const { Component, apollo, pageProps, err } = this.props;
 
+    // TODO: replace deprecated withApolloClient
+
     return (
       <ApolloProvider client={apollo}>
         <MenuContextProvider>

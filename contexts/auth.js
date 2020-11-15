@@ -1,7 +1,6 @@
-import React, { createContext, Component } from "react";
-import { withApollo, Query } from "@apollo/client";
-import { withRouter } from "next/router";
-import swal from "sweetalert2";
+import { useEffect, createContext } from "react";
+import { useRouter } from "next/router";
+import { useApolloClient, useQuery, Query } from "@apollo/client";
 import PropTypes from "prop-types";
 import {
   CURRENT_CACHED_USER_QUERY,
@@ -15,170 +14,150 @@ import { formatFormErrors } from "../utils/formatFormErrors";
 // create React context
 export const AuthContext = createContext();
 
-class Provider extends Component {
-  state = {
-    signup: async (
-      { email, fullName, username, password },
-      { setSubmitting, setErrors, resetForm },
-    ) => {
-      try {
-        const { client, router } = this.props;
+export const AuthContextProvider = ({ children }) => {
+  const router = useRouter();
+  const client = useApolloClient();
 
-        await client.mutate({
-          mutation: SIGNUP_MUTATION,
-          variables: { email, fullName, username, password },
-          update: async (cache, { data: { signup: user } }) => {
-            this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
-
-            resetForm();
-
-            // redirect to homepage
-            router.push("/");
-          },
-        });
-      } catch (e) {
-        setErrors(formatFormErrors(e));
-      }
-      setSubmitting(false);
-    },
-    resetPassword: async (
-      { password, confirmPassword, resetToken },
-      { setSubmitting, setErrors, resetForm },
-    ) => {
-      try {
-        const { client, router } = this.props;
-
-        await client.mutate({
-          mutation: RESET_MUTATION,
-          variables: { password, confirmPassword, resetToken },
-          update: async (cache, { data: { resetPassword: user } }) => {
-            this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
-
-            resetForm();
-
-            // redirect to homepage
-            router.push("/");
-          },
-        });
-      } catch (e) {
-        console.log(e);
-        setErrors(formatFormErrors(e));
-      }
-      setSubmitting(false);
-    },
-    signin: async (
-      { email, password },
-      { setSubmitting, setErrors, resetForm },
-    ) => {
-      // get full user details using cookie set in browser after SIGNIN_MUTATION
-      try {
-        const { client, history } = this.props;
-
-        // manually firing off mutation and pull id from response
-        await client.mutate({
-          mutation: SIGNIN_MUTATION,
-          variables: { email, password },
-          update: async (cache, { data: { signin: user } }) => {
-            this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
-
-            // exposed by Formik
-            resetForm();
-
-            // redirect to homepage
-            history.push("/");
-          },
-        });
-      } catch (e) {
-        // send erros back to Formik form
-        setErrors(formatFormErrors(e));
-      }
-      setSubmitting(false);
-    },
-    signout: async () => {
-      const result = await swal({
-        title: "You sure?",
-        text: "",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#D32E5E",
-        cancelButtonColor: "#0078A7",
-        confirmButtonText: "Yeah",
-        cancelButtonText: "Nah",
-      });
-
-      if (result.value) {
-        try {
-          const { client, history } = this.props;
-
-          // trigger res.clearCookie() on the server
-          await client.mutate({
-            mutation: SIGNOUT_MUTATION,
-            update: async (
-              cache,
-              {
-                data: {
-                  signout: { message },
-                },
-              },
-            ) => {
-              await swal(`${message}`, "Sad to see you go 😥", "success");
-
-              // redirect to homepage
-              history.push("/");
-
-              // reset cache to its defaults
-              await client.resetStore();
-            },
-          });
-        } catch (e) {
-          await swal({
-            type: "warning",
-            title: "Signout error",
-            text: e.message,
-          });
-        }
-      }
-    },
-  };
-
-  async componentDidMount() {
-    const { client } = this.props;
-    /**
-     * When component is mounted
-     * you can get the user from cache
-     * verify token validity etc
-     */
+  const fetchUser = async () => {
     const {
       data: { currentUser },
     } = await client.query({ query: CURRENT_CACHED_USER_QUERY });
     console.log({ currentUser });
-  }
+  };
 
-  render() {
-    return <AuthContext.Provider value={{ ...this.state }} {...this.props} />;
-  }
+  const signup = async (
+    { email, fullName, username, password },
+    { setSubmitting, setErrors, resetForm },
+  ) => {
+    try {
+      await client.mutate({
+        mutation: SIGNUP_MUTATION,
+        variables: { email, fullName, username, password },
+        update: async (cache, { data: { signup: user } }) => {
+          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
 
-  _updateCurrentUser(cache, user) {
-    const data = {
-      currentUser: {
-        ...user,
-        __typename: "CurrentUser",
-      },
-    };
+          resetForm();
 
-    console.log({ data });
-    cache.writeData({ data });
-  }
-}
+          // redirect to homepage
+          router.push("/");
+        },
+      });
+    } catch (e) {
+      setErrors(formatFormErrors(e));
+    }
+    setSubmitting(false);
+  };
 
-Provider.propTypes = {
-  client: PropTypes.object.isRequired,
-  router: PropTypes.object.isRequired,
+  const signin = async (
+    { email, password },
+    { setSubmitting, setErrors, resetForm },
+  ) => {
+    // get full user details using cookie set in browser after SIGNIN_MUTATION
+    try {
+      // manually firing off mutation and pull id from response
+      await client.mutate({
+        mutation: SIGNIN_MUTATION,
+        variables: { email, password },
+        update: async (cache, { data: { signin: user } }) => {
+          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+
+          // exposed by Formik
+          resetForm();
+
+          // redirect to homepage
+          history.push("/");
+        },
+      });
+    } catch (error) {
+      // send erros back to Formik form
+      setErrors(formatFormErrors(error));
+    }
+    setSubmitting(false);
+  };
+
+  const signout = async () => {
+    try {
+      // trigger res.clearCookie() on the server
+      await client.mutate({
+        mutation: SIGNOUT_MUTATION,
+        update: async (
+          cache,
+          {
+            data: {
+              signout: { message },
+            },
+          },
+        ) => {
+          // redirect to homepage
+          history.push("/");
+
+          // reset cache to its defaults
+          await client.resetStore();
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const resetPassword = async (
+    { password, confirmPassword, resetToken },
+    { setSubmitting, setErrors, resetForm },
+  ) => {
+    try {
+      const { client, router } = this.props;
+
+      await client.mutate({
+        mutation: RESET_MUTATION,
+        variables: { password, confirmPassword, resetToken },
+        update: async (cache, { data: { resetPassword: user } }) => {
+          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+
+          resetForm();
+
+          // redirect to homepage
+          router.push("/");
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      setErrors(formatFormErrors(e));
+    }
+    setSubmitting(false);
+  };
+
+  // const _updateCurrentUser = (cache, user) => {
+  //   const data = {
+  //     currentUser: {
+  //       ...user,
+  //       __typename: "CurrentUser",
+  //     },
+  //   };
+
+  //   console.log({ data });
+  //   cache.writeData({ data });
+  // };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        signup,
+        signin,
+        signout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// TODO: replace withRouter with useRouter when converting to class component/hooks
-// withApollo() will create a new component which passes in an instance of ApolloClient as a client prop
-export const AuthProvider = withApollo(withRouter(Provider));
+AuthContextProvider.propTypes = {
+  router: PropTypes.object.isRequired,
+};
 
 // consumer for AuthContext
 export const AuthConsumer = props => <AuthContext.Consumer {...props} />;

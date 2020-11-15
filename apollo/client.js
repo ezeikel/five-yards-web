@@ -1,5 +1,4 @@
-import ApolloClient from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { InMemoryCache, ApolloClient } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { withClientState } from "apollo-link-state";
 import { onError } from "apollo-link-error";
