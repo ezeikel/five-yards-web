@@ -1,6 +1,6 @@
 import { useEffect, createContext } from "react";
 import { useRouter } from "next/router";
-import { useApolloClient, useQuery, Query } from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
 import PropTypes from "prop-types";
 import {
   CURRENT_CACHED_USER_QUERY,
@@ -33,9 +33,8 @@ export const AuthContextProvider = ({ children }) => {
       await client.mutate({
         mutation: SIGNUP_MUTATION,
         variables: { email, fullName, username, password },
-        update: async (cache, { data: { signup: user } }) => {
-          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
-
+        onCompleted: async ({ data: { signup: user } }) => {
+          console.log({ user });
           resetForm();
 
           // redirect to homepage
@@ -58,9 +57,8 @@ export const AuthContextProvider = ({ children }) => {
       await client.mutate({
         mutation: SIGNIN_MUTATION,
         variables: { email, password },
-        update: async (cache, { data: { signin: user } }) => {
-          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
-
+        onCompleted: async ({ data: { signin: user } }) => {
+          console.log({ user });
           // exposed by Formik
           resetForm();
 
@@ -80,14 +78,13 @@ export const AuthContextProvider = ({ children }) => {
       // trigger res.clearCookie() on the server
       await client.mutate({
         mutation: SIGNOUT_MUTATION,
-        update: async (
-          cache,
-          {
-            data: {
-              signout: { message },
-            },
+        onCompleted: async ({
+          data: {
+            signout: { message },
           },
-        ) => {
+        }) => {
+          console.log({ message });
+
           // redirect to homepage
           history.push("/");
 
@@ -110,8 +107,8 @@ export const AuthContextProvider = ({ children }) => {
       await client.mutate({
         mutation: RESET_MUTATION,
         variables: { password, confirmPassword, resetToken },
-        update: async (cache, { data: { resetPassword: user } }) => {
-          this._updateCurrentUser(cache, { ...user, isAuthenticated: true });
+        onCompleted: async ({ data: { resetPassword: user } }) => {
+          console.log({ user });
 
           resetForm();
 
@@ -126,18 +123,6 @@ export const AuthContextProvider = ({ children }) => {
     setSubmitting(false);
   };
 
-  // const _updateCurrentUser = (cache, user) => {
-  //   const data = {
-  //     currentUser: {
-  //       ...user,
-  //       __typename: "CurrentUser",
-  //     },
-  //   };
-
-  //   console.log({ data });
-  //   cache.writeData({ data });
-  // };
-
   useEffect(() => {
     fetchUser();
   }, []);
@@ -148,6 +133,7 @@ export const AuthContextProvider = ({ children }) => {
         signup,
         signin,
         signout,
+        resetPassword,
       }}
     >
       {children}
@@ -158,19 +144,3 @@ export const AuthContextProvider = ({ children }) => {
 AuthContextProvider.propTypes = {
   router: PropTypes.object.isRequired,
 };
-
-// consumer for AuthContext
-export const AuthConsumer = props => <AuthContext.Consumer {...props} />;
-
-// withAuth hoc passes down original props and currentUser and context as props to new wrapped component
-export const withAuth = WrappedComponent => props => (
-  <Query query={CURRENT_CACHED_USER_QUERY} fetchPolicy="cache-only">
-    {({ data: { currentUser } }) => (
-      <AuthConsumer>
-        {ctx => (
-          <WrappedComponent {...props} currentUser={currentUser} {...ctx} />
-        )}
-      </AuthConsumer>
-    )}
-  </Query>
-);
