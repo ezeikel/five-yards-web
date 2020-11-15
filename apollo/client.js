@@ -8,8 +8,6 @@ import { endpoint, prodEndpoint } from "../config";
 
 import withApollo from "next-with-apollo";
 
-const cache = new InMemoryCache();
-
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
@@ -25,7 +23,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const stateLink = withClientState({
   defaults,
   resolvers,
-  cache,
+  cache: new InMemoryCache(),
 });
 
 const uploadLink = createUploadLink({
@@ -35,6 +33,7 @@ const uploadLink = createUploadLink({
 
 const createClient = ({ headers }) => {
   const client = new ApolloClient({
+    ssrMode: typeof window === "undefined",
     link: ApolloLink.from([
       new ApolloLink((operation, forward) => {
         operation.setContext({

@@ -24,81 +24,6 @@ export const CURRENT_USER_QUERY = gql`
   }
 `;
 
-// export const CURRENT_CACHED_USER_QUERY = gql`
-// {
-//   currentUser @client {
-//     id
-//     email
-//     username
-//     fullName
-//     permissions
-//     cart {
-//       id
-//       quantity
-//       item {
-//         id
-//         price
-//         image
-//         title
-//         description
-//       }
-//     }
-//     isAuthenticated
-//     __typename
-//   }
-// }
-// `;
-
-export const CURRENT_CACHED_USER_QUERY = gql`
-  {
-    currentUser @client {
-      id
-      email
-      username
-      fullName
-      permissions
-      cart {
-        id
-        quantity
-        item {
-          id
-          price
-          image
-          title
-          description
-        }
-      }
-      isAuthenticated
-      __typename
-    }
-  }
-`;
-
-export const UPDATE_CURRENT_USER = gql`
-  mutation updateCurrentUser(
-    $id: String!
-    $email: String!
-    $fullName: String!
-    $permissions: [String!]!
-    $isAuthenticated: Boolean!
-  ) {
-    updateCurrentUser(
-      id: $id
-      email: $email
-      fullName: $fullName
-      permissions: $permissions
-      isAuthenticated: $isAuthenticated
-    ) @client {
-      id
-      email
-      fullName
-      permissions
-      isAuthenticated
-      __typename
-    }
-  }
-`;
-
 export const SIGNUP_MUTATION = gql`
   mutation signup(
     $email: String!
@@ -120,29 +45,6 @@ export const SIGNUP_MUTATION = gql`
     }
   }
 `;
-
-// export const SIGNIN_MUTATION = gql`
-//   mutation signin($email: String!, $password: String!) {
-//     signin(email: $email, password: $password) {
-//       id
-//       email
-//       fullName
-//       username
-//       permissions
-//       cart {
-//       id
-//       quantity
-//       item {
-//         id
-//         price
-//         image
-//         title
-//         description
-//       }
-//     }
-//     }
-//   }
-// `;
 
 export const SIGNIN_MUTATION = gql`
   mutation signin($email: String!, $password: String!) {
@@ -288,18 +190,6 @@ export const UPDATE_ITEM_MUTATION = gql`
       description
       price
     }
-  }
-`;
-
-export const CART_OPEN_QUERY = gql`
-  query {
-    cartOpen @client
-  }
-`;
-
-export const TOGGLE_CART_MUTATION = gql`
-  mutation {
-    toggleCart @client
   }
 `;
 

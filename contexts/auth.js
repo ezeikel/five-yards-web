@@ -11,7 +11,7 @@ import {
 } from "../apollo/queries";
 import { formatFormErrors } from "../utils/formatFormErrors";
 
-// create React context
+// create context
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -41,8 +41,8 @@ export const AuthContextProvider = ({ children }) => {
           router.push("/");
         },
       });
-    } catch (e) {
-      setErrors(formatFormErrors(e));
+    } catch (error) {
+      setErrors(formatFormErrors(error));
     }
     setSubmitting(false);
   };
@@ -116,9 +116,9 @@ export const AuthContextProvider = ({ children }) => {
           router.push("/");
         },
       });
-    } catch (e) {
-      console.log(e);
-      setErrors(formatFormErrors(e));
+    } catch (error) {
+      console.log(error);
+      setErrors(formatFormErrors(error));
     }
     setSubmitting(false);
   };
@@ -142,5 +142,5 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 AuthContextProvider.propTypes = {
-  router: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 };
