@@ -1,6 +1,7 @@
-import App from "next/app";
+// import App from "next/app";
 import { ApolloProvider } from "@apollo/client";
-import withApolloClient from "../apollo/client";
+import PropTypes from "prop-types";
+import { useApollo } from "../apollo/client";
 import Page from "../components/Page";
 import * as Sentry from "@sentry/browser";
 import { MenuContextProvider } from "../contexts/menu";
@@ -12,32 +13,35 @@ Sentry.init({
   release: process.env.SENTRY_RELEASE,
 });
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-    // this exposes the query to the user
-    pageProps.query = ctx.query;
-    return { pageProps };
-  }
+const MyApp = ({ Component, pageProps }) => {
+  const apolloClient = useApollo(pageProps.initialApolloState);
 
-  render() {
-    const { Component, apollo, pageProps, err } = this.props;
+  return (
+    <ApolloProvider client={apolloClient}>
+      <MenuContextProvider>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </MenuContextProvider>
+    </ApolloProvider>
+  );
+};
 
-    // TODO: replace deprecated withApolloClient
+// Only uncomment this method if you have blocking data requirements for
+// every single page in your application. This disables the ability to
+// perform automatic static optimization, causing every page in your app to
+// be server-side rendered.
+//
+// MyApp.getInitialProps = async (appContext) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+//   const appProps = await App.getInitialProps(appContext);
+//
+//   return { ...appProps }
+// }
 
-    return (
-      <ApolloProvider client={apollo}>
-        <MenuContextProvider>
-          <Page>
-            <Component {...pageProps} err={err} />
-          </Page>
-        </MenuContextProvider>
-      </ApolloProvider>
-    );
-  }
-}
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
 
-export default withApolloClient(MyApp);
+export default MyApp;
