@@ -1,16 +1,13 @@
-import ApolloClient from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { useMemo } from "react";
+import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
-import { withClientState } from "apollo-link-state";
 import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
-import { defaults, resolvers } from "./store";
 import { endpoint, prodEndpoint } from "../config";
 
-import withApollo from "next-with-apollo";
+let apolloClient;
 
-const cache = new InMemoryCache();
-
+// TODO: do we need to be doing this with the errors? Is this even useful?
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
@@ -23,37 +20,48 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-const stateLink = withClientState({
-  defaults,
-  resolvers,
-  cache,
-});
-
 const uploadLink = createUploadLink({
   uri: process.env.NODE_ENV === "production" ? prodEndpoint : endpoint,
   credentials: "include",
 });
 
-const createClient = ({ headers }) => {
-  const client = new ApolloClient({
-    link: ApolloLink.from([
-      new ApolloLink((operation, forward) => {
-        operation.setContext({
-          headers,
-        });
+const authLink = setContext((_, { headers }) => {
+  // fixes issue with cookies not being passed in headers.
+  // adding headers to context when creating the client
+  new ApolloLink((operation, forward) => {
+    operation.setContext({
+      headers,
+    });
 
-        return forward(operation);
-      }),
-      errorLink,
-      stateLink,
-      uploadLink,
-    ]),
-    cache,
+    return forward(operation);
   });
+});
 
-  client.onResetStore(stateLink.writeDefaults);
-
-  return client;
+const createApolloClient = () => {
+  return new ApolloClient({
+    ssrMode: typeof window === "undefined",
+    link: ApolloLink.from([authLink, errorLink, uploadLink]),
+    cache: new InMemoryCache(),
+  });
 };
 
-export default withApollo(createClient);
+export const initializeApollo = (initialState = null) => {
+  const _apolloClient = apolloClient ?? createApolloClient();
+
+  // if page has Next.js data fetching methods that use Apollo Client, the initial state
+  // gets hydrated here
+  if (initialState) {
+    _apolloClient.cache.restore(initialState);
+  }
+  // for SSG and SSR always create a new Apollo Client
+  if (typeof window === "undefined") return _apolloClient;
+  // create new Apollo Client once in the client
+  if (!apolloClient) apolloClient = _apolloClient;
+
+  return _apolloClient;
+};
+
+export const useApollo = initialState => {
+  const store = useMemo(() => initializeApollo(initialState), [initialState]);
+  return store;
+};
