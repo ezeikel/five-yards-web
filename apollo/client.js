@@ -3,13 +3,11 @@ import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import { onError } from "apollo-link-error";
-import { resolvers } from "./store";
 import { endpoint, prodEndpoint } from "../config";
 
 let apolloClient;
 
-const cache = new InMemoryCache();
-
+// TODO: do we need to be doing this with the errors? Is this even useful?
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) =>
@@ -28,7 +26,8 @@ const uploadLink = createUploadLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // fixes issue with cookies not being passed in headers. Adding headers to context when creating the client
+  // fixes issue with cookies not being passed in headers.
+  // adding headers to context when creating the client
   new ApolloLink((operation, forward) => {
     operation.setContext({
       headers,
@@ -42,8 +41,7 @@ const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: ApolloLink.from([authLink, errorLink, uploadLink]),
-    resolvers,
-    cache,
+    cache: new InMemoryCache(),
   });
 };
 

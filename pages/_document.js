@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import * as Sentry from "@sentry/browser";
 
@@ -61,7 +61,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           {this.props.styleTags}
           {/* Global site tag (gtag.js) - Google Analytics */}
@@ -77,7 +77,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

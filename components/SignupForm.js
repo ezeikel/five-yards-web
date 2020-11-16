@@ -1,15 +1,12 @@
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Spinner from "./Spinner";
 import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
-import formatAPIErrors from "../utils/formatAPIErrors";
 import TextInput from "./TextInput";
-import FormErrors from "./styles/FormErrors";
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
+  fullName: Yup.string()
     .min(2, "That name is too short.")
     .max(50, "That name is too long")
     .required("Please enter a name."),
@@ -39,16 +36,15 @@ const SignupForm = () => {
   return (
     <>
       <Formik
-        initialValues={{ email: "", name: "", username: "", password: "" }}
+        initialValues={{ email: "", fullName: "", username: "", password: "" }}
         validationSchema={SignupSchema}
-        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           console.log({ values });
           try {
             await signup({ variables: values });
             resetForm();
-          } catch (e) {
-            const formattedErrors = formatAPIErrors(e);
-            setErrors(formattedErrors);
+          } catch (error) {
+            console.error(error.message);
           } finally {
             setSubmitting(false);
           }
@@ -56,26 +52,13 @@ const SignupForm = () => {
       >
         {({ isSubmitting, errors, touched }) => (
           <Form>
-            <TextInput label="name" name="name" type="text" />
+            <TextInput label="fullName" name="fullName" type="text" />
             <TextInput label="email" name="email" type="email" />
             <TextInput label="username" name="username" type="text" />
             <TextInput label="password" name="password" type="password" />
-            <FormErrors
-              errors={
-                (touched.email && errors.email) ||
-                (touched.name && errors.name) ||
-                (touched.username && errors.username) ||
-                (touched.password && errors.password)
-              }
-            >
-              <ErrorMessage name="email" component="div" />
-              <ErrorMessage name="name" component="div" />
-              <ErrorMessage name="username" component="div" />
-              <ErrorMessage name="password" component="div" />
-            </FormErrors>
-            <Button type="submit" disabled={isSubmitting}>
-              Sign Up {isSubmitting ? <Spinner /> : null}
-            </Button>
+            <button type="submit" disabled={isSubmitting}>
+              Sign Up {isSubmitting ? <div>Loading...</div> : null}
+            </button>
           </Form>
         )}
       </Formik>

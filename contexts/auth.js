@@ -87,9 +87,6 @@ export const AuthContextProvider = ({ children }) => {
 
           // redirect to homepage
           history.push("/");
-
-          // reset cache to its defaults
-          await client.resetStore();
         },
       });
     } catch (error) {
