@@ -1,8 +1,5 @@
-
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     [
       "styled-components",
@@ -11,8 +8,6 @@
         "displayName": true,
         "preprocess": false
       }
-    ],
-    "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-nullish-coalescing-operator"
+    ]
   ]
 }
