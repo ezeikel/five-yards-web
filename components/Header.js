@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
-import MenuIcon from "./MenuIcon";
+import MenuIcon from "./svgs/MenuIcon";
 import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";
 import SignIn from "./SignIn";
