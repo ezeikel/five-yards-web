@@ -70,7 +70,7 @@ const Body = styled.div`
   }
 `;
 
-const MobileMenu = ({ openSignInModal }) => {
+const MobileMenu = () => {
   const wrapperEl = useRef(null);
   const [active, toggle] = useContext(MenuContext);
 
@@ -96,7 +96,7 @@ const MobileMenu = ({ openSignInModal }) => {
         />
       </Header>
       <Body>
-        <MenuItems openSignInModal={openSignInModal} />
+        <MenuItems />
       </Body>
     </Wrapper>
   );

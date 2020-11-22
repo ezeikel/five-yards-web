@@ -13,9 +13,9 @@ const Input = styled.input`
   border-radius: 6px;
   border: 1px solid var(--color-black);
   width: 100%;
-  padding: var(--spacing-small);
+  padding: var(--spacing-medium);
   font-family: var(--font-family-primary);
-  font-size: 14px;
+  font-size: 16px;
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 31px;

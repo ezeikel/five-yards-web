@@ -25,6 +25,7 @@ import {
   faAddressCard,
   faKey,
   faCreditCard,
+  faShoppingBag,
 } from "@fortawesome/pro-light-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
@@ -53,6 +54,7 @@ library.add(
   faAddressCard,
   faKey,
   faCreditCard,
+  faShoppingBag,
 );
 
 const theme = {

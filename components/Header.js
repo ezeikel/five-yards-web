@@ -7,7 +7,6 @@ import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
 import MenuIcon from "./svgs/MenuIcon";
 import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";
-import SignIn from "./SignIn";
 import ShoppingBag from "./ShoppingBag";
 import { UserContextProvider } from "../contexts/user";
 
@@ -84,7 +83,7 @@ const Header = () => {
             <li>
               <span onClick={openShoppingBagModal}>
                 <FontAwesomeIcon
-                  icon={["far", "shopping-cart"]}
+                  icon={["fal", "shopping-bag"]}
                   color="var(--color-black)"
                   size="2x"
                 />
@@ -96,15 +95,7 @@ const Header = () => {
           </ul>
         </Navigation>
       </Wrapper>
-      <MobileMenu openSignInModal={openSignInModal} />
-      <GenericModal
-        isOpen={signInModalIsOpen}
-        heading="Sign in"
-        contentLabel=""
-        close={closeSignInModal}
-      >
-        <SignIn />
-      </GenericModal>
+      <MobileMenu />
       <GenericModal
         isOpen={shoppingBagModalIsOpen}
         heading="Shopping bag"

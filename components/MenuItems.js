@@ -44,8 +44,7 @@ const LOGGED_OUT_MENU_LIST = [
   },
   {
     text: "Sign in",
-    link: "/", // TODO: removing link property breaks UI
-    click: "/",
+    link: "/signin", // TODO: removing link property breaks UI
     icon: {
       name: "user",
     },
@@ -145,7 +144,7 @@ const LoggedOut = styled.ul`
   }
 `;
 
-const GuestMenuItems = ({ openSignInModal }) => {
+const GuestMenuItems = () => {
   const [, toggle] = useContext(MenuContext);
   const [user] = useContext(UserContext);
   const [loggedOutMenu, setLoggedOutMenu] = useState(
@@ -174,7 +173,6 @@ const GuestMenuItems = ({ openSignInModal }) => {
   ) : (
     <LoggedOut>
       {loggedOutMenu.map((item, i) => {
-        // openSignInModal();
         return (
           <li
             onClick={

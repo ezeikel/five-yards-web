@@ -3,7 +3,6 @@ import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import { onError } from "apollo-link-error";
-import { endpoint, prodEndpoint } from "../config";
 
 let apolloClient;
 
@@ -21,7 +20,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: process.env.NODE_ENV === "production" ? prodEndpoint : endpoint,
+  uri: process.env.NEXT_PUBLIC_API_URL,
   credentials: "include",
 });
 

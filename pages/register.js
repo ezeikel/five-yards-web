@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import SignupForm from "../components/SignupForm";
+import SignupForm from "../components/SignUpForm";
 
 const Wrapper = styled.div`
   display: flex;
 `;
 
-const SignupPage = () => {
+const RegisterPage = () => {
   return (
     <Wrapper>
       <SignupForm />
@@ -13,4 +13,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default RegisterPage;

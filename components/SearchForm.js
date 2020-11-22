@@ -38,10 +38,10 @@ const Wrapper = styled.div`
 
   button {
     font-family: var(--font-family-primary);
-    font-size: 14px;
+    font-size: 16px;
     background-color: var(--color-primary);
     width: 100%;
-    padding: var(--spacing-small);
+    padding: var(--spacing-medium);
     outline: none;
     border: 1px solid var(--color-primary);
     color: var(--color-white);
@@ -62,6 +62,9 @@ const SearchType = styled.li`
     active ? "var(--color-primary)" : "var(--color-black)"};
   border-bottom: ${({ active }) =>
     active ? "3px solid var(--color-primary)" : "3px solid transparent"};
+  svg {
+    margin-bottom: var(--spacing-tiny);
+  }
 `;
 
 const SearchForm = () => {
