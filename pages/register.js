@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SignupForm from "../components/SignUpForm";
+import SignUpForm from "../components/SignUpForm";
 
 const Wrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 const RegisterPage = () => {
   return (
     <Wrapper>
-      <SignupForm />
+      <SignUpForm />
     </Wrapper>
   );
 };
