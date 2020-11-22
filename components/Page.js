@@ -8,6 +8,7 @@ import {
   faGoogle,
   faFacebookSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import { faShoppingBag, faBars } from "@fortawesome/pro-regular-svg-icons";
 import {
   faCut,
   faSearch,
@@ -24,8 +25,6 @@ import {
   faAddressCard,
   faKey,
   faCreditCard,
-  faShoppingBag,
-  faBars,
 } from "@fortawesome/pro-light-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";

@@ -82,7 +82,7 @@ const Header = () => {
             <li>
               <span onClick={openShoppingBagModal}>
                 <FontAwesomeIcon
-                  icon={["fal", "shopping-bag"]}
+                  icon={["far", "shopping-bag"]}
                   color="var(--color-black)"
                   size="2x"
                 />
@@ -90,7 +90,7 @@ const Header = () => {
             </li>
             <li onClick={() => setActive(!active)}>
               <FontAwesomeIcon
-                icon={["fal", "bars"]}
+                icon={["far", "bars"]}
                 color="var(--color-primary)"
                 size="2x"
               />
