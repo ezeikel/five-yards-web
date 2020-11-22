@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
-import MenuIcon from "./svgs/MenuIcon";
 import MobileMenu from "./MobileMenu";
 import GenericModal from "./GenericModal";
 import ShoppingBag from "./ShoppingBag";
@@ -90,7 +89,11 @@ const Header = () => {
               </span>
             </li>
             <li onClick={() => setActive(!active)}>
-              <MenuIcon />
+              <FontAwesomeIcon
+                icon={["fal", "bars"]}
+                color="var(--color-primary)"
+                size="2x"
+              />
             </li>
           </ul>
         </Navigation>

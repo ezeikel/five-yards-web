@@ -8,7 +8,6 @@ import {
   faGoogle,
   faFacebookSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { faShoppingCart } from "@fortawesome/pro-regular-svg-icons";
 import {
   faCut,
   faSearch,
@@ -26,6 +25,7 @@ import {
   faKey,
   faCreditCard,
   faShoppingBag,
+  faBars,
 } from "@fortawesome/pro-light-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
@@ -36,7 +36,6 @@ library.add(
   faFacebookF,
   faTwitter,
   faInstagram,
-  faShoppingCart,
   faCut,
   faSearch,
   faLayerGroup,
@@ -55,6 +54,7 @@ library.add(
   faKey,
   faCreditCard,
   faShoppingBag,
+  faBars,
 );
 
 const theme = {
