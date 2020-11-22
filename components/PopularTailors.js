@@ -87,7 +87,7 @@ const PopularTailors = () => {
       <div>
         {data.map((tailor, index) => (
           <figure key={index}>
-            <Image src={tailor.img} unsized />
+            <Image src={tailor.img} width="300" height="400" />
             <figcaption>
               <span>{tailor.name}</span>
               <span>£{tailor.averagePrice} garment average</span>

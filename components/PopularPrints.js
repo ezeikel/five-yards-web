@@ -84,7 +84,7 @@ const PopularPrints = () => {
       <div>
         {data.map((fabric, index) => (
           <figure key={index}>
-            <Image src={fabric.img} unsized />
+            <Image src={fabric.img} width="300" height="300" />
             <figcaption>
               <span>{fabric.name}</span>
             </figcaption>
