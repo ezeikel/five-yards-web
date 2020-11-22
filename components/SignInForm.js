@@ -6,24 +6,50 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
+import Button from "./styles/Button";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Please enter a Email."),
   password: Yup.string().required("Please enter a Password."),
 });
 
-const StyledForgotPasswordLink = styled.a`
-  align-self: center;
-  color: #003569;
-  cursor: pointer;
-  margin-top: 16px;
+const Wrapper = styled.div`
+  display: flex;
+  margin-bottom: var(--spacing-medium);
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-large);
 `;
 
 const StyledForm = styled(Form)`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  > div + input {
-    margin-top: 16px;
+  .text-input + .text-input {
+    margin-top: var(--spacing-medium);
+  }
+`;
+
+const Help = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-medium);
+  label {
+    font-weight: var(--font-weight-primary-regular);
+    display: flex;
+    align-items: center;
+    input {
+      margin-right: var(--spacing-small);
+    }
+  }
+  a {
+    font-weight: var(--font-weight-primary-medium);
+    color: var(--color-primary);
   }
 `;
 
@@ -43,7 +69,7 @@ const Signin = () => {
   });
 
   return (
-    <>
+    <Wrapper>
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={SigninSchema}
@@ -60,28 +86,32 @@ const Signin = () => {
       >
         {({ isSubmitting, touched, errors }) => (
           <StyledForm>
-            <TextInput name="email" placeholder="Email address" type="text" />
-            <TextInput name="password" placeholder="Password" type="password" />
-            <div>
+            <InputWrapper>
+              <TextInput name="email" placeholder="Email address" type="text" />
+              <TextInput
+                name="password"
+                placeholder="Password"
+                type="password"
+              />
+            </InputWrapper>
+            <Help>
               <label>
                 <input type="checkbox" />
-                Remember me
+                Remember me &nbsp;
               </label>
               <Link href="/request-reset">
-                <StyledForgotPasswordLink>
-                  Forgot password?
-                </StyledForgotPasswordLink>
+                <a>Forgot password?</a>
               </Link>
-            </div>
-            <button type="submit" disabled={isSubmitting}>
+            </Help>
+            <Button type="submit" disabled={isSubmitting}>
               Sign{isSubmitting ? "ing" : null} In
-            </button>
+            </Button>
           </StyledForm>
         )}
       </Formik>
       {loading && console.log("loading...")}
       {error && console.error({ error })}
-    </>
+    </Wrapper>
   );
 };
 

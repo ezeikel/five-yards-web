@@ -75,6 +75,12 @@ export default createGlobalStyle`
     margin: 0;
   }
 
+  hr {
+    border: none;
+    height: 1px;
+    border-top: 1px solid #cccccc;
+  }
+
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: var(--color-light-grey);
