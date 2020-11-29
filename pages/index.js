@@ -3,6 +3,7 @@ import PartnerWithUs from "../components/PartnerWithUs";
 import PopularPrints from "../components/PopularPrints";
 import PopularTailors from "../components/PopularTailors";
 import SearchForm from "../components/SearchForm";
+import useUser from "../hooks/useUser";
 
 const Wrapper = styled.div`
   display: grid;
@@ -30,15 +31,19 @@ const Hero = styled.div`
   margin-bottom: var(--spacing-large);
 `;
 
-const Index = () => (
-  <Wrapper>
-    <Hero className="full">
-      <SearchForm />
-    </Hero>
-    <PopularTailors />
-    <PopularPrints />
-    <PartnerWithUs />
-  </Wrapper>
-);
+const Index = () => {
+  useUser();
+
+  return (
+    <Wrapper>
+      <Hero className="full">
+        <SearchForm />
+      </Hero>
+      <PopularTailors />
+      <PopularPrints />
+      <PartnerWithUs />
+    </Wrapper>
+  );
+};
 
 export default Index;

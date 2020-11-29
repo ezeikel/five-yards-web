@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
+import { SWRConfig } from "swr";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookF,
@@ -86,12 +87,26 @@ const Page = ({ children }) => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Wrapper>
-        <Meta />
+      <Meta />
+      <SWRConfig
+        value={{
+          refreshInterval: 3000,
+          // TODO: sort out swr for graphql and apollo
+          fetcher: url =>
+            axios
+              .get(url, {
+                withCredentials: true,
+              })
+              .then(res => res.data.data),
+          onError: error => console.error(error),
+        }}
+      >
         <Header />
-        <Inner>{children}</Inner>
-        <Footer />
-      </Wrapper>
+        <Wrapper>
+          <Inner>{children}</Inner>
+          <Footer />
+        </Wrapper>
+      </SWRConfig>
     </ThemeProvider>
   </>
 );

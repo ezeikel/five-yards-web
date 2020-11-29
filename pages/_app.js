@@ -1,10 +1,10 @@
-// import App from "next/app";
 import { ApolloProvider } from "@apollo/client";
 import PropTypes from "prop-types";
-import { useApollo } from "../apollo/client";
-import Page from "../components/Page";
+import mixpanel from "mixpanel-browser";
 import * as Sentry from "@sentry/browser";
+import { useApollo } from "../apollo/client";
 import { MenuContextProvider } from "../contexts/menu";
+import Page from "../components/Page";
 
 Sentry.init({
   enabled: process.env.NODE_ENV === "production",
@@ -12,6 +12,12 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   release: process.env.SENTRY_RELEASE,
 });
+
+mixpanel.init(
+  process.env.NEXT_PUBLIC_MIXPANEL_TOKEN,
+  { api_host: "https://api-eu.mixpanel.com" },
+  "",
+);
 
 const MyApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);

@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./styles/Button";
@@ -57,14 +58,6 @@ const Signin = () => {
   const router = useRouter();
 
   const [signin, { data, loading, error }] = useMutation(SIGNIN_MUTATION, {
-    onCompleted({ signin: { id } }) {
-      router.push(
-        {
-          pathname: "/feed",
-        },
-        "/",
-      );
-    },
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
@@ -75,8 +68,10 @@ const Signin = () => {
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
-            // await signin({ variables: values });
+            await signin({ variables: values });
+            mixpanel.track("Sign in");
             resetForm();
+            router.push("/");
           } catch (error) {
             console.error({ error });
           } finally {

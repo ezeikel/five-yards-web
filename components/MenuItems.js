@@ -44,7 +44,7 @@ const LOGGED_OUT_MENU_LIST = [
   },
   {
     text: "Sign in",
-    link: "/signin", // TODO: removing link property breaks UI
+    link: "/signin",
     icon: {
       name: "user",
     },
@@ -144,7 +144,7 @@ const LoggedOut = styled.ul`
   }
 `;
 
-const GuestMenuItems = () => {
+const MenuItems = () => {
   const [, toggle] = useContext(MenuContext);
   const [user] = useContext(UserContext);
   const [loggedOutMenu, setLoggedOutMenu] = useState(
@@ -237,4 +237,4 @@ const GuestMenuItems = () => {
   );
 };
 
-export default GuestMenuItems;
+export default MenuItems;

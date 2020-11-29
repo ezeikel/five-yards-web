@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 // TODO: me and currentUser do very similar things. Merge?
 export const CURRENT_USER_QUERY = gql`
   query {
-    me {
+    currentUser {
       id
       email
       fullName
