@@ -1,19 +1,21 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { MenuContext } from "../contexts/menu";
-import CloseButton from "./CloseButton";
-import MenuItems from "./MenuItems";
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
+import { MenuContext } from "../contexts/menu";
+import CloseButton from "./CloseButton";
+import MenuItems from "./MenuItems";
+import useUser from "../hooks/useUser";
 
 const Wrapper = styled.div`
   display: ${({ active }) => (active ? "flex" : "none")};
   flex-direction: column;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: ${({ user }) =>
+    user ? "var(--color-white)" : "var(--color-black)"};
+  color: ${({ user }) => (user ? "var(--color-black)" : "var(--color-white)")};
   position: fixed;
   top: 0;
   left: 0;
@@ -25,15 +27,15 @@ const Wrapper = styled.div`
   a:link,
   a:visited,
   a:active {
-    color: var(--color-white);
+    color: ${({ user }) =>
+      user ? "var(--color-black)" : "var(--color-white)"};
   }
 `;
 
 const Header = styled.header`
   display: flex;
   justify-content: flex-end;
-  border-bottom: 1px solid var(--color-dark-grey);
-  padding: var(--spacing-medium);
+  padding: var(--spacing-medium) var(--spacing-large);
 `;
 
 const Body = styled.div`
@@ -54,9 +56,10 @@ const Body = styled.div`
         margin-top: var(--spacing-large);
       }
       &:last-of-type {
-        flex: 1 0 auto;
+        flex: 0 0 auto;
         border-top: 1px solid var(--color-dark-grey);
         padding-top: var(--spacing-medium);
+        margin-top: auto;
       }
       svg {
         margin-right: var(--spacing-medium);
@@ -73,6 +76,7 @@ const Body = styled.div`
 const MobileMenu = () => {
   const wrapperEl = useRef(null);
   const [active, toggle] = useContext(MenuContext);
+  const { user, isLoading } = useUser();
 
   useEffect(() => {
     if (active) {
@@ -87,10 +91,10 @@ const MobileMenu = () => {
   }, [active]);
 
   return (
-    <Wrapper active={active} ref={wrapperEl}>
+    <Wrapper user={user} active={active} ref={wrapperEl}>
       <Header>
         <CloseButton
-          color="var(--color-white)"
+          color={user ? "var(--color-black)" : "var(--color-white)"}
           circle
           handleClick={() => toggle(false)}
         />

@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MenuContext } from "../contexts/menu";
-import { UserContext } from "../contexts/user";
 import styled from "styled-components";
+import { MenuContext } from "../contexts/menu";
+import useUser from "../hooks/useUser";
+import { useRouter } from "next/router";
+import { SIGNOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
+import { useMutation } from "@apollo/client";
 
 const LOGGED_OUT_MENU_LIST = [
   {
@@ -51,61 +54,6 @@ const LOGGED_OUT_MENU_LIST = [
   },
 ];
 
-const LOGGED_IN_MENU_LIST = [
-  {
-    text: "My orders",
-    link: "/",
-    icon: {
-      name: "receipt",
-    },
-  },
-  {
-    text: "My appointments",
-    link: "/",
-    icon: {
-      name: "calendar-check",
-    },
-  },
-  {
-    text: "Message center",
-    link: "/",
-    icon: {
-      name: "comment-alt",
-    },
-  },
-  {
-    text: "My details",
-    link: "/",
-    icon: {
-      name: "address-card",
-    },
-  },
-  {
-    text: "Change password",
-    link: "/",
-    icon: {
-      name: "key",
-    },
-  },
-  {
-    text: "Payment preferences",
-    link: "/",
-    icon: {
-      name: "credit-card",
-    },
-  },
-  {
-    text: "Sign out",
-    link: "/", // TODO: removing link property breaks UI
-    click: "/",
-    icon: {
-      name: "user",
-    },
-  },
-];
-
-const LoggedIn = styled.ul``;
-
 const LoggedOut = styled.ul`
   font-size: 25px;
 
@@ -144,32 +92,108 @@ const LoggedOut = styled.ul`
   }
 `;
 
+const UserAvatar = styled.div`
+  width: var(--spacing-large);
+  height: var(--spacing-large);
+  border-radius: 50%;
+  background-color: tomato;
+  margin-right: var(--spacing-medium);
+`;
+
 const MenuItems = () => {
+  const router = useRouter();
   const [, toggle] = useContext(MenuContext);
-  const [user] = useContext(UserContext);
+  const { user } = useUser();
   const [loggedOutMenu, setLoggedOutMenu] = useState(
     LOGGED_OUT_MENU_LIST.map((item, i) => ({ ...item, index: i })),
   );
 
+  const [signout, { data, loading, error }] = useMutation(SIGNOUT_MUTATION, {
+    onCompleted() {
+      router.push(`/`);
+    },
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+  });
+
+  const LOGGED_IN_USER_MENU_LIST = [
+    {
+      text: "My orders",
+      link: "/",
+      icon: {
+        name: "receipt",
+      },
+    },
+    {
+      text: "My appointments",
+      link: "/",
+      icon: {
+        name: "calendar-check",
+      },
+    },
+    {
+      text: "Message center",
+      link: "/",
+      icon: {
+        name: "comment-alt",
+      },
+    },
+    {
+      text: "My details",
+      link: "/",
+      icon: {
+        name: "address-card",
+      },
+    },
+    {
+      text: "Change password",
+      link: "/",
+      icon: {
+        name: "key",
+      },
+    },
+    {
+      text: "Payment preferences",
+      link: "/",
+      icon: {
+        name: "credit-card",
+      },
+    },
+    {
+      text: "Sign out",
+      link: null, // TODO: removing link property breaks UI
+      click: signout,
+      avatar: true,
+      icon: {
+        name: "user",
+      },
+    },
+  ];
+
   return user ? (
-    <LoggedIn>
-      {LOGGED_IN_MENU_LIST.map((item, i) => {
+    <ul>
+      {LOGGED_IN_USER_MENU_LIST.map((item, i) => {
         return (
           <li onClick={() => toggle(false)} key={i}>
-            {item.icon ? (
+            {item.avatar ? (
+              <UserAvatar />
+            ) : item.icon ? (
               <FontAwesomeIcon
                 icon={["fal", item.icon.name]}
-                color="var(--color-white)"
+                color={user ? "var(--color-black)" : "var(--color-white)"}
                 size="lg"
               />
             ) : null}
-            <Link href={item.link}>
-              <a>{item.text}</a>
-            </Link>
+            {item.link ? (
+              <Link href={item.link}>
+                <a>{item.text}</a>
+              </Link>
+            ) : (
+              <span onClick={item.click}>{item.text}</span>
+            )}
           </li>
         );
       })}
-    </LoggedIn>
+    </ul>
   ) : (
     <LoggedOut>
       {loggedOutMenu.map((item, i) => {

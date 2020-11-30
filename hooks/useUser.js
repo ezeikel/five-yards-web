@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY } from "../apollo/queries";
 
 const useUser = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const {
     loading,
     error,
@@ -14,13 +14,14 @@ const useUser = () => {
     pollInterval: 3000,
   });
 
-  useEffect(() => {
-    if (!error && typeof user === "undefined") return;
+  // TODO: only redirect user if not signed in and on a user specific page e.g. Account
+  // useEffect(() => {
+  //   if (!error && typeof user === "undefined") return;
 
-    if (!user) {
-      router.push("/signin");
-    }
-  }, [user]);
+  //   if (!user) {
+  //     router.push("/signin");
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (user) {
