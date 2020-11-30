@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "./svgs/Logo";
-import GDPRLogo from "./GDPRLogo";
+import GDPRLogo from "./svgs/GDPRLogo";
 
 const Wrapper = styled.footer`
   display: flex;

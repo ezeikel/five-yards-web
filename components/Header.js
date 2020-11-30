@@ -45,19 +45,7 @@ const Navigation = styled.nav`
 
 const Header = () => {
   const [active, setActive] = useContext(MenuContext);
-
-  // const [mobileMenuActive, setMobileMenuActive] = useState(false);
-
-  const [signInModalIsOpen, setSignInModalIsOpen] = useState(false);
   const [shoppingBagModalIsOpen, setShoppingBagModalIsOpen] = useState(false);
-
-  const openSignInModal = async () => {
-    setSignInModalIsOpen(true);
-  };
-
-  const closeSignInModal = () => {
-    setSignInModalIsOpen(false);
-  };
 
   const openShoppingBagModal = async () => {
     setShoppingBagModalIsOpen(true);

@@ -76,7 +76,7 @@ const Body = styled.div`
 const MobileMenu = () => {
   const wrapperEl = useRef(null);
   const [active, toggle] = useContext(MenuContext);
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     if (active) {

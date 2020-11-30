@@ -2,18 +2,16 @@ import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import styled from "styled-components";
 import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
+import Button from "./styles/Button";
 
 const SignupSchema = Yup.object().shape({
   fullName: Yup.string()
     .min(2, "That name is too short.")
     .max(50, "That name is too long")
     .required("Please enter a name."),
-  username: Yup.string()
-    .min(2, "That username is too short.")
-    .max(50, "That username is too long.")
-    .required("Please enter a username."),
   email: Yup.string()
     .email("That email is invalid. Please try again.")
     .required("Please enter an email."),
@@ -22,19 +20,36 @@ const SignupSchema = Yup.object().shape({
     .required("Please enter a password."),
 });
 
-const SignupForm = () => {
+const Wrapper = styled.div`
+  display: flex;
+  margin-bottom: var(--spacing-medium);
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-large);
+`;
+
+const StyledForm = styled(Form)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .text-input + .text-input {
+    margin-top: var(--spacing-medium);
+  }
+`;
+
+const SignUpForm = () => {
   const router = useRouter();
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
+  const [signup, { loading, error }] = useMutation(SIGNUP_MUTATION, {
     mutation: SIGNUP_MUTATION,
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
-    // onCompleted({ signup: { username } }) {
-    //   router.push("/[username]", `/${username}`);
-    // },
   });
 
   return (
-    <>
+    <Wrapper>
       <Formik
         initialValues={{ email: "", fullName: "", username: "", password: "" }}
         validationSchema={SignupSchema}
@@ -43,6 +58,7 @@ const SignupForm = () => {
           try {
             await signup({ variables: values });
             resetForm();
+            router.push("/");
           } catch (error) {
             console.error(error.message);
           } finally {
@@ -50,22 +66,27 @@ const SignupForm = () => {
           }
         }}
       >
-        {({ isSubmitting, errors, touched }) => (
-          <Form>
-            <TextInput label="fullName" name="fullName" type="text" />
-            <TextInput label="email" name="email" type="email" />
-            <TextInput label="username" name="username" type="text" />
-            <TextInput label="password" name="password" type="password" />
-            <button type="submit" disabled={isSubmitting}>
-              Sign Up {isSubmitting ? <div>Loading...</div> : null}
-            </button>
-          </Form>
+        {({ isSubmitting }) => (
+          <StyledForm>
+            <InputWrapper>
+              <TextInput name="fullName" type="text" placeholder="Full name" />
+              <TextInput name="email" type="email" placeholder="Email" />
+              <TextInput
+                name="password"
+                type="password"
+                placeholder="Create password"
+              />
+            </InputWrapper>
+            <Button type="submit" disabled={isSubmitting}>
+              Register{isSubmitting ? "ing" : null}
+            </Button>
+          </StyledForm>
         )}
       </Formik>
       {loading && console.log("loading...")}
       {error && console.error({ error })}
-    </>
+    </Wrapper>
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

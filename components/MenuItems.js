@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { SIGNOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
 import { useMutation } from "@apollo/client";
 
+// TODO: instead of trying to this dynamic menu list thing, create seperate components
+// for different user state with items and click events hardcoded
 const LOGGED_OUT_MENU_LIST = [
   {
     text: "Home",
@@ -47,7 +49,7 @@ const LOGGED_OUT_MENU_LIST = [
   },
   {
     text: "Sign in",
-    link: "/signin",
+    link: "/sign-in",
     icon: {
       name: "user",
     },
@@ -108,7 +110,7 @@ const MenuItems = () => {
     LOGGED_OUT_MENU_LIST.map((item, i) => ({ ...item, index: i })),
   );
 
-  const [signout, { data, loading, error }] = useMutation(SIGNOUT_MUTATION, {
+  const [signout] = useMutation(SIGNOUT_MUTATION, {
     onCompleted() {
       router.push(`/`);
     },

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GoogleIcon from "../components/svgs/GoogleIcon";
-import SignInForm from "../components/SignInForm";
+import SignUpForm from "../components/SignUpForm";
 import Button from "../components/styles/Button";
 
 const Wrapper = styled.div`
@@ -67,10 +67,10 @@ const DontHave = styled.div`
 
 const SignIn = () => (
   <Wrapper>
-    <Heading>Sign In</Heading>
-    <SignInForm />
+    <Heading>Create an account</Heading>
+    <SignUpForm />
     <DontHave>
-      Don&apos;t have an account? <Link href="/register">Sign up</Link>
+      Already have an account? <Link href="/sign-in">Sign in</Link>
     </DontHave>
     <ContinueWith>
       <hr />
