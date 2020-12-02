@@ -3,12 +3,17 @@ import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./styles/Button";
 
 const SignupSchema = Yup.object().shape({
-  fullName: Yup.string()
+  firstName: Yup.string()
+    .min(2, "That name is too short.")
+    .max(50, "That name is too long")
+    .required("Please enter a name."),
+  lastName: Yup.string()
     .min(2, "That name is too short.")
     .max(50, "That name is too long")
     .required("Please enter a name."),
@@ -51,12 +56,13 @@ const SignUpForm = () => {
   return (
     <Wrapper>
       <Formik
-        initialValues={{ email: "", fullName: "", username: "", password: "" }}
+        initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
         validationSchema={SignupSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           console.log({ values });
           try {
             await signup({ variables: values });
+            mixpanel.track("Register");
             resetForm();
             router.push("/");
           } catch (error) {
@@ -69,7 +75,12 @@ const SignUpForm = () => {
         {({ isSubmitting }) => (
           <StyledForm>
             <InputWrapper>
-              <TextInput name="fullName" type="text" placeholder="Full name" />
+              <TextInput
+                name="firstName"
+                type="text"
+                placeholder="First name"
+              />
+              <TextInput name="lastName" type="text" placeholder="Last name" />
               <TextInput name="email" type="email" placeholder="Email" />
               <TextInput
                 name="password"

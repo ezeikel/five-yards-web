@@ -29,7 +29,7 @@ const useUser = () => {
 
       mixpanel.people.set({
         User_ID: user.id,
-        $name: user.fullName, // TODO: Make sure name in DB is capitalized
+        $name: `${user.firstName} ${user.lastName}`, // TODO: Make sure name in DB is capitalized
         $email: user.email,
       });
     }

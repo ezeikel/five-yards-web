@@ -26,13 +26,13 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const signup = async (
-    { email, fullName, username, password },
+    { firstName, lastName, email, password },
     { setSubmitting, setErrors, resetForm },
   ) => {
     try {
       await client.mutate({
         mutation: SIGNUP_MUTATION,
-        variables: { email, fullName, username, password },
+        variables: { firstName, lastName, email, password },
         onCompleted: async ({ data: { signup: user } }) => {
           console.log({ user });
           resetForm();

@@ -64,7 +64,7 @@ const Signin = () => {
   return (
     <Wrapper>
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {

@@ -6,8 +6,9 @@ export const CURRENT_USER_QUERY = gql`
   query {
     currentUser {
       id
+      firstName
+      lastName
       email
-      fullName
       permissions
       cart {
         id
@@ -26,21 +27,21 @@ export const CURRENT_USER_QUERY = gql`
 
 export const SIGNUP_MUTATION = gql`
   mutation signup(
+    $firstName: String!
+    $lastName: String!
     $email: String!
-    $fullName: String!
-    $username: String!
     $password: String!
   ) {
     signup(
+      firstName: $firstName
+      lastName: $lastName
       email: $email
-      fullName: $fullName
-      username: $username
       password: $password
     ) {
       id
+      firstName
+      lastName
       email
-      fullName
-      username
       permissions
     }
   }
@@ -50,9 +51,9 @@ export const SIGNIN_MUTATION = gql`
   mutation signin($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
       id
+      firstName
+      lastName
       email
-      fullName
-      username
       permissions
       cart {
         id
@@ -98,8 +99,8 @@ export const RESET_MUTATION = gql`
     ) {
       id
       email
-      username
-      fullName
+      firstName
+      lastName
       permissions
     }
   }
@@ -227,8 +228,8 @@ export const ADD_TO_CART_MUTATION = gql`
   mutation addToCart($id: ID!) {
     addToCart(id: $id) {
       id
-      fullName
-      username
+      firstName
+      lastName
       email
       permissions
       cart {
