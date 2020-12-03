@@ -11,7 +11,7 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-large);
 `;
 
 const LogoWrapper = styled.div`

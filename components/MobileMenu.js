@@ -6,9 +6,10 @@ import {
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 import { MenuContext } from "../contexts/menu";
-import CloseButton from "./CloseButton";
-import MenuItems from "./MenuItems";
 import useUser from "../hooks/useUser";
+import LoggedOutMenuList from "./LoggedOutMenuList";
+import LoggedInUserMenuList from "./LoggedInUserMenuList";
+import CloseButton from "./CloseButton";
 
 const Wrapper = styled.div`
   display: ${({ active }) => (active ? "flex" : "none")};
@@ -35,7 +36,7 @@ const Wrapper = styled.div`
 const Header = styled.header`
   display: flex;
   justify-content: flex-end;
-  padding: var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-large);
 `;
 
 const Body = styled.div`
@@ -90,6 +91,8 @@ const MobileMenu = () => {
     };
   }, [active]);
 
+  const menuContent = user ? <LoggedInUserMenuList /> : <LoggedOutMenuList />;
+
   return (
     <Wrapper user={user} active={active} ref={wrapperEl}>
       <Header>
@@ -99,9 +102,7 @@ const MobileMenu = () => {
           handleClick={() => toggle(false)}
         />
       </Header>
-      <Body>
-        <MenuItems />
-      </Body>
+      <Body>{menuContent}</Body>
     </Wrapper>
   );
 };
