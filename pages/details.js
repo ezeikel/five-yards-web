@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ShoppingBag from "../components/ShoppingBag";
 
 const Wrapper = styled.div`
   display: grid;

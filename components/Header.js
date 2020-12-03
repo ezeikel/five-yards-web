@@ -57,7 +57,7 @@ const Header = () => {
         <Navigation>
           <ul>
             <li>
-              <Link href="/shopping-bag">
+              <Link href="/bag">
                 <a>
                   <FontAwesomeIcon
                     icon={["far", "shopping-bag"]}
