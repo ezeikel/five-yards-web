@@ -34,6 +34,12 @@ const Wrapper = styled.div`
   }
 `;
 
+const Heading = styled.h1`
+  font-size: 20px;
+  text-align: center;
+  margin: 0 0 var(--spacing-large);
+`;
+
 const Empty = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,6 +124,7 @@ const Total = styled.div`
 const ShoppingBag = () => {
   return (
     <Wrapper>
+      <Heading>Shopping Bag</Heading>
       {/* <div>
         <p>Items are reserved for 60 minutes</p>
       </div> */}

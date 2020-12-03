@@ -1,12 +1,10 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
 import MobileMenu from "./MobileMenu";
-import GenericModal from "./GenericModal";
-import ShoppingBag from "./ShoppingBag";
 import { UserContextProvider } from "../contexts/user";
 
 const Wrapper = styled.header`
@@ -45,15 +43,6 @@ const Navigation = styled.nav`
 
 const Header = () => {
   const [active, setActive] = useContext(MenuContext);
-  const [shoppingBagModalIsOpen, setShoppingBagModalIsOpen] = useState(false);
-
-  const openShoppingBagModal = async () => {
-    setShoppingBagModalIsOpen(true);
-  };
-
-  const closeShoppingBagModal = () => {
-    setShoppingBagModalIsOpen(false);
-  };
 
   return (
     <UserContextProvider>
@@ -68,13 +57,15 @@ const Header = () => {
         <Navigation>
           <ul>
             <li>
-              <span onClick={openShoppingBagModal}>
-                <FontAwesomeIcon
-                  icon={["far", "shopping-bag"]}
-                  color="var(--color-black)"
-                  size="2x"
-                />
-              </span>
+              <Link href="/shopping-bag">
+                <a>
+                  <FontAwesomeIcon
+                    icon={["far", "shopping-bag"]}
+                    color="var(--color-black)"
+                    size="2x"
+                  />
+                </a>
+              </Link>
             </li>
             <li onClick={() => setActive(!active)}>
               <FontAwesomeIcon
@@ -87,14 +78,6 @@ const Header = () => {
         </Navigation>
       </Wrapper>
       <MobileMenu />
-      <GenericModal
-        isOpen={shoppingBagModalIsOpen}
-        heading="Shopping bag"
-        contentLabel=""
-        close={closeShoppingBagModal}
-      >
-        <ShoppingBag />
-      </GenericModal>
     </UserContextProvider>
   );
 };
