@@ -80,6 +80,10 @@ const Wrapper = styled.div`
 
 const Inner = styled.main`
   flex: 1 0 auto;
+  display: flex;
+  > div {
+    flex: 1 0 auto;
+  }
 `;
 
 const Page = ({ children }) => (

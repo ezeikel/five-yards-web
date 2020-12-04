@@ -54,7 +54,7 @@ const Help = styled.div`
   }
 `;
 
-const Signin = () => {
+const SignInForm = () => {
   const router = useRouter();
 
   const [signin, { data, loading, error }] = useMutation(SIGNIN_MUTATION, {
@@ -79,7 +79,7 @@ const Signin = () => {
           }
         }}
       >
-        {({ isSubmitting, touched, errors }) => (
+        {({ isSubmitting }) => (
           <StyledForm>
             <InputWrapper>
               <TextInput name="email" placeholder="Email address" type="text" />
@@ -110,4 +110,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignInForm;

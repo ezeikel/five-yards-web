@@ -106,6 +106,22 @@ export const RESET_MUTATION = gql`
   }
 `;
 
+export const CHANGE_PASSWORD_MUTATION = gql`
+  mutation CHANGE_PASSWORD_MUTATION(
+    $oldPassword: String!
+    $newPassword: String!
+    $passwordHint: String
+  ) {
+    changePassword(
+      oldPassword: $oldPassword
+      newPassword: $newPassword
+      passwordHint: $passwordHint
+    ) {
+      message
+    }
+  }
+`;
+
 export const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
     $title: String!
