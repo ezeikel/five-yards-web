@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import ShoppingBag from "../components/ShoppingBag";
+import Bag from "../components/Bag";
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: var(--spacing-large) 1fr var(--spacing-large);
   justify-items: center;
-  padding-bottom: var(--spacing-large);
 
   > * {
     grid-column: 2 / -2;
@@ -16,12 +15,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const ShoppingBagPage = () => {
+const BagPage = () => {
   return (
     <Wrapper>
-      <ShoppingBag />
+      <Bag />
     </Wrapper>
   );
 };
 
-export default ShoppingBagPage;
+export default BagPage;

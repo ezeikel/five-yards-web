@@ -7,7 +7,8 @@ const Wrapper = styled.div`
   width: 100%;
   > div {
     &:first-of-type {
-      padding: 0 var(--spacing-large) var(--spacing-large);
+      border-top: 1px solid #d1cfcf;
+      padding: var(--spacing-medium) var(--spacing-large);
       h3 {
         font-size: 25px;
         margin: 0 0 var(--spacing-tiny);
@@ -35,9 +36,10 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h1`
-  font-size: 20px;
-  text-align: center;
-  margin: 0 0 var(--spacing-large);
+  font-family: var(--secondary-font-family);
+  font-size: 3rem;
+  font-weight: var(--font-weight-secondary-medium);
+  margin: 0 0 var(--spacing-small);
 `;
 
 const Empty = styled.div`
@@ -123,11 +125,11 @@ const Total = styled.div`
 
 const ShoppingBag = () => {
   return (
-    <Wrapper>
-      <Heading>Shopping Bag</Heading>
-      {/* <div>
+    <Wrapper className="full">
+      <div>
+        <Heading>Bag</Heading>
         <p>Items are reserved for 60 minutes</p>
-      </div> */}
+      </div>
       <div>
         <Empty>
           <FontAwesomeIcon
