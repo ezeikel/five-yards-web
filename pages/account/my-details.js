@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import MyDetails from "../../components/MyDetails";
 
 const Wrapper = styled.div`
   display: grid;
+  background-color: #ebebeb;
+  padding-top: var(--spacing-large);
   grid-template-columns: var(--spacing-large) 1fr var(--spacing-large);
   justify-items: center;
   padding-bottom: var(--spacing-large);
@@ -18,7 +21,7 @@ const Wrapper = styled.div`
 const DetailsPage = () => {
   return (
     <Wrapper>
-      <h1>Details Page.</h1>
+      <MyDetails />
     </Wrapper>
   );
 };

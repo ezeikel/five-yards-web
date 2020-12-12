@@ -63,7 +63,7 @@ const LoggedOutMenuList = () => {
           color="var(--color-black)"
           size="lg"
         />
-        <Link href="/account/details">
+        <Link href="/account/my-details">
           <a>My details</a>
         </Link>
       </li>

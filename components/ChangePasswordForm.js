@@ -17,6 +17,10 @@ const ChangePasswordSchema = Yup.object().shape({
 const Wrapper = styled.div`
   display: flex;
   margin-bottom: var(--spacing-medium);
+
+  input {
+    border-color: #bebebe;
+  }
 `;
 
 const InputWrapper = styled.div`
