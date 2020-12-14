@@ -7,6 +7,7 @@ import mixpanel from "mixpanel-browser";
 import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./styles/Button";
+import useUser from "../hooks/useUser";
 
 const MyDetailsSchema = Yup.object().shape({
   firstName: Yup.string().required("Please enter a first name."),
@@ -61,16 +62,20 @@ const SubHeading = styled.h3`
 
 const MyDetailsForm = () => {
   const router = useRouter();
+  const { user } = useUser();
 
   const [updateDetails, { data, loading, error }] = useMutation(
     CHANGE_PASSWORD_MUTATION,
   );
 
+  // TODO: work out how to set intial values to already stored user data
+  console.log({ user });
+
   return (
     <Wrapper>
       <Formik
         initialValues={{
-          firstName: "",
+          firstName: (user && user.firstName) || "",
           lastName: "",
           email: "",
           phoneNumber: "",
@@ -104,6 +109,7 @@ const MyDetailsForm = () => {
                 type="text"
               />
               <TextInput name="lastName" placeholder="Last name" type="text" />
+              <TextInput name="gender" placeholder="Gender" type="text" />
               <TextInput name="email" placeholder="Email" type="email" />
               <TextInput
                 name="phoneNumber"
@@ -125,7 +131,6 @@ const MyDetailsForm = () => {
                 placeholder="Arm Length"
                 type="number"
               />
-              <TextInput name="gender" placeholder="Gender" type="text" />
             </InputWrapper>
             <Button type="submit" disabled={isSubmitting}>
               Sav{isSubmitting ? "ing" : "e"} changes

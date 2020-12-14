@@ -1,19 +1,12 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components";
 import { useMutation } from "@apollo/client";
 import { SIGNOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
 import { useContext } from "react";
 import { MenuContext } from "../contexts/menu";
-
-const UserAvatar = styled.div`
-  width: var(--spacing-large);
-  height: var(--spacing-large);
-  border-radius: 50%;
-  background-color: tomato;
-  margin-right: var(--spacing-medium);
-`;
+import useUser from "../hooks/useUser";
+import UserAvatar from "./UserAvatar";
 
 const LoggedOutMenuList = () => {
   const router = useRouter();
@@ -24,6 +17,8 @@ const LoggedOutMenuList = () => {
     },
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
+
+  const { user } = useUser();
 
   return (
     <ul>
@@ -93,7 +88,7 @@ const LoggedOutMenuList = () => {
           toggle(false);
         }}
       >
-        <UserAvatar />
+        <UserAvatar image={user.gravatar} />
         Sign out
       </li>
     </ul>

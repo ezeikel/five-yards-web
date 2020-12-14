@@ -9,8 +9,17 @@ export const CURRENT_USER_QUERY = gql`
       firstName
       lastName
       email
-      permissions
-      cart {
+      phoneNumber
+      gender
+      gravatar
+      measurements {
+        neck
+        waist
+        hips
+        bust
+        armLength
+      }
+      bag {
         id
         quantity
         item {
@@ -21,6 +30,7 @@ export const CURRENT_USER_QUERY = gql`
           description
         }
       }
+      permissions
     }
   }
 `;
@@ -55,7 +65,7 @@ export const SIGNIN_MUTATION = gql`
       lastName
       email
       permissions
-      cart {
+      bag {
         id
         quantity
         item {
@@ -248,7 +258,7 @@ export const ADD_TO_CART_MUTATION = gql`
       lastName
       email
       permissions
-      cart {
+      bag {
         id
         quantity
         item {
