@@ -121,6 +121,10 @@ export default createGlobalStyle`
     -moz-appearance: none;
     outline: 0;
   }
+
+  input[type="date"] {
+    min-height: 1.6rem;
+  }
 `;
 
 export const spinKeyframe = keyframes`
