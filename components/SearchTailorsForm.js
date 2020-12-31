@@ -69,7 +69,7 @@ const SearchTailorsForm = () => {
             />
             <TextInput
               name="collection-date"
-              type="text"
+              type="date"
               placeholder="Choose a collection date"
               isIOS={isIOSBrowser}
             />

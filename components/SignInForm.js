@@ -84,7 +84,7 @@ const SignInForm = () => {
         {({ isSubmitting }) => (
           <StyledForm>
             <InputWrapper>
-              <TextInput name="email" placeholder="Email address" type="text" />
+              <TextInput name="email" placeholder="Email address" type="email" />
               <TextInput
                 name="password"
                 placeholder="Password"
