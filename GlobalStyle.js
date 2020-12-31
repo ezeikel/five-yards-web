@@ -122,9 +122,9 @@ export default createGlobalStyle`
     outline: 0;
   }
 
-  input[type="date"] {
-    min-height: 1.6rem;
-  }
+  input::-webkit-date-and-time-value {
+  min-height: 1.6rem;
+}
 `;
 
 export const spinKeyframe = keyframes`
