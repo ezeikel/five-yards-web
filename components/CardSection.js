@@ -9,7 +9,7 @@ const StyledLabel = styled.label`
     color: #32325d;
     background-color: white;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;

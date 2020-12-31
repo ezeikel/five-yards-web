@@ -10,14 +10,14 @@ const Wrapper = styled.div`
 const Input = styled.input`
   position: relative;
   line-height: normal;
-  border-radius: 6px;
-  border: 1px solid var(--color-black);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-input-border);
   width: 100%;
   padding: var(--spacing-medium);
   font-family: var(--font-family-primary);
-  font-size: 16px;
+  font-size: 1.6rem;
   @media (min-width: 1280px) {
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 31px;
     padding: 16px 34px;
   }

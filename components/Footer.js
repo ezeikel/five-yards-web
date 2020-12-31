@@ -10,7 +10,7 @@ const Wrapper = styled.footer`
   background-color: var(--color-black);
   color: var(--color-white);
   padding: var(--spacing-large);
-  font-size: 14px;
+  font-size: 1.4rem;
   @media (min-width: 768px) {
     padding: var(--spacing-huge);
     > div {
@@ -65,7 +65,7 @@ const Links = styled.div`
     }
     > span {
       display: flex;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
       margin-bottom: var(--spacing-medium);
     }
@@ -81,17 +81,17 @@ const Links = styled.div`
         margin-left: var(--spacing-huge);
       }
       > span {
-        font-size: 20px;
+        font-size: 2rem;
       }
       > ul li {
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
   }
   @media (min-width: 1280px) {
     > div {
       > ul li {
-        font-size: 16px;
+        font-size: 1.6rem;
       }
     }
   }
@@ -108,7 +108,7 @@ const Social = styled.div`
     &:first-of-type {
       > span {
         display: flex;
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: 700;
         margin-bottom: var(--spacing-medium);
       }
@@ -135,7 +135,7 @@ const Social = styled.div`
       }
       &:first-of-type {
         > span {
-          font-size: 20px;
+          font-size: 2rem;
         }
       }
       &:last-of-type {

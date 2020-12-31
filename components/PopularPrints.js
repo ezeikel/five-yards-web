@@ -31,13 +31,13 @@ const Wrapper = styled.div`
   margin: 0 0 var(--spacing-large);
 
   h3 {
-    font-size: 30px;
+    font-size: 3rem;
     line-height: 31px;
     margin: 0 0 var(--spacing-medium);
   }
 
   p {
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 20px;
     margin: 0 0 var(--spacing-large);
   }
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   figure {
     position: relative;
     flex: 0 0 90%;
-    border-radius: 13px;
+    border-radius: var(--border-radius);
     margin: 0;
     + figure {
       margin-left: var(--spacing-medium);
@@ -62,7 +62,7 @@ const Wrapper = styled.div`
       span {
         color: var(--color-white);
         &:first-of-type {
-          font-size: 20px;
+          font-size: 2rem;
           font-weight: 600;
           line-height: 11px;
         }

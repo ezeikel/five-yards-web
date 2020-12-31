@@ -5,7 +5,6 @@ config.autoAddCss = false;
 export default createGlobalStyle`
   /* fix fontawesome icon sizes */
   ${dom.css()}
-
   /* CSS Variables */
   :root {
     /* Colors */
@@ -13,7 +12,10 @@ export default createGlobalStyle`
     --color-black: #2f2f2f;
     --color-white: #ffffff;
     --color-grey: #cccccc;
+    --color-light-grey: #9f9f9f;
     --color-dark-grey: #585858;
+
+    --color-input-border: #bebebe;
 
     --color-facebook: #274e8c;
     --color-google: #db4437;
@@ -24,6 +26,9 @@ export default createGlobalStyle`
     --spacing-medium: 16px;
     --spacing-large: 32px;
     --spacing-huge: 64px;
+
+    --border-radius: 4px;
+
     /* Font */
     --primary-font-family: ibm-plex-sans, sans-serif;
     --secondary-font-family: stratos, sans-serif;

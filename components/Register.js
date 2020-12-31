@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GoogleIcon from "../components/svgs/GoogleIcon";
 import SignUpForm from "../components/SignUpForm";
-import Button from "../components/styles/Button";
+import Button from "./Button";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h1`
-  font-size: 20px;
+  font-size: 2rem;
   text-align: center;
   margin: 0 0 var(--spacing-large);
 `;

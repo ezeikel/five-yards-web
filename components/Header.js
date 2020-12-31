@@ -33,7 +33,7 @@ const Navigation = styled.nav`
       width: 48px;
       height: 48px;
       border: 1px solid var(--color-grey);
-      border-radius: 2px;
+      border-radius: var(--border-radius);
       + li {
         margin-left: var(--spacing-medium);
       }

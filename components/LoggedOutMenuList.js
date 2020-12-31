@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 
 const Wrapper = styled.ul`
-  font-size: 25px;
+  font-size: 2.5rem;
   li {
     &.has-children {
       flex-direction: column;
@@ -29,7 +29,7 @@ const Wrapper = styled.ul`
         width: 100%;
         margin-top: var(--spacing-medium);
         li {
-          font-size: 16px;
+          font-size: 1.6rem;
           + li {
             margin-top: var(--spacing-medium);
           }

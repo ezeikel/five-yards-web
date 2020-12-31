@@ -66,7 +66,7 @@ const Heading = styled.h1`
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 2rem;
   font-family: var(--secondary-font-family);
   font-weight: var(--font-weight-secondary-semi-bold);
   margin: 0;

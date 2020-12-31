@@ -7,7 +7,7 @@ import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
-import Button from "./styles/Button";
+import Button from "./Button";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Please enter a Email."),
@@ -67,6 +67,8 @@ const SignInForm = () => {
         initialValues={{ email: "", password: "" }}
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
+          debugger;
+
           try {
             await signin({ variables: values });
             mixpanel.track("Sign in");
@@ -98,7 +100,7 @@ const SignInForm = () => {
                 <a>Forgot password?</a>
               </Link>
             </Help>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button primary type="submit" disabled={isSubmitting}>
               Sign{isSubmitting ? "ing" : null} In
             </Button>
           </StyledForm>

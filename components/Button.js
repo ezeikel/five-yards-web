@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.button`
   display: flex;
+  justify-content: center;
+  font-size: 2rem;
   font-family: var(--primary-font-family);
   font-weight: var(--font-weight-primary-medium);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: var(--spacing-small) var(--spacing-medium);
   outline: 0;
   cursor: pointer;
@@ -45,12 +47,8 @@ const Wrapper = styled.button`
       : null}
 `;
 
-const Button = ({ text, primary, ghost, disabled }) => {
-  return (
-    <Wrapper primary={primary} ghost={ghost} disabled={disabled}>
-      {text}
-    </Wrapper>
-  );
-};
+const Button = ({ children, ...props }) => (
+  <Wrapper {...props}>{children}</Wrapper>
+);
 
 export default Button;

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
 import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
-import Button from "./styles/Button";
+import Button from "./Button";
 import useUser from "../hooks/useUser";
 
 const MyDetailsSchema = Yup.object().shape({

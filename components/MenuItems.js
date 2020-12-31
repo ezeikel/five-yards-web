@@ -57,7 +57,7 @@ const LOGGED_OUT_MENU_LIST = [
 ];
 
 const LoggedOut = styled.ul`
-  font-size: 25px;
+  font-size: 2.5rem;
 
   li {
     &.horizontal-rule-after {
@@ -84,7 +84,7 @@ const LoggedOut = styled.ul`
         width: 100%;
         margin-top: var(--spacing-medium);
         li {
-          font-size: 16px;
+          font-size: 1.6rem;
           + li {
             margin-top: var(--spacing-medium);
           }

@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   left: 0;
   z-index: 2;
   height: 100%;
+  max-height: 100vh;
   width: 100%;
   text-align: center;
   a,
@@ -49,7 +50,7 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
-    font-size: 25px;
+    font-size: 2.5rem;
     li {
       display: flex;
       align-items: center;

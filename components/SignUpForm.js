@@ -6,7 +6,7 @@ import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
-import Button from "./styles/Button";
+import Button from "./Button";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()

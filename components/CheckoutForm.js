@@ -1,4 +1,5 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import Button from "./Button";
 
 import CardSection from "./CardSection";
 
@@ -44,7 +45,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe}>Confirm order</button>
+      <Button disabled={!stripe}>Confirm order</Button>
     </form>
   );
 };

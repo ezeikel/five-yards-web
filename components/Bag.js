@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import Button from "./Button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,11 +11,11 @@ const Wrapper = styled.div`
       border-top: 1px solid #d1cfcf;
       padding: var(--spacing-medium) var(--spacing-large);
       h3 {
-        font-size: 25px;
+        font-size: 2.5rem;
         margin: 0 0 var(--spacing-tiny);
       }
       p {
-        font-size: 14px;
+        font-size: 1.4rem;
         margin: 0;
       }
     }
@@ -25,7 +26,7 @@ const Wrapper = styled.div`
       > div {
         background-color: var(--color-white);
         padding: var(--spacing-medium);
-        border-radius: 4px;
+        border-radius: var(--border-radius);
 
         + div {
           margin-top: var(--spacing-medium);
@@ -54,11 +55,11 @@ const Empty = styled.div`
     justify-content: center;
     &:first-of-type {
       margin-bottom: var(--spacing-small);
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
     }
     &:last-of-type {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 300;
     }
   }
@@ -75,27 +76,27 @@ const Total = styled.div`
       margin-bottom: var(--spacing-medium);
       span {
         &:first-of-type {
-          font-size: 25px;
+          font-size: 2.5rem;
           font-weight: 700;
         }
         &:nth-of-type(2) {
-          font-size: 14px;
+          font-size: 1.4rem;
           font-weight: 700;
         }
       }
     }
     &:nth-of-type(2) {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 300;
       margin-bottom: var(--spacing-medium);
     }
     &:nth-of-type(3) {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 300;
       margin-bottom: var(--spacing-medium);
     }
     &:nth-of-type(4) {
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: var(--spacing-large);
     }
@@ -106,20 +107,6 @@ const Total = styled.div`
     width: 100%;
     border: 0;
     margin: 0 0 var(--spacing-medium);
-  }
-
-  button {
-    font-family: var(--font-family-primary);
-    font-size: 20px;
-    border-radius: 5px;
-    width: 100%;
-    padding: var(--spacing-small);
-    &[disabled] {
-      background-color: #bebebe;
-      color: #5f5f5f;
-      border: 1px solid #bebebe;
-      outline: 0;
-    }
   }
 `;
 
@@ -158,7 +145,7 @@ const ShoppingBag = () => {
             <span>Total</span>
             <span>£0.00</span>
           </div>
-          <button disabled>Checkout</button>
+          <Button disabled>Checkout</Button>
         </Total>
       </div>
     </Wrapper>

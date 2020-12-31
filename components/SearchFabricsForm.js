@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { isIOS } from "react-device-detect";
 import TextInput from "./TextInput";
+import Button from "./Button";
 
 const SearchFabricsSchema = Yup.object().shape({
   style: Yup.string(),
@@ -51,7 +52,9 @@ const SearchFabricsForm = () => {
             placeholder="Choose a type of fabric"
             isIOS={isIOSBrowser}
           />
-          <button type="submit">{isSubmitting ? "Searching" : "Search"}</button>
+          <Button primary type="submit">
+            {isSubmitting ? "Searching" : "Search"}
+          </Button>
         </StyledForm>
       )}
     </Formik>

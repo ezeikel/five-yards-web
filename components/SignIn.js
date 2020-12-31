@@ -3,38 +3,41 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GoogleIcon from "../components/svgs/GoogleIcon";
 import SignInForm from "../components/SignInForm";
-import Button from "../components/styles/Button";
+import Button from "./Button";
 
 const Wrapper = styled.div`
   width: 100%;
 
-  .facebook,
-  .google {
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.6rem;
-    padding: var(--spacing-medium);
-    svg {
-      margin-right: var(--spacing-medium);
-      height: 24px;
-      width: 24px;
+  button {
+    &.facebook,
+    &.google {
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 1.8rem;
+      width: 100%;
+      svg {
+        margin-right: var(--spacing-medium);
+        height: 24px;
+        width: 24px;
+      }
     }
-  }
 
-  .facebook {
-    background-color: var(--color-facebook);
-    border: 1px solid var(--color-facebook);
-    margin-bottom: var(--spacing-medium);
-  }
-  .google {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-black);
-    color: var(--color-black);
+    &.facebook {
+      background-color: var(--color-facebook);
+      border: 1px solid var(--color-facebook);
+      margin-bottom: var(--spacing-medium);
+      color: var(--color-white);
+    }
+    &.google {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-black);
+      color: var(--color-black);
+    }
   }
 `;
 
 const Heading = styled.h1`
-  font-size: 20px;
+  font-size: 2rem;
   text-align: center;
   margin: 0 0 var(--spacing-large);
 `;

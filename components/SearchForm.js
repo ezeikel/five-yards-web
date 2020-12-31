@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--color-white);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: var(--spacing-large);
 
   hr {
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 16px;
+      font-size: 1.6rem;
       flex: 0 1 33.33%;
       padding-bottom: var(--spacing-tiny);
       + li {
@@ -35,23 +35,11 @@ const Wrapper = styled.div`
       }
     }
   }
-
-  button {
-    font-family: var(--font-family-primary);
-    font-size: 16px;
-    background-color: var(--color-primary);
-    width: 100%;
-    padding: var(--spacing-medium);
-    outline: none;
-    border: 1px solid var(--color-primary);
-    color: var(--color-white);
-    border-radius: 6px;
-  }
 `;
 
 const Heading = styled.h3`
   font-family: var(--secondary-font-family);
-  font-size: 25px;
+  font-size: 2.5rem;
   line-height: 30px;
   font-weight: 600;
   margin: 0 0 var(--spacing-medium);
