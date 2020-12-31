@@ -8,6 +8,7 @@ import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import useUser from "../hooks/useUser";
+import removeNullProperties from "../utils/removeNullProperties";
 
 const MyDetailsSchema = Yup.object().shape({
   firstName: Yup.string().required("Please enter a first name."),
@@ -68,23 +69,27 @@ const MyDetailsForm = () => {
     CHANGE_PASSWORD_MUTATION,
   );
 
-  // TODO: work out how to set intial values to already stored user data
-  console.log({ user });
+  if (!user) return null;
+
+  const {
+    id,
+    bag,
+    gravatar,
+    permissions,
+    measurements,
+    __typename,
+    ...userData
+  } = user;
+
+  const userInitialValues = removeNullProperties({
+    ...userData,
+    ...measurements,
+  });
 
   return (
     <Wrapper>
       <Formik
-        initialValues={{
-          firstName: (user && user.firstName) || "",
-          lastName: "",
-          email: "",
-          phoneNumber: "",
-          neck: "",
-          waist: "",
-          bust: "",
-          armLength: "",
-          gender: "",
-        }}
+        initialValues={userInitialValues}
         validationSchema={MyDetailsSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
@@ -132,7 +137,7 @@ const MyDetailsForm = () => {
                 type="number"
               />
             </InputWrapper>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button primary type="submit" disabled={isSubmitting}>
               Sav{isSubmitting ? "ing" : "e"} changes
             </Button>
           </StyledForm>

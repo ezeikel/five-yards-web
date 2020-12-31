@@ -82,7 +82,7 @@ const ChangePasswordForm = () => {
                 type="text"
               />
             </InputWrapper>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button primary type="submit" disabled={isSubmitting}>
               Sav{isSubmitting ? "ing" : "e"} changes
             </Button>
           </StyledForm>

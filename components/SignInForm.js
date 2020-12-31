@@ -67,8 +67,6 @@ const SignInForm = () => {
         initialValues={{ email: "", password: "" }}
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          debugger;
-
           try {
             await signin({ variables: values });
             mixpanel.track("Sign in");
@@ -84,7 +82,11 @@ const SignInForm = () => {
         {({ isSubmitting }) => (
           <StyledForm>
             <InputWrapper>
-              <TextInput name="email" placeholder="Email address" type="email" />
+              <TextInput
+                name="email"
+                placeholder="Email address"
+                type="email"
+              />
               <TextInput
                 name="password"
                 placeholder="Password"
