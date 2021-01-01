@@ -11,15 +11,14 @@ import useUser from "../hooks/useUser";
 import removeNullProperties from "../utils/removeNullProperties";
 
 const MyDetailsSchema = Yup.object().shape({
-  firstName: Yup.string().required("Please enter a first name."),
-  lastName: Yup.string().required("Please enter a last name."),
-  email: Yup.string().required("Please enter an email."),
-  phoneNumber: Yup.string().required("Please enter a phone number."),
-  gender: Yup.string().required("Please enter a gender."),
-  neck: Yup.string().required("Please enter a neck measurement."),
-  waist: Yup.string().required("Please enter a waist measurement."),
-  bust: Yup.string().required("Please enter a bust measurement."),
-  armLength: Yup.string().required("Please enter an arm length measurement."),
+  firstName: Yup.string(),
+  lastName: Yup.string(),
+  email: Yup.string(),
+  phoneNumber: Yup.string(),
+  gender: Yup.string(),
+  neck: Yup.string(),
+  waist: Yup.string(),
+  armLength: Yup.string(),
 });
 
 const Wrapper = styled.div`
@@ -62,7 +61,6 @@ const SubHeading = styled.h3`
 `;
 
 const MyDetailsForm = () => {
-  const router = useRouter();
   const { user } = useUser();
 
   const [updateDetails, { data, loading, error }] = useMutation(
@@ -91,13 +89,21 @@ const MyDetailsForm = () => {
       <Formik
         initialValues={userInitialValues}
         validationSchema={MyDetailsSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { setSubmitting }) => {
           try {
             // TODO: create mutation for this
-            // await updateDetails({ variables: values });
+
+            const userUpdatePayload = {};
+
+            Object.keys(userInitialValues).forEach(key => {
+              // TODO: this wont work for nested objects e.g. measurements
+              if (userInitialValues[key] !== values[key]) {
+                userUpdatePayload[key] = values[key];
+              }
+            });
+
+            await updateDetails({ variables: userUpdatePayload });
             mixpanel.track("Update details");
-            resetForm();
-            router.push("/");
           } catch (error) {
             console.error({ error });
           } finally {

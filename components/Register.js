@@ -13,7 +13,6 @@ const Wrapper = styled.div`
     &.google {
       justify-content: flex-start;
       align-items: center;
-      font-size: 1.8rem;
       width: 100%;
       svg {
         margin-right: var(--spacing-medium);
