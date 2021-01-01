@@ -2,6 +2,8 @@ import gql from "graphql-tag";
 
 // TODO: Being used in Refetch on addToCart
 // TODO: me and currentUser do very similar things. Merge?
+
+// TODO: FRAGMENTS!!!
 export const CURRENT_USER_QUERY = gql`
   query {
     currentUser {
@@ -128,6 +130,30 @@ export const CHANGE_PASSWORD_MUTATION = gql`
       passwordHint: $passwordHint
     ) {
       message
+    }
+  }
+`;
+
+export const UPDATE_USER_MUTATION = gql`
+  mutation UPDATE_USER_MUTATION(
+    $id: ID!
+    $firstName: String
+    $lastName: String
+    $gender: Gender
+    $email: String
+    $phoneNumber: String
+    $measurements: MeasurementsInput
+  ) {
+    updateUser(
+      id: $id
+      firstName: $firstName
+      lastName: $lastName
+      gender: $gender
+      email: $email
+      phoneNumber: $phoneNumber
+      measurements: $measurements
+    ) {
+      id
     }
   }
 `;

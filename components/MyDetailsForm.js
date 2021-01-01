@@ -1,10 +1,9 @@
-import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
-import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
+import { UPDATE_USER_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import useUser from "../hooks/useUser";
@@ -63,25 +62,14 @@ const SubHeading = styled.h3`
 const MyDetailsForm = () => {
   const { user } = useUser();
 
-  const [updateDetails, { data, loading, error }] = useMutation(
-    CHANGE_PASSWORD_MUTATION,
-  );
+  const [updateDetails, { loading, error }] = useMutation(UPDATE_USER_MUTATION);
 
   if (!user) return null;
 
-  const {
-    id,
-    bag,
-    gravatar,
-    permissions,
-    measurements,
-    __typename,
-    ...userData
-  } = user;
+  const { id, bag, gravatar, permissions, __typename, ...userData } = user;
 
   const userInitialValues = removeNullProperties({
     ...userData,
-    ...measurements,
   });
 
   return (
@@ -91,18 +79,24 @@ const MyDetailsForm = () => {
         validationSchema={MyDetailsSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // TODO: create mutation for this
+            const userUpdatePayload = {
+              id,
+            };
 
-            const userUpdatePayload = {};
-
-            Object.keys(userInitialValues).forEach(key => {
-              // TODO: this wont work for nested objects e.g. measurements
-              if (userInitialValues[key] !== values[key]) {
+            // TODO: this wont work for nested objects e.g. measurements
+            Object.keys(values).forEach(key => {
+              if (
+                !userInitialValues[key] ||
+                userInitialValues[key] !== values[key]
+              ) {
                 userUpdatePayload[key] = values[key];
               }
             });
 
-            await updateDetails({ variables: userUpdatePayload });
+            await updateDetails({
+              variables: userUpdatePayload,
+            });
+
             mixpanel.track("Update details");
           } catch (error) {
             console.error({ error });
@@ -134,11 +128,19 @@ const MyDetailsForm = () => {
                 Please only input measurements, if they have been taken by a
                 professional tailor.
               </SubHeading>
-              <TextInput name="neck" placeholder="Neck" type="number" />
-              <TextInput name="waist" placeholder="Waist" type="number" />
+              <TextInput
+                name="measurements.neck"
+                placeholder="Neck"
+                type="number"
+              />
+              <TextInput
+                name="measurements.waist"
+                placeholder="Waist"
+                type="number"
+              />
               <TextInput name="bust" placeholder="Bust" type="number" />
               <TextInput
-                name="armLength"
+                name="measurements.armLength"
                 placeholder="Arm Length"
                 type="number"
               />
