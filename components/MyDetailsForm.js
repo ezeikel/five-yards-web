@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import mixpanel from "mixpanel-browser";
 import { UPDATE_USER_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
@@ -98,7 +99,10 @@ const MyDetailsForm = () => {
             });
 
             mixpanel.track("Update details");
+
+            toast("Your details have been updated successfully.");
           } catch (error) {
+            toast("Something went wrong, please try again.");
             console.error({ error });
           } finally {
             setSubmitting(false);

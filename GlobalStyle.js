@@ -14,6 +14,8 @@ export default createGlobalStyle`
     --color-grey: #cccccc;
     --color-light-grey: #9f9f9f;
     --color-dark-grey: #585858;
+    --color-green: #2ecc71;
+    --color-red: #e74c3c;
 
     --color-input-border: #bebebe;
 

@@ -7,6 +7,7 @@ import mixpanel from "mixpanel-browser";
 import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import { toast } from "react-toastify";
 
 const ChangePasswordSchema = Yup.object().shape({
   oldPassword: Yup.string().required("Please enter a Email."),
@@ -51,12 +52,16 @@ const ChangePasswordForm = () => {
         initialValues={{ oldPassword: "", newPassword: "", passwordHint: "" }}
         validationSchema={ChangePasswordSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
+          debugger;
+
           try {
             await changePassword({ variables: values });
             mixpanel.track("Change password");
             resetForm();
+            toast("Password changed successfully.");
             router.push("/");
           } catch (error) {
+            toast("Something went wrong, please try again.");
             console.error({ error });
           } finally {
             setSubmitting(false);

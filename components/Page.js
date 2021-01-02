@@ -26,6 +26,8 @@ import {
   faKey,
   faCreditCard,
 } from "@fortawesome/pro-light-svg-icons";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
 import Header from "./Header";
@@ -86,6 +88,41 @@ const Inner = styled.main`
   }
 `;
 
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: "toast-container",
+  toastClassName: "toast",
+  bodyClassName: "body",
+  progressClassName: "progress",
+})`
+  /* .toast-container */
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  .toast {
+    background-color: var(--color-black);
+    margin: 0;
+    cursor: auto;
+  }
+  button[aria-label="close"] {
+    display: none;
+  }
+  .toast {
+    background-color: var(--color-black);
+  }
+  .body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--primary-font-family);
+    margin: 0;
+    display: flex;
+    place-items: center;
+    font-size: 1.6rem;
+    padding: var(--spacing-medium);
+  }
+`;
+
 const Page = ({ children }) => (
   <>
     <GlobalStyle />
@@ -95,6 +132,14 @@ const Page = ({ children }) => (
       <Wrapper>
         <Inner>{children}</Inner>
         <Footer />
+        <StyledToastContainer
+          position="bottom-center"
+          draggable
+          hideProgressBar
+          pauseOnHover
+          autoClose={3000}
+          closeOnClick={false}
+        />
       </Wrapper>
     </ThemeProvider>
   </>
