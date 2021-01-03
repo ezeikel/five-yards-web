@@ -29,6 +29,7 @@ const Select = styled.select`
   border: 1px solid var(--color-input-border);
   width: 100%;
   padding: var(--spacing-medium);
+  margin: 0;
   font-family: var(--font-family-primary);
   font-size: 1.6rem;
 
