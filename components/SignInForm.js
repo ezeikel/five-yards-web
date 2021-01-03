@@ -8,10 +8,12 @@ import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import CheckboxInput from "./CheckboxInput";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Please enter a Email."),
   password: Yup.string().required("Please enter a Password."),
+  rememberMe: Yup.bool(),
 });
 
 const Wrapper = styled.div`
@@ -40,7 +42,7 @@ const Help = styled.div`
   align-items: center;
   font-size: 1.4rem;
   margin-bottom: var(--spacing-medium);
-  label {
+  .input-checkbox {
     font-weight: var(--font-weight-primary-regular);
     display: flex;
     align-items: center;
@@ -64,7 +66,7 @@ const SignInForm = () => {
   return (
     <Wrapper>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "", rememberMe: false }}
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
@@ -94,10 +96,12 @@ const SignInForm = () => {
               />
             </InputWrapper>
             <Help>
-              <label>
-                <input type="checkbox" />
+              <CheckboxInput name="rememberMe">
                 Remember me &nbsp;
-              </label>
+              </CheckboxInput>
+              {/* <label>
+                <input type="checkbox" />
+              </label> */}
               <Link href="/request-reset">
                 <a>Forgot password?</a>
               </Link>

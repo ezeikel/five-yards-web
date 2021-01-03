@@ -25,6 +25,7 @@ import {
   faAddressCard,
   faKey,
   faCreditCard,
+  faCheck
 } from "@fortawesome/pro-light-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -54,6 +55,7 @@ library.add(
   faAddressCard,
   faKey,
   faCreditCard,
+  faCheck,
   faShoppingBag,
   faBars,
 );

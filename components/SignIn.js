@@ -11,13 +11,14 @@ const Wrapper = styled.div`
   button {
     &.facebook,
     &.google {
+      font-size: 1.6rem;
       justify-content: flex-start;
       align-items: center;
       width: 100%;
       svg {
         margin-right: var(--spacing-medium);
-        height: 24px;
-        width: 24px;
+        height: 32px;
+        width: 32px;
       }
     }
 

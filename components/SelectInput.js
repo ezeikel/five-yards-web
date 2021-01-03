@@ -3,11 +3,11 @@ import { useField } from "formik";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
-const Input = styled.input`
+const Select = styled.select`
   position: relative;
   line-height: normal;
   border-radius: var(--border-radius);
@@ -27,17 +27,13 @@ const Label = styled.label`
   display: flex;
 `;
 
-const TextInput = ({ label, ...props }) => {
+const SelectInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
-    <Wrapper className="input text-input">
+    <Wrapper className="input select-input">
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
-      <Input
-        error={meta.touched && meta.error !== undefined}
-        {...field}
-        {...props}
-      />
+      <Select {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -45,4 +41,4 @@ const TextInput = ({ label, ...props }) => {
   );
 };
 
-export default TextInput;
+export default SelectInput;
