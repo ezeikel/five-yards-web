@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 const InputContainer = styled.div`
   position: relative;
+  background-color: var(--color-white);
 `;
 
 const Select = styled.select`
