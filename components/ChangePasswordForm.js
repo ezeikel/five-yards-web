@@ -10,9 +10,9 @@ import Button from "./Button";
 import { toast } from "react-toastify";
 
 const ChangePasswordSchema = Yup.object().shape({
-  oldPassword: Yup.string().required("Please enter a Email."),
-  newPassword: Yup.string().required("Please enter a Password."),
-  passwordHint: Yup.string().required("Please enter a Password."),
+  oldPassword: Yup.string().required("Please enter an old password"),
+  newPassword: Yup.string().required("Please enter an new password"),
+  passwordHint: Yup.string().required("Please enter an hint"),
 });
 
 const Wrapper = styled.div`
@@ -73,18 +73,21 @@ const ChangePasswordForm = () => {
             <InputWrapper>
               <TextInput
                 name="oldPassword"
-                placeholder="Old password"
                 type="password"
+                icon="unlock"
+                placeholder="Old password"
               />
               <TextInput
                 name="newPassword"
-                placeholder="New password"
                 type="password"
+                icon="lock"
+                placeholder="New password"
               />
               <TextInput
                 name="passwordHint"
-                placeholder="Password hint"
                 type="text"
+                icon="question-circle"
+                placeholder="Password hint"
               />
             </InputWrapper>
             <Button primary type="submit" disabled={isSubmitting}>

@@ -49,6 +49,7 @@ const SearchFabricsForm = () => {
           <TextInput
             name="style"
             type="text"
+            icon="layer-group"
             placeholder="Choose a type of fabric"
             isIOS={isIOSBrowser}
           />

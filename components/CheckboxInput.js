@@ -35,7 +35,7 @@ const Checkbox = styled.div`
     ${({ checked }) =>
       checked ? "var(--color-primary)" : "var(--color-input-border)"};
   padding: var(--spacing-tiny);
-  margin: 0 var(--spacing-medium) 0 0;
+  margin: 0 var(--spacing-small) 0 0;
   width: 20px;
   height: 20px;
   background-color: ${({ checked }) =>

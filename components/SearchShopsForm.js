@@ -49,6 +49,7 @@ const SearchShopsForm = () => {
           <TextInput
             name="name"
             type="text"
+            icon="search"
             placeholder="Choose a shop name"
             isIOS={isIOSBrowser}
           />

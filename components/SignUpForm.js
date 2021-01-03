@@ -10,19 +10,19 @@ import Button from "./Button";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, "That name is too short.")
+    .min(2, "That name is too short")
     .max(50, "That name is too long")
-    .required("Please enter a name."),
+    .required("Please enter a first name"),
   lastName: Yup.string()
-    .min(2, "That name is too short.")
+    .min(2, "That name is too short")
     .max(50, "That name is too long")
-    .required("Please enter a name."),
+    .required("Please enter a last name"),
   email: Yup.string()
-    .email("That email is invalid. Please try again.")
-    .required("Please enter an email."),
+    .email("That email is invalid. Please try again")
+    .required("Please enter an email"),
   password: Yup.string()
-    .min(9, "That password is too short.")
-    .required("Please enter a password."),
+    .min(9, "That password is too short")
+    .required("Please enter a password"),
 });
 
 const Wrapper = styled.div`
@@ -78,13 +78,25 @@ const SignUpForm = () => {
               <TextInput
                 name="firstName"
                 type="text"
+                icon="user"
                 placeholder="First name"
               />
-              <TextInput name="lastName" type="text" placeholder="Last name" />
-              <TextInput name="email" type="email" placeholder="Email" />
+              <TextInput
+                name="lastName"
+                type="text"
+                icon="user"
+                placeholder="Last name"
+              />
+              <TextInput
+                name="email"
+                type="email"
+                icon="envelope"
+                placeholder="Email"
+              />
               <TextInput
                 name="password"
                 type="password"
+                icon="key"
                 placeholder="Create password"
               />
             </InputWrapper>

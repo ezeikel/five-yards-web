@@ -25,7 +25,17 @@ import {
   faAddressCard,
   faKey,
   faCreditCard,
-  faCheck
+  faCheck,
+  faEnvelope,
+  faRuler,
+  faPhoneAlt,
+  faVenusMars,
+  faLock,
+  faUnlock,
+  faQuestionCircle,
+  faMapMarkerAlt,
+  faGlobe,
+  faCalendar,
 } from "@fortawesome/pro-light-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -56,6 +66,16 @@ library.add(
   faKey,
   faCreditCard,
   faCheck,
+  faEnvelope,
+  faRuler,
+  faPhoneAlt,
+  faVenusMars,
+  faLock,
+  faUnlock,
+  faQuestionCircle,
+  faMapMarkerAlt,
+  faGlobe,
+  faCalendar,
   faShoppingBag,
   faBars,
 );

@@ -11,8 +11,8 @@ import Button from "./Button";
 import CheckboxInput from "./CheckboxInput";
 
 const SigninSchema = Yup.object().shape({
-  email: Yup.string().required("Please enter a Email."),
-  password: Yup.string().required("Please enter a Password."),
+  email: Yup.string().required("Please enter an email"),
+  password: Yup.string().required("Please enter a password"),
   rememberMe: Yup.bool(),
 });
 
@@ -87,11 +87,13 @@ const SignInForm = () => {
               <TextInput
                 name="email"
                 placeholder="Email address"
+                icon="envelope"
                 type="email"
               />
               <TextInput
                 name="password"
                 placeholder="Password"
+                icon="key"
                 type="password"
               />
             </InputWrapper>

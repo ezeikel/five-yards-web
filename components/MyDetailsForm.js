@@ -19,8 +19,8 @@ const MyDetailsSchema = Yup.object().shape({
   firstName: Yup.string().max(15, "Must be 15 characters or less"), // TODO: think these fields should be required unless means you have to submit every time
   lastName: Yup.string().max(20, "Must be 20 characters or less"),
   email: Yup.string().email("Invalid email address"),
-  phoneNumber: Yup.string().matches(PHONE_REGEX, "Phone number is not valid."),
-  gender: Yup.string().required("Gender is required."),
+  phoneNumber: Yup.string().matches(PHONE_REGEX, "Phone number is not valid"),
+  gender: Yup.string().required("Gender is required"),
   neck: Yup.string(),
   waist: Yup.string(),
   armLength: Yup.string(),
@@ -136,21 +136,33 @@ const MyDetailsForm = () => {
               <TextInput
                 name="firstName"
                 type="text"
+                icon="user"
                 placeholder="First name"
               />
-              <TextInput name="lastName" placeholder="Last name" type="text" />
+              <TextInput
+                name="lastName"
+                type="text"
+                icon="user"
+                placeholder="Last name"
+              />
 
-              <SelectInput name="gender" placeholder="Gender">
+              <SelectInput name="gender" icon="venus-mars" placeholder="Gender">
                 {GENDER_OPTIONS.map(option => (
                   <option key={option} value={option.replace(/\s/g, "")}>
                     {option.charAt(0) + option.slice(1).toLowerCase()}
                   </option>
                 ))}
               </SelectInput>
-              <TextInput name="email" placeholder="Email" type="email" />
+              <TextInput
+                name="email"
+                type="email"
+                icon="envelope"
+                placeholder="Email"
+              />
               <TextInput
                 name="phoneNumber"
                 type="tel"
+                icon="phone-alt"
                 placeholder="Phone number"
               />
             </InputWrapper>
@@ -163,17 +175,25 @@ const MyDetailsForm = () => {
               <TextInput
                 name="measurements.neck"
                 type="number"
+                icon="ruler"
                 placeholder="Neck"
               />
               <TextInput
                 name="measurements.waist"
                 type="number"
+                icon="ruler"
                 placeholder="Waist"
               />
-              <TextInput name="bust" placeholder="Bust" type="number" />
+              <TextInput
+                name="bust"
+                type="number"
+                icon="ruler"
+                placeholder="Bust"
+              />
               <TextInput
                 name="measurements.armLength"
                 type="number"
+                icon="ruler"
                 placeholder="Arm Length"
               />
             </InputWrapper>

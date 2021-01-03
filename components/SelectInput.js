@@ -1,10 +1,23 @@
 import React from "react";
 import { useField } from "formik";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  svg {
+    position: absolute;
+    left: var(--spacing-medium);
+    top: 50%;
+    margin-top: -0.4375em;
+    z-index: 1;
+  }
+`;
+
+const InputContainer = styled.div`
+  position: relative;
 `;
 
 const Select = styled.select`
@@ -16,24 +29,29 @@ const Select = styled.select`
   padding: var(--spacing-medium);
   font-family: var(--font-family-primary);
   font-size: 1.6rem;
-  @media (min-width: 1280px) {
-    font-size: 2rem;
-    line-height: 31px;
-    padding: 16px 34px;
-  }
+
+  padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium)
+    calc(0.875em + var(--spacing-medium) + var(--spacing-medium));
 `;
 
 const Label = styled.label`
   display: flex;
 `;
 
-const SelectInput = ({ label, ...props }) => {
+const SelectInput = ({ label, icon, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
     <Wrapper className="input select-input">
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
-      <Select {...field} {...props} />
+      <InputContainer>
+        <FontAwesomeIcon
+          icon={["fal", icon]}
+          color="var(--color-black)"
+          size="2x"
+        />
+        <Select {...field} {...props} />
+      </InputContainer>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}

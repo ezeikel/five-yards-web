@@ -58,18 +58,21 @@ const SearchTailorsForm = () => {
             <TextInput
               name="location"
               type="text"
+              icon="map-marker-alt"
               placeholder="Choose a location"
               isIOS={isIOSBrowser}
             />
             <TextInput
               name="global"
               type="text"
+              icon="globe"
               placeholder="Lorem ipsum"
               isIOS={isIOSBrowser}
             />
             <TextInput
               name="collection-date"
               type="text"
+              icon="calendar"
               placeholder="Choose a collection date"
               isIOS={isIOSBrowser}
             />
