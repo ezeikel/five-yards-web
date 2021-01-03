@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 
 const InputContainer = styled.div`
   position: relative;
+  border-radius: var(--border-radius);
 `;
 
 const Input = styled.input`
