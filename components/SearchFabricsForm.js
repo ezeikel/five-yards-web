@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { isIOS } from "react-device-detect";
-import TextInput from "./TextInput";
+import SelectInput from "./SelectInput";
 import Button from "./Button";
+
+const FABRIC_OPTIONS = ["ANKARA", "LACE", "GEORGE", "ASOKE", "LINEN"];
 
 const SearchFabricsSchema = Yup.object().shape({
   style: Yup.string(),
@@ -19,13 +19,6 @@ const StyledForm = styled(Form)`
 `;
 
 const SearchFabricsForm = () => {
-  const [isIOSBrowser, setisIOSBrowser] = useState(false);
-
-  // FIX: react hydrate causing issues when using isIOS outside of lifecycle hook - https://github.com/gatsbyjs/gatsby/issues/9849
-  useEffect(() => {
-    setisIOSBrowser(isIOS);
-  }, []);
-
   return (
     <Formik
       initialValues={{ style: "" }}
@@ -46,13 +39,17 @@ const SearchFabricsForm = () => {
     >
       {({ isSubmitting }) => (
         <StyledForm>
-          <TextInput
+          <SelectInput
             name="style"
-            type="text"
             icon="layer-group"
             placeholder="Choose a type of fabric"
-            isIOS={isIOSBrowser}
-          />
+          >
+            {FABRIC_OPTIONS.map(option => (
+              <option key={option} value={option.replace(/\s/g, "")}>
+                {option.charAt(0) + option.slice(1).toLowerCase()}
+              </option>
+            ))}
+          </SelectInput>
           <Button primary type="submit">
             {isSubmitting ? "Searching" : "Search"}
           </Button>

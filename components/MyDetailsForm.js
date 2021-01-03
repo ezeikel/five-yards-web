@@ -145,7 +145,6 @@ const MyDetailsForm = () => {
                 icon="user"
                 placeholder="Last name"
               />
-
               <SelectInput name="gender" icon="venus-mars" placeholder="Gender">
                 {GENDER_OPTIONS.map(option => (
                   <option key={option} value={option.replace(/\s/g, "")}>

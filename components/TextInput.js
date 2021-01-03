@@ -64,6 +64,7 @@ const Label = styled.label`
 
 const TextInput = ({ label, icon, ...props }) => {
   const [field, meta] = useField(props);
+
   const iconRef = useRef();
   const passwordIconRef = useRef();
 

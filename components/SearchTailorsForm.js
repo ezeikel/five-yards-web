@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { isIOS } from "react-device-detect";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import SelectInput from "./SelectInput";
+
+const GLOBAL_OPTIONS = ["LOREM IPSUM 1", "LOREM IPSUM 2", "LOREM IPSUM 3"];
 
 const SearchTailorsSchema = Yup.object().shape({
   location: Yup.string(),
@@ -24,13 +25,6 @@ const StyledForm = styled(Form)`
 `;
 
 const SearchTailorsForm = () => {
-  const [isIOSBrowser, setisIOSBrowser] = useState(false);
-
-  // FIX: react hydrate causing issues when using isIOS outside of lifecycle hook - https://github.com/gatsbyjs/gatsby/issues/9849
-  useEffect(() => {
-    setisIOSBrowser(isIOS);
-  }, []);
-
   return (
     <Formik
       initialValues={{ location: "", global: "", collectionDate: "" }}
@@ -60,21 +54,19 @@ const SearchTailorsForm = () => {
               type="text"
               icon="map-marker-alt"
               placeholder="Choose a location"
-              isIOS={isIOSBrowser}
             />
-            <TextInput
-              name="global"
-              type="text"
-              icon="globe"
-              placeholder="Lorem ipsum"
-              isIOS={isIOSBrowser}
-            />
+            <SelectInput name="global" icon="globe" placeholder="Lorem ipsum">
+              {GLOBAL_OPTIONS.map(option => (
+                <option key={option} value={option.replace(/\s/g, "")}>
+                  {option.charAt(0) + option.slice(1).toLowerCase()}
+                </option>
+              ))}
+            </SelectInput>
             <TextInput
               name="collection-date"
               type="text"
               icon="calendar"
               placeholder="Choose a collection date"
-              isIOS={isIOSBrowser}
             />
           </div>
           <Button primary type="submit">

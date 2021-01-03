@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { useField } from "formik";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,11 +8,26 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   svg {
-    position: absolute;
-    left: var(--spacing-medium);
-    top: 50%;
-    margin-top: -0.4375em;
-    z-index: 1;
+    &:first-of-type {
+      position: absolute;
+      left: var(--spacing-medium);
+      top: 50%;
+      margin-top: ${({ iconHeight }) =>
+        iconHeight ? `-${iconHeight / 2}px` : "0"};
+      z-index: 1;
+    }
+    &:nth-of-type(2) {
+      position: absolute;
+      right: var(--spacing-medium);
+      top: 50%;
+      margin-top: ${({ angleDownIconHeight }) =>
+        angleDownIconHeight ? `-${angleDownIconHeight / 2}px` : "0"};
+      z-index: 1;
+    }
+  }
+
+  .error {
+    margin-top: var(--spacing-small);
   }
 `;
 
@@ -33,8 +48,19 @@ const Select = styled.select`
   font-size: 1.6rem;
   background-color: var(--color-white);
 
-  padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium)
-    calc(0.875em + var(--spacing-medium) + var(--spacing-medium));
+  padding: ${({ iconWidth, angleDownIconWidth }) =>
+    iconWidth
+      ? `var(--spacing-medium) calc(
+  ${angleDownIconWidth}px  +
+    var(--spacing-medium) + var(--spacing-medium)
+) var(--spacing-medium) calc(
+  ${iconWidth}px  +
+    var(--spacing-medium) + var(--spacing-medium)
+);`
+      : `var(--spacing-medium) calc(
+  ${angleDownIconWidth}px  +
+    var(--spacing-medium) + var(--spacing-medium)
+) var(--spacing-medium) var(--spacing-medium)`};
 `;
 
 const Label = styled.label`
@@ -44,16 +70,56 @@ const Label = styled.label`
 const SelectInput = ({ label, icon, ...props }) => {
   const [field, meta] = useField(props);
 
+  const iconRef = useRef();
+  const angleDownIconRef = useRef();
+
+  const [iconWidth, setIconWidth] = useState(null);
+  const [iconHeight, setIconHeight] = useState(null);
+  const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
+  const [angleDownIconHeight, setPasswordIconHeight] = useState(null);
+
+  useLayoutEffect(() => {
+    if (icon) {
+      const { width, height } = iconRef.current.getBoundingClientRect();
+      setIconWidth(width);
+      setIconHeight(height);
+    }
+  }, [iconRef.current]);
+
+  useLayoutEffect(() => {
+    const { width, height } = angleDownIconRef.current.getBoundingClientRect();
+    setAngleDownIconWidth(width);
+    setPasswordIconHeight(height);
+  }, [angleDownIconRef.current]);
+
   return (
-    <Wrapper className="input select-input">
+    <Wrapper
+      className="input select-input"
+      iconHeight={iconHeight}
+      angleDownIconHeight={angleDownIconHeight}
+    >
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
       <InputContainer>
+        {icon && (
+          <FontAwesomeIcon
+            icon={["fal", icon]}
+            color="var(--color-black)"
+            size="2x"
+            forwardedRef={iconRef}
+          />
+        )}
+        <Select
+          iconWidth={iconWidth}
+          angleDownIconWidth={angleDownIconWidth}
+          {...field}
+          {...props}
+        />
         <FontAwesomeIcon
-          icon={["fal", icon]}
+          icon={["fal", "angle-down"]}
           color="var(--color-black)"
           size="2x"
+          forwardedRef={angleDownIconRef}
         />
-        <Select {...field} {...props} />
       </InputContainer>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
