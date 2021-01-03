@@ -9,11 +9,22 @@ const Wrapper = styled.div`
   width: 100%;
 
   svg {
-    position: absolute;
-    left: var(--spacing-medium);
-    top: 50%;
-    margin-top: -0.4375em;
-    z-index: 1;
+    &:first-of-type {
+      position: absolute;
+      left: var(--spacing-medium);
+      top: 50%;
+      margin-top: ${({ iconHeight }) =>
+        iconHeight ? `-${iconHeight / 2}px` : "0"};
+      z-index: 1;
+    }
+    &:nth-of-type(2) {
+      position: absolute;
+      right: var(--spacing-medium);
+      top: 50%;
+      margin-top: ${({ passwordIconHeight }) =>
+        passwordIconHeight ? `-${passwordIconHeight / 2}px` : "0"};
+      z-index: 1;
+    }
   }
 
   .error {
@@ -36,6 +47,7 @@ const Input = styled.input`
   margin: 0;
   font-family: var(--font-family-primary);
   font-size: 1.6rem;
+  background-color: var(--color-white);
 
   padding: ${({ iconWidth }) =>
     iconWidth
@@ -53,34 +65,88 @@ const Label = styled.label`
 const TextInput = ({ label, icon, ...props }) => {
   const [field, meta] = useField(props);
   const iconRef = useRef();
+  const passwordIconRef = useRef();
+
   const [iconWidth, setIconWidth] = useState(null);
+  const [iconHeight, setIconHeight] = useState(null);
+  const [passwordIconWidth, setPasswordIconWidth] = useState(null);
+  const [passwordIconHeight, setPasswordIconHeight] = useState(null);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isPasswordField =
+    field.name === "password" ||
+    field.name === "oldPassword" ||
+    field.name === "newPassword";
 
   useLayoutEffect(() => {
     if (icon) {
-      const { width } = iconRef.current.getBoundingClientRect();
+      const { width, height } = iconRef.current.getBoundingClientRect();
       setIconWidth(width);
+      setIconHeight(height);
     }
   }, [iconRef.current]);
 
+  useLayoutEffect(() => {
+    if (isPasswordField) {
+      const { width, height } = passwordIconRef.current.getBoundingClientRect();
+      setPasswordIconWidth(width);
+      setPasswordIconHeight(height);
+    }
+  }, [passwordIconRef.current]);
+
   return (
-    <Wrapper className="input text-input">
+    <Wrapper
+      className="input text-input"
+      iconHeight={iconHeight}
+      passwordIconHeight={passwordIconHeight}
+    >
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
-      <InputContainer>
-        {icon && (
+      {/* TODO: probably a cleaner way to show either password or text input */}
+      {isPasswordField ? (
+        <InputContainer>
+          {icon && (
+            <FontAwesomeIcon
+              icon={["fal", icon]}
+              color="var(--color-black)"
+              size="2x"
+              forwardedRef={iconRef}
+            />
+          )}
+          <Input
+            iconWidth={iconWidth}
+            passwordIconWidth={passwordIconWidth}
+            error={meta.touched && meta.error !== undefined}
+            {...field}
+            {...props}
+            type={showPassword ? "text" : "password"}
+          />
           <FontAwesomeIcon
-            icon={["fal", icon]}
+            icon={["fal", showPassword ? "eye" : "eye-slash"]}
             color="var(--color-black)"
             size="2x"
-            forwardedRef={iconRef}
+            forwardedRef={passwordIconRef}
+            onClick={() => setShowPassword(!showPassword)}
           />
-        )}
-        <Input
-          iconWidth={iconWidth}
-          error={meta.touched && meta.error !== undefined}
-          {...field}
-          {...props}
-        />
-      </InputContainer>
+        </InputContainer>
+      ) : (
+        <InputContainer>
+          {icon && (
+            <FontAwesomeIcon
+              icon={["fal", icon]}
+              color="var(--color-black)"
+              size="2x"
+              forwardedRef={iconRef}
+            />
+          )}
+          <Input
+            iconWidth={iconWidth}
+            error={meta.touched && meta.error !== undefined}
+            {...field}
+            {...props}
+          />
+        </InputContainer>
+      )}
       {meta.touched && meta.error ? (
         <Error className="error">{meta.error}</Error>
       ) : null}

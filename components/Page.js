@@ -36,6 +36,8 @@ import {
   faMapMarkerAlt,
   faGlobe,
   faCalendar,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/pro-light-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -76,6 +78,8 @@ library.add(
   faMapMarkerAlt,
   faGlobe,
   faCalendar,
+  faEye,
+  faEyeSlash,
   faShoppingBag,
   faBars,
 );

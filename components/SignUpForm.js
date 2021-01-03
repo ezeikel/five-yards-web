@@ -7,6 +7,7 @@ import mixpanel from "mixpanel-browser";
 import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import formatAPIErrors from "../utils/formatAPIErrors";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -58,7 +59,7 @@ const SignUpForm = () => {
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
         validationSchema={SignupSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           console.log({ values });
           try {
             await signup({ variables: values });
@@ -66,7 +67,9 @@ const SignUpForm = () => {
             resetForm();
             router.push("/");
           } catch (error) {
-            console.error(error.message);
+            const formattedErrors = formatAPIErrors(error);
+            setErrors(formattedErrors);
+            console.error(error);
           } finally {
             setSubmitting(false);
           }

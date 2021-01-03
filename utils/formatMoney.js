@@ -1,5 +1,4 @@
-export default function(amount) {
-  //debugger;
+export default function (amount) {
   const options = {
     style: "currency",
     currency: "GBP",

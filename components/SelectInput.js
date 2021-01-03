@@ -18,7 +18,6 @@ const Wrapper = styled.div`
 
 const InputContainer = styled.div`
   position: relative;
-  background-color: var(--color-white);
   border-radius: var(--border-radius);
 `;
 
@@ -32,6 +31,7 @@ const Select = styled.select`
   margin: 0;
   font-family: var(--font-family-primary);
   font-size: 1.6rem;
+  background-color: var(--color-white);
 
   padding: var(--spacing-medium) var(--spacing-medium) var(--spacing-medium)
     calc(0.875em + var(--spacing-medium) + var(--spacing-medium));

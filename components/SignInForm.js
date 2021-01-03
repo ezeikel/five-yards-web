@@ -9,6 +9,7 @@ import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import CheckboxInput from "./CheckboxInput";
+import formatAPIErrors from "../utils/formatAPIErrors";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Please enter an email"),
@@ -68,13 +69,15 @@ const SignInForm = () => {
       <Formik
         initialValues={{ email: "", password: "", rememberMe: false }}
         validationSchema={SigninSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           try {
             await signin({ variables: values });
             mixpanel.track("Sign in");
             resetForm();
             router.push("/");
           } catch (error) {
+            const formattedErrors = formatAPIErrors(error);
+            setErrors(formattedErrors);
             console.error({ error });
           } finally {
             setSubmitting(false);

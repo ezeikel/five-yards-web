@@ -52,8 +52,6 @@ const ChangePasswordForm = () => {
         initialValues={{ oldPassword: "", newPassword: "", passwordHint: "" }}
         validationSchema={ChangePasswordSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          debugger;
-
           try {
             await changePassword({ variables: values });
             mixpanel.track("Change password");
