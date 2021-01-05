@@ -45,7 +45,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <Button disabled={!stripe}>Confirm order</Button>
+      <Button disabled={!stripe} text="Confirm order" />
     </form>
   );
 };

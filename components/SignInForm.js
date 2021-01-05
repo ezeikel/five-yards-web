@@ -111,9 +111,12 @@ const SignInForm = () => {
                 <a>Forgot password?</a>
               </Link>
             </Help>
-            <Button primary type="submit" disabled={isSubmitting}>
-              Sign{isSubmitting ? "ing" : null} In
-            </Button>
+            <Button
+              primary
+              type="submit"
+              disabled={isSubmitting}
+              text={`Sign${isSubmitting ? "ing" : ""} In`}
+            />
           </StyledForm>
         )}
       </Formik>

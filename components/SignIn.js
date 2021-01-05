@@ -80,17 +80,15 @@ const SignIn = () => (
       <span>Or continue with</span>
       <hr />
     </ContinueWith>
-    <Button className="facebook">
+    <Button className="facebook" text="Facebook">
       <FontAwesomeIcon
         icon={["fab", "facebook-square"]}
         color="var(--color-white)"
         size="2x"
       />
-      Facebook
     </Button>
-    <Button className="google">
+    <Button className="google" text="Google">
       <GoogleIcon />
-      Google
     </Button>
   </Wrapper>
 );

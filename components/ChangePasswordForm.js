@@ -88,9 +88,12 @@ const ChangePasswordForm = () => {
                 placeholder="Password hint"
               />
             </InputWrapper>
-            <Button primary type="submit" disabled={isSubmitting}>
-              Sav{isSubmitting ? "ing" : "e"} changes
-            </Button>
+            <Button
+              primary
+              type="submit"
+              disabled={isSubmitting}
+              text={`Sav${isSubmitting ? "ing" : "e"} changes`}
+            />
           </StyledForm>
         )}
       </Formik>

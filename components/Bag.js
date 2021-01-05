@@ -145,7 +145,7 @@ const ShoppingBag = () => {
             <span>Total</span>
             <span>£0.00</span>
           </div>
-          <Button disabled>Checkout</Button>
+          <Button disabled text="Checkout" />
         </Total>
       </div>
     </Wrapper>

@@ -67,8 +67,8 @@ const PartnerWithUs = () => {
         <div>
           <span>Sign up</span>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <Button>Fabric seller</Button>
-          <Button>Tailor</Button>
+          <Button text="Fabric seller" />
+          <Button text="Tailor" />
         </div>
       </div>
     </Wrapper>

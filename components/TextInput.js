@@ -1,8 +1,8 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { useField } from "formik";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Error from "./Error";
+import Icon from "./Icon";
 
 const Wrapper = styled.div`
   position: relative;
@@ -106,14 +106,7 @@ const TextInput = ({ label, icon, ...props }) => {
       {/* TODO: probably a cleaner way to show either password or text input */}
       {isPasswordField ? (
         <InputContainer>
-          {icon && (
-            <FontAwesomeIcon
-              icon={["fal", icon]}
-              color="var(--color-black)"
-              size="2x"
-              forwardedRef={iconRef}
-            />
-          )}
+          {icon && <Icon name={icon} size="2x" forwardedRef={iconRef} />}
           <Input
             iconWidth={iconWidth}
             passwordIconWidth={passwordIconWidth}
@@ -122,9 +115,8 @@ const TextInput = ({ label, icon, ...props }) => {
             {...props}
             type={showPassword ? "text" : "password"}
           />
-          <FontAwesomeIcon
-            icon={["fal", showPassword ? "eye" : "eye-slash"]}
-            color="var(--color-black)"
+          <Icon
+            name={showPassword ? "eye" : "eye-slash"}
             size="2x"
             forwardedRef={passwordIconRef}
             onClick={() => setShowPassword(!showPassword)}
@@ -132,14 +124,7 @@ const TextInput = ({ label, icon, ...props }) => {
         </InputContainer>
       ) : (
         <InputContainer>
-          {icon && (
-            <FontAwesomeIcon
-              icon={["fal", icon]}
-              color="var(--color-black)"
-              size="2x"
-              forwardedRef={iconRef}
-            />
-          )}
+          {icon && <Icon name={icon} size="2x" forwardedRef={iconRef} />}
           <Input
             iconWidth={iconWidth}
             error={meta.touched && meta.error !== undefined}

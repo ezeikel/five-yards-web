@@ -103,9 +103,12 @@ const SignUpForm = () => {
                 placeholder="Create password"
               />
             </InputWrapper>
-            <Button primary type="submit" disabled={isSubmitting}>
-              Register{isSubmitting ? "ing" : null}
-            </Button>
+            <Button
+              primary
+              type="submit"
+              disabled={isSubmitting}
+              text={`Register${isSubmitting ? "ing" : ""}`}
+            />
           </StyledForm>
         )}
       </Formik>

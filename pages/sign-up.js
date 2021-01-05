@@ -5,7 +5,9 @@ import { ONBOARD_STRIPE_USER_MUTATION } from "../apollo/queries";
 const SignUp = () => {
   const [onboardStripeUser] = useMutation(ONBOARD_STRIPE_USER_MUTATION, {
     onCompleted({ onboardStripeUser: { url } }) {
-      // redirect to Stripe Connect onboarding
+      console.log({ url });
+
+      // redirect to stripe connect onboarding flow
       window.location.href = url;
     },
   });
@@ -17,7 +19,11 @@ const SignUp = () => {
     })();
   }, []);
 
-  return null;
+  return (
+    <div>
+      <h1>Redirecting you to Stripe. Please wait...</h1>
+    </div>
+  );
 };
 
 export default SignUp;
