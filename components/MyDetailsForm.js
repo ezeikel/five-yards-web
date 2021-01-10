@@ -19,7 +19,7 @@ const MyDetailsSchema = Yup.object().shape({
   firstName: Yup.string().max(15, "Must be 15 characters or less"), // TODO: think these fields should be required unless means you have to submit every time
   lastName: Yup.string().max(20, "Must be 20 characters or less"),
   email: Yup.string().email("Invalid email address"),
-  phoneNumber: Yup.string().matches(PHONE_REGEX, "Phone number is not valid"),
+  phone: Yup.string().matches(PHONE_REGEX, "Phone number is not valid"),
   gender: Yup.string().required("Gender is required"),
   neck: Yup.string(),
   waist: Yup.string(),
@@ -145,7 +145,11 @@ const MyDetailsForm = () => {
                 icon="user"
                 placeholder="Last name"
               />
-              <SelectInput name="gender" icon="venus-mars" placeholder="Gender">
+              <SelectInput
+                name="gender"
+                leftIcon="venus-mars"
+                placeholder="Gender"
+              >
                 {GENDER_OPTIONS.map(option => (
                   <option key={option} value={option.replace(/\s/g, "")}>
                     {option.charAt(0) + option.slice(1).toLowerCase()}
@@ -159,7 +163,7 @@ const MyDetailsForm = () => {
                 placeholder="Email"
               />
               <TextInput
-                name="phoneNumber"
+                name="phone"
                 type="tel"
                 icon="phone-alt"
                 placeholder="Phone number"

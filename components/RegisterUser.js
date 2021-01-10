@@ -68,7 +68,7 @@ const DontHave = styled.div`
   }
 `;
 
-const SignIn = () => (
+const RegisterUser = () => (
   <Wrapper>
     <Heading>Create an account</Heading>
     <SignUpForm />
@@ -93,4 +93,4 @@ const SignIn = () => (
   </Wrapper>
 );
 
-export default SignIn;
+export default RegisterUser;

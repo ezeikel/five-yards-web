@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import Button from "./Button";
 
@@ -41,19 +42,26 @@ const Wrapper = styled.div`
       margin: 0 0 var(--spacing-large);
     }
 
-    button {
-      color: var(--color-white);
-      border: 2px solid var(--color-white);
-      background-color: transparent;
+    a {
       width: 100%;
-      &:first-of-type {
-        background-color: var(--color-white);
-        color: var(--color-black);
-        border: 2px solid var(--color-white);
+
+      & + a {
+        margin-top: var(--spacing-medium);
       }
 
-      + button {
-        margin-top: var(--spacing-medium);
+      button {
+        color: var(--color-white);
+        border: 2px solid var(--color-white);
+        background-color: transparent;
+        width: 100%;
+      }
+
+      &:first-of-type {
+        button {
+          background-color: var(--color-white);
+          color: var(--color-black);
+          border: 2px solid var(--color-white);
+        }
       }
     }
   }
@@ -67,8 +75,16 @@ const PartnerWithUs = () => {
         <div>
           <span>Sign up</span>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <Button text="Fabric seller" />
-          <Button text="Tailor" />
+          <Link href="/register/business">
+            <a>
+              <Button text="Fabric seller" />
+            </a>
+          </Link>
+          <Link href="/register/business">
+            <a>
+              <Button text="Tailor" />
+            </a>
+          </Link>
         </div>
       </div>
     </Wrapper>

@@ -6,26 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  svg {
-    &:first-of-type {
-      position: absolute;
-      left: var(--spacing-medium);
-      top: 50%;
-      margin-top: ${({ iconHeight }) =>
-        iconHeight ? `-${iconHeight / 2}px` : "0"};
-      z-index: 1;
-    }
-    &:nth-of-type(2) {
-      position: absolute;
-      right: var(--spacing-medium);
-      top: 50%;
-      margin-top: ${({ angleDownIconHeight }) =>
-        angleDownIconHeight ? `-${angleDownIconHeight / 2}px` : "0"};
-      z-index: 1;
-    }
-  }
-
   .error {
     margin-top: var(--spacing-small);
   }
@@ -48,13 +28,13 @@ const Select = styled.select`
   font-size: 1.6rem;
   background-color: var(--color-white);
 
-  padding: ${({ iconWidth, angleDownIconWidth }) =>
-    iconWidth
+  padding: ${({ leftIconWidth, angleDownIconWidth }) =>
+    leftIconWidth
       ? `var(--spacing-medium) calc(
   ${angleDownIconWidth}px  +
     var(--spacing-medium) + var(--spacing-medium)
 ) var(--spacing-medium) calc(
-  ${iconWidth}px  +
+  ${leftIconWidth}px  +
     var(--spacing-medium) + var(--spacing-medium)
 );`
       : `var(--spacing-medium) calc(
@@ -67,57 +47,76 @@ const Label = styled.label`
   display: flex;
 `;
 
-const SelectInput = ({ label, icon, ...props }) => {
+const LeftIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  left: var(--spacing-medium);
+  top: 50%;
+  margin-top: ${({ leftIconHeight }) =>
+    leftIconHeight ? `-${leftIconHeight / 2}px` : "0"};
+  z-index: 1;
+`;
+
+const RightIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: var(--spacing-medium);
+  top: 50%;
+  margin-top: ${({ rightIconHeight }) =>
+    rightIconHeight ? `-${rightIconHeight / 2}px` : "0"};
+  z-index: 1;
+`;
+
+const SelectInput = ({ className, label, leftIcon, ...props }) => {
   const [field, meta] = useField(props);
 
-  const iconRef = useRef();
+  const leftIconRef = useRef();
   const angleDownIconRef = useRef();
 
-  const [iconWidth, setIconWidth] = useState(null);
-  const [iconHeight, setIconHeight] = useState(null);
+  const [leftIconWidth, setLeftIconWidth] = useState(null);
+  const [leftIconHeight, setIconHeight] = useState(null);
   const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
-  const [angleDownIconHeight, setPasswordIconHeight] = useState(null);
+  const [rightIconHeight, setRightIconHeight] = useState(null);
 
   useLayoutEffect(() => {
-    if (icon) {
-      const { width, height } = iconRef.current.getBoundingClientRect();
-      setIconWidth(width);
+    if (leftIcon) {
+      const { width, height } = leftIconRef.current.getBoundingClientRect();
+      setLeftIconWidth(width);
       setIconHeight(height);
     }
-  }, [iconRef.current]);
+  }, [leftIconRef.current]);
 
   useLayoutEffect(() => {
     const { width, height } = angleDownIconRef.current.getBoundingClientRect();
     setAngleDownIconWidth(width);
-    setPasswordIconHeight(height);
+    setRightIconHeight(height);
   }, [angleDownIconRef.current]);
 
   return (
     <Wrapper
-      className="input select-input"
-      iconHeight={iconHeight}
-      angleDownIconHeight={angleDownIconHeight}
+      className={className + " input select-input"}
+      rightIconHeight={rightIconHeight}
     >
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
       <InputContainer>
-        {icon && (
-          <FontAwesomeIcon
-            icon={["fal", icon]}
+        {leftIcon && (
+          <LeftIcon
+            icon={["fal", leftIcon]}
             color="var(--color-black)"
             size="2x"
-            forwardedRef={iconRef}
+            leftIconHeight={leftIconHeight}
+            forwardedRef={leftIconRef}
           />
         )}
         <Select
-          iconWidth={iconWidth}
+          leftIconWidth={leftIconWidth}
           angleDownIconWidth={angleDownIconWidth}
           {...field}
           {...props}
         />
-        <FontAwesomeIcon
+        <RightIcon
           icon={["fal", "angle-down"]}
           color="var(--color-black)"
           size="2x"
+          rightIconHeight={rightIconHeight}
           forwardedRef={angleDownIconRef}
         />
       </InputContainer>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Register from "../components/Register";
+import RegisterUser from "../../components/RegisterUser";
 
 const Wrapper = styled.div`
   display: grid;
@@ -16,12 +16,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const RegisterPage = () => {
+const RegisterUserPage = () => {
   return (
     <Wrapper>
-      <Register />
+      <RegisterUser />
     </Wrapper>
   );
 };
 
-export default RegisterPage;
+export default RegisterUserPage;

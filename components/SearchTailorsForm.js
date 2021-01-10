@@ -55,7 +55,11 @@ const SearchTailorsForm = () => {
               icon="map-marker-alt"
               placeholder="Choose a location"
             />
-            <SelectInput name="global" icon="globe" placeholder="Lorem ipsum">
+            <SelectInput
+              name="global"
+              leftIcon="globe"
+              placeholder="Lorem ipsum"
+            >
               {GLOBAL_OPTIONS.map(option => (
                 <option key={option} value={option.replace(/\s/g, "")}>
                   {option.charAt(0) + option.slice(1).toLowerCase()}

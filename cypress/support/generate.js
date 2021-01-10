@@ -6,7 +6,7 @@ const buildEnquiry = () => ({
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
-  phoneNumber: faker.phone.phoneNumber(),
+  phone: faker.phone.phone(),
   message: faker.lorem.sentences(5),
 });
 

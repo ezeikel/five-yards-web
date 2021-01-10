@@ -11,7 +11,7 @@ export const CURRENT_USER_QUERY = gql`
       firstName
       lastName
       email
-      phoneNumber
+      phone
       gender
       gravatar
       measurements {
@@ -141,7 +141,7 @@ export const UPDATE_USER_MUTATION = gql`
     $lastName: String
     $gender: Gender
     $email: String
-    $phoneNumber: String
+    $phone: String
     $measurements: MeasurementsInput
   ) {
     updateUser(
@@ -150,7 +150,7 @@ export const UPDATE_USER_MUTATION = gql`
       lastName: $lastName
       gender: $gender
       email: $email
-      phoneNumber: $phoneNumber
+      phone: $phone
       measurements: $measurements
     ) {
       id

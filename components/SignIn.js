@@ -73,7 +73,7 @@ const SignIn = () => (
     <Heading>Sign In</Heading>
     <SignInForm />
     <DontHave>
-      Don&apos;t have an account? <Link href="/register">Sign up</Link>
+      Don&apos;t have an account? <Link href="/register/user">Sign up</Link>
     </DontHave>
     <ContinueWith>
       <hr />
