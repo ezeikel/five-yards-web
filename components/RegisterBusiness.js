@@ -178,6 +178,7 @@ const RegisterBusiness = () => (
           <InputWrapper className="input-wrapper">
             <h3>What is your company&apos;s name?</h3>
             <TextInput
+              type="text"
               name="companyName"
               placeholder="Enter your company's name"
             />
