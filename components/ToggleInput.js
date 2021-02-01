@@ -19,6 +19,10 @@ const StyledSwitch = styled(Switch)`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .fa-times {
+      margin-left: -0.2em; // TODO: not sure why x is not centered correctly without this?
+    }
   }
 `;
 
