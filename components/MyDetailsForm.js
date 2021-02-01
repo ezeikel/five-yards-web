@@ -51,7 +51,7 @@ const StyledForm = styled(Form)`
 `;
 
 const Heading = styled.h2`
-  font-family: var(--secondary-font-family);
+  font-family: var(--font-family-secondary);
   font-size: 3rem;
   font-weight: var(--font-weight-secondary-medium);
   text-align: center;

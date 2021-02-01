@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 `;
 
 const Heading = styled.h1`
-  font-family: var(--secondary-font-family);
+  font-family: var(--font-family-secondary);
   font-size: 3rem;
   font-weight: var(--font-weight-secondary-medium);
   margin: 0 0 var(--spacing-small);

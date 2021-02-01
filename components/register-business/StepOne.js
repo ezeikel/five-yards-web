@@ -2,6 +2,8 @@ import styled from "styled-components";
 import TextInput from "../TextInput";
 import SelectInput from "../SelectInput";
 import TextareaInput from "../TextareaInput";
+import ToggleInput from "../ToggleInput";
+import { useFormikContext } from "formik";
 
 const PROFESSION_OPTIONS = ["TAILOR", "FABRIC SELLER"];
 const DAYS_OF_THE_WEEK = [
@@ -94,84 +96,103 @@ const HourSelection = styled.div`
   }
 `;
 
-const StepOne = () => (
-  <>
-    <InputWrapper className="input-wrapper">
-      <h3>What is your profession?</h3>
-      <SelectInput name="profession" placeholder="Select your profession">
-        {PROFESSION_OPTIONS.map(option => (
-          <option key={option} value={option.replace(/\s/g, "")}>
-            {option.charAt(0) + option.slice(1).toLowerCase()}
-          </option>
+const Closed = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  color: #db0707;
+  font-weight: var(--font-weight-primary-medium);
+`;
+
+const StepOne = () => {
+  const { values } = useFormikContext();
+
+  return (
+    <>
+      <InputWrapper className="input-wrapper">
+        <h3>What is your profession?</h3>
+        <SelectInput name="profession" placeholder="Select your profession">
+          {PROFESSION_OPTIONS.map(option => (
+            <option key={option} value={option.replace(/\s/g, "")}>
+              {option.charAt(0) + option.slice(1).toLowerCase()}
+            </option>
+          ))}
+        </SelectInput>
+      </InputWrapper>
+      <InputWrapper className="input-wrapper">
+        <h3>What is your company&apos;s name?</h3>
+        <TextInput
+          type="text"
+          name="companyName"
+          placeholder="Enter your company's name"
+        />
+      </InputWrapper>
+      <InputWrapper className="input-wrapper">
+        <h3>Company bio?</h3>
+        <p>
+          Write a short summary to sell yourself to your customers. Let them
+          know about you, your company, experience etc...
+        </p>
+        <TextareaInput name="companyBio" placeholder="Sell yourself!" />
+        <span>500 character limit.</span>
+      </InputWrapper>
+      <InputWrapper className="input-wrapper">
+        <h3>What are your opening hours?</h3>
+        {DAYS_OF_THE_WEEK.map(day => (
+          <Day className="day" key={day}>
+            <div>
+              <span>{day.charAt(0) + day.slice(1).toLowerCase()}</span>
+              <ToggleInput
+                name={`openingHours.${day.toLocaleLowerCase()}.open`}
+                type="checkbox"
+              />
+            </div>
+            {values.openingHours[day.toLowerCase()].open ? (
+              <HourSelection className="hour-selection">
+                <SelectInput name={day.toLowerCase() + "-start"}>
+                  {HOURS.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </SelectInput>
+                <SelectInput name={day.toLowerCase() + "-end"}>
+                  {HOURS.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </SelectInput>
+              </HourSelection>
+            ) : (
+              <Closed>Closed</Closed>
+            )}
+          </Day>
         ))}
-      </SelectInput>
-    </InputWrapper>
-    <InputWrapper className="input-wrapper">
-      <h3>What is your company&apos;s name?</h3>
-      <TextInput
-        type="text"
-        name="companyName"
-        placeholder="Enter your company's name"
-      />
-    </InputWrapper>
-    <InputWrapper className="input-wrapper">
-      <h3>Company bio?</h3>
-      <p>
-        Write a short summary to sell yourself to your customers. Let them know
-        about you, your company, experience etc...
-      </p>
-      <TextareaInput name="companyBio" placeholder="Sell yourself!" />
-      <span>500 character limit.</span>
-    </InputWrapper>
-    <InputWrapper className="input-wrapper">
-      <h3>What are your opening hours?</h3>
-      {DAYS_OF_THE_WEEK.map(day => (
-        <Day className="day" key={day}>
-          <div>
-            <span>{day.charAt(0) + day.slice(1).toLowerCase()}</span>
-            <span>Toggle</span>
-          </div>
-          <HourSelection className="hour-selection">
-            <SelectInput name={day.toLowerCase() + "-start"}>
-              {HOURS.map(option => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </SelectInput>
-            <SelectInput name={day.toLowerCase() + "-end"}>
-              {HOURS.map(option => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </SelectInput>
-          </HourSelection>
-        </Day>
-      ))}
-    </InputWrapper>
-    <InputWrapper className="input-wrapper">
-      <h3>What time do you usually take your lunch break?</h3>
-      <p>This will be used to populate your calendar.</p>
-      <SelectInput name="lunchBreakStart" placeholder="Select time">
-        {HOURS.map(option => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </SelectInput>
-      <SelectInput
-        name="lunchBreakLength"
-        placeholder="Select your your lunch break length"
-      >
-        {HOURS.map(option => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </SelectInput>
-    </InputWrapper>
-  </>
-);
+      </InputWrapper>
+      <InputWrapper className="input-wrapper">
+        <h3>What time do you usually take your lunch break?</h3>
+        <p>This will be used to populate your calendar.</p>
+        <SelectInput name="lunchBreakStart" placeholder="Select time">
+          {HOURS.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </SelectInput>
+        <SelectInput
+          name="lunchBreakLength"
+          placeholder="Select your your lunch break length"
+        >
+          {HOURS.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </SelectInput>
+      </InputWrapper>
+    </>
+  );
+};
 
 export default StepOne;

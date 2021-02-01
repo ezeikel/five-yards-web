@@ -15,6 +15,9 @@ const Wrapper = styled.header`
 `;
 
 const LogoWrapper = styled.div`
+  a {
+    display: flex;
+  }
   svg {
     width: 152px;
   }

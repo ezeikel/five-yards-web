@@ -31,7 +31,7 @@ const StyledProgressBar = styled(ProgressBar)`
 `;
 
 const Heading = styled.h1`
-  font-family: var(--secondary-font-family);
+  font-family: var(--font-family-secondary);
   font-size: 3rem;
   line-height: 33px;
   font-weight: var(--font-weight-secondary-medium);
@@ -77,6 +77,44 @@ const RegisterBusiness = () => {
         initialValues={{
           profession: "",
           companyName: "",
+          companyBio: "",
+          openingHours: {
+            monday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            tuesday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            wednesday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            thursday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            friday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            saturday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+            sunday: {
+              open: false,
+              openingTime: "",
+              closingTime: "",
+            },
+          },
         }}
         validationSchema={RegisterBusinessSchema}
         onSubmit={async (values, { setSubmitting }) => {

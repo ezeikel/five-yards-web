@@ -140,7 +140,7 @@ const StyledToastContainer = styled(ToastContainer).attrs({
   .body {
     background-color: var(--color-black);
     color: var(--color-white);
-    font-family: var(--primary-font-family);
+    font-family: var(--font-family-primary);
     margin: 0;
     display: flex;
     place-items: center;

@@ -4,7 +4,7 @@ const Wrapper = styled.button`
   display: flex;
   justify-content: center;
   font-size: 2rem;
-  font-family: var(--primary-font-family);
+  font-family: var(--font-family-primary);
   font-weight: var(--font-weight-primary-medium);
   border-radius: var(--border-radius);
   padding: var(--spacing-small) var(--spacing-medium);

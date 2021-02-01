@@ -1,5 +1,6 @@
 import { createGlobalStyle, keyframes } from "styled-components";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
+import styledNormalize from "styled-normalize"; // does this even work?
 config.autoAddCss = false;
 
 export default createGlobalStyle`
@@ -19,8 +20,12 @@ export default createGlobalStyle`
 
     --color-input-border: #bebebe;
 
+    --color-background: #f7f8fc;
+    --color-caoursel-dots: #f0f0f0;
+    --color-grey-muted: #bebebe;
     --color-facebook: #274e8c;
     --color-google: #db4437;
+
 
     /* Spacing */
     --spacing-tiny: 4px;
@@ -31,9 +36,9 @@ export default createGlobalStyle`
 
     --border-radius: 4px;
 
-    /* Font */
-    --primary-font-family: ibm-plex-sans, sans-serif;
-    --secondary-font-family: stratos, sans-serif;
+    /* Fonts */
+    --font-family-primary: ibm-plex-sans, sans-serif;
+    --font-family-secondary: stratos, sans-serif;
 
     --font-weight-primary-regular: 400;
     --font-weight-primary-medium: 500;
@@ -45,12 +50,18 @@ export default createGlobalStyle`
     --font-weight-secondary-medium: 600;
     --font-weight-secondary-semi-bold: 700;
 
-    --default-font-size: 10px;
+    --font-size-default: 10px;
     --font-size-tiny: 1.4rem;
     --font-size-small: 1.6rem;
     --font-size-medium: 1.8rem;
     --font-size-large: 2rem;
     --font-size-huge: 2.2rem;
+
+    /* Breakpoints */
+    --breakpoint-sm: 480px; /* mobile devices */
+    --breakpoint-md: 768px; /* iPads, tablests */
+    --breakpoint-md: 1024px; /* small screens, laptops */
+    --breakpoint-lg: 1200px; /* extra large screens, TV */
   }
 
   * {
@@ -58,13 +69,13 @@ export default createGlobalStyle`
   }
 
   html {
-    font-size: var(--default-font-size);
+    font-size: var(--font-size-default);
   }
 
   body {
     margin: 0;
     padding: 0;
-    font-family: var(--primary-font-family);
+    font-family: var(--font-family-primary);
     color: var(--color-black);
   }
 
@@ -123,18 +134,18 @@ export default createGlobalStyle`
     -moz-appearance: none;
     outline: 0;
   }
+
+  /* Hide fonts until webfonts have loaded to avoid FOUT */
+  .wf-loading {
+    visibility: hidden;
+  }
 `;
 
 export const spinKeyframe = keyframes`
-  0% {
-    transform: rotate(0);
+  from {
+    transform: rotate(0deg);
   }
-
-  50% {
-    transform: rotate(45deg);
-  }
-
-  100% {
-    transform: rotate(0);
+  to {
+    transform: rotate(360deg);
   }
 `;

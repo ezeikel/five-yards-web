@@ -38,12 +38,7 @@ const TextareaInput = ({ label, ...props }) => {
   return (
     <Wrapper className="input textarea-input">
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
-      <Input
-        error={meta.touched && meta.error !== undefined}
-        minRows={4}
-        {...field}
-        {...props}
-      />
+      <Input minRows={4} {...field} {...props} />
       {meta.touched && meta.error ? (
         <Error className="error">{meta.error}</Error>
       ) : null}

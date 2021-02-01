@@ -67,7 +67,7 @@ const Heading = styled.h1`
   display: flex;
   justify-content: center;
   font-size: 2rem;
-  font-family: var(--secondary-font-family);
+  font-family: var(--font-family-secondary);
   font-weight: var(--font-weight-secondary-semi-bold);
   margin: 0;
 `;

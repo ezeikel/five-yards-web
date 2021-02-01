@@ -237,7 +237,9 @@ const Footer = () => (
         </div>
       </Social>
     </div>
-    <Copyright>&copy; {new Date().getFullYear()} Five Yards</Copyright>
+    <Copyright>
+      &copy; {new Date().getFullYear()} Five Yards, all rights reserved.
+    </Copyright>
   </Wrapper>
 );
 
