@@ -17,15 +17,82 @@ const DAYS_OF_THE_WEEK = [
 ];
 
 const HOURS = [
-  "00:00",
-  "00:30",
-  "01:00",
-  "01:30",
-  "02:00",
-  "02:30",
-  "03:00",
-  "03:30",
-  "04:00",
+  {
+    value: 0,
+    display: "00:00",
+  },
+  {
+    value: 30,
+    display: "00:30",
+  },
+  {
+    value: 60,
+    display: "01:00",
+  },
+  {
+    value: 90,
+    display: "01:30",
+  },
+  {
+    value: 120,
+    display: "02:00",
+  },
+  {
+    value: 150,
+    display: "02:30",
+  },
+  {
+    value: 180,
+    display: "03:00",
+  },
+  {
+    value: 210,
+    display: "03:30",
+  },
+  {
+    value: 240,
+    display: "04:00",
+  },
+  {
+    value: 270,
+    display: "04:30",
+  },
+  {
+    value: 300,
+    display: "05:00",
+  },
+  {
+    value: 330,
+    display: "05:30",
+  },
+  {
+    value: 360,
+    display: "06:00",
+  },
+  {
+    value: 390,
+    display: "06:30",
+  },
+  {
+    value: 420,
+    display: "07:00",
+  },
+  {
+    value: 450,
+    display: "07:30",
+  },
+  {
+    value: 480,
+    display: "08:00",
+  },
+  {
+    value: 510,
+    display: "08:30",
+  },
+  {
+    value: 540,
+    display: "09:00",
+  },
 ];
 
 const TWENTY_FOUR_HOUR = [
@@ -136,6 +203,8 @@ const Closed = styled.div`
 const StepOne = () => {
   const { values } = useFormikContext();
 
+  // TODO: use a selectInput using formik to match hour option to formik values
+
   return (
     <>
       <InputWrapper className="input-wrapper">
@@ -172,23 +241,23 @@ const StepOne = () => {
             <div>
               <span>{day.charAt(0) + day.slice(1).toLowerCase()}</span>
               <ToggleInput
-                name={`openingHours.${day.toLocaleLowerCase()}.open`}
+                name={`hours.${day.toLocaleLowerCase()}.open`}
                 type="checkbox"
               />
             </div>
-            {values.openingHours[day.toLowerCase()].open ? (
+            {values.hours[day.toLowerCase()].open ? (
               <HourSelection className="hour-selection">
                 <SelectInput name={day.toLowerCase() + "-start"}>
                   {HOURS.map(option => (
-                    <option key={option} value={option}>
-                      {option}
+                    <option key={option.value} value={option.value}>
+                      {option.display}
                     </option>
                   ))}
                 </SelectInput>
                 <SelectInput name={day.toLowerCase() + "-end"}>
                   {HOURS.map(option => (
-                    <option key={option} value={option}>
-                      {option}
+                    <option key={option.value} value={option.value}>
+                      {option.display}
                     </option>
                   ))}
                 </SelectInput>
@@ -204,8 +273,8 @@ const StepOne = () => {
         <p>This will be used to populate your calendar.</p>
         <SelectInput name="lunchBreakStart" placeholder="Select time">
           {HOURS.map(option => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.display}
             </option>
           ))}
         </SelectInput>
@@ -214,8 +283,8 @@ const StepOne = () => {
           placeholder="Select your your lunch break length"
         >
           {HOURS.map(option => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.display}
             </option>
           ))}
         </SelectInput>

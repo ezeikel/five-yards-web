@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "./Button";
 import { useEffect, useState } from "react";
@@ -8,9 +8,48 @@ import StepTwo from "./register-business/SetpTwo";
 import StepThree from "./register-business/StepThree";
 import ProgressBar from "./ProgressBar";
 
+// TODO: fix nested object schema
 const RegisterBusinessSchema = Yup.object().shape({
   profession: Yup.string(),
   companyName: Yup.string(),
+  companyBio: Yup.string(),
+  // hours: {
+  //   monday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   tuesday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   wednesday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   thursday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   friday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   saturday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  //   sunday: {
+  //     open: false,
+  //     openTime: 0,
+  //     closeTime: 0,
+  //   },
+  // },
 });
 
 const Wrapper = styled.div`
@@ -68,6 +107,8 @@ const RegisterBusiness = () => {
     setPercent(Math.round(((page + 1) / pages.length) * 100));
   }, [page]);
 
+  // TODO: https://stackoverflow.com/questions/17460235/mongodb-opening-hours-schema-and-query-for-open-closed
+
   return (
     <Wrapper>
       <Save>Save and exit</Save>
@@ -78,41 +119,41 @@ const RegisterBusiness = () => {
           profession: "",
           companyName: "",
           companyBio: "",
-          openingHours: {
+          hours: {
             monday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             tuesday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             wednesday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             thursday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             friday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             saturday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
             sunday: {
               open: false,
-              openingTime: "",
-              closingTime: "",
+              openTime: 0,
+              closeTime: 0,
             },
           },
         }}
@@ -120,6 +161,7 @@ const RegisterBusiness = () => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             // TODO: do something
+            alert(JSON.stringify({ values }, 2));
             console.log({ values });
           } catch (error) {
             console.error({ error });
@@ -138,7 +180,7 @@ const RegisterBusiness = () => {
                   primary
                   type="submit"
                   disabled={isSubmitting}
-                  text={`Sav${isSubmitting ? "ing" : "e"} changes`}
+                  text={`Submit${isSubmitting ? "ting" : ""}`}
                 />
               </div>
             ) : (
