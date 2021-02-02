@@ -16,7 +16,7 @@ const Wrapper = styled.header`
 
 const LogoWrapper = styled.div`
   a {
-    display: flex;
+    display: block;
   }
   svg {
     width: 152px;
