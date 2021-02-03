@@ -170,12 +170,17 @@ const RegisterBusiness = () => {
           }
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <StyledForm>
             {pages[page]}
             {isLastStep ? (
               <div>
-                <Button primary text="Back" onClick={previousPage} />
+                <Button
+                  type="button"
+                  primary
+                  text="Back"
+                  onClick={previousPage}
+                />
                 <Button
                   primary
                   type="submit"
@@ -186,9 +191,14 @@ const RegisterBusiness = () => {
             ) : (
               <div>
                 {!isFirstStep && (
-                  <Button primary text="Back" onClick={previousPage} />
+                  <Button
+                    type="button"
+                    primary
+                    text="Back"
+                    onClick={previousPage}
+                  />
                 )}
-                <Button primary text="Next" onClick={nextPage} />
+                <Button type="button" primary text="Next" onClick={nextPage} />
               </div>
             )}
           </StyledForm>

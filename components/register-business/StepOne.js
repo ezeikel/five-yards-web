@@ -254,14 +254,14 @@ const StepOne = () => {
             </div>
             {values.hours[day.toLowerCase()].open ? (
               <HourSelection className="hour-selection">
-                <SelectInput name={day.toLowerCase() + "-start"}>
+                <SelectInput name={`hours.${day.toLowerCase()}.openTime`}>
                   {HOURS.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.display}
                     </option>
                   ))}
                 </SelectInput>
-                <SelectInput name={day.toLowerCase() + "-end"}>
+                <SelectInput name={`hours.${day.toLowerCase()}.closeTime`}>
                   {HOURS.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.display}
