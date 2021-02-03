@@ -16,6 +16,13 @@ const DAYS_OF_THE_WEEK = [
   "SUNDAY",
 ];
 
+/**
+ * https://stackoverflow.com/questions/17460235/mongodb-opening-hours-schema-and-query-for-open-closed
+ *
+ * As a string or a timestamp? You would probably convert it to a string first anyway, in JavaScript: var military_time = Math.floor(time/60) + ':' + time%60 then use a date/time library like moment.js to convert it to a time `var mTime = moment(military_time, "hh:m")
+ *
+ */
+
 const HOURS = [
   {
     value: 0,
