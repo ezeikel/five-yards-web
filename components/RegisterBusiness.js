@@ -170,7 +170,7 @@ const RegisterBusiness = () => {
           }
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, submitForm }) => (
           <StyledForm>
             {pages[page]}
             {isLastStep ? (
@@ -182,10 +182,11 @@ const RegisterBusiness = () => {
                   onClick={previousPage}
                 />
                 <Button
+                  type="button"
                   primary
-                  type="submit"
                   disabled={isSubmitting}
                   text={`Submit${isSubmitting ? "ting" : ""}`}
+                  onClick={() => submitForm()}
                 />
               </div>
             ) : (
