@@ -3,9 +3,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "./Button";
 import { useEffect, useState } from "react";
-import StepOne from "./register-business/StepOne";
-import StepTwo from "./register-business/SetpTwo";
-import StepThree from "./register-business/StepThree";
+import NameAndOpeningHours from "./register-business/NameAndOpeningHours";
+import ServicesAndExpertise from "./register-business/ServicesAndExpertise";
+import Location from "./register-business/Location";
+import Final from "./register-business/Final";
 import ProgressBar from "./ProgressBar";
 
 // TODO: fix nested object schema
@@ -69,14 +70,6 @@ const StyledProgressBar = styled(ProgressBar)`
   margin-bottom: var(--spacing-huge);
 `;
 
-const Heading = styled.h1`
-  font-family: var(--font-family-secondary);
-  font-size: 3rem;
-  line-height: 33px;
-  font-weight: var(--font-weight-secondary-medium);
-  margin: 0 0 var(--spacing-large);
-`;
-
 const StyledForm = styled(Form)`
   .input-wrapper {
     & + .input-wrapper {
@@ -91,7 +84,12 @@ const StyledForm = styled(Form)`
 `;
 
 // eslint-disable-next-line
-const pages = [<StepOne />, <StepTwo />, <StepThree />];
+const pages = [
+  <NameAndOpeningHours />,
+  <ServicesAndExpertise />,
+  <Location />,
+  <Final />,
+];
 
 const RegisterBusiness = () => {
   const [page, setPage] = useState(0);
@@ -113,7 +111,6 @@ const RegisterBusiness = () => {
     <Wrapper>
       <Save>Save and exit</Save>
       <StyledProgressBar percent={percent} />
-      <Heading>Tell us about your business.</Heading>
       <Formik
         initialValues={{
           profession: "",
@@ -155,6 +152,17 @@ const RegisterBusiness = () => {
               openTime: 0,
               closeTime: 0,
             },
+          },
+          yearsExperience: 0,
+          priceRange: 0,
+          services: {
+            alterations: false,
+            designServices: false,
+            bespokeOutfits: false,
+            groupBookings: false,
+            remoteTailoring: false,
+            inPersonTailoring: false,
+            other: false,
           },
         }}
         validationSchema={RegisterBusinessSchema}
