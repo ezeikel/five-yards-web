@@ -131,6 +131,14 @@ const TWENTY_FOUR_HOUR = [
 const MINUTE = [...Array(60).keys()];
 const AMPM = ["AM", "PM"];
 
+const Heading = styled.h1`
+  font-family: var(--font-family-secondary);
+  font-size: 3rem;
+  line-height: 33px;
+  font-weight: var(--font-weight-secondary-medium);
+  margin: 0 0 var(--spacing-large);
+`;
+
 const InputWrapper = styled.div`
   h3 {
     font-size: 2rem;
@@ -207,13 +215,14 @@ const Closed = styled.div`
   font-weight: var(--font-weight-primary-medium);
 `;
 
-const StepOne = () => {
+const NameAndOpeningHours = () => {
   const { values } = useFormikContext();
 
   // TODO: use a selectInput using formik to match hour option to formik values
 
   return (
     <>
+      <Heading>Tell us about your business.</Heading>
       <InputWrapper className="input-wrapper">
         <h3>What is your profession?</h3>
         <SelectInput name="profession" placeholder="Select your profession">
@@ -300,4 +309,4 @@ const StepOne = () => {
   );
 };
 
-export default StepOne;
+export default NameAndOpeningHours;
