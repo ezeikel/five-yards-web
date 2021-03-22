@@ -43,7 +43,7 @@ class MyDocument extends Document {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-PKC9SQ34MW');
+        gtag('config', '${GA_MEASUREMENT_ID}');
       `,
     };
   }
