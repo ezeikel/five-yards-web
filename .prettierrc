@@ -1,10 +1,8 @@
-  
 {
-  "arrowParens": "avoid",
   "bracketSpacing": true,
   "htmlWhitespaceSensitivity": "ignore",
   "insertPragma": false,
-  "jsxBracketSameLine": false,
+  "bracketSameLine": false,
   "jsxSingleQuote": false,
   "printWidth": 80,
   "proseWrap": "always",
@@ -14,6 +12,5 @@
   "singleQuote": false,
   "trailingComma": "all",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false,
   "tabWidth": 2
 }

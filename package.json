@@ -1,10 +1,8 @@
 {
   "name": "five-yards-web",
-  "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "node": "12.x"
-  },
+  "author": "hi@ezeikel.dev",
+  "version": "1.0.0",
+  "license": "ISC",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -39,9 +37,8 @@
   },
   "lint-staged": {
     "**/*.+(js|jsx|json|ts|tsx|css|html|md)": [
-      "prettier --write",
-      "jest --findRelatedTests",
-      "git add"
+      "prettier --ignore-path .gitignore --write",
+      "jest --findRelatedTests"
     ]
   },
   "dependencies": {
