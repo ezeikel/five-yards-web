@@ -111,8 +111,8 @@ const TextInput = ({ label, icon, ...props }) => {
             iconWidth={iconWidth}
             passwordIconWidth={passwordIconWidth}
             error={meta.touched && meta.error !== undefined}
-            {...field}
-            {...props}
+            {...field} // eslint-disable-line react/jsx-props-no-spreading
+            {...props} // eslint-disable-line react/jsx-props-no-spreading
             type={showPassword ? "text" : "password"}
           />
           <Icon
@@ -128,8 +128,8 @@ const TextInput = ({ label, icon, ...props }) => {
           <Input
             iconWidth={iconWidth}
             error={meta.touched && meta.error !== undefined}
-            {...field}
-            {...props}
+            {...field} // eslint-disable-line react/jsx-props-no-spreading
+            {...props} // eslint-disable-line react/jsx-props-no-spreading
           />
         </InputContainer>
       )}

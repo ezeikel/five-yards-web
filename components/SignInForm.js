@@ -60,7 +60,7 @@ const Help = styled.div`
 const SignInForm = () => {
   const router = useRouter();
 
-  const [logIn, { data, loading, error }] = useMutation(LOGIN_MUTATION, {
+  const [logIn, { loading, error }] = useMutation(LOGIN_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
@@ -75,10 +75,10 @@ const SignInForm = () => {
             mixpanel.track("Log in");
             resetForm();
             router.push("/");
-          } catch (error) {
+          } catch (err) {
             const formattedErrors = formatAPIErrors(error);
             setErrors(formattedErrors);
-            console.error({ error });
+            console.error({ err });
           } finally {
             setSubmitting(false);
           }
@@ -120,7 +120,7 @@ const SignInForm = () => {
           </StyledForm>
         )}
       </Formik>
-      {loading && console.log("loading...")}
+      {loading && console.warn("loading...")}
       {error && console.error({ error })}
     </Wrapper>
   );

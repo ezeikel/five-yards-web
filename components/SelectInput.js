@@ -92,7 +92,7 @@ const SelectInput = ({ className, label, leftIcon, ...props }) => {
 
   return (
     <Wrapper
-      className={className + " input select-input"}
+      className={`${className} input select-input"`.trim()}
       rightIconHeight={rightIconHeight}
     >
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
@@ -109,8 +109,8 @@ const SelectInput = ({ className, label, leftIcon, ...props }) => {
         <Select
           leftIconWidth={leftIconWidth}
           angleDownIconWidth={angleDownIconWidth}
-          {...field}
-          {...props}
+          {...field} // eslint-disable-line react/jsx-props-no-spreading
+          {...props} // eslint-disable-line react/jsx-props-no-spreading
         />
         <RightIcon
           icon={["fal", "angle-down"]}

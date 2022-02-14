@@ -83,6 +83,7 @@ const PopularPrints = () => {
       <p>Purchase popular prints sold by retailers near and far.</p>
       <div>
         {data.map((fabric, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <figure key={index}>
             <Image src={fabric.img} width="300" height="300" />
             <figcaption>

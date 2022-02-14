@@ -35,7 +35,7 @@ const SearchShopsForm = () => {
       onSubmit={async ({ name }, { setSubmitting, resetForm }) => {
         try {
           // TODO: do something
-          console.log({ name });
+          console.log({ name }); // eslint-disable-line no-console
 
           resetForm();
         } catch (error) {

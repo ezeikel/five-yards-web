@@ -106,9 +106,9 @@ const MyDetailsForm = () => {
             mixpanel.track("Update details");
 
             toast("Your details have been updated successfully.");
-          } catch (error) {
+          } catch (err) {
             toast("Something went wrong, please try again.");
-            console.error({ error });
+            console.error({ err });
           } finally {
             setSubmitting(false);
           }
@@ -193,7 +193,7 @@ const MyDetailsForm = () => {
           </StyledForm>
         )}
       </Formik>
-      {loading && console.log("loading...")}
+      {loading && console.warn("loading...")}
       {error && console.error({ error })}
     </Wrapper>
   );

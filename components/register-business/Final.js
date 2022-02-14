@@ -8,10 +8,6 @@ const Heading = styled.h1`
   margin: 0 0 var(--spacing-large);
 `;
 
-const Final = () => (
-  <>
-    <Heading>Lorem ipsum dolor sit</Heading>
-  </>
-);
+const Final = () => <Heading>Lorem ipsum dolor sit</Heading>;
 
 export default Final;

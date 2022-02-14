@@ -42,12 +42,13 @@ const Checkbox = styled.div`
     checked ? "var(--color-primary)" : "var(--color-white)"};
 `;
 
-const CheckboxInput = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: "checkbox" });
+const CheckboxInput = ({ children, name, ...props }) => {
+  const [field, meta] = useField({ ...props, name, type: "checkbox" });
 
   return (
     <Wrapper className="input checkbox-input">
-      <label>
+      <label htmlFor={name}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <input type="checkbox" {...field} {...props} />
         <Checkbox checked={field.value}>
           {field.value && (

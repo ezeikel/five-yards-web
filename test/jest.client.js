@@ -1,5 +1,5 @@
 module.exports = {
-  ...require("./jest-common"),
+  ...require("./jest-common"), // eslint-disable-line global-require
   displayName: "client",
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: [

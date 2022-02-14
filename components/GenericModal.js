@@ -18,13 +18,12 @@ const ReactModalAdapter = forwardRef(
       className={modalClassName}
       portalClassName={className}
       ref={ref}
-      {...props}
+      {...props} // eslint-disable-line react/jsx-props-no-spreading
     />
   ),
 );
 
 const StyledModal = styled(ReactModalAdapter).attrs({
-  //https://github.com/styled-components/styled-components/issues/1494
   overlayClassName: "overlay",
   modalClassName: "modal",
 })`

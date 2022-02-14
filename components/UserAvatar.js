@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const UserAvatar = ({ image }) => (
   <Wrapper>
-    <img src={image} width="300" height="300" />
+    <img src={image} alt="user avatar" width="300" height="300" />
   </Wrapper>
 );
 

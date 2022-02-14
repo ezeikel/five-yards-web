@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { useFormikContext } from "formik";
 import TextInput from "../TextInput";
 import SelectInput from "../SelectInput";
 import TextareaInput from "../TextareaInput";
 import ToggleInput from "../ToggleInput";
-import { useFormikContext } from "formik";
 
 const PROFESSION_OPTIONS = ["TAILOR", "FABRIC SELLER"];
 const DAYS_OF_THE_WEEK = [
@@ -102,35 +102,6 @@ const HOURS = [
   },
 ];
 
-const TWENTY_FOUR_HOUR = [
-  "00",
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20",
-  "21",
-  "22",
-  "23",
-];
-const MINUTE = [...Array(60).keys()];
-const AMPM = ["AM", "PM"];
-
 const Heading = styled.h1`
   font-family: var(--font-family-secondary);
   font-size: 3rem;
@@ -226,7 +197,7 @@ const NameAndOpeningHours = () => {
       <InputWrapper className="input-wrapper">
         <h3>What is your profession?</h3>
         <SelectInput name="profession" placeholder="Select your profession">
-          {PROFESSION_OPTIONS.map(option => (
+          {PROFESSION_OPTIONS.map((option) => (
             <option key={option} value={option.replace(/\s/g, "")}>
               {option.charAt(0) + option.slice(1).toLowerCase()}
             </option>
@@ -252,7 +223,7 @@ const NameAndOpeningHours = () => {
       </InputWrapper>
       <InputWrapper className="input-wrapper">
         <h3>What are your opening hours?</h3>
-        {DAYS_OF_THE_WEEK.map(day => (
+        {DAYS_OF_THE_WEEK.map((day) => (
           <Day className="day" key={day}>
             <div>
               <span>{day.charAt(0) + day.slice(1).toLowerCase()}</span>
@@ -264,14 +235,14 @@ const NameAndOpeningHours = () => {
             {values.hours[day.toLowerCase()].open ? (
               <HourSelection className="hour-selection">
                 <SelectInput name={`hours.${day.toLowerCase()}.openTime`}>
-                  {HOURS.map(option => (
+                  {HOURS.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.display}
                     </option>
                   ))}
                 </SelectInput>
                 <SelectInput name={`hours.${day.toLowerCase()}.closeTime`}>
-                  {HOURS.map(option => (
+                  {HOURS.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.display}
                     </option>
@@ -288,7 +259,7 @@ const NameAndOpeningHours = () => {
         <h3>What time do you usually take your lunch break?</h3>
         <p>This will be used to populate your calendar.</p>
         <SelectInput name="lunchBreakStart" placeholder="Select time">
-          {HOURS.map(option => (
+          {HOURS.map((option) => (
             <option key={option.value} value={option.value}>
               {option.display}
             </option>
@@ -298,7 +269,7 @@ const NameAndOpeningHours = () => {
           name="lunchBreakLength"
           placeholder="Select your your lunch break length"
         >
-          {HOURS.map(option => (
+          {HOURS.map((option) => (
             <option key={option.value} value={option.value}>
               {option.display}
             </option>

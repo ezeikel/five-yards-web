@@ -37,7 +37,7 @@ const SearchTailorsForm = () => {
       ) => {
         try {
           // TODO: do something
-          console.log({ location, global, collectionDate });
+          console.log({ location, global, collectionDate }); // eslint-disable-line no-console
 
           resetForm();
         } catch (error) {
@@ -60,7 +60,7 @@ const SearchTailorsForm = () => {
               leftIcon="globe"
               placeholder="Lorem ipsum"
             >
-              {GLOBAL_OPTIONS.map(option => (
+              {GLOBAL_OPTIONS.map((option) => (
                 <option key={option} value={option.replace(/\s/g, "")}>
                   {option.charAt(0) + option.slice(1).toLowerCase()}
                 </option>

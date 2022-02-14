@@ -1,9 +1,9 @@
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation } from "@apollo/client";
 import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
-import { useContext } from "react";
 import { MenuContext } from "../contexts/menu";
 import useUser from "../hooks/useUser";
 import UserAvatar from "./UserAvatar";
@@ -22,6 +22,7 @@ const LoggedOutMenuList = () => {
 
   return (
     <ul>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "receipt"]}
@@ -32,6 +33,7 @@ const LoggedOutMenuList = () => {
           <a>My orders</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "calendar-check"]}
@@ -42,6 +44,7 @@ const LoggedOutMenuList = () => {
           <a>My appointments</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "comment-alt"]}
@@ -52,6 +55,7 @@ const LoggedOutMenuList = () => {
           <a>Message center</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "address-card"]}
@@ -62,6 +66,7 @@ const LoggedOutMenuList = () => {
           <a>My details</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "key"]}
@@ -72,6 +77,7 @@ const LoggedOutMenuList = () => {
           <a>Change password</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => toggle(false)}>
         <FontAwesomeIcon
           icon={["fal", "credit-card"]}
@@ -82,6 +88,7 @@ const LoggedOutMenuList = () => {
           <a>Payment preferences</a>
         </Link>
       </li>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li
         onClick={() => {
           signout();

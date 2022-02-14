@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import GoogleIcon from "../components/svgs/GoogleIcon";
-import SignInForm from "../components/SignInForm";
+import GoogleIcon from "./svgs/GoogleIcon";
+import SignInForm from "./SignInForm";
 import Button from "./Button";
 
 const Wrapper = styled.div`

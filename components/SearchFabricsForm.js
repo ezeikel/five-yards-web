@@ -28,7 +28,7 @@ const SearchFabricsForm = () => {
       onSubmit={async ({ style }, { setSubmitting, resetForm }) => {
         try {
           // TODO: do something
-          console.log({ style });
+          console.log({ style }); // eslint-disable-line no-console
 
           resetForm();
         } catch (error) {
@@ -44,7 +44,7 @@ const SearchFabricsForm = () => {
             icon="layer-group"
             placeholder="Choose a type of fabric"
           >
-            {FABRIC_OPTIONS.map(option => (
+            {FABRIC_OPTIONS.map((option) => (
               <option key={option} value={option.replace(/\s/g, "")}>
                 {option.charAt(0) + option.slice(1).toLowerCase()}
               </option>

@@ -69,6 +69,7 @@ const Header = () => {
                 </a>
               </Link>
             </li>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
             <li onClick={() => setActive(!active)}>
               <FontAwesomeIcon
                 icon={["far", "bars"]}

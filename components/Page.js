@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
@@ -93,9 +92,5 @@ const Page = ({ children }) => (
     </ThemeProvider>
   </>
 );
-
-Page.propTypes = {
-  children: PropTypes.object.isRequired,
-};
 
 export default Page;

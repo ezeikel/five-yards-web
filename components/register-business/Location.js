@@ -1,9 +1,5 @@
 import styled from "styled-components";
 import TextInput from "../TextInput";
-import SelectInput from "../SelectInput";
-import CheckboxInput from "../CheckboxInput";
-
-const PROFESSION_OPTIONS = ["CHEAP", "EXPENSIVE"];
 
 const Heading = styled.h1`
   font-family: var(--font-family-secondary);

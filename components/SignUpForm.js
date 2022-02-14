@@ -65,10 +65,10 @@ const SignUpForm = () => {
             mixpanel.track("Register");
             resetForm();
             router.push("/");
-          } catch (error) {
-            const formattedErrors = formatAPIErrors(error);
+          } catch (err) {
+            const formattedErrors = formatAPIErrors(err);
             setErrors(formattedErrors);
-            console.error(error);
+            console.error(err);
           } finally {
             setSubmitting(false);
           }
@@ -111,7 +111,7 @@ const SignUpForm = () => {
           </StyledForm>
         )}
       </Formik>
-      {loading && console.log("loading...")}
+      {loading && console.warn("loading...")}
       {error && console.error({ error })}
     </Wrapper>
   );

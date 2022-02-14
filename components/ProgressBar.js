@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   background-color: #d6d6d6;
   span {
     background-color: ${({ backgroundColor }) =>
-      backgroundColor ? backgroundColor : "var(--color-primary)"};
+      backgroundColor || "var(--color-primary)"};
     width: ${({ percent }) => (percent ? `${percent}%` : "0")};
   }
 `;

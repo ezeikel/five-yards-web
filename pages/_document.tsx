@@ -19,6 +19,7 @@ class MyDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
+            // eslint-disable-next-line react/jsx-props-no-spreading
             sheet.collectStyles(<App {...props} />),
         });
 
@@ -37,6 +38,7 @@ class MyDocument extends Document {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setGoogleAnalyticsTags() {
     return {
       __html: `
@@ -49,6 +51,7 @@ class MyDocument extends Document {
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setCypressReactDevTools() {
     return {
       __html: `
@@ -59,6 +62,7 @@ class MyDocument extends Document {
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   setHotjarTag() {
     return {
       __html: `
@@ -83,10 +87,13 @@ class MyDocument extends Document {
           {/* Global site tag (gtag.js) - Google Analytics */}
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-PKC9SQ34MW"
-          ></script>
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
+          />
+          {/* eslint-disable-next-line react/no-danger */}
           <script dangerouslySetInnerHTML={this.setGoogleAnalyticsTags()} />
+          {/* eslint-disable-next-line react/no-danger */}
           <script dangerouslySetInnerHTML={this.setHotjarTag()} />
+          {/* eslint-disable-next-line react/no-danger */}
           <script dangerouslySetInnerHTML={this.setCypressReactDevTools()} />
         </Head>
         <body>

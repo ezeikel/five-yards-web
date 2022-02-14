@@ -27,17 +27,18 @@ const StyledSwitch = styled(Switch)`
 `;
 
 const ToggleInput = ({ ...props }) => {
-  const [field, meta, helpers] = useField({ ...props, type: "checkbox" });
+  const [field, helpers] = useField({ ...props, type: "checkbox" });
   const { setValue } = helpers;
 
   return (
     <Wrapper className="input">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label>
         <StyledSwitch
-          {...field}
-          {...props}
+          {...field} // eslint-disable-line react/jsx-props-no-spreading
+          {...props} // eslint-disable-line react/jsx-props-no-spreading
           checked={field.value}
-          onChange={checked => {
+          onChange={(checked) => {
             setValue(checked, false);
           }}
           checkedIcon={false}

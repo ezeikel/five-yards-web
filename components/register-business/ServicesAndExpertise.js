@@ -68,7 +68,7 @@ const ServicesAndExpertise = () => (
     <InputWrapper className="input-wrapper">
       <h3>What is your price range?</h3>
       <SelectInput name="priceRange" placeholder="Select price range">
-        {PROFESSION_OPTIONS.map(option => (
+        {PROFESSION_OPTIONS.map((option) => (
           <option key={option} value={option.replace(/\s/g, "")}>
             {option.charAt(0) + option.slice(1).toLowerCase()}
           </option>

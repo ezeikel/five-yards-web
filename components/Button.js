@@ -48,6 +48,7 @@ const Wrapper = styled.button`
 `;
 
 const Button = ({ text, children, ...props }) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <Wrapper {...props}>
     {children}
     {text}

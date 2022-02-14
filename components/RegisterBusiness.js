@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
+import styled from "styled-components";
 import * as Yup from "yup";
 import Button from "./Button";
-import { useEffect, useState } from "react";
 import NameAndOpeningHours from "./register-business/NameAndOpeningHours";
 import ServicesAndExpertise from "./register-business/ServicesAndExpertise";
 import Location from "./register-business/Location";
@@ -95,8 +95,8 @@ const RegisterBusiness = () => {
   const [page, setPage] = useState(0);
   const [percent, setPercent] = useState(0);
 
-  const nextPage = () => setPage(page => page + 1);
-  const previousPage = () => setPage(page => page - 1);
+  const nextPage = () => setPage((currentPage) => currentPage + 1);
+  const previousPage = () => setPage((currentPage) => currentPage - 1);
 
   const isLastStep = page === pages.length - 1;
   const isFirstStep = page === 0;
@@ -169,7 +169,7 @@ const RegisterBusiness = () => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             // TODO: do something
-            alert(JSON.stringify({ values }, 2));
+            // eslint-disable-next-line no-console
             console.log({ values });
           } catch (error) {
             console.error({ error });

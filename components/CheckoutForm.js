@@ -7,7 +7,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
@@ -29,9 +29,10 @@ const CheckoutForm = () => {
 
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      console.error(result.error.message);
     } else {
       // The payment has been processed!
+      // eslint-disable-next-line no-lonely-if
       if (result.paymentIntent.status === "succeeded") {
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback

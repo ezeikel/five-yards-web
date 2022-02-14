@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchTailor from "./SearchTailorsForm";
 import SearchFabric from "./SearchFabricsForm";
 import SearchShop from "./SearchShopsForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   display: flex;
@@ -72,6 +72,8 @@ const SearchForm = () => {
       case "shop":
         setHeading("Why not go directly to your favourite shop.");
         // setForm(SearchShop);
+        break;
+      default:
         break;
     }
   }, [searchType]);

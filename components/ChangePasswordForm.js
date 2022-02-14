@@ -4,10 +4,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
+import { toast } from "react-toastify";
 import { CHANGE_PASSWORD_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
-import { toast } from "react-toastify";
 
 const ChangePasswordSchema = Yup.object().shape({
   oldPassword: Yup.string().required("Please choose an old password"),
@@ -42,7 +42,7 @@ const StyledForm = styled(Form)`
 const ChangePasswordForm = () => {
   const router = useRouter();
 
-  const [changePassword, { data, loading, error }] = useMutation(
+  const [changePassword, { loading, error }] = useMutation(
     CHANGE_PASSWORD_MUTATION,
   );
 
@@ -58,9 +58,9 @@ const ChangePasswordForm = () => {
             resetForm();
             toast("Password changed successfully.");
             router.push("/");
-          } catch (error) {
+          } catch (err) {
             toast("Something went wrong, please try again.");
-            console.error({ error });
+            console.error({ err });
           } finally {
             setSubmitting(false);
           }
@@ -97,7 +97,7 @@ const ChangePasswordForm = () => {
           </StyledForm>
         )}
       </Formik>
-      {loading && console.log("loading...")}
+      {loading && console.warn("loading...")}
       {error && console.error({ error })}
     </Wrapper>
   );
