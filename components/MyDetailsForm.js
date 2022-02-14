@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { toast } from "react-toastify";
@@ -8,18 +8,18 @@ import { UPDATE_USER_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import useUser from "../hooks/useUser";
-import removeNullProperties from "../utils/removeNullProperties";
 import SelectInput from "./SelectInput";
 
 const GENDER_OPTIONS = ["MALE", "FEMALE", "NON BINARY", "NOT SPECIFIED"];
 
-const PHONE_REGEX = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const PHONE_REGEX =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const MyDetailsSchema = Yup.object().shape({
   firstName: Yup.string().max(15, "Must be 15 characters or less"), // TODO: think these fields should be required unless means you have to submit every time
   lastName: Yup.string().max(20, "Must be 20 characters or less"),
   email: Yup.string().email("Invalid email address"),
-  phone: Yup.string().matches(PHONE_REGEX, "Phone number is not valid"),
+  phoneNumber: Yup.string().matches(PHONE_REGEX, "Phone number is not valid"),
   gender: Yup.string().required("Gender is required"),
   neck: Yup.string(),
   waist: Yup.string(),
@@ -65,34 +65,18 @@ const SubHeading = styled.h3`
   margin: 0 0 var(--spacing-large);
 `;
 
-// const SelectInput = styled(Field)`
-//   position: relative;
-//   line-height: normal;
-//   border-radius: var(--border-radius);
-//   border: 1px solid var(--color-input-border);
-//   width: 100%;
-//   padding: var(--spacing-medium);
-//   font-family: var(--font-family-primary);
-//   font-size: 1.6rem;
-//   @media (min-width: 1280px) {
-//     font-size: 2rem;
-//     line-height: 31px;
-//     padding: 16px 34px;
-//   }
-// `;
-
 const MyDetailsForm = () => {
   const { user } = useUser();
-
   const [updateDetails, { loading, error }] = useMutation(UPDATE_USER_MUTATION);
 
   if (!user) return null;
 
-  const { id, bag, gravatar, permissions, __typename, ...userData } = user;
+  // pull off properties not meant to be updated by user
+  const { id, gravatar, role, __typename, ...userData } = user;
 
-  const userInitialValues = removeNullProperties({
+  const userInitialValues = {
     ...userData,
-  });
+  };
 
   return (
     <Wrapper>
@@ -106,7 +90,7 @@ const MyDetailsForm = () => {
             };
 
             // TODO: this wont work for nested objects e.g. measurements
-            Object.keys(values).forEach(key => {
+            Object.keys(values).forEach((key) => {
               if (
                 !userInitialValues[key] ||
                 userInitialValues[key] !== values[key]
@@ -130,7 +114,7 @@ const MyDetailsForm = () => {
           }
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <StyledForm>
             <InputWrapper>
               <TextInput
@@ -150,7 +134,7 @@ const MyDetailsForm = () => {
                 leftIcon="venus-mars"
                 placeholder="Gender"
               >
-                {GENDER_OPTIONS.map(option => (
+                {GENDER_OPTIONS.map((option) => (
                   <option key={option} value={option.replace(/\s/g, "")}>
                     {option.charAt(0) + option.slice(1).toLowerCase()}
                   </option>
@@ -163,7 +147,7 @@ const MyDetailsForm = () => {
                 placeholder="Email"
               />
               <TextInput
-                name="phone"
+                name="phoneNumber"
                 type="tel"
                 icon="phone-alt"
                 placeholder="Phone number"

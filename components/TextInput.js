@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useField } from "formik";
 import styled from "styled-components";
 import Error from "./Error";
@@ -80,7 +80,7 @@ const TextInput = ({ label, icon, ...props }) => {
     field.name === "oldPassword" ||
     field.name === "newPassword";
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (icon) {
       const { width, height } = iconRef.current.getBoundingClientRect();
       setIconWidth(width);
@@ -88,7 +88,7 @@ const TextInput = ({ label, icon, ...props }) => {
     }
   }, [iconRef.current]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isPasswordField) {
       const { width, height } = passwordIconRef.current.getBoundingClientRect();
       setPasswordIconWidth(width);

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation } from "@apollo/client";
-import { SIGNOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
+import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
 import { useContext } from "react";
 import { MenuContext } from "../contexts/menu";
 import useUser from "../hooks/useUser";
@@ -11,7 +11,7 @@ import UserAvatar from "./UserAvatar";
 const LoggedOutMenuList = () => {
   const router = useRouter();
   const [, toggle] = useContext(MenuContext);
-  const [signout] = useMutation(SIGNOUT_MUTATION, {
+  const [signout] = useMutation(LOGOUT_MUTATION, {
     onCompleted() {
       router.push(`/`);
     },

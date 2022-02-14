@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 import useUser from "../hooks/useUser";
 import { useRouter } from "next/router";
-import { SIGNOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
+import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from "../apollo/queries";
 import { useMutation } from "@apollo/client";
 
 // TODO: instead of trying to this dynamic menu list thing, create seperate components
@@ -110,7 +110,7 @@ const MenuItems = () => {
     LOGGED_OUT_MENU_LIST.map((item, i) => ({ ...item, index: i })),
   );
 
-  const [signout] = useMutation(SIGNOUT_MUTATION, {
+  const [signout] = useMutation(LOGOUT_MUTATION, {
     onCompleted() {
       router.push(`/`);
     },
@@ -205,7 +205,7 @@ const MenuItems = () => {
               item.childList
                 ? () => {
                     setLoggedOutMenu(
-                      loggedOutMenu.map(item => {
+                      loggedOutMenu.map((item) => {
                         if (i === item.index) {
                           item.childListOpen = !item.childListOpen;
                         }

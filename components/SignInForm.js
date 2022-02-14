@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
-import { CURRENT_USER_QUERY, SIGNIN_MUTATION } from "../apollo/queries";
+import { CURRENT_USER_QUERY, LOGIN_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import CheckboxInput from "./CheckboxInput";
@@ -60,7 +60,7 @@ const Help = styled.div`
 const SignInForm = () => {
   const router = useRouter();
 
-  const [signin, { data, loading, error }] = useMutation(SIGNIN_MUTATION, {
+  const [logIn, { data, loading, error }] = useMutation(LOGIN_MUTATION, {
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
@@ -71,8 +71,8 @@ const SignInForm = () => {
         validationSchema={SigninSchema}
         onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           try {
-            await signin({ variables: values });
-            mixpanel.track("Sign in");
+            await logIn({ variables: values });
+            mixpanel.track("Log in");
             resetForm();
             router.push("/");
           } catch (error) {

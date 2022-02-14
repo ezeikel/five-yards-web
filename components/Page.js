@@ -1,88 +1,11 @@
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faFacebookF,
-  faTwitter,
-  faInstagram,
-  faGoogle,
-  faFacebookSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { faShoppingBag, faBars } from "@fortawesome/pro-regular-svg-icons";
-import {
-  faCut,
-  faSearch,
-  faLayerGroup,
-  faTimesCircle,
-  faUser,
-  faBriefcase,
-  faAngleDown,
-  faDizzy,
-  faTimes,
-  faReceipt,
-  faCalendarCheck,
-  faCommentAlt,
-  faAddressCard,
-  faKey,
-  faCreditCard,
-  faCheck,
-  faEnvelope,
-  faRuler,
-  faPhoneAlt,
-  faVenusMars,
-  faLock,
-  faUnlock,
-  faQuestionCircle,
-  faMapMarkerAlt,
-  faGlobe,
-  faCalendar,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/pro-light-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import GlobalStyle from "../GlobalStyle";
 import Meta from "./Meta";
 import Header from "./Header";
 import Footer from "./Footer";
-
-library.add(
-  faFacebookF,
-  faTwitter,
-  faInstagram,
-  faCut,
-  faSearch,
-  faLayerGroup,
-  faTimesCircle,
-  faUser,
-  faBriefcase,
-  faAngleDown,
-  faDizzy,
-  faGoogle,
-  faFacebookSquare,
-  faTimes,
-  faReceipt,
-  faCalendarCheck,
-  faCommentAlt,
-  faAddressCard,
-  faKey,
-  faCreditCard,
-  faCheck,
-  faEnvelope,
-  faRuler,
-  faPhoneAlt,
-  faVenusMars,
-  faLock,
-  faUnlock,
-  faQuestionCircle,
-  faMapMarkerAlt,
-  faGlobe,
-  faCalendar,
-  faEye,
-  faEyeSlash,
-  faShoppingBag,
-  faBars,
-);
 
 const theme = {
   red: "#FF0000",

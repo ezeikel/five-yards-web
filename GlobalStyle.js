@@ -1,6 +1,6 @@
 import { createGlobalStyle, keyframes } from "styled-components";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import styledNormalize from "styled-normalize"; // does this even work?
+
 config.autoAddCss = false;
 
 export default createGlobalStyle`

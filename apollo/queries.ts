@@ -1,50 +1,28 @@
 import gql from "graphql-tag";
 
-// TODO: Being used in Refetch on addToCart
-// TODO: me and currentUser do very similar things. Merge?
+// TODO: use fragments where it makes sense
 
-// TODO: FRAGMENTS!!!
 export const CURRENT_USER_QUERY = gql`
   query {
     currentUser {
       id
       firstName
       lastName
-      email
-      phone
       gender
+      role
       gravatar
-      measurements {
-        neck
-        waist
-        hips
-        bust
-        armLength
-      }
-      bag {
-        id
-        quantity
-        item {
-          id
-          price
-          image
-          title
-          description
-        }
-      }
-      permissions
     }
   }
 `;
 
-export const SIGNUP_MUTATION = gql`
-  mutation signup(
+export const CREATE_USER_MUTATION = gql`
+  mutation createUser(
     $firstName: String!
     $lastName: String!
     $email: String!
     $password: String!
   ) {
-    signup(
+    createUser(
       firstName: $firstName
       lastName: $lastName
       email: $email
@@ -54,37 +32,28 @@ export const SIGNUP_MUTATION = gql`
       firstName
       lastName
       email
-      permissions
     }
   }
 `;
 
-export const SIGNIN_MUTATION = gql`
-  mutation signin($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      firstName
-      lastName
-      email
-      permissions
-      bag {
+export const LOGIN_MUTATION = gql`
+  mutation logIn($email: String!, $password: String!) {
+    logIn(email: $email, password: $password) {
+      user {
         id
-        quantity
-        item {
-          id
-          price
-          image
-          title
-          description
-        }
+        firstName
+        lastName
+        email
+        role
       }
+      token
     }
   }
 `;
 
-export const SIGNOUT_MUTATION = gql`
-  mutation signout {
-    signout {
+export const LOGOUT_MUTATION = gql`
+  mutation logOut {
+    logOut {
       message
     }
   }
@@ -122,13 +91,8 @@ export const CHANGE_PASSWORD_MUTATION = gql`
   mutation CHANGE_PASSWORD_MUTATION(
     $oldPassword: String!
     $newPassword: String!
-    $passwordHint: String
   ) {
-    changePassword(
-      oldPassword: $oldPassword
-      newPassword: $newPassword
-      passwordHint: $passwordHint
-    ) {
+    changePassword(oldPassword: $oldPassword, newPassword: $newPassword) {
       message
     }
   }
@@ -136,21 +100,19 @@ export const CHANGE_PASSWORD_MUTATION = gql`
 
 export const UPDATE_USER_MUTATION = gql`
   mutation UPDATE_USER_MUTATION(
-    $id: ID!
     $firstName: String
     $lastName: String
     $gender: Gender
     $email: String
-    $phone: String
+    $phoneNumber: String
     $measurements: MeasurementsInput
   ) {
     updateUser(
-      id: $id
       firstName: $firstName
       lastName: $lastName
       gender: $gender
       email: $email
-      phone: $phone
+      phoneNumber: $phoneNumber
       measurements: $measurements
     ) {
       id

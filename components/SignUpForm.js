@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import mixpanel from "mixpanel-browser";
-import { CURRENT_USER_QUERY, SIGNUP_MUTATION } from "../apollo/queries";
+import { CURRENT_USER_QUERY, CREATE_USER_MUTATION } from "../apollo/queries";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import formatAPIErrors from "../utils/formatAPIErrors";
@@ -49,8 +49,8 @@ const StyledForm = styled(Form)`
 const SignUpForm = () => {
   const router = useRouter();
 
-  const [signup, { loading, error }] = useMutation(SIGNUP_MUTATION, {
-    mutation: SIGNUP_MUTATION,
+  const [signup, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
+    mutation: CREATE_USER_MUTATION,
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
@@ -60,7 +60,6 @@ const SignUpForm = () => {
         initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
         validationSchema={SignupSchema}
         onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
-          console.log({ values });
           try {
             await signup({ variables: values });
             mixpanel.track("Register");

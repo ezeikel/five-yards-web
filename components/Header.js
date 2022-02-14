@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { MenuContext } from "../contexts/menu";
 import LogoWithMainTextHorizontal from "./svgs/LogoWithMainTextHorizontal";
 import MobileMenu from "./MobileMenu";
-import { UserContextProvider } from "../contexts/user";
 
 const Wrapper = styled.header`
   display: flex;
@@ -48,7 +47,7 @@ const Header = () => {
   const [active, setActive] = useContext(MenuContext);
 
   return (
-    <UserContextProvider>
+    <>
       <Wrapper>
         <LogoWrapper>
           <Link href="/">
@@ -81,7 +80,7 @@ const Header = () => {
         </Navigation>
       </Wrapper>
       <MobileMenu />
-    </UserContextProvider>
+    </>
   );
 };
 

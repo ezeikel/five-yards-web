@@ -5,13 +5,10 @@ module.exports = {
     sourceType: "module", // allows for the use of imports
     ecmaFeatures: {
       jsx: true,
-      modules: true
+      modules: true,
     },
   },
-  extends: [
-    "airbnb",
-    "plugin:prettier/recommended",
-  ],
+  extends: ["airbnb", "plugin:prettier/recommended"],
   env: {
     browser: true,
     node: true,
@@ -29,11 +26,14 @@ module.exports = {
         jsx: "never",
         ts: "never",
         tsx: "never",
-      }
+      },
     ],
     "react/prop-types": 0,
     "react/require-default-props": 0,
-    'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
+    "react/jsx-filename-extension": [
+      2,
+      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
+    ],
     "jsx-a11y/anchor-is-valid": [
       2,
       {
@@ -42,23 +42,21 @@ module.exports = {
         aspects: ["invalidHref", "preferButton"],
       },
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
+    "import/no-extraneous-dependencies": [
+      "error",
       {
-        devDependencies: [
-          '.storybook/**',
-          'stories/**'
-        ]
-      }
+        devDependencies: [".storybook/**", "stories/**"],
+      },
     ],
     "no-console": [2, { allow: ["warn", "error"] }],
-    "no-underscore-dangle": [2, { "allow": ["_id"] }]
+    "no-underscore-dangle": [2, { allow: ["_id"] }],
+    "react/function-component-definition": 0,
   },
   settings: {
     "import/resolver": {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
-      }
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
     },
   },
   overrides: [
@@ -70,7 +68,7 @@ module.exports = {
       },
       plugins: ["@typescript-eslint/eslint-plugin"],
       extends: ["airbnb-typescript", "plugin:prettier/recommended"],
-      rules: {}
+      rules: {},
     },
   ],
 };

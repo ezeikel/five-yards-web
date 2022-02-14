@@ -1,12 +1,12 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/nextjs";
 
-process.on("unhandledRejection", err => {
+process.on("unhandledRejection", (err) => {
   Sentry.captureException(err);
 });
 
-process.on("uncaughtException", err => {
+process.on("uncaughtException", (err) => {
   Sentry.captureException(err);
 });
 
@@ -18,7 +18,8 @@ class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -43,7 +44,7 @@ class MyDocument extends Document {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '${GA_MEASUREMENT_ID}');
+        gtag('config', '${process.env.GA_MEASUREMENT_ID}');
       `,
     };
   }

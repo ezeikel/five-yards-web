@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useField } from "formik";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -76,7 +76,7 @@ const SelectInput = ({ className, label, leftIcon, ...props }) => {
   const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
   const [rightIconHeight, setRightIconHeight] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (leftIcon) {
       const { width, height } = leftIconRef.current.getBoundingClientRect();
       setLeftIconWidth(width);
@@ -84,7 +84,7 @@ const SelectInput = ({ className, label, leftIcon, ...props }) => {
     }
   }, [leftIconRef.current]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const { width, height } = angleDownIconRef.current.getBoundingClientRect();
     setAngleDownIconWidth(width);
     setRightIconHeight(height);
