@@ -1,4 +1,4 @@
-import TextInput from "../../../forms/inputs/TextInput/TextInput";
+import TextInput from "../../../inputs/TextInput/TextInput";
 import { Heading, InputWrapper } from "./StepThree.styled";
 
 const StepThree = () => (

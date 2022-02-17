@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import StepOne from "./steps/StepOne/StepOne";
 import StepTwo from "./steps/StepTwo/StepTwo";
 import StepThree from "./steps/StepThree/StepThree";

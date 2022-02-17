@@ -8,7 +8,7 @@ import {
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 import { isIOS } from "react-device-detect";
-import CloseButton from "./CloseButton";
+import CloseButton from "../../CloseButton/CloseButton";
 
 Modal.setAppElement("body");
 

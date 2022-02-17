@@ -39,7 +39,7 @@ const MyDetailsForm = () => {
   if (!user) return null;
 
   // pull off properties not meant to be updated by user
-  const { id, gravatar, role, __typename, ...userData } = user;
+  const { id, gravatar, role, __typename, ...userData } = user; // eslint-disable-line @typescript-eslint/naming-convention
 
   const userInitialValues = {
     ...userData,

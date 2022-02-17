@@ -1,6 +1,6 @@
-import TextInput from "../../../forms/inputs/TextInput/TextInput";
-import SelectInput from "../../../forms/inputs/SelectInput/SelectInput";
-import CheckboxInput from "../../../forms/inputs/CheckboxInput/CheckboxInput";
+import TextInput from "../../../inputs/TextInput/TextInput";
+import SelectInput from "../../../inputs/SelectInput/SelectInput";
+import CheckboxInput from "../../../inputs/CheckboxInput/CheckboxInput";
 import { Heading, InputWrapper } from "./StepTwo.styled";
 
 const PROFESSION_OPTIONS = ["CHEAP", "EXPENSIVE"];

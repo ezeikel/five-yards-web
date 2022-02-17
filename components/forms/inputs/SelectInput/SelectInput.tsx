@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useField } from "formik";
 import {
   Wrapper,
@@ -12,27 +12,26 @@ import {
 const SelectInput = ({ className, label, leftIcon, ...props }) => {
   const [field, meta] = useField(props);
 
-  const leftIconRef = useRef();
-  const angleDownIconRef = useRef();
-
   const [leftIconWidth, setLeftIconWidth] = useState(null);
   const [leftIconHeight, setIconHeight] = useState(null);
   const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
   const [rightIconHeight, setRightIconHeight] = useState(null);
 
-  useEffect(() => {
-    if (leftIcon) {
-      const { width, height } = leftIconRef.current.getBoundingClientRect();
+  const leftIconRef = useCallback((node) => {
+    if (node !== null) {
+      const { width, height } = node.getBoundingClientRect();
       setLeftIconWidth(width);
       setIconHeight(height);
     }
-  }, [leftIconRef.current]);
+  }, []);
 
-  useEffect(() => {
-    const { width, height } = angleDownIconRef.current.getBoundingClientRect();
-    setAngleDownIconWidth(width);
-    setRightIconHeight(height);
-  }, [angleDownIconRef.current]);
+  const angleDownIconRef = useCallback((node) => {
+    if (node !== null) {
+      const { width, height } = node.getBoundingClientRect();
+      setAngleDownIconWidth(width);
+      setRightIconHeight(height);
+    }
+  }, []);
 
   return (
     <Wrapper className={`${className} input select-input"`.trim()}>

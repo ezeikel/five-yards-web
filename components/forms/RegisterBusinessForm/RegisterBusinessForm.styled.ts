@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Form } from "formik";
-import ProgressBar from "../ProgressBar/ProgressBar";
+import ProgressBar from "../../ProgressBar/ProgressBar";
 
 export const Wrapper = styled.div`
   width: 100%;

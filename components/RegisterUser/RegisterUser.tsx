@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GoogleIcon from "../svgs/GoogleIcon";
-import SignUpForm from "../SignUpForm";
+import SignUpForm from "../forms/SignUpForm/SignUpForm";
 import Button from "../Button/Button";
 import {
   Wrapper,

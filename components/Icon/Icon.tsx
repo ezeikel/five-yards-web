@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import {
   IconName,
   IconPrefix,
@@ -13,19 +14,25 @@ type IconProps = {
   onClick?: () => void;
 };
 
-const Icon = ({
-  name,
-  type = "fal",
-  color = "var(--color-black)",
-  size = "lg",
-  onClick,
-}: IconProps) => (
-  <FontAwesomeIcon
-    icon={[type, name]}
-    color={color}
-    size={size}
-    onClick={onClick}
-  />
+const Icon = forwardRef(
+  (
+    {
+      name,
+      type = "fal",
+      color = "var(--color-black)",
+      size = "lg",
+      onClick,
+    }: IconProps,
+    ref: { current: HTMLElement },
+  ) => (
+    <FontAwesomeIcon
+      icon={[type, name]}
+      color={color}
+      size={size}
+      onClick={onClick}
+      forwardedRef={ref}
+    />
+  ),
 );
 
 export default Icon;

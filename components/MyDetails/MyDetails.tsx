@@ -1,4 +1,4 @@
-import MyDetailsForm from "../MyDetailsForm";
+import MyDetailsForm from "../forms/MyDetailsForm/MyDetailsForm";
 import { Wrapper, Heading } from "./MyDetails.styled";
 
 const ChangePassword = () => {

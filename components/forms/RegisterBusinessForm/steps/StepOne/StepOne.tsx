@@ -1,8 +1,8 @@
 import { useFormikContext } from "formik";
-import TextInput from "../../../forms/inputs/TextInput/TextInput";
-import SelectInput from "../../../forms/inputs/SelectInput/SelectInput";
-import TextareaInput from "../../../forms/inputs/TextareaInput/TextareaInput";
-import ToggleInput from "../../../forms/inputs/ToggleInput/ToggleInput";
+import TextInput from "../../../inputs/TextInput/TextInput";
+import SelectInput from "../../../inputs/SelectInput/SelectInput";
+import TextareaInput from "../../../inputs/TextareaInput/TextareaInput";
+import ToggleInput from "../../../inputs/ToggleInput/ToggleInput";
 import {
   Heading,
   InputWrapper,

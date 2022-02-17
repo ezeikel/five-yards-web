@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RegisterBusinessForm from "../../components/RegisterBusinessForm/RegisterBusinessForm";
+import RegisterBusinessForm from "../../components/forms/RegisterBusinessForm/RegisterBusinessForm";
 
 const Wrapper = styled.div`
   display: grid;

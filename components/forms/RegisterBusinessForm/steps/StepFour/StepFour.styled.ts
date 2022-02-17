@@ -1,3 +1,6 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-nested-ternary */
+
 import styled from "styled-components";
 
 export const Heading = styled.h1`

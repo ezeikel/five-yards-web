@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useField } from "formik";
 import Error from "../../../Error/Error";
 import Icon from "../../../Icon/Icon";
@@ -6,9 +6,6 @@ import { Wrapper, InputContainer, Input, Label } from "./TextInput.styled";
 
 const TextInput = ({ label, icon, ...props }) => {
   const [field, meta] = useField(props);
-
-  const iconRef = useRef();
-  const passwordIconRef = useRef();
 
   const [iconWidth, setIconWidth] = useState(null);
   const [iconHeight, setIconHeight] = useState(null);
@@ -21,21 +18,20 @@ const TextInput = ({ label, icon, ...props }) => {
     field.name === "oldPassword" ||
     field.name === "newPassword";
 
-  useEffect(() => {
-    // TODO: not sure why i have to check if iconRef.current exists unlike SelectInput which just works
-    if (icon && iconRef.current) {
-      const { width, height } = iconRef.current.getBoundingClientRect();
+  const iconRef = useCallback((node) => {
+    if (node !== null) {
+      const { width, height } = node.getBoundingClientRect();
       setIconWidth(width);
       setIconHeight(height);
     }
-  }, [iconRef.current]);
+  }, []);
 
-  useEffect(() => {
-    if (isPasswordField) {
-      const { height } = passwordIconRef.current?.getBoundingClientRect();
+  const passwordIconRef = useCallback((node) => {
+    if (isPasswordField && node !== null) {
+      const { height } = node.getBoundingClientRect();
       setPasswordIconHeight(height);
     }
-  }, [passwordIconRef.current]);
+  }, []);
 
   return (
     <Wrapper
@@ -47,7 +43,7 @@ const TextInput = ({ label, icon, ...props }) => {
       {/* TODO: probably a cleaner way to show either password or text input */}
       {isPasswordField ? (
         <InputContainer>
-          {icon && <Icon name={icon} size="2x" />}
+          {icon && <Icon name={icon} size="2x" ref={iconRef} />}
           <Input
             iconWidth={iconWidth}
             {...field} // eslint-disable-line react/jsx-props-no-spreading
@@ -58,6 +54,7 @@ const TextInput = ({ label, icon, ...props }) => {
             name={showPassword ? "eye" : "eye-slash"}
             size="2x"
             onClick={() => setShowPassword(!showPassword)}
+            ref={passwordIconRef}
           />
         </InputContainer>
       ) : (
