@@ -42,7 +42,7 @@ import {
 import mixpanel from "mixpanel-browser";
 import { useApollo } from "../apollo/client";
 import { MenuContextProvider } from "../contexts/menu";
-import Page from "../components/Page";
+import Page from "../components/Page/Page";
 
 mixpanel.init(
   process.env.NEXT_PUBLIC_MIXPANEL_TOKEN,
