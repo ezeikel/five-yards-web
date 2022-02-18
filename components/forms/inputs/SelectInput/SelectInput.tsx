@@ -1,5 +1,6 @@
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import { useField } from "formik";
+import { IconName } from "@fortawesome/fontawesome-svg-core";
 import {
   Wrapper,
   InputContainer,
@@ -9,9 +10,25 @@ import {
   RightIcon,
 } from "./SelectInput.styled";
 
-const SelectInput = ({ className, label, leftIcon, ...props }) => {
-  const [field, meta] = useField(props);
+type SelectInputProps = {
+  className?: string;
+  label?: string;
+  placeholder?: string;
+  name: string;
+  leftIcon?: IconName;
+  children: ReactNode;
+};
 
+// TODO: replace this with react dropdown library
+const SelectInput = ({
+  label,
+  name,
+  leftIcon,
+  className,
+  children,
+  ...props
+}: SelectInputProps) => {
+  const [field, meta] = useField({ ...props, name });
   const [leftIconWidth, setLeftIconWidth] = useState(null);
   const [leftIconHeight, setIconHeight] = useState(null);
   const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
@@ -35,29 +52,33 @@ const SelectInput = ({ className, label, leftIcon, ...props }) => {
 
   return (
     <Wrapper className={`${className} input select-input"`.trim()}>
-      {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
+      {label ? <Label htmlFor={name}>{label}</Label> : null}
       <InputContainer>
-        {leftIcon && (
+        {leftIcon ? (
           <LeftIcon
-            icon={["fal", leftIcon]}
+            type="fal"
+            name={leftIcon}
             color="var(--color-black)"
             size="2x"
             leftIconHeight={leftIconHeight}
-            forwardedRef={leftIconRef}
+            ref={leftIconRef}
           />
-        )}
+        ) : null}
         <Select
           leftIconWidth={leftIconWidth}
           angleDownIconWidth={angleDownIconWidth}
           {...field} // eslint-disable-line react/jsx-props-no-spreading
           {...props} // eslint-disable-line react/jsx-props-no-spreading
-        />
+        >
+          {children}
+        </Select>
         <RightIcon
-          icon={["fal", "angle-down"]}
+          type="fal"
+          name="angle-down"
           color="var(--color-black)"
           size="2x"
           rightIconHeight={rightIconHeight}
-          forwardedRef={angleDownIconRef}
+          ref={angleDownIconRef}
         />
       </InputContainer>
       {meta.touched && meta.error ? (

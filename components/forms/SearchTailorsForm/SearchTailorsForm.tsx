@@ -62,11 +62,7 @@ const SearchTailorsForm = () => {
               placeholder="Choose a collection date"
             />
           </div>
-          <Button
-            primary
-            type="submit"
-            text={isSubmitting ? "Searching" : "Search"}
-          />
+          <Button type="submit" text={isSubmitting ? "Searching" : "Search"} />
         </StyledForm>
       )}
     </Formik>

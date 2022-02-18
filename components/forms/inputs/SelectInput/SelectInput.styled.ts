@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "../../../Icon/Icon";
 
 type SelectProps = {
   leftIconWidth: number;
@@ -38,7 +38,6 @@ export const Select = styled.select<SelectProps>`
   font-family: var(--font-family-primary);
   font-size: 1.6rem;
   background-color: var(--color-white);
-
   padding: ${({ leftIconWidth, angleDownIconWidth }) =>
     leftIconWidth
       ? `var(--spacing-medium) calc(
@@ -58,7 +57,7 @@ export const Label = styled.label`
   display: flex;
 `;
 
-export const LeftIcon = styled(FontAwesomeIcon)<LeftIconProps>`
+export const LeftIcon = styled(Icon)<LeftIconProps>`
   position: absolute;
   left: var(--spacing-medium);
   top: 50%;
@@ -67,7 +66,7 @@ export const LeftIcon = styled(FontAwesomeIcon)<LeftIconProps>`
   z-index: 1;
 `;
 
-export const RightIcon = styled(FontAwesomeIcon)<RightIconProps>`
+export const RightIcon = styled(Icon)<RightIconProps>`
   position: absolute;
   right: var(--spacing-medium);
   top: 50%;

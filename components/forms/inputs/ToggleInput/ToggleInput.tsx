@@ -2,14 +2,14 @@ import { useField } from "formik";
 import Icon from "../../../Icon/Icon";
 import { Wrapper, StyledSwitch } from "./ToggleInput.styled";
 
-const ToggleInput = ({ ...props }) => {
-  const [field, , helpers] = useField({ ...props, type: "checkbox" });
+const ToggleInput = ({ name, ...props }) => {
+  const [field, , helpers] = useField({ ...props, name, type: "checkbox" });
   const { setValue } = helpers;
 
   return (
     <Wrapper className="input">
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-      <label>
+      <label htmlFor={name}>
         <StyledSwitch
           {...field} // eslint-disable-line react/jsx-props-no-spreading
           {...props} // eslint-disable-line react/jsx-props-no-spreading

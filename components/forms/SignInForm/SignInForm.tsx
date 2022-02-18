@@ -72,7 +72,6 @@ const SignInForm = () => {
               </Link>
             </Help>
             <Button
-              primary
               type="submit"
               disabled={isSubmitting}
               text={`Sign${isSubmitting ? "ing" : ""} In`}

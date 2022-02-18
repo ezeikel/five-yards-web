@@ -33,7 +33,7 @@ const SearchFabricsForm = () => {
         <StyledForm>
           <SelectInput
             name="style"
-            icon="layer-group"
+            leftIcon="layer-group"
             placeholder="Choose a type of fabric"
           >
             {FABRIC_OPTIONS.map((option) => (
@@ -43,7 +43,6 @@ const SearchFabricsForm = () => {
             ))}
           </SelectInput>
           <Button
-            primary
             type="submit"
             text={`${isSubmitting ? "Searching" : "Search"}`}
           />

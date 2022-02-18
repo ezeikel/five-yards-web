@@ -1,6 +1,16 @@
 import { Wrapper } from "./ProgressBar.styled";
 
-const ProgressBar = ({ className, backgroundColor, percent }) => {
+type ProgressBarProps = {
+  percent: number;
+  backgroundColor?: string;
+  className?: string;
+};
+
+const ProgressBar = ({
+  className,
+  backgroundColor = "var(--color-primary)",
+  percent,
+}: ProgressBarProps) => {
   return (
     <Wrapper
       className={className}

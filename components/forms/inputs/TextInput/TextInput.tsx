@@ -1,16 +1,21 @@
-import { useCallback, useState } from "react";
+import { InputHTMLAttributes, useCallback, useState } from "react";
 import { useField } from "formik";
+import { IconName } from "@fortawesome/fontawesome-svg-core";
 import Error from "../../../Error/Error";
 import Icon from "../../../Icon/Icon";
 import { Wrapper, InputContainer, Input, Label } from "./TextInput.styled";
 
-const TextInput = ({ label, icon, ...props }) => {
-  const [field, meta] = useField(props);
+type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string;
+  name: string;
+  icon?: IconName;
+};
 
+const TextInput = ({ label, name, icon, ...props }: TextInputProps) => {
+  const [field, meta] = useField({ ...props, name });
   const [iconWidth, setIconWidth] = useState(null);
   const [iconHeight, setIconHeight] = useState(null);
   const [passwordIconHeight, setPasswordIconHeight] = useState(null);
-
   const [showPassword, setShowPassword] = useState(false);
 
   const isPasswordField =
@@ -27,7 +32,7 @@ const TextInput = ({ label, icon, ...props }) => {
   }, []);
 
   const passwordIconRef = useCallback((node) => {
-    if (isPasswordField && node !== null) {
+    if (node !== null) {
       const { height } = node.getBoundingClientRect();
       setPasswordIconHeight(height);
     }
@@ -39,11 +44,11 @@ const TextInput = ({ label, icon, ...props }) => {
       iconHeight={iconHeight}
       passwordIconHeight={passwordIconHeight}
     >
-      {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
+      {label ? <Label htmlFor={name}>{label}</Label> : null}
       {/* TODO: probably a cleaner way to show either password or text input */}
       {isPasswordField ? (
         <InputContainer>
-          {icon && <Icon name={icon} size="2x" ref={iconRef} />}
+          {icon ? <Icon name={icon} size="2x" ref={iconRef} /> : null}
           <Input
             iconWidth={iconWidth}
             {...field} // eslint-disable-line react/jsx-props-no-spreading
@@ -59,7 +64,7 @@ const TextInput = ({ label, icon, ...props }) => {
         </InputContainer>
       ) : (
         <InputContainer>
-          {icon && <Icon name={icon} size="2x" />}
+          {icon && <Icon name={icon} size="2x" ref={iconRef} />}
           <Input
             iconWidth={iconWidth}
             {...field} // eslint-disable-line react/jsx-props-no-spreading

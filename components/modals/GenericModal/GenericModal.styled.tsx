@@ -61,28 +61,7 @@ export const StyledModal = styled(ReactModalAdapter).attrs({
   }
 `;
 
-export const Header = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #d1cfcf;
-  padding: var(--spacing-medium);
-  > svg {
-    flex: 0 0 auto;
-  }
-`;
-
-export const Heading = styled.h1`
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  font-family: var(--font-family-secondary);
-  font-weight: var(--font-weight-secondary-semi-bold);
-  margin: 0;
-`;
-
 export const Body = styled.div`
-  overflow-y: scroll;
-  padding-top: var(--spacing-large);
+  flex: 1;
+  /* overflow-y: scroll; */
 `;

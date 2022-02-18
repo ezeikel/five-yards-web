@@ -1,135 +1,72 @@
-import { useEffect, useRef, useState, forwardRef } from "react";
-import Router from "next/router";
+import { ReactNode, useEffect, useCallback } from "react";
+import { useRouter } from "next/router";
 import Modal from "react-modal";
-import styled from "styled-components";
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
-import { isIOS } from "react-device-detect";
-import CloseButton from "../../CloseButton/CloseButton";
+import { StyledModal, Body } from "./GenericModal.styled";
 
 Modal.setAppElement("body");
 
-const ReactModalAdapter = forwardRef(
-  ({ className, modalClassName, ...props }, ref) => (
-    <Modal
-      className={modalClassName}
-      portalClassName={className}
-      ref={ref}
-      {...props} // eslint-disable-line react/jsx-props-no-spreading
-    />
-  ),
-);
-
-const StyledModal = styled(ReactModalAdapter).attrs({
-  overlayClassName: "overlay",
-  modalClassName: "modal",
-})`
-  /* Portal styles here (though usually you will have none) */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    z-index: 3;
-  }
-  .modal {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-white);
-    outline: 0;
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Header = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #d1cfcf;
-  padding: var(--spacing-medium);
-  > svg {
-    flex: 0 0 auto;
-  }
-`;
-
-const Heading = styled.h1`
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  font-family: var(--font-family-secondary);
-  font-weight: var(--font-weight-secondary-semi-bold);
-  margin: 0;
-`;
-
-const Body = styled.div`
-  overflow-y: scroll;
-  padding-top: var(--spacing-large);
-`;
+type GenericModalProps = {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  contentLabel: string;
+  close: () => void;
+  children: ReactNode;
+  className?: string;
+};
 
 const GenericModal = ({
-  heading,
-  isOpen,
+  isOpen = false,
   onRequestClose,
   contentLabel,
   close,
   children,
-}) => {
-  const modalEl = useRef(null);
-  const [isIOSBrowser, setisIOSBrowser] = useState(false);
-
-  // FIX: react hydrate causing issues when using isIOS outside of lifecycle hook - https://github.com/gatsbyjs/gatsby/issues/9849
-  useEffect(() => {
-    setisIOSBrowser(isIOS);
-  }, []);
+  className,
+}: GenericModalProps) => {
+  const router = useRouter();
+  const modalEl = useCallback(
+    (node) => {
+      if (node) {
+        if (isOpen) {
+          disableBodyScroll(node);
+        } else {
+          enableBodyScroll(node);
+        }
+      }
+    },
+    [isOpen],
+  );
 
   useEffect(() => {
     const handleRouteChange = () => {
       close();
     };
 
-    Router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChange);
 
     return () => {
-      Router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChange);
     };
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      disableBodyScroll(modalEl.current);
-    } else {
-      enableBodyScroll(modalEl.current);
-    }
-
     return () => {
       clearAllBodyScrollLocks();
     };
-  }, [isOpen]);
+  }, []);
 
   return (
     <StyledModal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
-      isIOS={isIOSBrowser}
-      ref={modalEl}
+      className={className}
     >
-      <Header>
-        <Heading>{heading}</Heading>
-        <CloseButton circle handleClick={close} />
-      </Header>
-      {/** TODO: allow the id to be passed in prop */}
-      <Body>{children}</Body>
+      <Body ref={modalEl}>{children}</Body>s
     </StyledModal>
   );
 };

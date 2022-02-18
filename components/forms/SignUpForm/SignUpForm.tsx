@@ -86,7 +86,6 @@ const SignUpForm = () => {
               />
             </InputWrapper>
             <Button
-              primary
               type="submit"
               disabled={isSubmitting}
               text={`Register${isSubmitting ? "ing" : ""}`}

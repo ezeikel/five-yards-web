@@ -13,8 +13,7 @@ export const Wrapper = styled.div<WrapperProps>`
   height: 10px;
   background-color: #d6d6d6;
   span {
-    background-color: ${({ backgroundColor }) =>
-      backgroundColor || "var(--color-primary)"};
+    background-color: ${({ backgroundColor }) => backgroundColor};
     width: ${({ percent }) => (percent ? `${percent}%` : "0")};
   }
 `;

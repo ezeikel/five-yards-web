@@ -7,6 +7,7 @@ import { MenuContext } from "../../contexts/menu";
 import useUser from "../../hooks/useUser";
 import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from "../../apollo/queries";
 import { LoggedOut, UserAvatar } from "./MenuItems.styled";
+import Button from "../Button/Button";
 
 // TODO: instead of trying to this dynamic menu list thing, create seperate components
 // for different user state with items and click events hardcoded
@@ -169,14 +170,10 @@ const MenuItems = () => {
         );
       }
 
-      return (
-        <button type="button" onClick={item.click}>
-          {item.text}
-        </button>
-      );
+      return <Button type="button" onClick={item.click} text={item.text} />;
     };
 
-    list.map((item) => {
+    return list.map((item) => {
       return (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
         <li onClick={() => setActive(false)} key={item.id}>

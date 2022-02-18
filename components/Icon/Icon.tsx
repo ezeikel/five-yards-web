@@ -11,6 +11,7 @@ type IconProps = {
   type?: IconPrefix;
   name: IconName;
   size?: SizeProp;
+  className?: string;
   onClick?: () => void;
 };
 
@@ -21,6 +22,7 @@ const Icon = forwardRef(
       type = "fal",
       color = "var(--color-black)",
       size = "lg",
+      className,
       onClick,
     }: IconProps,
     ref: { current: HTMLElement },
@@ -30,6 +32,7 @@ const Icon = forwardRef(
       color={color}
       size={size}
       onClick={onClick}
+      className={className}
       forwardedRef={ref}
     />
   ),

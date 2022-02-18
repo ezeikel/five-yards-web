@@ -152,7 +152,6 @@ const MyDetailsForm = () => {
               />
             </InputWrapper>
             <Button
-              primary
               type="submit"
               disabled={isSubmitting}
               text={`Sav${isSubmitting ? "ing" : "e"} changes`}

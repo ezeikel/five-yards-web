@@ -109,7 +109,7 @@ const HOURS = [
 ];
 
 const NameAndOpeningHours = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<{ hours: any }>();
 
   // TODO: use a selectInput using formik to match hour option to formik values
 
