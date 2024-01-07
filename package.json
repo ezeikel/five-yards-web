@@ -11,19 +11,19 @@
     "lint": "jest --config test/jest.lint.js",
     "check-types": "tsc",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|json|ts|tsx|css|html|md)\"",
-    "format": "yarn prettier --write",
-    "check-format": "yarn prettier --list-different",
+    "format": "bun prettier --write",
+    "check-format": "bun prettier --list-different",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "pretest:e2e:run": "yarn build",
+    "pretest:e2e:run": "bun build",
     "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open",
-    "validate": "yarn test:coverage && yarn test:e2e:run",
+    "validate": "bun test:coverage && bun test:e2e:run",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install"
@@ -35,7 +35,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn test:e2e:run"
+      "pre-commit": "lint-staged && bun test:e2e:run"
     }
   },
   "lint-staged": {
