@@ -1,4 +1,4 @@
-import { Wrapper } from "./ProgressBar.styled";
+import { Wrapper } from './ProgressBar.styled';
 
 type ProgressBarProps = {
   percent: number;
@@ -8,7 +8,7 @@ type ProgressBarProps = {
 
 const ProgressBar = ({
   className,
-  backgroundColor = "var(--color-primary)",
+  backgroundColor = 'var(--color-primary)',
   percent,
 }: ProgressBarProps) => {
   return (

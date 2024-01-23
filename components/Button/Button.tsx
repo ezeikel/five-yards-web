@@ -1,12 +1,12 @@
-import { HTMLProps, MouseEvent, ReactNode } from "react";
-import { Wrapper } from "./Button.styled";
+import { HTMLProps, MouseEvent, ReactNode } from 'react';
+import { Wrapper } from './Button.styled';
 
 export type ButtonProps = HTMLProps<HTMLButtonElement> & {
   text?: string;
   disabled?: boolean;
   className?: string;
   children?: ReactNode;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   onClick?: (event?: MouseEvent) => void;
 };
 
@@ -14,11 +14,17 @@ const Button = ({
   text,
   disabled = false,
   children,
-  type = "button",
+  type = 'button',
   onClick,
+  className,
 }: ButtonProps) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Wrapper disabled={disabled} type={type} onClick={onClick}>
+  <Wrapper
+    disabled={disabled}
+    type={type}
+    onClick={onClick}
+    className={className}
+  >
     {children}
     {text}
   </Wrapper>

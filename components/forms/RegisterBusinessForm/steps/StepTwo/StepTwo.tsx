@@ -1,9 +1,9 @@
-import TextInput from "../../../inputs/TextInput/TextInput";
-import SelectInput from "../../../inputs/SelectInput/SelectInput";
-import CheckboxInput from "../../../inputs/CheckboxInput/CheckboxInput";
-import { Heading, InputWrapper } from "./StepTwo.styled";
+import TextInput from '../../../inputs/TextInput/TextInput';
+import SelectInput from '../../../inputs/SelectInput/SelectInput';
+import CheckboxInput from '../../../inputs/CheckboxInput/CheckboxInput';
+import { Heading, InputWrapper } from './StepTwo.styled';
 
-const PROFESSION_OPTIONS = ["CHEAP", "EXPENSIVE"];
+const PROFESSION_OPTIONS = ['CHEAP', 'EXPENSIVE'];
 
 const StepTwo = () => (
   <>
@@ -20,7 +20,7 @@ const StepTwo = () => (
       <h3>What is your price range?</h3>
       <SelectInput name="priceRange" placeholder="Select price range">
         {PROFESSION_OPTIONS.map((option) => (
-          <option key={option} value={option.replace(/\s/g, "")}>
+          <option key={option} value={option.replace(/\s/g, '')}>
             {option.charAt(0) + option.slice(1).toLowerCase()}
           </option>
         ))}

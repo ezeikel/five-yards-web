@@ -1,7 +1,7 @@
-import { useField } from "formik";
-import { ChangeEvent, InputHTMLAttributes } from "react";
-import Error from "../../../Error/Error";
-import { Wrapper, Input, Label } from "./TextareaInput.styled";
+import { useField } from 'formik';
+import { ChangeEvent, InputHTMLAttributes } from 'react';
+import Error from '../../../Error/Error';
+import { Wrapper, Input, Label } from './TextareaInput.styled';
 
 type TextareaInputProps = InputHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;

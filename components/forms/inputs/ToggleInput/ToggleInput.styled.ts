@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Switch from "react-switch";
+import styled from 'styled-components';
+import Switch from 'react-switch';
 
 export const Wrapper = styled.div`
   display: flex;

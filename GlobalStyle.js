@@ -1,5 +1,5 @@
-import { createGlobalStyle, keyframes } from "styled-components";
-import { config, dom } from "@fortawesome/fontawesome-svg-core";
+import { createGlobalStyle, keyframes } from 'styled-components';
+import { config, dom } from '@fortawesome/fontawesome-svg-core';
 
 config.autoAddCss = false;
 

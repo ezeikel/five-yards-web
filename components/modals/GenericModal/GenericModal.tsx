@@ -1,14 +1,14 @@
-import { ReactNode, useEffect, useCallback } from "react";
-import { useRouter } from "next/router";
-import Modal from "react-modal";
+import { ReactNode, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
+import Modal from 'react-modal';
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
-} from "body-scroll-lock";
-import { StyledModal, Body } from "./GenericModal.styled";
+} from 'body-scroll-lock';
+import { StyledModal, Body } from './GenericModal.styled';
 
-Modal.setAppElement("body");
+Modal.setAppElement('body');
 
 type GenericModalProps = {
   isOpen: boolean;
@@ -46,10 +46,10 @@ const GenericModal = ({
       close();
     };
 
-    router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on('routeChangeStart', handleRouteChange);
 
     return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off('routeChangeStart', handleRouteChange);
     };
   }, []);
 
@@ -64,7 +64,7 @@ const GenericModal = ({
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
-      className={className}
+      className={className as string}
     >
       <Body ref={modalEl}>{children}</Body>s
     </StyledModal>

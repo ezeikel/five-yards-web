@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type WrapperProps = {
   active: boolean;
@@ -6,11 +6,11 @@ type WrapperProps = {
 };
 
 export const Wrapper = styled.div<WrapperProps>`
-  display: ${({ active }) => (active ? "flex" : "none")};
+  display: ${({ active }) => (active ? 'flex' : 'none')};
   flex-direction: column;
   background-color: ${({ user }) =>
-    user ? "var(--color-white)" : "var(--color-black)"};
-  color: ${({ user }) => (user ? "var(--color-black)" : "var(--color-white)")};
+    user ? 'var(--color-white)' : 'var(--color-black)'};
+  color: ${({ user }) => (user ? 'var(--color-black)' : 'var(--color-white)')};
   position: fixed;
   top: 0;
   left: 0;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div<WrapperProps>`
   a:visited,
   a:active {
     color: ${({ user }) =>
-      user ? "var(--color-black)" : "var(--color-white)"};
+      user ? 'var(--color-black)' : 'var(--color-white)'};
   }
 `;
 

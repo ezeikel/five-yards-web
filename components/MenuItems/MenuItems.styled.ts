@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LoggedOut = styled.ul`
   font-size: 2.5rem;

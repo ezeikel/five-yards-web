@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "../svgs/Logo";
-import GDPRLogo from "../svgs/GDPRLogo";
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Logo from '../svgs/Logo';
+import GDPRLogo from '../svgs/GDPRLogo';
 import {
   Wrapper,
   LogoWrapper,
   Links,
   Social,
   Copyright,
-} from "./Footer.styled";
+} from './Footer.styled';
 
 const Footer = () => (
   <Wrapper>
@@ -51,27 +51,30 @@ const Footer = () => (
           <span>Follow us</span>
           <ul>
             <li>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <a href="https://www.facebook.com/fiveyardsapp">
                 <FontAwesomeIcon
-                  icon={["fab", "facebook-f"]}
+                  icon={['fab', 'facebook-f']}
                   color="var(--color-white)"
                   size="2x"
                 />
               </a>
             </li>
             <li>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <a href="https://twitter.com/fiveyardsapp">
                 <FontAwesomeIcon
-                  icon={["fab", "twitter"]}
+                  icon={['fab', 'twitter']}
                   color="var(--color-white)"
                   size="2x"
                 />
               </a>
             </li>
             <li>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <a href="https://www.instagram.com/fiveyardsapp">
                 <FontAwesomeIcon
-                  icon={["fab", "instagram"]}
+                  icon={['fab', 'instagram']}
                   color="var(--color-white)"
                   size="2x"
                 />

@@ -1,14 +1,14 @@
-import type { AppProps } from "next/app";
-import { ApolloProvider } from "@apollo/client";
-import { library, config } from "@fortawesome/fontawesome-svg-core";
+import type { AppProps } from 'next/app';
+import { ApolloProvider } from '@apollo/client';
+import { library, config } from '@fortawesome/fontawesome-svg-core';
 import {
   faFacebookF,
   faTwitter,
   faInstagram,
   faGoogle,
   faFacebookSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { faShoppingBag, faBars } from "@fortawesome/pro-regular-svg-icons";
+} from '@fortawesome/free-brands-svg-icons';
+import { faShoppingBag, faBars } from '@fortawesome/pro-regular-svg-icons';
 import {
   faCut,
   faSearch,
@@ -38,16 +38,16 @@ import {
   faCalendar,
   faEye,
   faEyeSlash,
-} from "@fortawesome/pro-light-svg-icons";
-import mixpanel from "mixpanel-browser";
-import { useApollo } from "../apollo/client";
-import { MenuContextProvider } from "../contexts/menu";
-import Page from "../components/Page/Page";
+} from '@fortawesome/pro-light-svg-icons';
+import mixpanel from 'mixpanel-browser';
+import { useApollo } from '../apollo/client';
+import { MenuContextProvider } from '../contexts/menu';
+import Page from '../components/Page/Page';
 
 mixpanel.init(
   process.env.NEXT_PUBLIC_MIXPANEL_TOKEN,
-  { api_host: "https://api-eu.mixpanel.com" },
-  "",
+  { api_host: 'https://api-eu.mixpanel.com' },
+  '',
 );
 
 config.autoAddCss = false; /* eslint-disable import/first */

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useMutation } from "@apollo/client";
-import { ONBOARD_STRIPE_USER_MUTATION } from "../apollo/queries";
+import { useEffect } from 'react';
+import { useMutation } from '@apollo/client';
+import { ONBOARD_STRIPE_USER_MUTATION } from '../apollo/queries';
 
 const SignUp = () => {
   const [onboardStripeUser] = useMutation(ONBOARD_STRIPE_USER_MUTATION, {

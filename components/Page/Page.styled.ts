@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ToastContainer } from "react-toastify";
+import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,10 +16,10 @@ export const Inner = styled.main`
 `;
 
 export const StyledToastContainer = styled(ToastContainer).attrs({
-  className: "toast-container",
-  toastClassName: "toast",
-  bodyClassName: "body",
-  progressClassName: "progress",
+  className: 'toast-container',
+  toastClassName: 'toast',
+  bodyClassName: 'body',
+  progressClassName: 'progress',
 })`
   /* .toast-container */
   bottom: 0;
@@ -32,7 +32,7 @@ export const StyledToastContainer = styled(ToastContainer).attrs({
     margin: 0;
     cursor: auto;
   }
-  button[aria-label="close"] {
+  button[aria-label='close'] {
     display: none;
   }
   .toast {

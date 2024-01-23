@@ -1,6 +1,6 @@
-import { NextPageContext } from "next";
-import NextErrorComponent from "next/error";
-import * as Sentry from "@sentry/nextjs";
+import { NextPageContext } from 'next';
+import NextErrorComponent from 'next/error';
+import * as Sentry from '@sentry/nextjs';
 
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
@@ -32,7 +32,7 @@ MyError.getInitialProps = async ({
   // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
   // getInitialProps has run
   // TODO: using bracket notation here is dot notation causes TS error
-  errorInitialProps["hasGetInitialPropsRun"] = true; // eslint-disable-line @typescript-eslint/dot-notation
+  errorInitialProps['hasGetInitialPropsRun'] = true; // eslint-disable-line @typescript-eslint/dot-notation
 
   // Running on the server, the response object (`res`) is available.
   //

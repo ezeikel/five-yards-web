@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import RegisterUser from "../../components/RegisterUser/RegisterUser";
+import styled from 'styled-components';
+import RegisterUser from '../../components/RegisterUser/RegisterUser';
 
 const Wrapper = styled.div`
   display: grid;

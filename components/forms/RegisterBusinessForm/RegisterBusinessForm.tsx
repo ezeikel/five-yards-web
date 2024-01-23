@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import Button from "../../Button/Button";
-import StepOne from "./steps/StepOne/StepOne";
-import StepTwo from "./steps/StepTwo/StepTwo";
-import StepThree from "./steps/StepThree/StepThree";
-import StepFour from "./steps/StepFour/StepFour";
+import { useEffect, useState } from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import Button from '../../Button/Button';
+import StepOne from './steps/StepOne/StepOne';
+import StepTwo from './steps/StepTwo/StepTwo';
+import StepThree from './steps/StepThree/StepThree';
+import StepFour from './steps/StepFour/StepFour';
 import {
   Wrapper,
   Save,
   StyledProgressBar,
   StyledForm,
-} from "./RegisterBusinessForm.styled";
+} from './RegisterBusinessForm.styled';
 
 // TODO: fix nested object schema
 const RegisterBusinessSchema = Yup.object().shape({
@@ -87,9 +87,9 @@ const RegisterBusiness = () => {
       <StyledProgressBar percent={percent} />
       <Formik
         initialValues={{
-          profession: "",
-          companyName: "",
-          companyBio: "",
+          profession: '',
+          companyName: '',
+          companyBio: '',
           hours: {
             monday: {
               open: false,
@@ -160,7 +160,7 @@ const RegisterBusiness = () => {
                 <Button text="Back" onClick={previousPage} />
                 <Button
                   disabled={isSubmitting}
-                  text={`Submit${isSubmitting ? "ting" : ""}`}
+                  text={`Submit${isSubmitting ? 'ting' : ''}`}
                   onClick={() => submitForm()}
                 />
               </div>

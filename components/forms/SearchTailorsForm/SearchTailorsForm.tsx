@@ -1,11 +1,11 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import TextInput from "../inputs/TextInput/TextInput";
-import Button from "../../Button/Button";
-import SelectInput from "../inputs/SelectInput/SelectInput";
-import { StyledForm } from "./SearchTailorsForm.styled";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import TextInput from '../inputs/TextInput/TextInput';
+import Button from '../../Button/Button';
+import SelectInput from '../inputs/SelectInput/SelectInput';
+import { StyledForm } from './SearchTailorsForm.styled';
 
-const GLOBAL_OPTIONS = ["LOREM IPSUM 1", "LOREM IPSUM 2", "LOREM IPSUM 3"];
+const GLOBAL_OPTIONS = ['LOREM IPSUM 1', 'LOREM IPSUM 2', 'LOREM IPSUM 3'];
 
 const SearchTailorsSchema = Yup.object().shape({
   location: Yup.string(),
@@ -16,7 +16,7 @@ const SearchTailorsSchema = Yup.object().shape({
 const SearchTailorsForm = () => {
   return (
     <Formik
-      initialValues={{ location: "", global: "", collectionDate: "" }}
+      initialValues={{ location: '', global: '', collectionDate: '' }}
       validationSchema={SearchTailorsSchema}
       validateOnBlur={false}
       validateOnChange={false}
@@ -50,7 +50,7 @@ const SearchTailorsForm = () => {
               placeholder="Lorem ipsum"
             >
               {GLOBAL_OPTIONS.map((option) => (
-                <option key={option} value={option.replace(/\s/g, "")}>
+                <option key={option} value={option.replace(/\s/g, '')}>
                   {option.charAt(0) + option.slice(1).toLowerCase()}
                 </option>
               ))}
@@ -62,7 +62,7 @@ const SearchTailorsForm = () => {
               placeholder="Choose a collection date"
             />
           </div>
-          <Button type="submit" text={isSubmitting ? "Searching" : "Search"} />
+          <Button type="submit" text={isSubmitting ? 'Searching' : 'Search'} />
         </StyledForm>
       )}
     </Formik>

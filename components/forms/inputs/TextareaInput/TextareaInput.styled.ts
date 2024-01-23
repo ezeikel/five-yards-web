@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import TextareaAutosize from "react-textarea-autosize";
+import styled from 'styled-components';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const Wrapper = styled.div`
   position: relative;

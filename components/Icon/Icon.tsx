@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 import {
   IconName,
   IconPrefix,
   SizeProp,
-} from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type IconProps = {
   color?: string;
@@ -19,13 +19,13 @@ const Icon = forwardRef(
   (
     {
       name,
-      type = "fal",
-      color = "var(--color-black)",
-      size = "lg",
+      type = 'fal',
+      color = 'var(--color-black)',
+      size = 'lg',
       className,
       onClick,
     }: IconProps,
-    ref: { current: HTMLElement },
+    ref: { current: SVGSVGElement },
   ) => (
     <FontAwesomeIcon
       icon={[type, name]}
@@ -33,7 +33,7 @@ const Icon = forwardRef(
       size={size}
       onClick={onClick}
       className={className}
-      forwardedRef={ref}
+      ref={ref}
     />
   ),
 );

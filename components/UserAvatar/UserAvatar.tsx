@@ -1,5 +1,5 @@
 // import Image from "next/image";
-import { Wrapper } from "./UserAvatar.styled";
+import { Wrapper } from './UserAvatar.styled';
 
 const UserAvatar = ({ image }) => (
   <Wrapper>

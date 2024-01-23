@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 
-import { ReactElement, ReactNode } from "react";
-import styled from "styled-components";
-import Modal from "react-modal";
+import { ReactElement, ReactNode } from 'react';
+import styled from 'styled-components';
+import Modal from 'react-modal';
 
 type ReactModalAdapterProps = {
-  className: string;
-  modalClassName: string;
+  className?: string;
+  modalClassName?: string;
   isOpen: boolean;
   onAfterOpen?: () => void;
   onRequestClose: () => void;
@@ -35,8 +35,8 @@ const ReactModalAdapter = ({
 );
 
 export const StyledModal = styled(ReactModalAdapter).attrs({
-  overlayClassName: "overlay",
-  modalClassName: "modal",
+  overlayClassName: 'overlay',
+  modalClassName: 'modal',
 })`
   /* Portal styles here (though usually you will have none) */
   .overlay {

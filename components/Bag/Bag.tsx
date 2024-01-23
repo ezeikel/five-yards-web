@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../Button/Button";
-import { Wrapper, Heading, Empty, Total } from "./Bag.styled";
+import { ReactElement } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from '../Button/Button';
+import { Wrapper, Heading, Empty, Total } from './Bag.styled';
 
 const Bag = (): ReactElement => {
   return (
@@ -13,7 +13,7 @@ const Bag = (): ReactElement => {
       <div>
         <Empty>
           <FontAwesomeIcon
-            icon={["fal", "dizzy"]}
+            icon={['fal', 'dizzy']}
             color="var(--color-black)"
             size="10x"
           />

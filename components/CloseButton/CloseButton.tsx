@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SizeProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 type CloseButtonProps = {
   color?: string;
@@ -9,13 +9,13 @@ type CloseButtonProps = {
 };
 
 const CloseButton = ({
-  color = "var(--color-primary)",
-  size = "3x",
+  color = 'var(--color-primary)',
+  size = '3x',
   handleClick,
   circle,
 }: CloseButtonProps) => (
   <FontAwesomeIcon
-    icon={["fal", circle ? "times-circle" : "times"]}
+    icon={['fal', circle ? 'times-circle' : 'times']}
     color={color}
     size={size}
     onClick={handleClick}

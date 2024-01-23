@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import PartnerWithUs from "../components/PartnerWithUs/PartnerWithUs";
-import PopularPrints from "../components/PopularPrints/PopularPrints";
-import PopularTailors from "../components/PopularTailors/PopularTailors";
-import SearchForm from "../components/forms/SearchForm/SearchForm";
-import useUser from "../hooks/useUser";
+import styled from 'styled-components';
+import PartnerWithUs from '../components/PartnerWithUs/PartnerWithUs';
+import PopularPrints from '../components/PopularPrints/PopularPrints';
+import PopularTailors from '../components/PopularTailors/PopularTailors';
+import SearchForm from '../components/forms/SearchForm/SearchForm';
+import useUser from '../hooks/useUser';
 
 const Wrapper = styled.div`
   display: grid;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 const Hero = styled.div`
   display: flex;
   width: 100%;
-  background-image: url("/images/female-tailor.jpg");
+  background-image: url('/images/female-tailor.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

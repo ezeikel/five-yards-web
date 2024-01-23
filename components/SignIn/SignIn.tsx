@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import GoogleIcon from "../svgs/GoogleIcon";
-import SignInForm from "../forms/SignInForm/SignInForm";
-import Button from "../Button/Button";
-import { Wrapper, Heading, ContinueWith, DontHave } from "./SignIn.styled";
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GoogleIcon from '../svgs/GoogleIcon';
+import SignInForm from '../forms/SignInForm/SignInForm';
+import Button from '../Button/Button';
+import { Wrapper, Heading, ContinueWith, DontHave } from './SignIn.styled';
 
 const SignIn = () => (
   <Wrapper>
@@ -19,7 +19,7 @@ const SignIn = () => (
     </ContinueWith>
     <Button className="facebook" text="Facebook">
       <FontAwesomeIcon
-        icon={["fab", "facebook-square"]}
+        icon={['fab', 'facebook-square']}
         color="var(--color-white)"
         size="2x"
       />

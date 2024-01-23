@@ -5,7 +5,7 @@ type LogoWithMainTextHorizontalProps = {
 
 const LogoWithMainTextHorizontal = ({
   className,
-  fill = "var(--color-white)",
+  fill = 'var(--color-white)',
 }: LogoWithMainTextHorizontalProps) => (
   <svg
     className={className}

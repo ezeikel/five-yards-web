@@ -1,9 +1,9 @@
-import { useField } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Wrapper, Checkbox } from "./CheckboxInput.styled";
+import { useField } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Wrapper, Checkbox } from './CheckboxInput.styled';
 
 const CheckboxInput = ({ children, name, ...props }) => {
-  const [field, meta] = useField({ ...props, name, type: "checkbox" });
+  const [field, meta] = useField({ ...props, name, type: 'checkbox' });
 
   return (
     <Wrapper className="input checkbox-input">
@@ -13,7 +13,7 @@ const CheckboxInput = ({ children, name, ...props }) => {
         <Checkbox checked={field.value}>
           {field.value && (
             <FontAwesomeIcon
-              icon={["fal", "check"]}
+              icon={['fal', 'check']}
               color="var(--color-white)"
               size="1x"
             />

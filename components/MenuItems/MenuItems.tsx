@@ -1,36 +1,36 @@
-import { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { useMutation } from "@apollo/client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MenuContext } from "../../contexts/menu";
-import useUser from "../../hooks/useUser";
-import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from "../../apollo/queries";
-import { LoggedOut, UserAvatar } from "./MenuItems.styled";
-import Button from "../Button/Button";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useMutation } from '@apollo/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMenuContext } from '../../contexts/menu';
+import useUser from '../../hooks/useUser';
+import { LOGOUT_MUTATION, CURRENT_USER_QUERY } from '../../apollo/queries';
+import { LoggedOut, UserAvatar } from './MenuItems.styled';
+import Button from '../Button/Button';
 
 // TODO: instead of trying to this dynamic menu list thing, create seperate components
 // for different user state with items and click events hardcoded
 const LOGGED_OUT_MENU_LIST = [
   {
     id: 1,
-    text: "Home",
-    link: "/",
+    text: 'Home',
+    link: '/',
   },
   {
     id: 2,
-    text: "Partner with us",
-    link: "/",
+    text: 'Partner with us',
+    link: '/',
     childList: [
       {
         id: 1,
-        text: "Tailor",
-        link: "/",
+        text: 'Tailor',
+        link: '/',
       },
       {
         id: 2,
-        text: "Fabric seller",
-        link: "/",
+        text: 'Fabric seller',
+        link: '/',
       },
     ],
     childListOpen: false,
@@ -38,37 +38,37 @@ const LOGGED_OUT_MENU_LIST = [
   },
   {
     id: 3,
-    text: "Terms and conditions",
-    link: "/",
+    text: 'Terms and conditions',
+    link: '/',
   },
   {
     id: 4,
-    text: "Privacy",
-    link: "/",
+    text: 'Privacy',
+    link: '/',
   },
   {
     id: 5,
-    text: "Cookies",
-    link: "/",
+    text: 'Cookies',
+    link: '/',
   },
   {
     id: 6,
-    text: "Site map",
-    link: "/",
+    text: 'Site map',
+    link: '/',
   },
   {
     id: 7,
-    text: "Sign in",
-    link: "/sign-in",
+    text: 'Sign in',
+    link: '/sign-in',
     icon: {
-      name: "user",
+      name: 'user',
     },
   },
 ];
 
 const MenuItems = () => {
   const router = useRouter();
-  const { setActive } = useContext(MenuContext);
+  const { setActive } = useMenuContext();
   const { user } = useUser();
   const [loggedOutMenu, setLoggedOutMenu] = useState(
     LOGGED_OUT_MENU_LIST.map((item, i) => ({ ...item, index: i })),
@@ -84,60 +84,60 @@ const MenuItems = () => {
   const LOGGED_IN_USER_MENU_LIST = [
     {
       id: 1,
-      text: "My orders",
-      link: "/",
+      text: 'My orders',
+      link: '/',
       icon: {
-        name: "receipt",
+        name: 'receipt',
       },
     },
     {
       id: 2,
-      text: "My appointments",
-      link: "/",
+      text: 'My appointments',
+      link: '/',
       icon: {
-        name: "calendar-check",
+        name: 'calendar-check',
       },
     },
     {
       id: 3,
-      text: "Message center",
-      link: "/",
+      text: 'Message center',
+      link: '/',
       icon: {
-        name: "comment-alt",
+        name: 'comment-alt',
       },
     },
     {
       id: 4,
-      text: "My details",
-      link: "/",
+      text: 'My details',
+      link: '/',
       icon: {
-        name: "address-card",
+        name: 'address-card',
       },
     },
     {
       id: 5,
-      text: "Change password",
-      link: "/",
+      text: 'Change password',
+      link: '/',
       icon: {
-        name: "key",
+        name: 'key',
       },
     },
     {
       id: 6,
-      text: "Payment preferences",
-      link: "/",
+      text: 'Payment preferences',
+      link: '/',
       icon: {
-        name: "credit-card",
+        name: 'credit-card',
       },
     },
     {
       id: 7,
-      text: "Sign out",
+      text: 'Sign out',
       link: null, // TODO: removing link property breaks UI
       click: signout,
       avatar: true,
       icon: {
-        name: "user",
+        name: 'user',
       },
     },
   ];
@@ -151,8 +151,8 @@ const MenuItems = () => {
       if (item.icon) {
         return (
           <FontAwesomeIcon
-            icon={["fal", item.icon.name]}
-            color={user ? "var(--color-black)" : "var(--color-white)"}
+            icon={['fal', item.icon.name]}
+            color={user ? 'var(--color-black)' : 'var(--color-white)'}
             size="lg"
           />
         );
@@ -163,11 +163,7 @@ const MenuItems = () => {
 
     const renderListItemLinkOrText = (item) => {
       if (item.link) {
-        return (
-          <Link href={item.link}>
-            <a>{item.text}</a>
-          </Link>
-        );
+        return <Link href={item.link}>{item.text}</Link>;
       }
 
       return <Button type="button" onClick={item.click} text={item.text} />;
@@ -209,16 +205,16 @@ const MenuItems = () => {
                 : () => setActive(false)
             }
             key={item.id}
-            className={`${item.childList ? "has-children" : ""} ${
-              item.childListOpen ? "open" : ""
-            } ${item.horizontalRuleAfter ? "horizontal-rule-after" : ""}`}
+            className={`${item.childList ? 'has-children' : ''} ${
+              item.childListOpen ? 'open' : ''
+            } ${item.horizontalRuleAfter ? 'horizontal-rule-after' : ''}`}
           >
             {item.childList ? (
               <>
                 <span>
                   {item.text}
                   <FontAwesomeIcon
-                    icon={["fal", "angle-down"]}
+                    icon={['fal', 'angle-down']}
                     color="var(--color-primary)"
                     size="lg"
                   />
@@ -228,9 +224,7 @@ const MenuItems = () => {
                     {item.childList.map((childItem) => (
                       // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
                       <li onClick={() => setActive(false)} key={childItem.id}>
-                        <Link href={childItem.link}>
-                          <a>{childItem.text}</a>
-                        </Link>
+                        <Link href={childItem.link}>{childItem.text}</Link>
                       </li>
                     ))}
                   </ul>
@@ -240,14 +234,12 @@ const MenuItems = () => {
               <>
                 {item.icon ? (
                   <FontAwesomeIcon
-                    icon={["fal", "user"]}
+                    icon={['fal', 'user']}
                     color="var(--color-white)"
                     size="lg"
                   />
                 ) : null}
-                <Link href={item.link}>
-                  <a>{item.text}</a>
-                </Link>
+                <Link href={item.link}>{item.text}</Link>
               </>
             )}
           </li>

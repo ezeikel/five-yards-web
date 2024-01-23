@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import * as Sentry from "@sentry/nextjs";
-import mixpanel from "mixpanel-browser";
-import { CURRENT_USER_QUERY } from "../apollo/queries";
+import { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import * as Sentry from '@sentry/nextjs';
+import mixpanel from 'mixpanel-browser';
+import { CURRENT_USER_QUERY } from '../apollo/queries';
 
 const useUser = () => {
   const {

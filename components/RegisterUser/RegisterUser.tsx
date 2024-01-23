@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import GoogleIcon from "../svgs/GoogleIcon";
-import SignUpForm from "../forms/SignUpForm/SignUpForm";
-import Button from "../Button/Button";
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GoogleIcon from '../svgs/GoogleIcon';
+import SignUpForm from '../forms/SignUpForm/SignUpForm';
+import Button from '../Button/Button';
 import {
   Wrapper,
   Heading,
   ContinueWith,
   DontHave,
-} from "./RegisterUser.styled";
+} from './RegisterUser.styled';
 
 const RegisterUser = () => (
   <Wrapper>
@@ -24,7 +24,7 @@ const RegisterUser = () => (
     </ContinueWith>
     <Button className="facebook" text="Facebook">
       <FontAwesomeIcon
-        icon={["fab", "facebook-square"]}
+        icon={['fab', 'facebook-square']}
         color="var(--color-white)"
         size="2x"
       />

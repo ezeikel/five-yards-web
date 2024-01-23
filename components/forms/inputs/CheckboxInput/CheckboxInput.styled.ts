@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type CheckboxProps = {
   checked: boolean;
@@ -34,11 +34,11 @@ export const Checkbox = styled.div<CheckboxProps>`
   border-radius: var(--border-radius);
   border: 1px solid
     ${({ checked }) =>
-      checked ? "var(--color-primary)" : "var(--color-input-border)"};
+      checked ? 'var(--color-primary)' : 'var(--color-input-border)'};
   padding: var(--spacing-tiny);
   margin: 0 var(--spacing-small) 0 0;
   width: 20px;
   height: 20px;
   background-color: ${({ checked }) =>
-    checked ? "var(--color-primary)" : "var(--color-white)"};
+    checked ? 'var(--color-primary)' : 'var(--color-white)'};
 `;

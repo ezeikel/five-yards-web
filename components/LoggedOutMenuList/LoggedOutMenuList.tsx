@@ -1,20 +1,18 @@
-import { useContext, useState } from "react";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MenuContext } from "../../contexts/menu";
-import { Wrapper } from "./LoggedOutMenuList.styled";
+import { useState } from 'react';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMenuContext } from '../../contexts/menu';
+import { Wrapper } from './LoggedOutMenuList.styled';
 
 const LoggedOutMenuList = () => {
-  const { setActive } = useContext(MenuContext);
+  const { setActive } = useMenuContext();
   const [partnerLinkOpen, setPartnerLinkOpen] = useState(false);
 
   return (
     <Wrapper>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
+        <Link href="/">Home</Link>
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li
@@ -24,7 +22,7 @@ const LoggedOutMenuList = () => {
         <span>
           Partner with us
           <FontAwesomeIcon
-            icon={["fal", "angle-down"]}
+            icon={['fal', 'angle-down']}
             color="var(--color-primary)"
             size="lg"
           />
@@ -33,53 +31,39 @@ const LoggedOutMenuList = () => {
           <ul>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
             <li onClick={() => setActive(false)}>
-              <Link href="/partner-with-us/tailor">
-                <a>Tailor</a>
-              </Link>
+              <Link href="/partner-with-us/tailor">Tailor</Link>
             </li>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
             <li onClick={() => setActive(false)}>
-              <Link href="/partner-with-us/fabric-seller">
-                <a>Fabric Seller</a>
-              </Link>
+              <Link href="/partner-with-us/fabric-seller">Fabric Seller</Link>
             </li>
           </ul>
         )}
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
-        <Link href="/terms-and-conditions">
-          <a>Terms and conditions</a>
-        </Link>
+        <Link href="/terms-and-conditions">Terms and conditions</Link>
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
-        <Link href="/privacy">
-          <a>Privacy</a>
-        </Link>
+        <Link href="/privacy">Privacy</Link>
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
-        <Link href="/cookies">
-          <a>Cookies</a>
-        </Link>
+        <Link href="/cookies">Cookies</Link>
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
-        <Link href="/site-map">
-          <a>Site map</a>
-        </Link>
+        <Link href="/site-map">Site map</Link>
       </li>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
       <li onClick={() => setActive(false)}>
         <FontAwesomeIcon
-          icon={["fal", "user"]}
+          icon={['fal', 'user']}
           color="var(--color-white)"
           size="lg"
         />
-        <Link href="/sign-in">
-          <a>Sign in</a>
-        </Link>
+        <Link href="/sign-in">Sign in</Link>
       </li>
     </Wrapper>
   );

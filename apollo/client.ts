@@ -1,12 +1,17 @@
-import { useMemo } from "react";
-import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { createUploadLink } from "apollo-upload-client";
-import { onError } from "apollo-link-error";
-import merge from "deepmerge";
-import isEqual from "lodash.isequal";
+import { useMemo } from 'react';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloLink,
+  NormalizedCacheObject,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { createUploadLink } from 'apollo-upload-client';
+import { onError } from 'apollo-link-error';
+import merge from 'deepmerge';
+import isEqual from 'lodash.isequal';
 
-export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
+export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient;
 
@@ -25,7 +30,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const uploadLink = createUploadLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
-  credentials: "include",
+  credentials: 'include',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -33,7 +38,8 @@ const authLink = setContext((_, { headers }) => {
   // adding headers to context when creating the client
 
   // eslint-disable-next-line no-new
-  new ApolloLink((operation, forward) => {
+  // Note: added return below to solve type error
+  return new ApolloLink((operation, forward) => {
     operation.setContext({
       headers,
     });
@@ -44,13 +50,15 @@ const authLink = setContext((_, { headers }) => {
 
 const createApolloClient = () => {
   return new ApolloClient({
-    ssrMode: typeof window === "undefined",
+    ssrMode: typeof window === 'undefined',
     link: ApolloLink.from([authLink, errorLink, uploadLink]),
     cache: new InMemoryCache(),
   });
 };
 
-export const initializeApollo = (initialState = null) => {
+export const initializeApollo = (
+  initialState: NormalizedCacheObject | null = null,
+) => {
   const _apolloClient = apolloClient ?? createApolloClient(); // eslint-disable-line no-underscore-dangle, @typescript-eslint/naming-convention
 
   // if page has Next.js data fetching methods that use Apollo Client, the initial state
@@ -75,7 +83,7 @@ export const initializeApollo = (initialState = null) => {
   }
 
   // for SSG and SSR always create a new Apollo Client
-  if (typeof window === "undefined") return _apolloClient;
+  if (typeof window === 'undefined') return _apolloClient;
   // create new Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;
 
@@ -90,7 +98,10 @@ export const addApolloState = (client, pageProps) => {
   return pageProps;
 };
 
-export const useApollo = (initialState) => {
-  const store = useMemo(() => initializeApollo(initialState), [initialState]);
+export const useApollo = (initialState: NormalizedCacheObject | null) => {
+  const store = useMemo<ApolloClient<NormalizedCacheObject>>(
+    () => initializeApollo(initialState),
+    [initialState],
+  );
   return store;
 };

@@ -1,5 +1,5 @@
-import ChangePasswordForm from "../forms/ChangePasswordForm/ChangePasswordForm";
-import { Wrapper, Heading } from "./ChangePassword.styled";
+import ChangePasswordForm from '../forms/ChangePasswordForm/ChangePasswordForm';
+import { Wrapper, Heading } from './ChangePassword.styled';
 
 const ChangePassword = () => {
   return (

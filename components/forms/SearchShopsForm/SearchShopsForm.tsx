@@ -1,8 +1,8 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import TextInput from "../inputs/TextInput/TextInput";
-import Button from "../../Button/Button";
-import { StyledForm } from "./SearchShopsForm.styled";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import TextInput from '../inputs/TextInput/TextInput';
+import Button from '../../Button/Button';
+import { StyledForm } from './SearchShopsForm.styled';
 
 const SearchShopsSchema = Yup.object().shape({
   name: Yup.string(),
@@ -10,7 +10,7 @@ const SearchShopsSchema = Yup.object().shape({
 
 const SearchShopsForm = () => (
   <Formik
-    initialValues={{ name: "" }}
+    initialValues={{ name: '' }}
     validationSchema={SearchShopsSchema}
     validateOnBlur={false}
     validateOnChange={false}
@@ -34,7 +34,7 @@ const SearchShopsForm = () => (
           icon="search"
           placeholder="Choose a shop name"
         />
-        <Button type="submit" text={isSubmitting ? "Searching" : "Search"} />
+        <Button type="submit" text={isSubmitting ? 'Searching' : 'Search'} />
       </StyledForm>
     )}
   </Formik>

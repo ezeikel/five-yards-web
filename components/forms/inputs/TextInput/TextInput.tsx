@@ -1,9 +1,9 @@
-import { InputHTMLAttributes, useCallback, useState } from "react";
-import { useField } from "formik";
-import { IconName } from "@fortawesome/fontawesome-svg-core";
-import Error from "../../../Error/Error";
-import Icon from "../../../Icon/Icon";
-import { Wrapper, InputContainer, Input, Label } from "./TextInput.styled";
+import { InputHTMLAttributes, useCallback, useState } from 'react';
+import { useField } from 'formik';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+import Error from '../../../Error/Error';
+import Icon from '../../../Icon/Icon';
+import { Wrapper, InputContainer, Input, Label } from './TextInput.styled';
 
 type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -13,15 +13,15 @@ type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const TextInput = ({ label, name, icon, ...props }: TextInputProps) => {
   const [field, meta] = useField({ ...props, name });
-  const [iconWidth, setIconWidth] = useState(null);
-  const [iconHeight, setIconHeight] = useState(null);
-  const [passwordIconHeight, setPasswordIconHeight] = useState(null);
+  const [iconWidth, setIconWidth] = useState(0);
+  const [iconHeight, setIconHeight] = useState(0);
+  const [passwordIconHeight, setPasswordIconHeight] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
 
   const isPasswordField =
-    field.name === "password" ||
-    field.name === "oldPassword" ||
-    field.name === "newPassword";
+    field.name === 'password' ||
+    field.name === 'oldPassword' ||
+    field.name === 'newPassword';
 
   const iconRef = useCallback((node) => {
     if (node !== null) {
@@ -53,10 +53,10 @@ const TextInput = ({ label, name, icon, ...props }: TextInputProps) => {
             iconWidth={iconWidth}
             {...field} // eslint-disable-line react/jsx-props-no-spreading
             {...props} // eslint-disable-line react/jsx-props-no-spreading
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
           />
           <Icon
-            name={showPassword ? "eye" : "eye-slash"}
+            name={showPassword ? 'eye' : 'eye-slash'}
             size="2x"
             onClick={() => setShowPassword(!showPassword)}
             ref={passwordIconRef}

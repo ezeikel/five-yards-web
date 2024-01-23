@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import MyDetails from "../../components/MyDetails/MyDetails";
+import styled from 'styled-components';
+import MyDetails from '../../components/MyDetails/MyDetails';
 
 const Wrapper = styled.div`
   display: grid;

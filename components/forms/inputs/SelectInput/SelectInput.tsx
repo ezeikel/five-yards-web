@@ -1,6 +1,6 @@
-import { ReactNode, useCallback, useState } from "react";
-import { useField } from "formik";
-import { IconName } from "@fortawesome/fontawesome-svg-core";
+import { ReactNode, useCallback, useState } from 'react';
+import { useField } from 'formik';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 import {
   Wrapper,
   InputContainer,
@@ -8,7 +8,7 @@ import {
   Label,
   LeftIcon,
   RightIcon,
-} from "./SelectInput.styled";
+} from './SelectInput.styled';
 
 type SelectInputProps = {
   className?: string;
@@ -29,10 +29,10 @@ const SelectInput = ({
   ...props
 }: SelectInputProps) => {
   const [field, meta] = useField({ ...props, name });
-  const [leftIconWidth, setLeftIconWidth] = useState(null);
-  const [leftIconHeight, setIconHeight] = useState(null);
-  const [angleDownIconWidth, setAngleDownIconWidth] = useState(null);
-  const [rightIconHeight, setRightIconHeight] = useState(null);
+  const [leftIconWidth, setLeftIconWidth] = useState(0);
+  const [leftIconHeight, setIconHeight] = useState(0);
+  const [angleDownIconWidth, setAngleDownIconWidth] = useState(0);
+  const [rightIconHeight, setRightIconHeight] = useState(0);
 
   const leftIconRef = useCallback((node) => {
     if (node !== null) {

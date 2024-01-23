@@ -1,6 +1,6 @@
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import Button from "../../Button/Button";
-import CardSection from "../../CardSection/CardSection";
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import Button from '../../Button/Button';
+import CardSection from '../../CardSection/CardSection';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -17,11 +17,11 @@ const CheckoutForm = () => {
       return;
     }
 
-    const result = await stripe.confirmCardPayment("{CLIENT_SECRET}", {
+    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: elements.getElement(CardElement)!,
         billing_details: {
-          name: "Jenny Rosen",
+          name: 'Jenny Rosen',
         },
       },
     });
@@ -32,7 +32,7 @@ const CheckoutForm = () => {
     } else {
       // The payment has been processed!
       // eslint-disable-next-line no-lonely-if
-      if (result.paymentIntent.status === "succeeded") {
+      if (result.paymentIntent.status === 'succeeded') {
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the

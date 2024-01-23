@@ -1,25 +1,25 @@
-import { useFormikContext } from "formik";
-import TextInput from "../../../inputs/TextInput/TextInput";
-import SelectInput from "../../../inputs/SelectInput/SelectInput";
-import TextareaInput from "../../../inputs/TextareaInput/TextareaInput";
-import ToggleInput from "../../../inputs/ToggleInput/ToggleInput";
+import { useFormikContext } from 'formik';
+import TextInput from '../../../inputs/TextInput/TextInput';
+import SelectInput from '../../../inputs/SelectInput/SelectInput';
+import TextareaInput from '../../../inputs/TextareaInput/TextareaInput';
+import ToggleInput from '../../../inputs/ToggleInput/ToggleInput';
 import {
   Heading,
   InputWrapper,
   Day,
   HourSelection,
   Closed,
-} from "./StepOne.styled";
+} from './StepOne.styled';
 
-const PROFESSION_OPTIONS = ["TAILOR", "FABRIC SELLER"];
+const PROFESSION_OPTIONS = ['TAILOR', 'FABRIC SELLER'];
 const DAYS_OF_THE_WEEK = [
-  "MONDAY",
-  "TUESDAY",
-  "WEDNESDAY",
-  "THURSDAY",
-  "FRIDAY",
-  "SATURDAY",
-  "SUNDAY",
+  'MONDAY',
+  'TUESDAY',
+  'WEDNESDAY',
+  'THURSDAY',
+  'FRIDAY',
+  'SATURDAY',
+  'SUNDAY',
 ];
 
 /**
@@ -32,79 +32,79 @@ const DAYS_OF_THE_WEEK = [
 const HOURS = [
   {
     value: 0,
-    display: "00:00",
+    display: '00:00',
   },
   {
     value: 30,
-    display: "00:30",
+    display: '00:30',
   },
   {
     value: 60,
-    display: "01:00",
+    display: '01:00',
   },
   {
     value: 90,
-    display: "01:30",
+    display: '01:30',
   },
   {
     value: 120,
-    display: "02:00",
+    display: '02:00',
   },
   {
     value: 150,
-    display: "02:30",
+    display: '02:30',
   },
   {
     value: 180,
-    display: "03:00",
+    display: '03:00',
   },
   {
     value: 210,
-    display: "03:30",
+    display: '03:30',
   },
   {
     value: 240,
-    display: "04:00",
+    display: '04:00',
   },
   {
     value: 270,
-    display: "04:30",
+    display: '04:30',
   },
   {
     value: 300,
-    display: "05:00",
+    display: '05:00',
   },
   {
     value: 330,
-    display: "05:30",
+    display: '05:30',
   },
   {
     value: 360,
-    display: "06:00",
+    display: '06:00',
   },
   {
     value: 390,
-    display: "06:30",
+    display: '06:30',
   },
   {
     value: 420,
-    display: "07:00",
+    display: '07:00',
   },
   {
     value: 450,
-    display: "07:30",
+    display: '07:30',
   },
   {
     value: 480,
-    display: "08:00",
+    display: '08:00',
   },
   {
     value: 510,
-    display: "08:30",
+    display: '08:30',
   },
   {
     value: 540,
-    display: "09:00",
+    display: '09:00',
   },
 ];
 
@@ -120,7 +120,7 @@ const NameAndOpeningHours = () => {
         <h3>What is your profession?</h3>
         <SelectInput name="profession" placeholder="Select your profession">
           {PROFESSION_OPTIONS.map((option) => (
-            <option key={option} value={option.replace(/\s/g, "")}>
+            <option key={option} value={option.replace(/\s/g, '')}>
               {option.charAt(0) + option.slice(1).toLowerCase()}
             </option>
           ))}

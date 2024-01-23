@@ -1,17 +1,17 @@
-import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import mixpanel from "mixpanel-browser";
-import { toast } from "react-toastify";
-import { CHANGE_PASSWORD_MUTATION } from "../../../apollo/queries";
-import TextInput from "../inputs/TextInput/TextInput";
-import Button from "../../Button/Button";
-import { Wrapper, InputWrapper, StyledForm } from "./ChangePasswordForm.styled";
+import { useRouter } from 'next/router';
+import { useMutation } from '@apollo/client';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import mixpanel from 'mixpanel-browser';
+import { toast } from 'react-toastify';
+import { CHANGE_PASSWORD_MUTATION } from '../../../apollo/queries';
+import TextInput from '../inputs/TextInput/TextInput';
+import Button from '../../Button/Button';
+import { Wrapper, InputWrapper, StyledForm } from './ChangePasswordForm.styled';
 
 const ChangePasswordSchema = Yup.object().shape({
-  oldPassword: Yup.string().required("Please choose an old password"),
-  newPassword: Yup.string().required("Please choose a new password"),
+  oldPassword: Yup.string().required('Please choose an old password'),
+  newPassword: Yup.string().required('Please choose a new password'),
   passwordHint: Yup.string(),
 });
 
@@ -25,17 +25,17 @@ const ChangePasswordForm = () => {
   return (
     <Wrapper>
       <Formik
-        initialValues={{ oldPassword: "", newPassword: "", passwordHint: "" }}
+        initialValues={{ oldPassword: '', newPassword: '', passwordHint: '' }}
         validationSchema={ChangePasswordSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             await changePassword({ variables: values });
-            mixpanel.track("Change password");
+            mixpanel.track('Change password');
             resetForm();
-            toast("Password changed successfully.");
-            router.push("/");
+            toast('Password changed successfully.');
+            router.push('/');
           } catch (err) {
-            toast("Something went wrong, please try again.");
+            toast('Something went wrong, please try again.');
             console.error({ err });
           } finally {
             setSubmitting(false);
@@ -67,13 +67,13 @@ const ChangePasswordForm = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              text={`Sav${isSubmitting ? "ing" : "e"} changes`}
+              text={`Sav${isSubmitting ? 'ing' : 'e'} changes`}
             />
           </StyledForm>
         )}
       </Formik>
-      {loading && console.warn("loading...")}
-      {error && console.error({ error })}
+      {loading && <>{console.warn('loading...')}</>}
+      {error && <>{console.error({ error })}</>}
     </Wrapper>
   );
 };

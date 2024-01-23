@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type SearchTypeProps = {
   active: boolean;
@@ -46,9 +46,9 @@ export const Heading = styled.h3`
 
 export const SearchType = styled.li<SearchTypeProps>`
   color: ${({ active }) =>
-    active ? "var(--color-primary)" : "var(--color-black)"};
+    active ? 'var(--color-primary)' : 'var(--color-black)'};
   border-bottom: ${({ active }) =>
-    active ? "3px solid var(--color-primary)" : "3px solid transparent"};
+    active ? '3px solid var(--color-primary)' : '3px solid transparent'};
   svg {
     margin-bottom: var(--spacing-tiny);
   }

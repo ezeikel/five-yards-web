@@ -1,9 +1,9 @@
-import { useField } from "formik";
-import Icon from "../../../Icon/Icon";
-import { Wrapper, StyledSwitch } from "./ToggleInput.styled";
+import { useField } from 'formik';
+import Icon from '../../../Icon/Icon';
+import { Wrapper, StyledSwitch } from './ToggleInput.styled';
 
 const ToggleInput = ({ name, ...props }) => {
-  const [field, , helpers] = useField({ ...props, name, type: "checkbox" });
+  const [field, , helpers] = useField({ ...props, name, type: 'checkbox' });
   const { setValue } = helpers;
 
   return (

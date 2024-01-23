@@ -5,7 +5,7 @@ type LogoFullProps = {
 
 const LogoFull = ({
   className,
-  fill = "var(--color-white)",
+  fill = 'var(--color-white)',
 }: LogoFullProps) => (
   <svg
     className={className}

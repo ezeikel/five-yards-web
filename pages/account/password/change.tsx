@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import ChangePassword from "../../../components/ChangePassword/ChangePassword";
+import styled from 'styled-components';
+import ChangePassword from '../../../components/ChangePassword/ChangePassword';
 
 const Wrapper = styled.div`
   display: grid;

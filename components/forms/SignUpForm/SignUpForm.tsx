@@ -1,53 +1,52 @@
-import { useRouter } from "next/router";
-import { useMutation } from "@apollo/client";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import mixpanel from "mixpanel-browser";
+import { useRouter } from 'next/router';
+import { useMutation } from '@apollo/client';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import mixpanel from 'mixpanel-browser';
 import {
   CURRENT_USER_QUERY,
   CREATE_USER_MUTATION,
-} from "../../../apollo/queries";
-import TextInput from "../inputs/TextInput/TextInput";
-import Button from "../../Button/Button";
-import formatAPIErrors from "../../../utils/formatAPIErrors";
-import { Wrapper, InputWrapper, StyledForm } from "./SignUpForm.styled";
+} from '../../../apollo/queries';
+import TextInput from '../inputs/TextInput/TextInput';
+import Button from '../../Button/Button';
+import formatAPIErrors from '../../../utils/formatAPIErrors';
+import { Wrapper, InputWrapper, StyledForm } from './SignUpForm.styled';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, "That name is too short")
-    .max(50, "That name is too long")
-    .required("Please enter a first name"),
+    .min(2, 'That name is too short')
+    .max(50, 'That name is too long')
+    .required('Please enter a first name'),
   lastName: Yup.string()
-    .min(2, "That name is too short")
-    .max(50, "That name is too long")
-    .required("Please enter a last name"),
+    .min(2, 'That name is too short')
+    .max(50, 'That name is too long')
+    .required('Please enter a last name'),
   email: Yup.string()
-    .email("That email is invalid. Please try again")
-    .required("Please enter an email"),
+    .email('That email is invalid. Please try again')
+    .required('Please enter an email'),
   password: Yup.string()
-    .min(9, "That password is too short")
-    .required("Please enter a password"),
+    .min(9, 'That password is too short')
+    .required('Please enter a password'),
 });
 
 const SignUpForm = () => {
   const router = useRouter();
 
   const [signup, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
-    mutation: CREATE_USER_MUTATION,
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   return (
     <Wrapper>
       <Formik
-        initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
+        initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
         validationSchema={SignupSchema}
         onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           try {
             await signup({ variables: values });
-            mixpanel.track("Register");
+            mixpanel.track('Register');
             resetForm();
-            router.push("/");
+            router.push('/');
           } catch (err) {
             const formattedErrors = formatAPIErrors(err);
             setErrors(formattedErrors);
@@ -88,13 +87,13 @@ const SignUpForm = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              text={`Register${isSubmitting ? "ing" : ""}`}
+              text={`Register${isSubmitting ? 'ing' : ''}`}
             />
           </StyledForm>
         )}
       </Formik>
-      {loading && console.warn("loading...")}
-      {error && console.error({ error })}
+      {loading && <>{console.warn('loading...')}</>}
+      {error && <>{console.error({ error })}</>}
     </Wrapper>
   );
 };

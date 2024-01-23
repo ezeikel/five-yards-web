@@ -1,10 +1,10 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import SelectInput from "../inputs/SelectInput/SelectInput";
-import Button from "../../Button/Button";
-import { StyledForm } from "./SearchFabricsForm.styled";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import SelectInput from '../inputs/SelectInput/SelectInput';
+import Button from '../../Button/Button';
+import { StyledForm } from './SearchFabricsForm.styled';
 
-const FABRIC_OPTIONS = ["ANKARA", "LACE", "GEORGE", "ASOKE", "LINEN"];
+const FABRIC_OPTIONS = ['ANKARA', 'LACE', 'GEORGE', 'ASOKE', 'LINEN'];
 
 const SearchFabricsSchema = Yup.object().shape({
   style: Yup.string(),
@@ -13,7 +13,7 @@ const SearchFabricsSchema = Yup.object().shape({
 const SearchFabricsForm = () => {
   return (
     <Formik
-      initialValues={{ style: "" }}
+      initialValues={{ style: '' }}
       validationSchema={SearchFabricsSchema}
       validateOnBlur={false}
       validateOnChange={false}
@@ -37,14 +37,14 @@ const SearchFabricsForm = () => {
             placeholder="Choose a type of fabric"
           >
             {FABRIC_OPTIONS.map((option) => (
-              <option key={option} value={option.replace(/\s/g, "")}>
+              <option key={option} value={option.replace(/\s/g, '')}>
                 {option.charAt(0) + option.slice(1).toLowerCase()}
               </option>
             ))}
           </SelectInput>
           <Button
             type="submit"
-            text={`${isSubmitting ? "Searching" : "Search"}`}
+            text={`${isSubmitting ? 'Searching' : 'Search'}`}
           />
         </StyledForm>
       )}

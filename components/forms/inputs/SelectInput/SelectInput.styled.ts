@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Icon from "../../../Icon/Icon";
+import styled from 'styled-components';
+import Icon from '../../../Icon/Icon';
 
 type SelectProps = {
   leftIconWidth: number;
@@ -62,7 +62,7 @@ export const LeftIcon = styled(Icon)<LeftIconProps>`
   left: var(--spacing-medium);
   top: 50%;
   margin-top: ${({ leftIconHeight }) =>
-    leftIconHeight ? `-${leftIconHeight / 2}px` : "0"};
+    leftIconHeight ? `-${leftIconHeight / 2}px` : '0'};
   z-index: 1;
 `;
 
@@ -71,6 +71,6 @@ export const RightIcon = styled(Icon)<RightIconProps>`
   right: var(--spacing-medium);
   top: 50%;
   margin-top: ${({ rightIconHeight }) =>
-    rightIconHeight ? `-${rightIconHeight / 2}px` : "0"};
+    rightIconHeight ? `-${rightIconHeight / 2}px` : '0'};
   z-index: 1;
 `;

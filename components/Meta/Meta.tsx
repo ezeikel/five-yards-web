@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 // TODO: add description and social/og tags
 

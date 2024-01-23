@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type Wrapperprops = {
   iconHeight: number;
@@ -19,7 +19,7 @@ export const Wrapper = styled.div<Wrapperprops>`
       left: var(--spacing-medium);
       top: 50%;
       margin-top: ${({ iconHeight }) =>
-        iconHeight ? `-${iconHeight / 2}px` : "0"};
+        iconHeight ? `-${iconHeight / 2}px` : '0'};
       z-index: 1;
     }
     &:nth-of-type(2) {
@@ -27,7 +27,7 @@ export const Wrapper = styled.div<Wrapperprops>`
       right: var(--spacing-medium);
       top: 50%;
       margin-top: ${({ passwordIconHeight }) =>
-        passwordIconHeight ? `-${passwordIconHeight / 2}px` : "0"};
+        passwordIconHeight ? `-${passwordIconHeight / 2}px` : '0'};
       z-index: 1;
     }
   }

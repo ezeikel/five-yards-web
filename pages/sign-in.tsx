@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import SignIn from "../components/SignIn/SignIn";
+import styled from 'styled-components';
+import SignIn from '../components/SignIn/SignIn';
 
 const Wrapper = styled.div`
   display: grid;

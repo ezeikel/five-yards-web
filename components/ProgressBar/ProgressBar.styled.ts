@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-nested-ternary */
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type WrapperProps = {
   backgroundColor: string;
@@ -14,6 +14,6 @@ export const Wrapper = styled.div<WrapperProps>`
   background-color: #d6d6d6;
   span {
     background-color: ${({ backgroundColor }) => backgroundColor};
-    width: ${({ percent }) => (percent ? `${percent}%` : "0")};
+    width: ${({ percent }) => (percent ? `${percent}%` : '0')};
   }
 `;

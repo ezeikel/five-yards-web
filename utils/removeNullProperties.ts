@@ -5,7 +5,7 @@ const removeNullProperties = (obj) => {
     if (value === null) {
       // eslint-disable-next-line no-param-reassign
       delete obj[key];
-    } else if (typeof value !== "string" && hasProperties) {
+    } else if (typeof value !== 'string' && hasProperties) {
       removeNullProperties(value);
     }
   });

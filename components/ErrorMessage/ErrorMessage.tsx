@@ -1,4 +1,4 @@
-import { ErrorStyles } from "./ErrorMessage.styled";
+import { ErrorStyles } from './ErrorMessage.styled';
 
 const DisplayError = ({ error }) => {
   if (!error || !error.message) return null;
@@ -12,7 +12,7 @@ const DisplayError = ({ error }) => {
       <ErrorStyles key={i}>
         <p data-test="graphql-error">
           <strong>Shoot!</strong>
-          {networkError.message.replace("GraphQL error: ", "")}
+          {networkError.message.replace('GraphQL error: ', '')}
         </p>
       </ErrorStyles>
     ));
@@ -21,7 +21,7 @@ const DisplayError = ({ error }) => {
     <ErrorStyles>
       <p data-test="graphql-error">
         <strong>Shoot!</strong>
-        {error.message.replace("GraphQL error: ", "")}
+        {error.message.replace('GraphQL error: ', '')}
       </p>
     </ErrorStyles>
   );

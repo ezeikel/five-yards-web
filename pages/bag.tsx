@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Bag from "../components/Bag/Bag";
+import styled from 'styled-components';
+import Bag from '../components/Bag/Bag';
 
 const Wrapper = styled.div`
   display: grid;

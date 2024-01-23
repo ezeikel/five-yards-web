@@ -1,12 +1,12 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
-import * as Sentry from "@sentry/nextjs";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
+import * as Sentry from '@sentry/nextjs';
 
-process.on("unhandledRejection", (err) => {
+process.on('unhandledRejection', (err) => {
   Sentry.captureException(err);
 });
 
-process.on("uncaughtException", (err) => {
+process.on('uncaughtException', (err) => {
   Sentry.captureException(err);
 });
 
